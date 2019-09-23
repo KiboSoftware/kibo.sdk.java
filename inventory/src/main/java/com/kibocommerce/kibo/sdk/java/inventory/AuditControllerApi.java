@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;
@@ -27,13 +27,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.kibo.sdk.java.inventory.model.CreateWaveRequest;
-import com.kibocommerce.kibo.sdk.java.inventory.model.CreateWaveResponse;
+import com.kibocommerce.kibo.sdk.java.inventory.model.Audit;
+import com.kibocommerce.kibo.sdk.java.inventory.model.AuditSearchRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.AuditSearchResponse;
+import com.kibocommerce.kibo.sdk.java.inventory.model.BaseResponse;
+import com.kibocommerce.kibo.sdk.java.inventory.model.CreateAuditRequest;
 import com.kibocommerce.kibo.sdk.java.inventory.model.InlineResponse404;
-import com.kibocommerce.kibo.sdk.java.inventory.model.Wave;
-import com.kibocommerce.kibo.sdk.java.inventory.model.WaveCompletion;
-import com.kibocommerce.kibo.sdk.java.inventory.model.WaveSuggestionRequest;
-import com.kibocommerce.kibo.sdk.java.inventory.model.WaveSuggestionResponse;
+import com.kibocommerce.kibo.sdk.java.inventory.model.LoadBinInventoryRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -41,14 +41,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WaveControllerApi {
+public class AuditControllerApi {
     private ApiClient apiClient;
 
-    public WaveControllerApi() {
+    public AuditControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public WaveControllerApi(ApiClient apiClient) {
+    public AuditControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -61,297 +61,567 @@ public class WaveControllerApi {
     }
 
     /**
-     * Build call for closePickWave
+     * Build call for cancelAudit
      * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @param waveCompletion Request to complete a wave (required)
+     * @param auditId Id of audit (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call closePickWaveCall(Integer xVolTenant, Integer waveId, WaveCompletion waveCompletion, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = waveCompletion;
-
-        // create path and map variables
-        String localVarPath = "/v1/wave/{wave_id}/close/"
-            .replaceAll("\\{" + "wave_id" + "\\}", apiClient.escapeString(waveId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xVolTenant != null) {
-            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
-        }
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call closePickWaveValidateBeforeCall(Integer xVolTenant, Integer waveId, WaveCompletion waveCompletion, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'xVolTenant' is set
-        if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling closePickWave(Async)");
-        }
-        
-        // verify the required parameter 'waveId' is set
-        if (waveId == null) {
-            throw new ApiException("Missing the required parameter 'waveId' when calling closePickWave(Async)");
-        }
-        
-        // verify the required parameter 'waveCompletion' is set
-        if (waveCompletion == null) {
-            throw new ApiException("Missing the required parameter 'waveCompletion' when calling closePickWave(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = closePickWaveCall(xVolTenant, waveId, waveCompletion, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Close Pick Wave (Complete)
-     * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @param waveCompletion Request to complete a wave (required)
-     * @return CreateWaveResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public CreateWaveResponse closePickWave(Integer xVolTenant, Integer waveId, WaveCompletion waveCompletion) throws ApiException {
-        ApiResponse<CreateWaveResponse> resp = closePickWaveWithHttpInfo(xVolTenant, waveId, waveCompletion);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Close Pick Wave (Complete)
-     * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @param waveCompletion Request to complete a wave (required)
-     * @return ApiResponse&lt;CreateWaveResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<CreateWaveResponse> closePickWaveWithHttpInfo(Integer xVolTenant, Integer waveId, WaveCompletion waveCompletion) throws ApiException {
-        com.squareup.okhttp.Call call = closePickWaveValidateBeforeCall(xVolTenant, waveId, waveCompletion, null, null);
-        Type localVarReturnType = new TypeToken<CreateWaveResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Close Pick Wave (Complete)
-     * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @param waveCompletion Request to complete a wave (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call closePickWaveAsync(Integer xVolTenant, Integer waveId, WaveCompletion waveCompletion, final ApiCallback<CreateWaveResponse> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = closePickWaveValidateBeforeCall(xVolTenant, waveId, waveCompletion, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CreateWaveResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for createPickWave
-     * @param xVolTenant Tenant ID (required)
-     * @param createWaveRequest Request to create a new pick wave(s) (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call createPickWaveCall(Integer xVolTenant, CreateWaveRequest createWaveRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = createWaveRequest;
-
-        // create path and map variables
-        String localVarPath = "/v1/wave/";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xVolTenant != null) {
-            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
-        }
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createPickWaveValidateBeforeCall(Integer xVolTenant, CreateWaveRequest createWaveRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'xVolTenant' is set
-        if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling createPickWave(Async)");
-        }
-        
-        // verify the required parameter 'createWaveRequest' is set
-        if (createWaveRequest == null) {
-            throw new ApiException("Missing the required parameter 'createWaveRequest' when calling createPickWave(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = createPickWaveCall(xVolTenant, createWaveRequest, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Create Pick Wave
-     * @param xVolTenant Tenant ID (required)
-     * @param createWaveRequest Request to create a new pick wave(s) (required)
-     * @return CreateWaveResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public CreateWaveResponse createPickWave(Integer xVolTenant, CreateWaveRequest createWaveRequest) throws ApiException {
-        ApiResponse<CreateWaveResponse> resp = createPickWaveWithHttpInfo(xVolTenant, createWaveRequest);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Create Pick Wave
-     * @param xVolTenant Tenant ID (required)
-     * @param createWaveRequest Request to create a new pick wave(s) (required)
-     * @return ApiResponse&lt;CreateWaveResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<CreateWaveResponse> createPickWaveWithHttpInfo(Integer xVolTenant, CreateWaveRequest createWaveRequest) throws ApiException {
-        com.squareup.okhttp.Call call = createPickWaveValidateBeforeCall(xVolTenant, createWaveRequest, null, null);
-        Type localVarReturnType = new TypeToken<CreateWaveResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Create Pick Wave
-     * @param xVolTenant Tenant ID (required)
-     * @param createWaveRequest Request to create a new pick wave(s) (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call createPickWaveAsync(Integer xVolTenant, CreateWaveRequest createWaveRequest, final ApiCallback<CreateWaveResponse> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = createPickWaveValidateBeforeCall(xVolTenant, createWaveRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CreateWaveResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getOpenPickWaves
-     * @param xVolTenant Tenant ID (required)
-     * @param locationId Location Identifier (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call getOpenPickWavesCall(Integer xVolTenant, Integer locationId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call cancelAuditCall(Integer xVolTenant, Long auditId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/v1/wave/open/{location_id}/"
+        String localVarPath = "/v1/audit/{audit_id}/cancel/"
+            .replaceAll("\\{" + "audit_id" + "\\}", apiClient.escapeString(auditId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call cancelAuditValidateBeforeCall(Integer xVolTenant, Long auditId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling cancelAudit(Async)");
+        }
+        
+        // verify the required parameter 'auditId' is set
+        if (auditId == null) {
+            throw new ApiException("Missing the required parameter 'auditId' when calling cancelAudit(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = cancelAuditCall(xVolTenant, auditId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Cancel an audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @return BaseResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BaseResponse cancelAudit(Integer xVolTenant, Long auditId) throws ApiException {
+        ApiResponse<BaseResponse> resp = cancelAuditWithHttpInfo(xVolTenant, auditId);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Cancel an audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @return ApiResponse&lt;BaseResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BaseResponse> cancelAuditWithHttpInfo(Integer xVolTenant, Long auditId) throws ApiException {
+        com.squareup.okhttp.Call call = cancelAuditValidateBeforeCall(xVolTenant, auditId, null, null);
+        Type localVarReturnType = new TypeToken<BaseResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Cancel an audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call cancelAuditAsync(Integer xVolTenant, Long auditId, final ApiCallback<BaseResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = cancelAuditValidateBeforeCall(xVolTenant, auditId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BaseResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for completeAudit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param loadBinInventoryRequest Request to load bin inventory (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call completeAuditCall(Integer xVolTenant, Long auditId, LoadBinInventoryRequest loadBinInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = loadBinInventoryRequest;
+
+        // create path and map variables
+        String localVarPath = "/v1/audit/{audit_id}/complete/"
+            .replaceAll("\\{" + "audit_id" + "\\}", apiClient.escapeString(auditId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call completeAuditValidateBeforeCall(Integer xVolTenant, Long auditId, LoadBinInventoryRequest loadBinInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling completeAudit(Async)");
+        }
+        
+        // verify the required parameter 'auditId' is set
+        if (auditId == null) {
+            throw new ApiException("Missing the required parameter 'auditId' when calling completeAudit(Async)");
+        }
+        
+        // verify the required parameter 'loadBinInventoryRequest' is set
+        if (loadBinInventoryRequest == null) {
+            throw new ApiException("Missing the required parameter 'loadBinInventoryRequest' when calling completeAudit(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = completeAuditCall(xVolTenant, auditId, loadBinInventoryRequest, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Complete an audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param loadBinInventoryRequest Request to load bin inventory (required)
+     * @return Audit
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Audit completeAudit(Integer xVolTenant, Long auditId, LoadBinInventoryRequest loadBinInventoryRequest) throws ApiException {
+        ApiResponse<Audit> resp = completeAuditWithHttpInfo(xVolTenant, auditId, loadBinInventoryRequest);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Complete an audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param loadBinInventoryRequest Request to load bin inventory (required)
+     * @return ApiResponse&lt;Audit&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Audit> completeAuditWithHttpInfo(Integer xVolTenant, Long auditId, LoadBinInventoryRequest loadBinInventoryRequest) throws ApiException {
+        com.squareup.okhttp.Call call = completeAuditValidateBeforeCall(xVolTenant, auditId, loadBinInventoryRequest, null, null);
+        Type localVarReturnType = new TypeToken<Audit>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Complete an audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param loadBinInventoryRequest Request to load bin inventory (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call completeAuditAsync(Integer xVolTenant, Long auditId, LoadBinInventoryRequest loadBinInventoryRequest, final ApiCallback<Audit> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = completeAuditValidateBeforeCall(xVolTenant, auditId, loadBinInventoryRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Audit>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for createAudit
+     * @param xVolTenant Tenant ID (required)
+     * @param createAuditRequest Request to create an audit (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call createAuditCall(Integer xVolTenant, CreateAuditRequest createAuditRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = createAuditRequest;
+
+        // create path and map variables
+        String localVarPath = "/v1/audit/";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call createAuditValidateBeforeCall(Integer xVolTenant, CreateAuditRequest createAuditRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling createAudit(Async)");
+        }
+        
+        // verify the required parameter 'createAuditRequest' is set
+        if (createAuditRequest == null) {
+            throw new ApiException("Missing the required parameter 'createAuditRequest' when calling createAudit(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = createAuditCall(xVolTenant, createAuditRequest, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Create a new audit
+     * @param xVolTenant Tenant ID (required)
+     * @param createAuditRequest Request to create an audit (required)
+     * @return Audit
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Audit createAudit(Integer xVolTenant, CreateAuditRequest createAuditRequest) throws ApiException {
+        ApiResponse<Audit> resp = createAuditWithHttpInfo(xVolTenant, createAuditRequest);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Create a new audit
+     * @param xVolTenant Tenant ID (required)
+     * @param createAuditRequest Request to create an audit (required)
+     * @return ApiResponse&lt;Audit&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Audit> createAuditWithHttpInfo(Integer xVolTenant, CreateAuditRequest createAuditRequest) throws ApiException {
+        com.squareup.okhttp.Call call = createAuditValidateBeforeCall(xVolTenant, createAuditRequest, null, null);
+        Type localVarReturnType = new TypeToken<Audit>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Create a new audit
+     * @param xVolTenant Tenant ID (required)
+     * @param createAuditRequest Request to create an audit (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createAuditAsync(Integer xVolTenant, CreateAuditRequest createAuditRequest, final ApiCallback<Audit> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createAuditValidateBeforeCall(xVolTenant, createAuditRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Audit>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getAuditDetails
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getAuditDetailsCall(Integer xVolTenant, Long auditId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/v1/audit/{audit_id}/"
+            .replaceAll("\\{" + "audit_id" + "\\}", apiClient.escapeString(auditId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getAuditDetailsValidateBeforeCall(Integer xVolTenant, Long auditId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getAuditDetails(Async)");
+        }
+        
+        // verify the required parameter 'auditId' is set
+        if (auditId == null) {
+            throw new ApiException("Missing the required parameter 'auditId' when calling getAuditDetails(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getAuditDetailsCall(xVolTenant, auditId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Get details of the specified audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @return Audit
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Audit getAuditDetails(Integer xVolTenant, Long auditId) throws ApiException {
+        ApiResponse<Audit> resp = getAuditDetailsWithHttpInfo(xVolTenant, auditId);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Get details of the specified audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @return ApiResponse&lt;Audit&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Audit> getAuditDetailsWithHttpInfo(Integer xVolTenant, Long auditId) throws ApiException {
+        com.squareup.okhttp.Call call = getAuditDetailsValidateBeforeCall(xVolTenant, auditId, null, null);
+        Type localVarReturnType = new TypeToken<Audit>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get details of the specified audit
+     * @param xVolTenant Tenant ID (required)
+     * @param auditId Id of audit (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getAuditDetailsAsync(Integer xVolTenant, Long auditId, final ApiCallback<Audit> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getAuditDetailsValidateBeforeCall(xVolTenant, auditId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Audit>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getOpenAudits
+     * @param xVolTenant Tenant ID (required)
+     * @param locationId Id of location (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getOpenAuditsCall(Integer xVolTenant, Long locationId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/v1/audit/allOpen/{location_code}/"
             .replaceAll("\\{" + "location_id" + "\\}", apiClient.escapeString(locationId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -393,61 +663,61 @@ public class WaveControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOpenPickWavesValidateBeforeCall(Integer xVolTenant, Integer locationId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getOpenAuditsValidateBeforeCall(Integer xVolTenant, Long locationId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getOpenPickWaves(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getOpenAudits(Async)");
         }
         
         // verify the required parameter 'locationId' is set
         if (locationId == null) {
-            throw new ApiException("Missing the required parameter 'locationId' when calling getOpenPickWaves(Async)");
+            throw new ApiException("Missing the required parameter 'locationId' when calling getOpenAudits(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getOpenPickWavesCall(xVolTenant, locationId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOpenAuditsCall(xVolTenant, locationId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Get Open Pick Waves
+     * Get all of the open   audits at the given location
      * @param xVolTenant Tenant ID (required)
-     * @param locationId Location Identifier (required)
-     * @return List&lt;Wave&gt;
+     * @param locationId Id of location (required)
+     * @return List&lt;Audit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Wave> getOpenPickWaves(Integer xVolTenant, Integer locationId) throws ApiException {
-        ApiResponse<List<Wave>> resp = getOpenPickWavesWithHttpInfo(xVolTenant, locationId);
+    public List<Audit> getOpenAudits(Integer xVolTenant, Long locationId) throws ApiException {
+        ApiResponse<List<Audit>> resp = getOpenAuditsWithHttpInfo(xVolTenant, locationId);
         return resp.getData();
     }
 
     /**
      * 
-     * Get Open Pick Waves
+     * Get all of the open   audits at the given location
      * @param xVolTenant Tenant ID (required)
-     * @param locationId Location Identifier (required)
-     * @return ApiResponse&lt;List&lt;Wave&gt;&gt;
+     * @param locationId Id of location (required)
+     * @return ApiResponse&lt;List&lt;Audit&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Wave>> getOpenPickWavesWithHttpInfo(Integer xVolTenant, Integer locationId) throws ApiException {
-        com.squareup.okhttp.Call call = getOpenPickWavesValidateBeforeCall(xVolTenant, locationId, null, null);
-        Type localVarReturnType = new TypeToken<List<Wave>>(){}.getType();
+    public ApiResponse<List<Audit>> getOpenAuditsWithHttpInfo(Integer xVolTenant, Long locationId) throws ApiException {
+        com.squareup.okhttp.Call call = getOpenAuditsValidateBeforeCall(xVolTenant, locationId, null, null);
+        Type localVarReturnType = new TypeToken<List<Audit>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get Open Pick Waves
+     * Get all of the open   audits at the given location
      * @param xVolTenant Tenant ID (required)
-     * @param locationId Location Identifier (required)
+     * @param locationId Id of location (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOpenPickWavesAsync(Integer xVolTenant, Integer locationId, final ApiCallback<List<Wave>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getOpenAuditsAsync(Integer xVolTenant, Long locationId, final ApiCallback<List<Audit>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -468,26 +738,25 @@ public class WaveControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOpenPickWavesValidateBeforeCall(xVolTenant, locationId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Wave>>(){}.getType();
+        com.squareup.okhttp.Call call = getOpenAuditsValidateBeforeCall(xVolTenant, locationId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Audit>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getWaveDetails
+     * Build call for searchAudits
      * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
+     * @param auditSearchRequest Request to search audits (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getWaveDetailsCall(Integer xVolTenant, Integer waveId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = new Object();
+    public com.squareup.okhttp.Call searchAuditsCall(Integer xVolTenant, AuditSearchRequest auditSearchRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = auditSearchRequest;
 
         // create path and map variables
-        String localVarPath = "/v1/wave/{wave_id}/"
-            .replaceAll("\\{" + "wave_id" + "\\}", apiClient.escapeString(waveId.toString()));
+        String localVarPath = "/v1/audit/search/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -496,135 +765,6 @@ public class WaveControllerApi {
             localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
         }
 
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getWaveDetailsValidateBeforeCall(Integer xVolTenant, Integer waveId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'xVolTenant' is set
-        if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWaveDetails(Async)");
-        }
-        
-        // verify the required parameter 'waveId' is set
-        if (waveId == null) {
-            throw new ApiException("Missing the required parameter 'waveId' when calling getWaveDetails(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = getWaveDetailsCall(xVolTenant, waveId, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Get Wave Details
-     * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @return Wave
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public Wave getWaveDetails(Integer xVolTenant, Integer waveId) throws ApiException {
-        ApiResponse<Wave> resp = getWaveDetailsWithHttpInfo(xVolTenant, waveId);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Get Wave Details
-     * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @return ApiResponse&lt;Wave&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Wave> getWaveDetailsWithHttpInfo(Integer xVolTenant, Integer waveId) throws ApiException {
-        com.squareup.okhttp.Call call = getWaveDetailsValidateBeforeCall(xVolTenant, waveId, null, null);
-        Type localVarReturnType = new TypeToken<Wave>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Get Wave Details
-     * @param xVolTenant Tenant ID (required)
-     * @param waveId Wave Identifier (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getWaveDetailsAsync(Integer xVolTenant, Integer waveId, final ApiCallback<Wave> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getWaveDetailsValidateBeforeCall(xVolTenant, waveId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Wave>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for queryWaveSuggestion
-     * @param waveSuggestionRequest Request to query for a pick wave suggestion (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call queryWaveSuggestionCall(WaveSuggestionRequest waveSuggestionRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = waveSuggestionRequest;
-
-        // create path and map variables
-        String localVarPath = "/v1/wave/suggestion/";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
             "application/json"
@@ -657,53 +797,61 @@ public class WaveControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call queryWaveSuggestionValidateBeforeCall(WaveSuggestionRequest waveSuggestionRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call searchAuditsValidateBeforeCall(Integer xVolTenant, AuditSearchRequest auditSearchRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'waveSuggestionRequest' is set
-        if (waveSuggestionRequest == null) {
-            throw new ApiException("Missing the required parameter 'waveSuggestionRequest' when calling queryWaveSuggestion(Async)");
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling searchAudits(Async)");
+        }
+        
+        // verify the required parameter 'auditSearchRequest' is set
+        if (auditSearchRequest == null) {
+            throw new ApiException("Missing the required parameter 'auditSearchRequest' when calling searchAudits(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = queryWaveSuggestionCall(waveSuggestionRequest, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = searchAuditsCall(xVolTenant, auditSearchRequest, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Query Wave Suggestion (as a post)
-     * @param waveSuggestionRequest Request to query for a pick wave suggestion (required)
-     * @return WaveSuggestionResponse
+     * Search for a list of Audits
+     * @param xVolTenant Tenant ID (required)
+     * @param auditSearchRequest Request to search audits (required)
+     * @return AuditSearchResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public WaveSuggestionResponse queryWaveSuggestion(WaveSuggestionRequest waveSuggestionRequest) throws ApiException {
-        ApiResponse<WaveSuggestionResponse> resp = queryWaveSuggestionWithHttpInfo(waveSuggestionRequest);
+    public AuditSearchResponse searchAudits(Integer xVolTenant, AuditSearchRequest auditSearchRequest) throws ApiException {
+        ApiResponse<AuditSearchResponse> resp = searchAuditsWithHttpInfo(xVolTenant, auditSearchRequest);
         return resp.getData();
     }
 
     /**
      * 
-     * Query Wave Suggestion (as a post)
-     * @param waveSuggestionRequest Request to query for a pick wave suggestion (required)
-     * @return ApiResponse&lt;WaveSuggestionResponse&gt;
+     * Search for a list of Audits
+     * @param xVolTenant Tenant ID (required)
+     * @param auditSearchRequest Request to search audits (required)
+     * @return ApiResponse&lt;AuditSearchResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<WaveSuggestionResponse> queryWaveSuggestionWithHttpInfo(WaveSuggestionRequest waveSuggestionRequest) throws ApiException {
-        com.squareup.okhttp.Call call = queryWaveSuggestionValidateBeforeCall(waveSuggestionRequest, null, null);
-        Type localVarReturnType = new TypeToken<WaveSuggestionResponse>(){}.getType();
+    public ApiResponse<AuditSearchResponse> searchAuditsWithHttpInfo(Integer xVolTenant, AuditSearchRequest auditSearchRequest) throws ApiException {
+        com.squareup.okhttp.Call call = searchAuditsValidateBeforeCall(xVolTenant, auditSearchRequest, null, null);
+        Type localVarReturnType = new TypeToken<AuditSearchResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Query Wave Suggestion (as a post)
-     * @param waveSuggestionRequest Request to query for a pick wave suggestion (required)
+     * Search for a list of Audits
+     * @param xVolTenant Tenant ID (required)
+     * @param auditSearchRequest Request to search audits (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call queryWaveSuggestionAsync(WaveSuggestionRequest waveSuggestionRequest, final ApiCallback<WaveSuggestionResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call searchAuditsAsync(Integer xVolTenant, AuditSearchRequest auditSearchRequest, final ApiCallback<AuditSearchResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -724,8 +872,8 @@ public class WaveControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = queryWaveSuggestionValidateBeforeCall(waveSuggestionRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<WaveSuggestionResponse>(){}.getType();
+        com.squareup.okhttp.Call call = searchAuditsValidateBeforeCall(xVolTenant, auditSearchRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<AuditSearchResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

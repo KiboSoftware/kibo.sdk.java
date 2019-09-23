@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;
@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.kibo.sdk.java.inventory.model.TenantConfigModel;
-import com.kibocommerce.kibo.sdk.java.inventory.model.UpdateTenantConfigRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.InlineResponse404;
+import com.kibocommerce.kibo.sdk.java.inventory.model.JobQueueResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,14 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TenantConfigControllerApi {
+public class JobControllerApi {
     private ApiClient apiClient;
 
-    public TenantConfigControllerApi() {
+    public JobControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public TenantConfigControllerApi(ApiClient apiClient) {
+    public JobControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -56,139 +56,20 @@ public class TenantConfigControllerApi {
     }
 
     /**
-     * Build call for createTenantConfig
-     * @param updateTenantConfigRequest Request to create tenant config (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call createTenantConfigCall(UpdateTenantConfigRequest updateTenantConfigRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = updateTenantConfigRequest;
-
-        // create path and map variables
-        String localVarPath = "/v1/tenantConfig/";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createTenantConfigValidateBeforeCall(UpdateTenantConfigRequest updateTenantConfigRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'updateTenantConfigRequest' is set
-        if (updateTenantConfigRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateTenantConfigRequest' when calling createTenantConfig(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = createTenantConfigCall(updateTenantConfigRequest, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Creates or updates tenant config
-     * @param updateTenantConfigRequest Request to create tenant config (required)
-     * @return Integer
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public Integer createTenantConfig(UpdateTenantConfigRequest updateTenantConfigRequest) throws ApiException {
-        ApiResponse<Integer> resp = createTenantConfigWithHttpInfo(updateTenantConfigRequest);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Creates or updates tenant config
-     * @param updateTenantConfigRequest Request to create tenant config (required)
-     * @return ApiResponse&lt;Integer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Integer> createTenantConfigWithHttpInfo(UpdateTenantConfigRequest updateTenantConfigRequest) throws ApiException {
-        com.squareup.okhttp.Call call = createTenantConfigValidateBeforeCall(updateTenantConfigRequest, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Creates or updates tenant config
-     * @param updateTenantConfigRequest Request to create tenant config (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call createTenantConfigAsync(UpdateTenantConfigRequest updateTenantConfigRequest, final ApiCallback<Integer> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = createTenantConfigValidateBeforeCall(updateTenantConfigRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getTenantConfig
+     * Build call for getJob
      * @param xVolTenant Tenant ID (required)
+     * @param jobID Id of bin to get (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getTenantConfigCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getJobCall(Integer xVolTenant, Long jobID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/v1/tenantConfig/";
+        String localVarPath = "/v1/queue/{jobID}/"
+            .replaceAll("\\{" + "jobID" + "\\}", apiClient.escapeString(jobID.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -229,53 +110,61 @@ public class TenantConfigControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getTenantConfigValidateBeforeCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getJobValidateBeforeCall(Integer xVolTenant, Long jobID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getTenantConfig(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getJob(Async)");
+        }
+        
+        // verify the required parameter 'jobID' is set
+        if (jobID == null) {
+            throw new ApiException("Missing the required parameter 'jobID' when calling getJob(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getTenantConfigCall(xVolTenant, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getJobCall(xVolTenant, jobID, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Gets tenant config
+     * Get the specified job
      * @param xVolTenant Tenant ID (required)
-     * @return TenantConfigModel
+     * @param jobID Id of bin to get (required)
+     * @return JobQueueResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TenantConfigModel getTenantConfig(Integer xVolTenant) throws ApiException {
-        ApiResponse<TenantConfigModel> resp = getTenantConfigWithHttpInfo(xVolTenant);
+    public JobQueueResponse getJob(Integer xVolTenant, Long jobID) throws ApiException {
+        ApiResponse<JobQueueResponse> resp = getJobWithHttpInfo(xVolTenant, jobID);
         return resp.getData();
     }
 
     /**
      * 
-     * Gets tenant config
+     * Get the specified job
      * @param xVolTenant Tenant ID (required)
-     * @return ApiResponse&lt;TenantConfigModel&gt;
+     * @param jobID Id of bin to get (required)
+     * @return ApiResponse&lt;JobQueueResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TenantConfigModel> getTenantConfigWithHttpInfo(Integer xVolTenant) throws ApiException {
-        com.squareup.okhttp.Call call = getTenantConfigValidateBeforeCall(xVolTenant, null, null);
-        Type localVarReturnType = new TypeToken<TenantConfigModel>(){}.getType();
+    public ApiResponse<JobQueueResponse> getJobWithHttpInfo(Integer xVolTenant, Long jobID) throws ApiException {
+        com.squareup.okhttp.Call call = getJobValidateBeforeCall(xVolTenant, jobID, null, null);
+        Type localVarReturnType = new TypeToken<JobQueueResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Gets tenant config
+     * Get the specified job
      * @param xVolTenant Tenant ID (required)
+     * @param jobID Id of bin to get (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getTenantConfigAsync(Integer xVolTenant, final ApiCallback<TenantConfigModel> callback) throws ApiException {
+    public com.squareup.okhttp.Call getJobAsync(Integer xVolTenant, Long jobID, final ApiCallback<JobQueueResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -296,8 +185,173 @@ public class TenantConfigControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getTenantConfigValidateBeforeCall(xVolTenant, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<TenantConfigModel>(){}.getType();
+        com.squareup.okhttp.Call call = getJobValidateBeforeCall(xVolTenant, jobID, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<JobQueueResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getJobs
+     * @param xVolTenant Tenant ID (required)
+     * @param locationCode Tenant specified unique Identifier of the owning location (optional)
+     * @param limit The maximum number of results to return, defaults to 100 for most (optional)
+     * @param owner User that owns the job (optional)
+     * @param types Type of the Job Queue Request (optional)
+     * @param originalFilename The full name of the file that was picked up at the secure droppoint server before being split up by location. (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getJobsCall(Integer xVolTenant, String locationCode, Integer limit, String owner, List<String> types, String originalFilename, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/v1/queue/";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (locationCode != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("locationCode", locationCode));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+        }
+
+        if (owner != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("owner", owner));
+        }
+
+        if (types != null) {
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "types", types));
+        }
+
+        if (originalFilename != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("originalFilename", originalFilename));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getJobsValidateBeforeCall(Integer xVolTenant, String locationCode, Integer limit, String owner, List<String> types, String originalFilename, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getJobs(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getJobsCall(xVolTenant, locationCode, limit, owner, types, originalFilename, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Get the requested jobs
+     * @param xVolTenant Tenant ID (required)
+     * @param locationCode Tenant specified unique Identifier of the owning location (optional)
+     * @param limit The maximum number of results to return, defaults to 100 for most (optional)
+     * @param owner User that owns the job (optional)
+     * @param types Type of the Job Queue Request (optional)
+     * @param originalFilename The full name of the file that was picked up at the secure droppoint server before being split up by location. (optional)
+     * @return List&lt;JobQueueResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<JobQueueResponse> getJobs(Integer xVolTenant, String locationCode, Integer limit, String owner, List<String> types, String originalFilename) throws ApiException {
+        ApiResponse<List<JobQueueResponse>> resp = getJobsWithHttpInfo(xVolTenant, locationCode, limit, owner, types, originalFilename);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Get the requested jobs
+     * @param xVolTenant Tenant ID (required)
+     * @param locationCode Tenant specified unique Identifier of the owning location (optional)
+     * @param limit The maximum number of results to return, defaults to 100 for most (optional)
+     * @param owner User that owns the job (optional)
+     * @param types Type of the Job Queue Request (optional)
+     * @param originalFilename The full name of the file that was picked up at the secure droppoint server before being split up by location. (optional)
+     * @return ApiResponse&lt;List&lt;JobQueueResponse&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<JobQueueResponse>> getJobsWithHttpInfo(Integer xVolTenant, String locationCode, Integer limit, String owner, List<String> types, String originalFilename) throws ApiException {
+        com.squareup.okhttp.Call call = getJobsValidateBeforeCall(xVolTenant, locationCode, limit, owner, types, originalFilename, null, null);
+        Type localVarReturnType = new TypeToken<List<JobQueueResponse>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Get the requested jobs
+     * @param xVolTenant Tenant ID (required)
+     * @param locationCode Tenant specified unique Identifier of the owning location (optional)
+     * @param limit The maximum number of results to return, defaults to 100 for most (optional)
+     * @param owner User that owns the job (optional)
+     * @param types Type of the Job Queue Request (optional)
+     * @param originalFilename The full name of the file that was picked up at the secure droppoint server before being split up by location. (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getJobsAsync(Integer xVolTenant, String locationCode, Integer limit, String owner, List<String> types, String originalFilename, final ApiCallback<List<JobQueueResponse>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getJobsValidateBeforeCall(xVolTenant, locationCode, limit, owner, types, originalFilename, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<JobQueueResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

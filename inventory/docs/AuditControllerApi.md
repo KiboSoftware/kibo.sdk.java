@@ -24,7 +24,7 @@ Cancel an audit
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AuditControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AuditControllerApi;
 
 
 AuditControllerApi apiInstance = new AuditControllerApi();
@@ -71,7 +71,7 @@ Complete an audit
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AuditControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AuditControllerApi;
 
 
 AuditControllerApi apiInstance = new AuditControllerApi();
@@ -120,7 +120,7 @@ Create a new audit
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AuditControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AuditControllerApi;
 
 
 AuditControllerApi apiInstance = new AuditControllerApi();
@@ -167,7 +167,7 @@ Get details of the specified audit
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AuditControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AuditControllerApi;
 
 
 AuditControllerApi apiInstance = new AuditControllerApi();
@@ -214,7 +214,7 @@ Get all of the open   audits at the given location
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AuditControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AuditControllerApi;
 
 
 AuditControllerApi apiInstance = new AuditControllerApi();
@@ -261,7 +261,7 @@ Search for a list of Audits
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AuditControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AuditControllerApi;
 
 
 AuditControllerApi apiInstance = new AuditControllerApi();

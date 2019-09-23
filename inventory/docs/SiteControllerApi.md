@@ -20,7 +20,7 @@ Creates a site
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.SiteControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.SiteControllerApi;
 
 
 SiteControllerApi apiInstance = new SiteControllerApi();
@@ -65,7 +65,7 @@ Deletes a site
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.SiteControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.SiteControllerApi;
 
 
 SiteControllerApi apiInstance = new SiteControllerApi();

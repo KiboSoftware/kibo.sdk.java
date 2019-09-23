@@ -1,8 +1,8 @@
-# openapi-java-client
+# kibo.sdk.java.inventory
 
 Inventory
 - API version: 5.0
-  - Build date: 2019-09-16T10:27:23.335642-05:00[America/Chicago]
+  - Build date: 2019-09-24T10:20:36.026-05:00[America/Chicago]
 
 Swagger JSON for inventory apis
 
@@ -38,9 +38,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>org.openapitools</groupId>
-  <artifactId>openapi-java-client</artifactId>
-  <version>1.0.0</version>
+  <groupId>com.kibocommerce</groupId>
+  <artifactId>kibo.sdk.java.inventory</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "org.openapitools:openapi-java-client:1.0.0"
+compile "com.kibocommerce:kibo.sdk.java.inventory:1.0.0-SNAPSHOT"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/openapi-java-client-1.0.0.jar`
+* `target/kibo.sdk.java.inventory-1.0.0-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -72,10 +72,10 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.openapitools.client.*;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.AllocationControllerApi;
+import com.kibocommerce.kibo.sdk.java.inventory.*;
+import com.kibocommerce.kibo.sdk.java.inventory.auth.*;
+import com.kibocommerce.kibo.sdk.java.inventory.model.*;
+import com.kibocommerce.kibo.sdk.java.inventory.AllocationControllerApi;
 
 import java.io.File;
 import java.util.*;

@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;
@@ -27,10 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemInformation;
-import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemInformationRequest;
-import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemLogRequest;
-import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemLogResponse;
+import com.kibocommerce.kibo.sdk.java.inventory.model.FetchFileConfigRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.MFetchFileConfig;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,14 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OrderItemControllerApi {
+public class FetchFileConfigControllerApi {
     private ApiClient apiClient;
 
-    public OrderItemControllerApi() {
+    public FetchFileConfigControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public OrderItemControllerApi(ApiClient apiClient) {
+    public FetchFileConfigControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -58,19 +56,18 @@ public class OrderItemControllerApi {
     }
 
     /**
-     * Build call for getOrderItemInformation
+     * Build call for getFetchConfig
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemInformationRequest Request to retrieve order item information (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemInformationCall(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = orderItemInformationRequest;
+    public com.squareup.okhttp.Call getFetchConfigCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/v5/inventory/getOrderItemInformation/";
+        String localVarPath = "/v1/config/fetchfile/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -89,7 +86,7 @@ public class OrderItemControllerApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -107,65 +104,57 @@ public class OrderItemControllerApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderItemInformationValidateBeforeCall(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getFetchConfigValidateBeforeCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getOrderItemInformation(Async)");
-        }
-        
-        // verify the required parameter 'orderItemInformationRequest' is set
-        if (orderItemInformationRequest == null) {
-            throw new ApiException("Missing the required parameter 'orderItemInformationRequest' when calling getOrderItemInformation(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getFetchConfig(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getOrderItemInformationCall(xVolTenant, orderItemInformationRequest, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getFetchConfigCall(xVolTenant, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Get Order Item Information
+     * Get the Fetch File Configs for the current tenant
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemInformationRequest Request to retrieve order item information (required)
-     * @return List&lt;OrderItemInformation&gt;
+     * @return MFetchFileConfig
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<OrderItemInformation> getOrderItemInformation(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest) throws ApiException {
-        ApiResponse<List<OrderItemInformation>> resp = getOrderItemInformationWithHttpInfo(xVolTenant, orderItemInformationRequest);
+    public MFetchFileConfig getFetchConfig(Integer xVolTenant) throws ApiException {
+        ApiResponse<MFetchFileConfig> resp = getFetchConfigWithHttpInfo(xVolTenant);
         return resp.getData();
     }
 
     /**
      * 
-     * Get Order Item Information
+     * Get the Fetch File Configs for the current tenant
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemInformationRequest Request to retrieve order item information (required)
-     * @return ApiResponse&lt;List&lt;OrderItemInformation&gt;&gt;
+     * @return ApiResponse&lt;MFetchFileConfig&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<OrderItemInformation>> getOrderItemInformationWithHttpInfo(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderItemInformationValidateBeforeCall(xVolTenant, orderItemInformationRequest, null, null);
-        Type localVarReturnType = new TypeToken<List<OrderItemInformation>>(){}.getType();
+    public ApiResponse<MFetchFileConfig> getFetchConfigWithHttpInfo(Integer xVolTenant) throws ApiException {
+        com.squareup.okhttp.Call call = getFetchConfigValidateBeforeCall(xVolTenant, null, null);
+        Type localVarReturnType = new TypeToken<MFetchFileConfig>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get Order Item Information
+     * Get the Fetch File Configs for the current tenant
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemInformationRequest Request to retrieve order item information (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemInformationAsync(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest, final ApiCallback<List<OrderItemInformation>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getFetchConfigAsync(Integer xVolTenant, final ApiCallback<MFetchFileConfig> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -186,25 +175,25 @@ public class OrderItemControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderItemInformationValidateBeforeCall(xVolTenant, orderItemInformationRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<OrderItemInformation>>(){}.getType();
+        com.squareup.okhttp.Call call = getFetchConfigValidateBeforeCall(xVolTenant, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<MFetchFileConfig>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getOrderItemLog
+     * Build call for saveFetchConfig
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
+     * @param fetchFileConfigRequest Request to fetch file configs (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemLogCall(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = orderItemLogRequest;
+    public com.squareup.okhttp.Call saveFetchConfigCall(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = fetchFileConfigRequest;
 
         // create path and map variables
-        String localVarPath = "/v5/inventory/getOrderItemLog/";
+        String localVarPath = "/v1/config/fetchfile/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -245,61 +234,61 @@ public class OrderItemControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOrderItemLogValidateBeforeCall(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call saveFetchConfigValidateBeforeCall(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getOrderItemLog(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling saveFetchConfig(Async)");
         }
         
-        // verify the required parameter 'orderItemLogRequest' is set
-        if (orderItemLogRequest == null) {
-            throw new ApiException("Missing the required parameter 'orderItemLogRequest' when calling getOrderItemLog(Async)");
+        // verify the required parameter 'fetchFileConfigRequest' is set
+        if (fetchFileConfigRequest == null) {
+            throw new ApiException("Missing the required parameter 'fetchFileConfigRequest' when calling saveFetchConfig(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getOrderItemLogCall(xVolTenant, orderItemLogRequest, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = saveFetchConfigCall(xVolTenant, fetchFileConfigRequest, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Get Order Item Log
+     * Save a new Fetch File Config
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
-     * @return List&lt;OrderItemLogResponse&gt;
+     * @param fetchFileConfigRequest Request to fetch file configs (required)
+     * @return Boolean
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<OrderItemLogResponse> getOrderItemLog(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest) throws ApiException {
-        ApiResponse<List<OrderItemLogResponse>> resp = getOrderItemLogWithHttpInfo(xVolTenant, orderItemLogRequest);
+    public Boolean saveFetchConfig(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest) throws ApiException {
+        ApiResponse<Boolean> resp = saveFetchConfigWithHttpInfo(xVolTenant, fetchFileConfigRequest);
         return resp.getData();
     }
 
     /**
      * 
-     * Get Order Item Log
+     * Save a new Fetch File Config
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
-     * @return ApiResponse&lt;List&lt;OrderItemLogResponse&gt;&gt;
+     * @param fetchFileConfigRequest Request to fetch file configs (required)
+     * @return ApiResponse&lt;Boolean&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<OrderItemLogResponse>> getOrderItemLogWithHttpInfo(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest) throws ApiException {
-        com.squareup.okhttp.Call call = getOrderItemLogValidateBeforeCall(xVolTenant, orderItemLogRequest, null, null);
-        Type localVarReturnType = new TypeToken<List<OrderItemLogResponse>>(){}.getType();
+    public ApiResponse<Boolean> saveFetchConfigWithHttpInfo(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest) throws ApiException {
+        com.squareup.okhttp.Call call = saveFetchConfigValidateBeforeCall(xVolTenant, fetchFileConfigRequest, null, null);
+        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Get Order Item Log
+     * Save a new Fetch File Config
      * @param xVolTenant Tenant ID (required)
-     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
+     * @param fetchFileConfigRequest Request to fetch file configs (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOrderItemLogAsync(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest, final ApiCallback<List<OrderItemLogResponse>> callback) throws ApiException {
+    public com.squareup.okhttp.Call saveFetchConfigAsync(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest, final ApiCallback<Boolean> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -320,8 +309,8 @@ public class OrderItemControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOrderItemLogValidateBeforeCall(xVolTenant, orderItemLogRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<OrderItemLogResponse>>(){}.getType();
+        com.squareup.okhttp.Call call = saveFetchConfigValidateBeforeCall(xVolTenant, fetchFileConfigRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

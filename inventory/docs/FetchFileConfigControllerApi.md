@@ -20,7 +20,7 @@ Get the Fetch File Configs for the current tenant
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.FetchFileConfigControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.FetchFileConfigControllerApi;
 
 
 FetchFileConfigControllerApi apiInstance = new FetchFileConfigControllerApi();
@@ -65,7 +65,7 @@ Save a new Fetch File Config
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.FetchFileConfigControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.FetchFileConfigControllerApi;
 
 
 FetchFileConfigControllerApi apiInstance = new FetchFileConfigControllerApi();

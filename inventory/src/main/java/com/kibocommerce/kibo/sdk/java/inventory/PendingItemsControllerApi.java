@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;

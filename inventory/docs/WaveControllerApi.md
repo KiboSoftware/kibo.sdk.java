@@ -23,7 +23,7 @@ Close Pick Wave (Complete)
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.WaveControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.WaveControllerApi;
 
 
 WaveControllerApi apiInstance = new WaveControllerApi();
@@ -72,7 +72,7 @@ Create Pick Wave
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.WaveControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.WaveControllerApi;
 
 
 WaveControllerApi apiInstance = new WaveControllerApi();
@@ -119,7 +119,7 @@ Get Open Pick Waves
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.WaveControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.WaveControllerApi;
 
 
 WaveControllerApi apiInstance = new WaveControllerApi();
@@ -166,7 +166,7 @@ Get Wave Details
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.WaveControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.WaveControllerApi;
 
 
 WaveControllerApi apiInstance = new WaveControllerApi();
@@ -213,7 +213,7 @@ Query Wave Suggestion (as a post)
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.WaveControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.WaveControllerApi;
 
 
 WaveControllerApi apiInstance = new WaveControllerApi();

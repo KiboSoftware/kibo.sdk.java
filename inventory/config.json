@@ -1,11 +1,11 @@
 {
-  "apiPackage": "com.kibocommerce.kibo.sdk.phps.inventory",
-  "artifactId": "inventory",
+  "apiPackage": "com.kibocommerce.kibo.sdk.java.inventory",
+  "artifactId": "kibo.sdk.java.inventory",
   "artifactVersion": "1.0.0-SNAPSHOT",
   "groupId": "com.kibocommerce",
   "invokerPackage": "com.kibocommerce.kibo.sdk.java.inventory",
   "modelPackage":"com.kibocommerce.kibo.sdk.java.inventory.model",
   "parentGroupId":"com.kibocommerce",
-  "parentArtifactId":"kibo-sdk-java11",
+  "parentArtifactId":"kibo.sdk.java",
   "parentVersion":"1.0.0-SNAPSHOT"
 }

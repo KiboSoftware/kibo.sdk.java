@@ -20,7 +20,7 @@ Delete Pending Items
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.PendingItemsControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.PendingItemsControllerApi;
 
 
 PendingItemsControllerApi apiInstance = new PendingItemsControllerApi();
@@ -67,7 +67,7 @@ Get Pending Items
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.PendingItemsControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.PendingItemsControllerApi;
 
 
 PendingItemsControllerApi apiInstance = new PendingItemsControllerApi();

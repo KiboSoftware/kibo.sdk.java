@@ -28,7 +28,7 @@ import java.io.IOException;
  * Export Settings S3
  */
 @ApiModel(description = "Export Settings S3")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-22T23:27:35.732-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-24T11:18:39.656-05:00[America/Chicago]")
 public class ExportSettingsS3 {
   public static final String SERIALIZED_NAME_EXPORT_SETTINGS_I_D = "exportSettingsID";
   @SerializedName(SERIALIZED_NAME_EXPORT_SETTINGS_I_D)

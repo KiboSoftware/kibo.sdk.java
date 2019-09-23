@@ -20,7 +20,7 @@ Get the specified job
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.JobControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.JobControllerApi;
 
 
 JobControllerApi apiInstance = new JobControllerApi();
@@ -67,7 +67,7 @@ Get the requested jobs
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.JobControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.JobControllerApi;
 
 
 JobControllerApi apiInstance = new JobControllerApi();

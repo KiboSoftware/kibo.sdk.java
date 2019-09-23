@@ -28,7 +28,7 @@ Create a bin
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -75,7 +75,7 @@ Delete a bin
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -126,7 +126,7 @@ Get a bin
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -173,7 +173,7 @@ Get list of bin statuses
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -218,7 +218,7 @@ Get list of bin types
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -263,7 +263,7 @@ Get a list of bins
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -316,7 +316,7 @@ Loads bin inventory for designated bins
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -363,7 +363,7 @@ Search bins for a inventory by bin name or any product identifier
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -410,7 +410,7 @@ Update the designated bin
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();
@@ -459,7 +459,7 @@ Update the designated bins
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.BinControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.BinControllerApi;
 
 
 BinControllerApi apiInstance = new BinControllerApi();

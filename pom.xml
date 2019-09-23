@@ -4,13 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kibocomerce</groupId>
-    <artifactId>kibo.sdk.java11</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.kibocommerce</groupId>
+    <artifactId>kibo.sdk.java</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <modules>
         <module>inventory</module>
     </modules>
+
     <packaging>pom</packaging>
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -57,4 +58,10 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <scm>
+        <url>https://github.com/KiboSoftware/kibo.sdk.java.git</url>
+        <connection>scm:git:git@github.com:KiboSoftware/kibo.sdk.java.git</connection>
+        <developerConnection>scm:git:git@github.kibocommerce.com:KiboSoftware/kibo.sdk.java.git</developerConnection>
+    </scm>
 </project>

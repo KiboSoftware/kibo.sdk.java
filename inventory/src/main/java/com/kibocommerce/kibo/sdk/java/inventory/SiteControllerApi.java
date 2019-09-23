@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;
@@ -27,8 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.kibo.sdk.java.inventory.model.FetchFileConfigRequest;
-import com.kibocommerce.kibo.sdk.java.inventory.model.MFetchFileConfig;
+import com.kibocommerce.kibo.sdk.java.inventory.model.CreateSiteRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,14 +35,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FetchFileConfigControllerApi {
+public class SiteControllerApi {
     private ApiClient apiClient;
 
-    public FetchFileConfigControllerApi() {
+    public SiteControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public FetchFileConfigControllerApi(ApiClient apiClient) {
+    public SiteControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -56,152 +55,22 @@ public class FetchFileConfigControllerApi {
     }
 
     /**
-     * Build call for getFetchConfig
-     * @param xVolTenant Tenant ID (required)
+     * Build call for createSite
+     * @param createSiteRequest Request to create a new site (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getFetchConfigCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = new Object();
+    public com.squareup.okhttp.Call createSiteCall(CreateSiteRequest createSiteRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = createSiteRequest;
 
         // create path and map variables
-        String localVarPath = "/v1/config/fetchfile/";
+        String localVarPath = "/v1/site/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xVolTenant != null) {
-            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
-        }
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getFetchConfigValidateBeforeCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'xVolTenant' is set
-        if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getFetchConfig(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = getFetchConfigCall(xVolTenant, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Get the Fetch File Configs for the current tenant
-     * @param xVolTenant Tenant ID (required)
-     * @return MFetchFileConfig
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public MFetchFileConfig getFetchConfig(Integer xVolTenant) throws ApiException {
-        ApiResponse<MFetchFileConfig> resp = getFetchConfigWithHttpInfo(xVolTenant);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Get the Fetch File Configs for the current tenant
-     * @param xVolTenant Tenant ID (required)
-     * @return ApiResponse&lt;MFetchFileConfig&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<MFetchFileConfig> getFetchConfigWithHttpInfo(Integer xVolTenant) throws ApiException {
-        com.squareup.okhttp.Call call = getFetchConfigValidateBeforeCall(xVolTenant, null, null);
-        Type localVarReturnType = new TypeToken<MFetchFileConfig>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Get the Fetch File Configs for the current tenant
-     * @param xVolTenant Tenant ID (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getFetchConfigAsync(Integer xVolTenant, final ApiCallback<MFetchFileConfig> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getFetchConfigValidateBeforeCall(xVolTenant, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<MFetchFileConfig>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for saveFetchConfig
-     * @param xVolTenant Tenant ID (required)
-     * @param fetchFileConfigRequest Request to fetch file configs (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call saveFetchConfigCall(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = fetchFileConfigRequest;
-
-        // create path and map variables
-        String localVarPath = "/v1/config/fetchfile/";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xVolTenant != null) {
-            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
-        }
-
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
             "application/json"
@@ -234,61 +103,53 @@ public class FetchFileConfigControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call saveFetchConfigValidateBeforeCall(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call createSiteValidateBeforeCall(CreateSiteRequest createSiteRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xVolTenant' is set
-        if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling saveFetchConfig(Async)");
-        }
-        
-        // verify the required parameter 'fetchFileConfigRequest' is set
-        if (fetchFileConfigRequest == null) {
-            throw new ApiException("Missing the required parameter 'fetchFileConfigRequest' when calling saveFetchConfig(Async)");
+        // verify the required parameter 'createSiteRequest' is set
+        if (createSiteRequest == null) {
+            throw new ApiException("Missing the required parameter 'createSiteRequest' when calling createSite(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = saveFetchConfigCall(xVolTenant, fetchFileConfigRequest, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createSiteCall(createSiteRequest, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Save a new Fetch File Config
-     * @param xVolTenant Tenant ID (required)
-     * @param fetchFileConfigRequest Request to fetch file configs (required)
-     * @return Boolean
+     * Creates a site
+     * @param createSiteRequest Request to create a new site (required)
+     * @return Integer
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean saveFetchConfig(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest) throws ApiException {
-        ApiResponse<Boolean> resp = saveFetchConfigWithHttpInfo(xVolTenant, fetchFileConfigRequest);
+    public Integer createSite(CreateSiteRequest createSiteRequest) throws ApiException {
+        ApiResponse<Integer> resp = createSiteWithHttpInfo(createSiteRequest);
         return resp.getData();
     }
 
     /**
      * 
-     * Save a new Fetch File Config
-     * @param xVolTenant Tenant ID (required)
-     * @param fetchFileConfigRequest Request to fetch file configs (required)
-     * @return ApiResponse&lt;Boolean&gt;
+     * Creates a site
+     * @param createSiteRequest Request to create a new site (required)
+     * @return ApiResponse&lt;Integer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> saveFetchConfigWithHttpInfo(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest) throws ApiException {
-        com.squareup.okhttp.Call call = saveFetchConfigValidateBeforeCall(xVolTenant, fetchFileConfigRequest, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+    public ApiResponse<Integer> createSiteWithHttpInfo(CreateSiteRequest createSiteRequest) throws ApiException {
+        com.squareup.okhttp.Call call = createSiteValidateBeforeCall(createSiteRequest, null, null);
+        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Save a new Fetch File Config
-     * @param xVolTenant Tenant ID (required)
-     * @param fetchFileConfigRequest Request to fetch file configs (required)
+     * Creates a site
+     * @param createSiteRequest Request to create a new site (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call saveFetchConfigAsync(Integer xVolTenant, FetchFileConfigRequest fetchFileConfigRequest, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call createSiteAsync(CreateSiteRequest createSiteRequest, final ApiCallback<Integer> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -309,7 +170,145 @@ public class FetchFileConfigControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = saveFetchConfigValidateBeforeCall(xVolTenant, fetchFileConfigRequest, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createSiteValidateBeforeCall(createSiteRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteSite
+     * @param xVolTenant Tenant ID (required)
+     * @param xVolSite Site ID (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteSiteCall(Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/v1/site";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deleteSiteValidateBeforeCall(Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling deleteSite(Async)");
+        }
+        
+        // verify the required parameter 'xVolSite' is set
+        if (xVolSite == null) {
+            throw new ApiException("Missing the required parameter 'xVolSite' when calling deleteSite(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = deleteSiteCall(xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Deletes a site
+     * @param xVolTenant Tenant ID (required)
+     * @param xVolSite Site ID (required)
+     * @return Boolean
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Boolean deleteSite(Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<Boolean> resp = deleteSiteWithHttpInfo(xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Deletes a site
+     * @param xVolTenant Tenant ID (required)
+     * @param xVolSite Site ID (required)
+     * @return ApiResponse&lt;Boolean&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Boolean> deleteSiteWithHttpInfo(Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = deleteSiteValidateBeforeCall(xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Deletes a site
+     * @param xVolTenant Tenant ID (required)
+     * @param xVolSite Site ID (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteSiteAsync(Integer xVolTenant, Integer xVolSite, final ApiCallback<Boolean> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteSiteValidateBeforeCall(xVolTenant, xVolSite, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

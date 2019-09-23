@@ -21,7 +21,7 @@ Allocates inventory based on the given request
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AllocationControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AllocationControllerApi;
 
 
 AllocationControllerApi apiInstance = new AllocationControllerApi();
@@ -68,7 +68,7 @@ Deallocates inventory based on the given request
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AllocationControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AllocationControllerApi;
 
 
 AllocationControllerApi apiInstance = new AllocationControllerApi();
@@ -115,7 +115,7 @@ Fulfills inventory based on the given request
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.AllocationControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.AllocationControllerApi;
 
 
 AllocationControllerApi apiInstance = new AllocationControllerApi();

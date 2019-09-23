@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;
@@ -27,7 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.kibo.sdk.java.inventory.model.CreateSiteRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemInformation;
+import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemInformationRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemLogRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.OrderItemLogResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -35,14 +38,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SiteControllerApi {
+public class OrderItemControllerApi {
     private ApiClient apiClient;
 
-    public SiteControllerApi() {
+    public OrderItemControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SiteControllerApi(ApiClient apiClient) {
+    public OrderItemControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -55,22 +58,27 @@ public class SiteControllerApi {
     }
 
     /**
-     * Build call for createSite
-     * @param createSiteRequest Request to create a new site (required)
+     * Build call for getOrderItemInformation
+     * @param xVolTenant Tenant ID (required)
+     * @param orderItemInformationRequest Request to retrieve order item information (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createSiteCall(CreateSiteRequest createSiteRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = createSiteRequest;
+    public com.squareup.okhttp.Call getOrderItemInformationCall(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = orderItemInformationRequest;
 
         // create path and map variables
-        String localVarPath = "/v1/site/";
+        String localVarPath = "/v5/inventory/getOrderItemInformation/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
             "application/json"
@@ -103,53 +111,61 @@ public class SiteControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createSiteValidateBeforeCall(CreateSiteRequest createSiteRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getOrderItemInformationValidateBeforeCall(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'createSiteRequest' is set
-        if (createSiteRequest == null) {
-            throw new ApiException("Missing the required parameter 'createSiteRequest' when calling createSite(Async)");
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getOrderItemInformation(Async)");
+        }
+        
+        // verify the required parameter 'orderItemInformationRequest' is set
+        if (orderItemInformationRequest == null) {
+            throw new ApiException("Missing the required parameter 'orderItemInformationRequest' when calling getOrderItemInformation(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = createSiteCall(createSiteRequest, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOrderItemInformationCall(xVolTenant, orderItemInformationRequest, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Creates a site
-     * @param createSiteRequest Request to create a new site (required)
-     * @return Integer
+     * Get Order Item Information
+     * @param xVolTenant Tenant ID (required)
+     * @param orderItemInformationRequest Request to retrieve order item information (required)
+     * @return List&lt;OrderItemInformation&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Integer createSite(CreateSiteRequest createSiteRequest) throws ApiException {
-        ApiResponse<Integer> resp = createSiteWithHttpInfo(createSiteRequest);
+    public List<OrderItemInformation> getOrderItemInformation(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest) throws ApiException {
+        ApiResponse<List<OrderItemInformation>> resp = getOrderItemInformationWithHttpInfo(xVolTenant, orderItemInformationRequest);
         return resp.getData();
     }
 
     /**
      * 
-     * Creates a site
-     * @param createSiteRequest Request to create a new site (required)
-     * @return ApiResponse&lt;Integer&gt;
+     * Get Order Item Information
+     * @param xVolTenant Tenant ID (required)
+     * @param orderItemInformationRequest Request to retrieve order item information (required)
+     * @return ApiResponse&lt;List&lt;OrderItemInformation&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Integer> createSiteWithHttpInfo(CreateSiteRequest createSiteRequest) throws ApiException {
-        com.squareup.okhttp.Call call = createSiteValidateBeforeCall(createSiteRequest, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+    public ApiResponse<List<OrderItemInformation>> getOrderItemInformationWithHttpInfo(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest) throws ApiException {
+        com.squareup.okhttp.Call call = getOrderItemInformationValidateBeforeCall(xVolTenant, orderItemInformationRequest, null, null);
+        Type localVarReturnType = new TypeToken<List<OrderItemInformation>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Creates a site
-     * @param createSiteRequest Request to create a new site (required)
+     * Get Order Item Information
+     * @param xVolTenant Tenant ID (required)
+     * @param orderItemInformationRequest Request to retrieve order item information (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createSiteAsync(CreateSiteRequest createSiteRequest, final ApiCallback<Integer> callback) throws ApiException {
+    public com.squareup.okhttp.Call getOrderItemInformationAsync(Integer xVolTenant, OrderItemInformationRequest orderItemInformationRequest, final ApiCallback<List<OrderItemInformation>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -170,35 +186,31 @@ public class SiteControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createSiteValidateBeforeCall(createSiteRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        com.squareup.okhttp.Call call = getOrderItemInformationValidateBeforeCall(xVolTenant, orderItemInformationRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<OrderItemInformation>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for deleteSite
+     * Build call for getOrderItemLog
      * @param xVolTenant Tenant ID (required)
-     * @param xVolSite Site ID (required)
+     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteSiteCall(Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = new Object();
+    public com.squareup.okhttp.Call getOrderItemLogCall(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = orderItemLogRequest;
 
         // create path and map variables
-        String localVarPath = "/v1/site";
+        String localVarPath = "/v5/inventory/getOrderItemLog/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (xVolTenant != null) {
             localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
-        }
-
-        if (xVolSite != null) {
-            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
         }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
@@ -211,7 +223,7 @@ public class SiteControllerApi {
         }
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -229,65 +241,65 @@ public class SiteControllerApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteSiteValidateBeforeCall(Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getOrderItemLogValidateBeforeCall(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling deleteSite(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getOrderItemLog(Async)");
         }
         
-        // verify the required parameter 'xVolSite' is set
-        if (xVolSite == null) {
-            throw new ApiException("Missing the required parameter 'xVolSite' when calling deleteSite(Async)");
+        // verify the required parameter 'orderItemLogRequest' is set
+        if (orderItemLogRequest == null) {
+            throw new ApiException("Missing the required parameter 'orderItemLogRequest' when calling getOrderItemLog(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = deleteSiteCall(xVolTenant, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOrderItemLogCall(xVolTenant, orderItemLogRequest, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Deletes a site
+     * Get Order Item Log
      * @param xVolTenant Tenant ID (required)
-     * @param xVolSite Site ID (required)
-     * @return Boolean
+     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
+     * @return List&lt;OrderItemLogResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean deleteSite(Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<Boolean> resp = deleteSiteWithHttpInfo(xVolTenant, xVolSite);
+    public List<OrderItemLogResponse> getOrderItemLog(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest) throws ApiException {
+        ApiResponse<List<OrderItemLogResponse>> resp = getOrderItemLogWithHttpInfo(xVolTenant, orderItemLogRequest);
         return resp.getData();
     }
 
     /**
      * 
-     * Deletes a site
+     * Get Order Item Log
      * @param xVolTenant Tenant ID (required)
-     * @param xVolSite Site ID (required)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
+     * @return ApiResponse&lt;List&lt;OrderItemLogResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> deleteSiteWithHttpInfo(Integer xVolTenant, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = deleteSiteValidateBeforeCall(xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+    public ApiResponse<List<OrderItemLogResponse>> getOrderItemLogWithHttpInfo(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest) throws ApiException {
+        com.squareup.okhttp.Call call = getOrderItemLogValidateBeforeCall(xVolTenant, orderItemLogRequest, null, null);
+        Type localVarReturnType = new TypeToken<List<OrderItemLogResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Deletes a site
+     * Get Order Item Log
      * @param xVolTenant Tenant ID (required)
-     * @param xVolSite Site ID (required)
+     * @param orderItemLogRequest Request to retrieve order item log(s) (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteSiteAsync(Integer xVolTenant, Integer xVolSite, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call getOrderItemLogAsync(Integer xVolTenant, OrderItemLogRequest orderItemLogRequest, final ApiCallback<List<OrderItemLogResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -308,8 +320,8 @@ public class SiteControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteSiteValidateBeforeCall(xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        com.squareup.okhttp.Call call = getOrderItemLogValidateBeforeCall(xVolTenant, orderItemLogRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<OrderItemLogResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

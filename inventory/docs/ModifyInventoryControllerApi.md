@@ -23,7 +23,7 @@ Adjust Inventory
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ModifyInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ModifyInventoryControllerApi;
 
 
 ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();
@@ -70,7 +70,7 @@ Delete Inventory
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ModifyInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ModifyInventoryControllerApi;
 
 
 ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();
@@ -119,7 +119,7 @@ Refresh Inventory
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ModifyInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ModifyInventoryControllerApi;
 
 
 ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();
@@ -166,7 +166,7 @@ Adjust Inventory - synchronous
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ModifyInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ModifyInventoryControllerApi;
 
 
 ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();
@@ -213,7 +213,7 @@ Refresh Inventory - synchronous
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ModifyInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ModifyInventoryControllerApi;
 
 
 ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();

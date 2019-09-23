@@ -20,7 +20,7 @@ Get Order Item Information
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.OrderItemControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.OrderItemControllerApi;
 
 
 OrderItemControllerApi apiInstance = new OrderItemControllerApi();
@@ -67,7 +67,7 @@ Get Order Item Log
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.OrderItemControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.OrderItemControllerApi;
 
 
 OrderItemControllerApi apiInstance = new OrderItemControllerApi();

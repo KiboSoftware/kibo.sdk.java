@@ -29,7 +29,7 @@ Create an Export Settings
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -76,7 +76,7 @@ Create an Export Settings FTP
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -123,7 +123,7 @@ Create an Export Settings S3
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -170,7 +170,7 @@ Deletes an Export Settings
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -217,7 +217,7 @@ Deletes an Export Settings FTP. Not specifying exportSettingsFTPID deletes ALL f
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -266,7 +266,7 @@ Deletes an Export Settings S3. Not specifying exportSettingsS3ID deletes ALL s3 
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -315,7 +315,7 @@ Get an export settings
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -362,7 +362,7 @@ Run Export Settings Job
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -409,7 +409,7 @@ Update an Export Settings
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -456,7 +456,7 @@ Update an Export Settings FTP
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
@@ -503,7 +503,7 @@ Update an Export Settings S3
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.ExportInventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.ExportInventoryControllerApi;
 
 
 ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();

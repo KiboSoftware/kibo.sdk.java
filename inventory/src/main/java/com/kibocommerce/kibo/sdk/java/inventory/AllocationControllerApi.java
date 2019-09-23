@@ -11,7 +11,7 @@
  */
 
 
-package com.kibocommerce.kibo.sdk.phps.inventory;
+package com.kibocommerce.kibo.sdk.java.inventory;
 
 import com.kibocommerce.kibo.sdk.java.inventory.ApiCallback;
 import com.kibocommerce.kibo.sdk.java.inventory.ApiClient;
@@ -27,8 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.kibo.sdk.java.inventory.model.CloneTenantRequest;
-import com.kibocommerce.kibo.sdk.java.inventory.model.CreateTenantRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.AllocateInventoryRequest;
+import com.kibocommerce.kibo.sdk.java.inventory.model.BaseResponse;
+import com.kibocommerce.kibo.sdk.java.inventory.model.InlineResponse500;
+import com.kibocommerce.kibo.sdk.java.inventory.model.JobQueueResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,14 +38,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TenantControllerApi {
+public class AllocationControllerApi {
     private ApiClient apiClient;
 
-    public TenantControllerApi() {
+    public AllocationControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public TenantControllerApi(ApiClient apiClient) {
+    public AllocationControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -56,260 +58,19 @@ public class TenantControllerApi {
     }
 
     /**
-     * Build call for cloneTenant
-     * @param cloneTenantRequest Request to clone a tenant (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call cloneTenantCall(CloneTenantRequest cloneTenantRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = cloneTenantRequest;
-
-        // create path and map variables
-        String localVarPath = "/v1/tenant/clone";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cloneTenantValidateBeforeCall(CloneTenantRequest cloneTenantRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'cloneTenantRequest' is set
-        if (cloneTenantRequest == null) {
-            throw new ApiException("Missing the required parameter 'cloneTenantRequest' when calling cloneTenant(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = cloneTenantCall(cloneTenantRequest, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Clones a tenant
-     * @param cloneTenantRequest Request to clone a tenant (required)
-     * @return Integer
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public Integer cloneTenant(CloneTenantRequest cloneTenantRequest) throws ApiException {
-        ApiResponse<Integer> resp = cloneTenantWithHttpInfo(cloneTenantRequest);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Clones a tenant
-     * @param cloneTenantRequest Request to clone a tenant (required)
-     * @return ApiResponse&lt;Integer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Integer> cloneTenantWithHttpInfo(CloneTenantRequest cloneTenantRequest) throws ApiException {
-        com.squareup.okhttp.Call call = cloneTenantValidateBeforeCall(cloneTenantRequest, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Clones a tenant
-     * @param cloneTenantRequest Request to clone a tenant (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call cloneTenantAsync(CloneTenantRequest cloneTenantRequest, final ApiCallback<Integer> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = cloneTenantValidateBeforeCall(cloneTenantRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for createTenant
-     * @param createTenantRequest Request to create a tenant (required)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call createTenantCall(CreateTenantRequest createTenantRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = createTenantRequest;
-
-        // create path and map variables
-        String localVarPath = "/v1/tenant/";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createTenantValidateBeforeCall(CreateTenantRequest createTenantRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'createTenantRequest' is set
-        if (createTenantRequest == null) {
-            throw new ApiException("Missing the required parameter 'createTenantRequest' when calling createTenant(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = createTenantCall(createTenantRequest, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * Creates a tenant
-     * @param createTenantRequest Request to create a tenant (required)
-     * @return Integer
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public Integer createTenant(CreateTenantRequest createTenantRequest) throws ApiException {
-        ApiResponse<Integer> resp = createTenantWithHttpInfo(createTenantRequest);
-        return resp.getData();
-    }
-
-    /**
-     * 
-     * Creates a tenant
-     * @param createTenantRequest Request to create a tenant (required)
-     * @return ApiResponse&lt;Integer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Integer> createTenantWithHttpInfo(CreateTenantRequest createTenantRequest) throws ApiException {
-        com.squareup.okhttp.Call call = createTenantValidateBeforeCall(createTenantRequest, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     *  (asynchronously)
-     * Creates a tenant
-     * @param createTenantRequest Request to create a tenant (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call createTenantAsync(CreateTenantRequest createTenantRequest, final ApiCallback<Integer> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = createTenantValidateBeforeCall(createTenantRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for deleteTenant
+     * Build call for allocateInventory
      * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteTenantCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = new Object();
+    public com.squareup.okhttp.Call allocateInventoryCall(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = allocateInventoryRequest;
 
         // create path and map variables
-        String localVarPath = "/v1/tenant";
+        String localVarPath = "/v5/inventory/allocate/";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -328,7 +89,7 @@ public class TenantControllerApi {
         }
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -346,57 +107,65 @@ public class TenantControllerApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteTenantValidateBeforeCall(Integer xVolTenant, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call allocateInventoryValidateBeforeCall(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling deleteTenant(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling allocateInventory(Async)");
+        }
+        
+        // verify the required parameter 'allocateInventoryRequest' is set
+        if (allocateInventoryRequest == null) {
+            throw new ApiException("Missing the required parameter 'allocateInventoryRequest' when calling allocateInventory(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = deleteTenantCall(xVolTenant, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = allocateInventoryCall(xVolTenant, allocateInventoryRequest, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * 
-     * Deletes a tenant
+     * Allocates inventory based on the given request
      * @param xVolTenant Tenant ID (required)
-     * @return Boolean
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @return JobQueueResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean deleteTenant(Integer xVolTenant) throws ApiException {
-        ApiResponse<Boolean> resp = deleteTenantWithHttpInfo(xVolTenant);
+    public JobQueueResponse allocateInventory(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest) throws ApiException {
+        ApiResponse<JobQueueResponse> resp = allocateInventoryWithHttpInfo(xVolTenant, allocateInventoryRequest);
         return resp.getData();
     }
 
     /**
      * 
-     * Deletes a tenant
+     * Allocates inventory based on the given request
      * @param xVolTenant Tenant ID (required)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @return ApiResponse&lt;JobQueueResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> deleteTenantWithHttpInfo(Integer xVolTenant) throws ApiException {
-        com.squareup.okhttp.Call call = deleteTenantValidateBeforeCall(xVolTenant, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+    public ApiResponse<JobQueueResponse> allocateInventoryWithHttpInfo(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest) throws ApiException {
+        com.squareup.okhttp.Call call = allocateInventoryValidateBeforeCall(xVolTenant, allocateInventoryRequest, null, null);
+        Type localVarReturnType = new TypeToken<JobQueueResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      *  (asynchronously)
-     * Deletes a tenant
+     * Allocates inventory based on the given request
      * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteTenantAsync(Integer xVolTenant, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call allocateInventoryAsync(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ApiCallback<JobQueueResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -417,8 +186,276 @@ public class TenantControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteTenantValidateBeforeCall(xVolTenant, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        com.squareup.okhttp.Call call = allocateInventoryValidateBeforeCall(xVolTenant, allocateInventoryRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<JobQueueResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for deallocateInventory
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deallocateInventoryCall(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = allocateInventoryRequest;
+
+        // create path and map variables
+        String localVarPath = "/v5/inventory/deallocate/";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deallocateInventoryValidateBeforeCall(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling deallocateInventory(Async)");
+        }
+        
+        // verify the required parameter 'allocateInventoryRequest' is set
+        if (allocateInventoryRequest == null) {
+            throw new ApiException("Missing the required parameter 'allocateInventoryRequest' when calling deallocateInventory(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = deallocateInventoryCall(xVolTenant, allocateInventoryRequest, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Deallocates inventory based on the given request
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @return BaseResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BaseResponse deallocateInventory(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest) throws ApiException {
+        ApiResponse<BaseResponse> resp = deallocateInventoryWithHttpInfo(xVolTenant, allocateInventoryRequest);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Deallocates inventory based on the given request
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @return ApiResponse&lt;BaseResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BaseResponse> deallocateInventoryWithHttpInfo(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest) throws ApiException {
+        com.squareup.okhttp.Call call = deallocateInventoryValidateBeforeCall(xVolTenant, allocateInventoryRequest, null, null);
+        Type localVarReturnType = new TypeToken<BaseResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Deallocates inventory based on the given request
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deallocateInventoryAsync(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ApiCallback<BaseResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deallocateInventoryValidateBeforeCall(xVolTenant, allocateInventoryRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BaseResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for fulfillInventory
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call fulfillInventoryCall(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = allocateInventoryRequest;
+
+        // create path and map variables
+        String localVarPath = "/v5/inventory/fulfill/";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call fulfillInventoryValidateBeforeCall(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling fulfillInventory(Async)");
+        }
+        
+        // verify the required parameter 'allocateInventoryRequest' is set
+        if (allocateInventoryRequest == null) {
+            throw new ApiException("Missing the required parameter 'allocateInventoryRequest' when calling fulfillInventory(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = fulfillInventoryCall(xVolTenant, allocateInventoryRequest, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * 
+     * Fulfills inventory based on the given request
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @return BaseResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BaseResponse fulfillInventory(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest) throws ApiException {
+        ApiResponse<BaseResponse> resp = fulfillInventoryWithHttpInfo(xVolTenant, allocateInventoryRequest);
+        return resp.getData();
+    }
+
+    /**
+     * 
+     * Fulfills inventory based on the given request
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @return ApiResponse&lt;BaseResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BaseResponse> fulfillInventoryWithHttpInfo(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest) throws ApiException {
+        com.squareup.okhttp.Call call = fulfillInventoryValidateBeforeCall(xVolTenant, allocateInventoryRequest, null, null);
+        Type localVarReturnType = new TypeToken<BaseResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Fulfills inventory based on the given request
+     * @param xVolTenant Tenant ID (required)
+     * @param allocateInventoryRequest Request to allocate inventory (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call fulfillInventoryAsync(Integer xVolTenant, AllocateInventoryRequest allocateInventoryRequest, final ApiCallback<BaseResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = fulfillInventoryValidateBeforeCall(xVolTenant, allocateInventoryRequest, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BaseResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

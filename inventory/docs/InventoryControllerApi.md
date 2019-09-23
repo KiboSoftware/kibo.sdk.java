@@ -21,7 +21,7 @@ Aggregates Inventory
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.InventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.InventoryControllerApi;
 
 
 InventoryControllerApi apiInstance = new InventoryControllerApi();
@@ -70,7 +70,7 @@ Get inventory from specified location
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.InventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.InventoryControllerApi;
 
 
 InventoryControllerApi apiInstance = new InventoryControllerApi();
@@ -143,7 +143,7 @@ Queries for specified inventory at given location
 ```java
 // Import classes:
 //import com.kibocommerce.kibo.sdk.java.inventory.ApiException;
-//import com.kibocommerce.kibo.sdk.phps.inventory.InventoryControllerApi;
+//import com.kibocommerce.kibo.sdk.java.inventory.InventoryControllerApi;
 
 
 InventoryControllerApi apiInstance = new InventoryControllerApi();
