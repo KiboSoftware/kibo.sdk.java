@@ -28,7 +28,7 @@ import java.io.IOException;
  * Base Request Model
  */
 @ApiModel(description = "Base Request Model")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-24T16:31:33.449-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T09:31:58.472-05:00[America/Chicago]")
 public class BaseRequest {
   public static final String SERIALIZED_NAME_LOCATION_CODE = "locationCode";
   @SerializedName(SERIALIZED_NAME_LOCATION_CODE)
@@ -56,10 +56,10 @@ public class BaseRequest {
   }
 
    /**
-   * external location id
+   * Location Code
    * @return locationCode
   **/
-  @ApiModelProperty(value = "external location id")
+  @ApiModelProperty(value = "Location Code")
   public String getLocationCode() {
     return locationCode;
   }

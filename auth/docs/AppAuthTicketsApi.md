@@ -16,11 +16,11 @@ Method | HTTP request | Description
 ### Example
 ```java
 // Import classes:
-//import com.kibocommerce.kibo.sdk.java.auth.ApiClient;
-//import com.kibocommerce.kibo.sdk.java.auth.ApiException;
-//import com.kibocommerce.kibo.sdk.java.auth.Configuration;
-//import com.kibocommerce.kibo.sdk.java.auth.auth.*;
-//import com.kibocommerce.kibo.sdk.java.auth.AppAuthTicketsApi;
+//import com.kibocommerce.sdk.auth.ApiClient;
+//import com.kibocommerce.sdk.auth.ApiException;
+//import com.kibocommerce.sdk.auth.Configuration;
+//import com.kibocommerce.sdk.auth.auth.*;
+//import com.kibocommerce.sdk.auth.api.AppAuthTicketsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

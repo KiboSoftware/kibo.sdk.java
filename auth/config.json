@@ -1,11 +1,11 @@
 {
-  "apiPackage": "com.kibocommerce.kibo.sdk.java.auth",
+  "apiPackage": "com.kibocommerce.sdk.auth.api",
   "artifactId": "auth",
   "artifactVersion": "1.0.0-SNAPSHOT",
   "groupId": "com.kibocommerce",
-  "invokerPackage": "com.kibocommerce.kibo.sdk.java.auth",
-  "modelPackage":"com.kibocommerce.kibo.sdk.java.auth.model",
+  "invokerPackage": "com.kibocommerce.sdk.auth",
+  "modelPackage":"com.kibocommerce.sdk.auth.model",
   "parentGroupId":"com.kibocommerce",
-  "parentArtifactId":"kibo.sdk.java",
+  "parentArtifactId":"kibo-sdk-java",
   "parentVersion":"1.0.0-SNAPSHOT"
 }

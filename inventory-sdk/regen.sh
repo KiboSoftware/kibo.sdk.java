@@ -16,3 +16,4 @@ java -jar ../openapi-generator-cli.jar generate -i inventory-swagger.json -g jav
 
 rm pom.xml
 mv pom.xml.old pom.xml
+git add *

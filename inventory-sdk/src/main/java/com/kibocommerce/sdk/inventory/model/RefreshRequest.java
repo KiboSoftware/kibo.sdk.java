@@ -31,33 +31,11 @@ import java.util.List;
 /**
  * RefreshRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-24T16:31:33.449-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T09:31:58.472-05:00[America/Chicago]")
 public class RefreshRequest extends BaseRequest {
-  public static final String SERIALIZED_NAME_LOCATION_CODE = "locationCode";
-  @SerializedName(SERIALIZED_NAME_LOCATION_CODE)
-  private String locationCode;
-
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<RefreshItem> items = null;
-
-  public RefreshRequest locationCode(String locationCode) {
-    this.locationCode = locationCode;
-    return this;
-  }
-
-   /**
-   * Location Code for the refresh items at (maps to location code)
-   * @return locationCode
-  **/
-  @ApiModelProperty(required = true, value = "Location Code for the refresh items at (maps to location code)")
-  public String getLocationCode() {
-    return locationCode;
-  }
-
-  public void setLocationCode(String locationCode) {
-    this.locationCode = locationCode;
-  }
 
   public RefreshRequest items(List<RefreshItem> items) {
     this.items = items;
@@ -95,14 +73,13 @@ public class RefreshRequest extends BaseRequest {
       return false;
     }
     RefreshRequest refreshRequest = (RefreshRequest) o;
-    return Objects.equals(this.locationCode, refreshRequest.locationCode) &&
-        Objects.equals(this.items, refreshRequest.items) &&
+    return Objects.equals(this.items, refreshRequest.items) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locationCode, items, super.hashCode());
+    return Objects.hash(items, super.hashCode());
   }
 
 
@@ -111,7 +88,6 @@ public class RefreshRequest extends BaseRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class RefreshRequest {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    locationCode: ").append(toIndentedString(locationCode)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();

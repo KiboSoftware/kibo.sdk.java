@@ -1,0 +1,4992 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Kibo AppDev Service"
+  },
+  "paths": {
+    "/platform/applications/authtickets/oauth": {
+      "post": {
+        "tags": [
+          "AppAuthTickets"
+        ],
+        "operationId": "OauthAuthenticateApp",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "appAuthInfo",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Mozu.AppDev.Contracts.OauthAuthRequest"
+            }
+          },
+          {
+            "name": "x-vol-tenant",
+            "in": "header",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "x-vol-site",
+            "in": "header",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Mozu.AppDev.Contracts.OAuthAccessTokenResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Mozu.AppDev.Contracts.OauthAuthRequestInternal": {
+      "type": "object",
+      "properties": {
+        "application_name": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "client_secret": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "grant_type": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.OAuthAccessTokenResponse": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "token_type": {
+          "type": "string"
+        },
+        "expires_in": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "refresh_token": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AccessTokenResponse": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "token_type": {
+          "type": "string"
+        },
+        "expires_in": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Reference.Contracts.CountryCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Reference.Contracts.Country"
+          }
+        }
+      }
+    },
+    "Mozu.Reference.Contracts.Country": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AddressCapabilityType": {
+      "type": "object",
+      "properties": {
+        "countries": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "type": "boolean"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppAuthInfo": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "string"
+        },
+        "sharedSecret": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AuthTicket": {
+      "type": "object",
+      "properties": {
+        "refreshToken": {
+          "type": "string"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessTokenExpiration": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "refreshTokenExpiration": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.OauthAuthRequest": {
+      "type": "object",
+      "properties": {
+        "client_id": {
+          "type": "string"
+        },
+        "client_secret": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "grant_type": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AuthTicketRequest": {
+      "type": "object",
+      "properties": {
+        "refreshToken": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.CapabilityType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "capabilityTypeLabel": {
+          "type": "string"
+        },
+        "apiVersionNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.CapabilityTypeContract": {
+      "type": "object",
+      "properties": {
+        "capabilityTypeContractId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "contractName": {
+          "type": "string"
+        },
+        "contractDescription": {
+          "type": "string"
+        },
+        "contractDefinitionUrl": {
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        },
+        "capabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "verb": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.AuditInfo": {
+      "type": "object",
+      "properties": {
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapability": {
+      "type": "object",
+      "properties": {
+        "applicationCapabilityId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeContractId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationEndPoint": {
+          "type": "string"
+        },
+        "applicationCapabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityRequest": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.CapabilityType"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityView": {
+      "type": "object",
+      "properties": {
+        "applicationCapabilityId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeContractId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationEndPoint": {
+          "type": "string"
+        },
+        "contractName": {
+          "type": "string"
+        },
+        "verb": {
+          "type": "string"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.CarrierCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Carrier"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Carrier": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Reference.Contracts.CurrencyCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Reference.Contracts.Currency"
+          }
+        }
+      }
+    },
+    "Mozu.Reference.Contracts.Currency": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.CreditTypeCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.CreditType"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.CreditType": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityType": {
+      "type": "object",
+      "properties": {
+        "applicationCapabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "type": "boolean"
+        },
+        "applicationCapabilities": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapability"
+          }
+        },
+        "applicationCapabilityDomains": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapabilityDomain"
+          }
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityDomain": {
+      "type": "object",
+      "properties": {
+        "applicationCapabilityDomainId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationCapabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "applicationCapabilityDomainValues1": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapabilityDomainValue"
+          }
+        },
+        "applicationCapabilityDomainValues2": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapabilityDomainValue"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityDomainValue": {
+      "type": "object",
+      "properties": {
+        "applicationCapabilityDomainValueId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationCapabilityDomainId1": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationCapabilityDomainId2": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "valueName": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityItemRequest": {
+      "type": "object",
+      "properties": {
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "capabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCapabilityTypeView": {
+      "type": "object",
+      "properties": {
+        "applicationCapabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "type": "boolean"
+        },
+        "applicationCapabilityViews": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapabilityView"
+          }
+        },
+        "applicationCapabilityDomains": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapabilityDomain"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationChangeNotePagedCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ChangeNote"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ChangeNote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "note": {
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "changeNoteTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CloneTenantDataRequest": {
+      "type": "object",
+      "properties": {
+        "sourceEnvironment": {
+          "type": "string"
+        },
+        "sourceScaleUnit": {
+          "type": "string"
+        },
+        "sourceTenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetTenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetTenantName": {
+          "type": "string"
+        },
+        "devAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogPairings": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CloneTenantMasterCatalogPairing"
+          }
+        },
+        "applicationsToClone": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "additionalData": {
+          "type": "object"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CloneTenantMasterCatalogPairing": {
+      "type": "object",
+      "properties": {
+        "sourceMasterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetMasterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogPairings": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CloneTenantCatalogPairing"
+          }
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CloneTenantCatalogPairing": {
+      "type": "object",
+      "properties": {
+        "sourceCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sitePairings": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CloneTenantSitePairing"
+          }
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CloneTenantSitePairing": {
+      "type": "object",
+      "properties": {
+        "sourceSiteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetSiteId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CreateTenantRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "masterCatalogs": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateMasterCatalogRequest"
+          }
+        },
+        "scaleUnitId": {
+          "type": "string"
+        },
+        "isDevTenant": {
+          "type": "boolean"
+        },
+        "devAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "additionalData": {
+          "type": "object"
+        },
+        "omsMerchantId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CreateMasterCatalogRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sites": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateSiteRequest"
+          }
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CreateSiteRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogRequest": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateCatalogRequest"
+        },
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "domains": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateCustomDomainRequest"
+          }
+        },
+        "isMozuStorefront": {
+          "type": "boolean"
+        },
+        "omsCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CreateCatalogRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.CreateCustomDomainRequest": {
+      "type": "object",
+      "properties": {
+        "domainName": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "isDomainManaged": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.DeleteTenantRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.DeleteMasterCatalogRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.DeleteCatalogRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Provisioning.DeleteSiteRequest": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationSubscriptionPagedCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationSubscription"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationSubscription": {
+      "type": "object",
+      "properties": {
+        "applicationSubscriptionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationEndPoint": {
+          "type": "string"
+        },
+        "events": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Event"
+          }
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "noCallback": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Event": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "eventName": {
+          "type": "string"
+        },
+        "eventCategory": {
+          "type": "string"
+        },
+        "apiVersionNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.EventCategoryPagedCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.EventCategory"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.EventCategory": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "apiVersionNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.EventPagedCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Event"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationEntitlement": {
+      "type": "object",
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "applicationEntitlementId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationLicenseType": {
+          "type": "string"
+        },
+        "entitlementStatus": {
+          "type": "string"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "effectiveStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "effectiveEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "applicationTransactions": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationTransaction"
+          }
+        },
+        "applicationName": {
+          "type": "string"
+        },
+        "applicationVersion": {
+          "type": "string"
+        },
+        "installedByFirstName": {
+          "type": "string"
+        },
+        "installedByLastName": {
+          "type": "string"
+        },
+        "installedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "packageName": {
+          "type": "string"
+        },
+        "tenantName": {
+          "type": "string"
+        },
+        "applicationStatusId": {
+          "type": "string"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "devAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "installedAppsApplicationId": {
+          "type": "string"
+        },
+        "appOwnerDevAccountId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationTransaction": {
+      "type": "object",
+      "properties": {
+        "applicationTransactionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationEntitlementId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "localeCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isoCurrencyCode": {
+          "type": "string"
+        },
+        "transactionDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "transactionPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "transactionTax": {
+          "format": "double",
+          "type": "number"
+        },
+        "transactionTotal": {
+          "format": "double",
+          "type": "number"
+        },
+        "orderNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationEntitlementCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationEntitlement"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "ownerUserId": {
+          "type": "string"
+        },
+        "developerOwner": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.Developer"
+        },
+        "contacts": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.DeveloperAccountContact"
+          }
+        },
+        "socialContacts": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.SocialContact"
+          }
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mozuInstanceId": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "supportsCustomExtensions": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Developer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "contacts": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.DeveloperContact"
+          }
+        },
+        "doesAcceptMarketing": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccountContact": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "contact": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.Contact"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.SocialContact": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperContact": {
+      "type": "object",
+      "properties": {
+        "contact": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.Contact"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleNameOrInitial": {
+          "type": "string"
+        },
+        "lastNameOrSurname": {
+          "type": "string"
+        },
+        "companyOrOrganization": {
+          "type": "string"
+        },
+        "phoneNumbers": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.Phone"
+        },
+        "address": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.Address"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Phone": {
+      "type": "object",
+      "properties": {
+        "home": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "work": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.Address": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string"
+        },
+        "address2": {
+          "type": "string"
+        },
+        "address3": {
+          "type": "string"
+        },
+        "address4": {
+          "type": "string"
+        },
+        "cityOrTown": {
+          "type": "string"
+        },
+        "stateOrProvince": {
+          "type": "string"
+        },
+        "postalOrZipCode": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "addressType": {
+          "type": "string"
+        },
+        "isValidated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationLicense": {
+      "type": "object",
+      "properties": {
+        "applicationLicenseId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationLicenseTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "applicationPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "isoCurrencyCode": {
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationTypeLicense": {
+      "type": "object",
+      "properties": {
+        "typeName": {
+          "type": "string"
+        },
+        "applicationLicenseTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "licenseType": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationLifecycleRequest": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isExtensionCertified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Application": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "developerAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appSchemeVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "applicationLicenseTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationStatusId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "appVersion": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AppVersion"
+        },
+        "extendsApplication": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "isLocked": {
+          "type": "boolean"
+        },
+        "sharedSecret": {
+          "type": "string"
+        },
+        "validApplicationStatusIdList": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "changeNotes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ChangeNote"
+          }
+        },
+        "apiVersionNumber": {
+          "type": "string"
+        },
+        "apiMajorVersionNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isNamespaceLocked": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTypeName": {
+          "type": "string"
+        },
+        "releasePackageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "internalAppId": {
+          "type": "string"
+        },
+        "isExtensionCertified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppVersion": {
+      "type": "object",
+      "properties": {
+        "majorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.BehaviorCategoryBehaviorCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.BehaviorCategoryBehavior"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.BehaviorCategoryBehavior": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "behaviorItems": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.BehaviorItem"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.BehaviorItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "categoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isPrivate": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApiMajorMinorVersionCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApiMajorMinorVersion"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApiMajorMinorVersion": {
+      "type": "object",
+      "properties": {
+        "major": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minor": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.RoleInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApiVersionRequest": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "apiVersionNumberFrom": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.ApiVersionNumber"
+        },
+        "apiVersionNumberTo": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.ApiVersionNumber"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApiVersionNumber": {
+      "type": "object",
+      "properties": {
+        "major": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minor": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "julianDate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "build": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApiVersion": {
+      "type": "object",
+      "properties": {
+        "apiVersionNumber": {
+          "type": "string"
+        },
+        "major": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minor": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "julian": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "build": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isBeta": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Package": {
+      "type": "object",
+      "properties": {
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "applicationUpdateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationName": {
+          "type": "string"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTypeName": {
+          "type": "string"
+        },
+        "majorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sharedSecret": {
+          "type": "string"
+        },
+        "applicationStatusId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationStatusName": {
+          "type": "string"
+        },
+        "apiVersion": {
+          "type": "string"
+        },
+        "applicationDescription": {
+          "type": "string"
+        },
+        "themeEngineVersion": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "validApplicationStatusIdList": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "appSchemeVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appConfigUrl": {
+          "type": "string"
+        },
+        "isReleasePackage": {
+          "type": "boolean"
+        },
+        "packageName": {
+          "type": "string"
+        },
+        "packageDescription": {
+          "type": "string"
+        },
+        "dataNamespace": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationDetailId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isLocked": {
+          "type": "boolean"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "assetFileCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageGuid": {
+          "type": "string"
+        },
+        "applicationStatus": {
+          "type": "string"
+        },
+        "applicationBehaviors": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationBehavior"
+          }
+        },
+        "applicationSubscriptions": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationSubscription"
+          }
+        },
+        "applicationCapabilityTypes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapabilityType"
+          }
+        },
+        "applicationAttributes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationAttribute"
+          }
+        },
+        "applicationCapabilities": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationCapability"
+          }
+        },
+        "applicationEntitlements": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationEntitlement"
+          }
+        },
+        "attributeNamespace": {
+          "type": "string"
+        },
+        "hasApplicationVersions": {
+          "type": "boolean"
+        },
+        "legacyNamespace": {
+          "type": "string"
+        },
+        "namespaceRegistryId": {
+          "type": "string"
+        },
+        "publishedParentThemeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "publishedParentSemanticVersion": {
+          "type": "string"
+        },
+        "semanticVersionRange": {
+          "type": "string"
+        },
+        "parentThemeName": {
+          "type": "string"
+        },
+        "parentThemeAppKey": {
+          "type": "string"
+        },
+        "updateParentAppKey": {
+          "type": "string"
+        },
+        "updateAvailable": {
+          "type": "boolean"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "updateParentThemeName": {
+          "type": "string"
+        },
+        "updateParentThemeVersion": {
+          "type": "string"
+        },
+        "applicationOwnerDevAccountId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationBehavior": {
+      "type": "object",
+      "properties": {
+        "behaviorId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationAttribute": {
+      "type": "object",
+      "properties": {
+        "subsystem": {
+          "type": "string"
+        },
+        "attributeJson": {
+          "type": "string"
+        },
+        "productTypeJson": {
+          "type": "string"
+        },
+        "isAppliedToBase": {
+          "type": "boolean"
+        },
+        "sourceTenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceTenantName": {
+          "type": "string"
+        },
+        "attributeCodes": {
+          "type": "string"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "attributes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Attribute"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Attribute": {
+      "type": "object",
+      "properties": {
+        "attributeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "fqn": {
+          "type": "string"
+        },
+        "sequence": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "vocabularyJson": {
+          "type": "string"
+        },
+        "applicationAttributeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "inputType": {
+          "type": "string"
+        },
+        "adminName": {
+          "type": "string"
+        },
+        "vocabularyValues": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Application"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AttributeDefinitionRequest": {
+      "type": "object",
+      "properties": {
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "attributeSubscriptions": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AttributeSubscription"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AttributeSubscription": {
+      "type": "object",
+      "properties": {
+        "attributeFqnList": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "includesBaseAttributeGrouping": {
+          "type": "boolean"
+        },
+        "subsystem": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AttributeDefinitionCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AttributeDefinition"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AttributeDefinition": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "attributeCode": {
+          "type": "string"
+        },
+        "attributeFqn": {
+          "type": "string"
+        },
+        "dataType": {
+          "type": "string"
+        },
+        "inputType": {
+          "type": "string"
+        },
+        "isReadOnly": {
+          "type": "boolean"
+        },
+        "vocabularyValues": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AttributeVocabularyValue"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AttributeVocabularyValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "sequence": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppStoreProfilePagedCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AppStoreProfile"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppStoreProfile": {
+      "type": "object",
+      "properties": {
+        "localeCode": {
+          "type": "string"
+        },
+        "license": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.TypeItems"
+        },
+        "content": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AppStoreLocalizedProfile"
+        },
+        "pricing": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.StorePrice"
+        },
+        "categories": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AppStoreCategoryNode"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.TypeItems": {
+      "type": "object",
+      "properties": {
+        "selected": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.TypeItem"
+        },
+        "available": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.TypeItem"
+          }
+        },
+        "validationItems": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ValidationItem"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppStoreLocalizedProfile": {
+      "type": "object",
+      "properties": {
+        "localeCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "appProductCode": {
+          "type": "string"
+        },
+        "appStoreName": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "longDescription": {
+          "type": "string"
+        },
+        "releaseNotes": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "support": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AppStoreSupportInfo"
+        },
+        "prerequisites": {
+          "type": "string"
+        },
+        "publishDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "inactiveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "images": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.LocalizedImage"
+          }
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.StorePrice": {
+      "type": "object",
+      "properties": {
+        "isoCurrencyCode": {
+          "type": "string"
+        },
+        "salePrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppStoreCategoryNode": {
+      "type": "object",
+      "properties": {
+        "fullPath": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "categories": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AppStoreCategoryNode"
+          }
+        },
+        "parentPath": {
+          "type": "string"
+        },
+        "isFolder": {
+          "type": "boolean"
+        },
+        "hasChildren": {
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.LocalizedCategory"
+        },
+        "children": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AppStoreCategoryNode"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.TypeItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "helpUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ValidationItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "hashtag": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "helpUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AppStoreSupportInfo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "hours": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.LocalizedImage": {
+      "type": "object",
+      "properties": {
+        "localeCode": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "altText": {
+          "type": "string"
+        },
+        "sequence": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.LocalizedCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.LocalizedImage"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationAttributeCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationAttribute"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationTemplate": {
+      "type": "object",
+      "properties": {
+        "applicationTemplateId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTemplateName": {
+          "type": "string"
+        },
+        "applicationTemplateTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "versionDescription": {
+          "type": "string"
+        },
+        "versionExtendsApplication": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "applicationName": {
+          "type": "string"
+        },
+        "developerAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isMaster": {
+          "type": "boolean"
+        },
+        "templateDescription": {
+          "type": "string"
+        },
+        "heroImage": {
+          "type": "string"
+        },
+        "isGlobal": {
+          "type": "boolean"
+        },
+        "releasePackageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AssetFileMetadataCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AssetFileMetadata"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AssetFileMetadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "checkSum": {
+          "type": "string"
+        },
+        "sizeInBytes": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "isFolder": {
+          "type": "boolean"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "HttpRequestMessage": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "$ref": "#/definitions/Version"
+        },
+        "content": {
+          "$ref": "#/definitions/HttpContent"
+        },
+        "method": {
+          "$ref": "#/definitions/HttpMethod"
+        },
+        "requestUri": {
+          "type": "string"
+        },
+        "headers": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KeyValuePair`2"
+          },
+          "readOnly": true
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Version": {
+      "type": "object",
+      "properties": {
+        "major": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "minor": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "build": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "revision": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "majorRevision": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "minorRevision": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        }
+      }
+    },
+    "HttpContent": {
+      "type": "object",
+      "properties": {
+        "headers": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KeyValuePair`2"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "HttpMethod": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "KeyValuePair`2": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "readOnly": true
+        },
+        "value": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.AssetFileMetadataNode": {
+      "type": "object",
+      "properties": {
+        "fullPath": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parentPath": {
+          "type": "string"
+        },
+        "isFolder": {
+          "type": "boolean"
+        },
+        "hasChildren": {
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AssetFileMetadata"
+        },
+        "children": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.AssetFileMetadataNode"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DashboardContent": {
+      "type": "object",
+      "properties": {
+        "dashboardContentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        },
+        "contentLink": {
+          "type": "string"
+        },
+        "contentTitle": {
+          "type": "string"
+        },
+        "contentSequence": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dashboardContentTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccountUserCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.DeveloperAccountUser"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccountUser": {
+      "type": "object",
+      "properties": {
+        "developerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "workContactId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "workAddress1": {
+          "type": "string"
+        },
+        "workAddress2": {
+          "type": "string"
+        },
+        "workAddress3": {
+          "type": "string"
+        },
+        "workAddress4": {
+          "type": "string"
+        },
+        "workCity": {
+          "type": "string"
+        },
+        "workState": {
+          "type": "string"
+        },
+        "workZip": {
+          "type": "string"
+        },
+        "workCountry": {
+          "type": "string"
+        },
+        "workPhone": {
+          "type": "string"
+        },
+        "personalContactId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "personalAddress1": {
+          "type": "string"
+        },
+        "personalAddress2": {
+          "type": "string"
+        },
+        "personalAddress3": {
+          "type": "string"
+        },
+        "personalAddress4": {
+          "type": "string"
+        },
+        "personalCity": {
+          "type": "string"
+        },
+        "personalState": {
+          "type": "string"
+        },
+        "personalZip": {
+          "type": "string"
+        },
+        "personalCountry": {
+          "type": "string"
+        },
+        "personalPhone": {
+          "type": "string"
+        },
+        "roles": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.RoleInfo"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Feature": {
+      "type": "object",
+      "properties": {
+        "featureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "featureName": {
+          "type": "string"
+        },
+        "isControl": {
+          "type": "boolean"
+        },
+        "featureValue": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccountCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.DeveloperAccount"
+          }
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.User": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "optInToEmail": {
+          "type": "boolean"
+        },
+        "optInToTextMessage": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "systemData": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.UserSystemData"
+        },
+        "roles": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.UserRole"
+          }
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.UserSystemData": {
+      "type": "object",
+      "properties": {
+        "isPasswordChangeRequired": {
+          "type": "boolean"
+        },
+        "lastPasswordChangeOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isLocked": {
+          "type": "boolean"
+        },
+        "lastLockedOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "failedLoginAttemptCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "remainingLoginAttempts": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstFailedLoginAttemptOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lastLoginOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "createdOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updatedOn": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.UserRole": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "assignedInScope": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.UserScope"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "Mozu.Core.Api.Contracts.UserScope": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccountUserCreateRequest": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "developerAccountType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DeveloperAccountAppType": {
+      "type": "object",
+      "properties": {
+        "developerAccountAppTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "developerAccountTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "devAccountTypeEnabled": {
+          "type": "boolean"
+        },
+        "applicationTypeName": {
+          "type": "string"
+        },
+        "developerAccountTypeName": {
+          "type": "string"
+        },
+        "developerAccountAppTypeEnabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AdminUser.Contracts.Invitation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userScopeType": {
+          "type": "string"
+        },
+        "userScopeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "scopeName": {
+          "type": "string"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "invitationRoles": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AdminUser.Contracts.InvitationRole"
+          }
+        },
+        "dateLastSent": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "Mozu.AdminUser.Contracts.InvitationRole": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AdminUser.Contracts.InvitationCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AdminUser.Contracts.Invitation"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DevAccountMemberCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.DevAccountMember"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DevAccountMember": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "dateLastSent": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "invitationState": {
+          "type": "string"
+        },
+        "invitationId": {
+          "type": "string"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProvisionTenantRequest": {
+      "type": "object",
+      "properties": {
+        "tenantName": {
+          "type": "string"
+        },
+        "sourceTenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "enableBetaAdmin": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Tenant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sites": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Site"
+          }
+        },
+        "masterCatalogs": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.MasterCatalog"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "isDevTenant": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "themeCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "developerAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "enableBetaAdmin": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Site": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        },
+        "isMozuRendered": {
+          "type": "boolean"
+        },
+        "domain": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.MasterCatalog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        },
+        "deleteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "catalogs": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Catalog"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Catalog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        },
+        "deleteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "sites": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Site"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.TenantCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Tenant"
+          }
+        }
+      }
+    },
+    "Mozu.Tenant.Contracts.Tenant": {
+      "type": "object",
+      "properties": {
+        "scaleUnitId": {
+          "type": "string"
+        },
+        "devAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isDevTenant": {
+          "type": "boolean"
+        },
+        "sites": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Tenant.Contracts.Site"
+          }
+        },
+        "masterCatalogs": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Tenant.Contracts.MasterCatalog"
+          }
+        },
+        "domain": {
+          "$ref": "#/definitions/Mozu.Tenant.Contracts.Domain"
+        },
+        "routingTargetInfo": {
+          "type": "string"
+        },
+        "supportsCustomExtensions": {
+          "type": "boolean"
+        },
+        "mozuInstanceId": {
+          "type": "string"
+        },
+        "attributes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Tenant.Contracts.TenantAttribute"
+          }
+        },
+        "omsMerchantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "deleteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Tenant.Contracts.Site": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        },
+        "isMozuRendered": {
+          "type": "boolean"
+        },
+        "domains": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Tenant.Contracts.Domain"
+          }
+        },
+        "routingTargetInfo": {
+          "type": "string"
+        },
+        "attributes": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Tenant.Contracts.TenantAttribute"
+          }
+        },
+        "omsCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "deleteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Tenant.Contracts.MasterCatalog": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        },
+        "catalogs": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Tenant.Contracts.Catalog"
+          }
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "deleteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Tenant.Contracts.Domain": {
+      "type": "object",
+      "properties": {
+        "domainName": {
+          "type": "string"
+        },
+        "zone": {
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "isInfrastructureRecord": {
+          "type": "boolean"
+        },
+        "isSystemAssigned": {
+          "type": "boolean"
+        },
+        "isDomainManaged": {
+          "type": "boolean"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "cName": {
+          "type": "string"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.Tenant.Contracts.TenantAttribute": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        },
+        "createBy": {
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Tenant.Contracts.Catalog": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "deleteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Provisioning.Contracts.MasterCatalogProvisionRequest": {
+      "type": "object",
+      "properties": {
+        "isOverride": {
+          "type": "boolean"
+        },
+        "isRetry": {
+          "type": "boolean"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sites": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateSiteRequest"
+          }
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Provisioning.Contracts.CatalogProvisionRequest": {
+      "type": "object",
+      "properties": {
+        "isOverride": {
+          "type": "boolean"
+        },
+        "isRetry": {
+          "type": "boolean"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "defaultLocaleCode": {
+          "type": "string"
+        },
+        "defaultCurrencyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.Provisioning.Contracts.SiteProvisionRequest": {
+      "type": "object",
+      "properties": {
+        "isOverride": {
+          "type": "boolean"
+        },
+        "isRetry": {
+          "type": "boolean"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogRequest": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateCatalogRequest"
+        },
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "domains": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.Core.Api.Contracts.Provisioning.CreateCustomDomainRequest"
+          }
+        },
+        "isMozuStorefront": {
+          "type": "boolean"
+        },
+        "omsCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Project"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "projectStatusId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectStatusName": {
+          "type": "string"
+        },
+        "projectDescription": {
+          "type": "string"
+        },
+        "engagementNumber": {
+          "type": "string"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "estimatedEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "additionalInfo": {
+          "type": "string"
+        },
+        "projectApplications": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ProjectApplication"
+          }
+        },
+        "projectTenants": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ProjectTenant"
+          }
+        },
+        "projectUsers": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ProjectUser"
+          }
+        },
+        "clientsMainContactInfo": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectApplication": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationVersion": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AppVersion"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTypeName": {
+          "type": "string"
+        },
+        "applicationName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectTenant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isGoldenTenant": {
+          "type": "boolean"
+        },
+        "isQaTenant": {
+          "type": "boolean"
+        },
+        "tenantName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "developerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.TenantApplicationCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.TenantApplication"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.TenantApplication": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationVersion": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AppVersion"
+        },
+        "applicationName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DevStoreTemplate": {
+      "type": "object",
+      "properties": {
+        "devStoreTemplateId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "templateName": {
+          "type": "string"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "templateDescription": {
+          "type": "string"
+        },
+        "heroImage": {
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "HttpResponseMessage": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "$ref": "#/definitions/Version"
+        },
+        "content": {
+          "$ref": "#/definitions/HttpContent"
+        },
+        "statusCode": {
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "Processing",
+            "EarlyHints",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultiStatus",
+            "AlreadyReported",
+            "IMUsed",
+            "MultipleChoices",
+            "Ambiguous",
+            "MovedPermanently",
+            "Moved",
+            "Found",
+            "Redirect",
+            "SeeOther",
+            "RedirectMethod",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "RedirectKeepVerb",
+            "PermanentRedirect",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "MisdirectedRequest",
+            "UnprocessableEntity",
+            "Locked",
+            "FailedDependency",
+            "UpgradeRequired",
+            "PreconditionRequired",
+            "TooManyRequests",
+            "RequestHeaderFieldsTooLarge",
+            "UnavailableForLegalReasons",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported",
+            "VariantAlsoNegotiates",
+            "InsufficientStorage",
+            "LoopDetected",
+            "NotExtended",
+            "NetworkAuthenticationRequired"
+          ],
+          "type": "string"
+        },
+        "reasonPhrase": {
+          "type": "string"
+        },
+        "headers": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KeyValuePair`2"
+          },
+          "readOnly": true
+        },
+        "requestMessage": {
+          "$ref": "#/definitions/HttpRequestMessage"
+        },
+        "isSuccessStatusCode": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ActionLoggingEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "apiContext": {
+          "type": "string"
+        },
+        "applicationName": {
+          "type": "string"
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "applicationKey": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "fullMessage": {
+          "type": "string"
+        },
+        "scaleUnit": {
+          "type": "string"
+        },
+        "severity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "functionId": {
+          "type": "string"
+        },
+        "actionId": {
+          "type": "string"
+        },
+        "actionDomain": {
+          "type": "string"
+        },
+        "exception": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.OrderCapabilityType": {
+      "type": "object",
+      "properties": {
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "type": "boolean"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationSummaryCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ApplicationSummary"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ApplicationSummary": {
+      "type": "object",
+      "properties": {
+        "parentName": {
+          "type": "string"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "releasePackageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "releasePackageName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "applicationNamespace": {
+          "type": "string"
+        },
+        "applicationVersion": {
+          "$ref": "#/definitions/Mozu.AppDev.Contracts.AppVersion"
+        },
+        "applicationStatusId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appId": {
+          "type": "string"
+        },
+        "applicationStatusName": {
+          "type": "string"
+        },
+        "hasVersions": {
+          "type": "boolean"
+        },
+        "appSchemeVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "appKey": {
+          "type": "string"
+        },
+        "parentAppKey": {
+          "type": "string"
+        },
+        "updateParentAppKey": {
+          "type": "string"
+        },
+        "updateAvailable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.PackageCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Package"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.PackageSummaryCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.PackageSummary"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.PackageSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "applicationName": {
+          "type": "string"
+        },
+        "applicationTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "majorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isLocked": {
+          "type": "boolean"
+        },
+        "applicationId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.PackageRequest": {
+      "type": "object",
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "parentThemeAppKey": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.PaymentCapabilityType": {
+      "type": "object",
+      "properties": {
+        "countries": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metadata": {
+          "type": "string"
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "type": "boolean"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProductionTenant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "devAccountProdTenants": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.DevAccountProdTenant"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.DevAccountProdTenant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "developerAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productionTenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "beginDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProductionTenantCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ProductionTenant"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectSummaryCollection": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageSize": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.ProjectSummary"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "estimatedEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "projectStatusId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectStatusName": {
+          "type": "string"
+        },
+        "applicationCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "themeCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "widgetCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "engagementNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.ProjectStatus": {
+      "type": "object",
+      "properties": {
+        "projectStatusId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "statusName": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Public.FileMetadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "checkSum": {
+          "type": "string"
+        },
+        "sizeInBytes": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "auditInfo": {
+          "$ref": "#/definitions/Mozu.Core.Api.Contracts.AuditInfo"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Public.RenameInfo": {
+      "type": "object",
+      "properties": {
+        "oldFullPath": {
+          "type": "string"
+        },
+        "newFullPath": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Public.FolderMetadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fullPath": {
+          "type": "string"
+        },
+        "files": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Public.FileMetadata"
+          }
+        },
+        "subFolders": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Mozu.AppDev.Contracts.Public.FolderMetadata"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Public.ApplicationVersionsCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.Public.PackageNamesCollection": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Mozu.Core.Messaging.Contracts.Notification.EmailNotification": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "string"
+        },
+        "payloadVersion": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "messagePublishingContext": {
+          "$ref": "#/definitions/Mozu.Core.Messaging.Contracts.MessagePublishingContext"
+        }
+      }
+    },
+    "Mozu.Core.Messaging.Contracts.MessagePublishingContext": {
+      "type": "object",
+      "properties": {
+        "siteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "catalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "masterCatalogId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "localeCode": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "visitId": {
+          "type": "string"
+        },
+        "initiatingAppId": {
+          "type": "string"
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "isTest": {
+          "type": "boolean"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "createBy": {
+          "type": "string"
+        },
+        "dataViewMode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mozuInstanceId": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.RenderedEmail": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        }
+      }
+    },
+    "Mozu.AppDev.Contracts.TaxCapabilityType": {
+      "type": "object",
+      "properties": {
+        "countries": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "capabilityTypeName": {
+          "type": "string"
+        },
+        "isImplemented": {
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "type": "boolean"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "packageId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "x-vol-app-claims": {
+      "name": "x-vol-app-claims",
+      "in": "header",
+      "type": "apiKey"
+    },
+    "x-vol-user-claims": {
+      "name": "x-vol-user-claims",
+      "in": "header",
+      "type": "apiKey"
+    }
+  },
+  "security": [
+    {
+      "x-vol-app-claims": [
+        "readAccess",
+        "writeAccess"
+      ]
+    },
+    {
+      "x-vol-user-claims": [
+        "readAccess",
+        "writeAccess"
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**locationCode** | **String** | external location id |  [optional]
+**locationCode** | **String** | Location Code |  [optional]
 **userID** | **Integer** | user id |  [optional]
 **pageSize** | **Integer** | how many results to show per page |  [optional]
 **pageNum** | **Integer** | which page to show |  [optional]

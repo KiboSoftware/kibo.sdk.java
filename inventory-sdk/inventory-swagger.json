@@ -1933,15 +1933,47 @@
                 }
             }
         },
-        "/v1/site/": {
+        "/v1/productMapping": {
+            "get": {
+                "tags": [
+                    "Product Mapping Controller"
+                ],
+                "description": "Gets a list Product Mappings for the specified tenant",
+                "operationId": "getProductMapping",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/x-vol-tenant"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductMappingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
             "post": {
                 "tags": [
-                    "Site Controller"
+                    "Product Mapping Controller"
                 ],
-                "description": "Creates a site",
-                "operationId": "createSite",
+                "description": "Creates a Product Mapping",
+                "operationId": "createProductMapping",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/x-vol-tenant"
+                    }
+                ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/CreateSiteRequest"
+                    "$ref": "#/components/requestBodies/ProductMappingRequest"
                 },
                 "responses": {
                     "200": {
@@ -1949,8 +1981,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "siteID",
-                                    "type": "integer"
+                                    "$ref": "#/components/schemas/ProductMapping"
                                 }
                             }
                         }
@@ -1961,27 +1992,30 @@
                 }
             }
         },
-        "/v1/site": {
+        "/v1/productMapping/{direction}": {
             "delete": {
                 "tags": [
-                    "Site Controller"
+                    "Product Mapping Controller"
                 ],
-                "description": "Deletes a site",
-                "operationId": "deleteSite",
+                "description": "Delete a Product Mapping",
+                "operationId": "deleteProductMapping",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/x-vol-tenant"
                     },
                     {
-                        "name": "x-vol-site",
-                        "in": "header",
-                        "description": "Site ID",
+                        "name": "direction",
+                        "in": "path",
+                        "description": "Direction",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     }
                 ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/ProductMappingRequest"
+                },
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -2223,7 +2257,8 @@
                 "description": "Base Request Model",
                 "properties": {
                     "locationCode": {
-                        "description": "external location id",
+                        "title": "location code",
+                        "description": "Location Code",
                         "type": "string"
                     },
                     "userID": {
@@ -3913,10 +3948,6 @@
                             "locationCode"
                         ],
                         "properties": {
-                            "locationCode": {
-                                "description": "Location Code for the refresh items at (maps to location code)",
-                                "type": "string"
-                            },
                             "items": {
                                 "description": "List of items to refresh",
                                 "type": "array",
@@ -3969,113 +4000,98 @@
                 },
                 "type": "object"
             },
-            "CreateSiteRequest": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/BaseRequest"
-                    },
-                    {
-                        "title": "Create Site Request",
-                        "description": "Request for creating a site",
-                        "properties": {
-                            "name": {
-                                "title": "name",
-                                "description": "Site name",
-                                "type": "string"
-                            },
-                            "siteID": {
-                                "title": "siteID",
-                                "description": "Site ID",
-                                "type": "integer"
-                            },
-                            "tenantID": {
-                                "title": "tenantID",
-                                "description": "Tenant ID",
-                                "type": "integer"
-                            }
-                        },
-                        "type": "object"
-                    }
-                ]
-            },
-            "CloneTenantRequest": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/BaseRequest"
-                    },
-                    {
-                        "title": "Clone Tenant Request",
-                        "description": "Request for creating a tenant",
-                        "properties": {
-                            "targetTenantName": {
-                                "title": "targetTenantName",
-                                "description": "Target Tenant name",
-                                "type": "string"
-                            },
-                            "sourceTenantID": {
-                                "title": "sourceTenantID",
-                                "description": "Source Tenant ID",
-                                "type": "integer"
-                            },
-                            "targetTenantID": {
-                                "title": "targetTenantID",
-                                "description": "Target Tenant ID",
-                                "type": "integer"
-                            }
-                        },
-                        "type": "object"
-                    }
-                ]
-            },
-            "CreateTenantRequest": {
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/BaseRequest"
-                    },
-                    {
-                        "title": "Create Tenant Request",
-                        "description": "Request for creating a tenant",
-                        "properties": {
-                            "name": {
-                                "title": "name",
-                                "description": "Tenant name",
-                                "type": "string"
-                            },
-                            "tenantID": {
-                                "title": "tenantID",
-                                "description": "Tenant ID",
-                                "type": "integer"
-                            }
-                        },
-                        "type": "object"
-                    }
-                ]
-            },
-            "UpdateTenantConfigRequest": {
-                "title": "Create Tenant Config Request",
-                "description": "Request for creating or updating tenant config.",
+            "ProductMapping": {
+                "title": "Product Mapping",
+                "description": "Product Mapping",
                 "properties": {
-                    "numEventSenderWorkers": {
-                        "description": "Number of event sender workers to run for this tenant.",
+                    "tenantID": {
+                        "title": "tenantID",
+                        "description": "Tenant Identifier",
                         "type": "integer"
                     },
-                    "fetchWorkerConfigIds": {
-                        "description": "Config IDs of Fetch Worker Configs to regularly run. Set this to [0] to run all configs.",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                    "direction": {
+                        "title": "direction",
+                        "description": "Enum for direction of the mapping",
+                        "type": "string",
+                        "enum": [
+                            "INBOUND",
+                            "OUTBOUND",
+                            "SKIP"
+                        ]
                     },
-                    "eventsToSend": {
-                        "description": "What level of events to send. Must be one of: NO_REFRESH_LOGS, WITH_REFRESH_LOGS, WITH_BASIC_EVENTS, ALL",
-                        "type": "string"
-                    },
-                    "enableSyncApi": {
-                        "description": "Whether our secret sync api is enabled for this tenant.",
-                        "type": "boolean"
+                    "mapping": {
+                        "title": "mapping",
+                        "description": "Enum for mapping rule",
+                        "type": "string",
+                        "enum": [
+                            "DEFAULT_MAPPING",
+                            "CUSTOM_MAPPING_PART_TO_ALL",
+                            "CUSTOM_MAPPING_PART_TO_SKU",
+                            "CUSTOM_MAPPING_ONLY_UPC",
+                            "CUSTOM_MAPPING_PART_TO_UPC_IF_EMPTY",
+                            "CUSTOM_MAPPING_SKU_TO_PART_UPC_SKU",
+                            "CUSTOM_MAPPING_SKU_TO_PART"
+                        ]
                     }
                 },
                 "type": "object"
+            },
+            "ProductMappingRequest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseRequest"
+                    },
+                    {
+                        "title": "Product Mapping Request",
+                        "description": "Request needed to interact with Product Mappings",
+                        "properties": {
+                            "direction": {
+                                "title": "direction",
+                                "description": "Enum for direction of the mapping",
+                                "type": "string",
+                                "enum": [
+                                    "INBOUND",
+                                    "OUTBOUND",
+                                    "SKIP"
+                                ]
+                            },
+                            "mapping": {
+                                "title": "mapping",
+                                "description": "Enum for mapping rule",
+                                "type": "string",
+                                "enum": [
+                                    "DEFAULT_MAPPING",
+                                    "CUSTOM_MAPPING_PART_TO_ALL",
+                                    "CUSTOM_MAPPING_PART_TO_SKU",
+                                    "CUSTOM_MAPPING_ONLY_UPC",
+                                    "CUSTOM_MAPPING_PART_TO_UPC_IF_EMPTY",
+                                    "CUSTOM_MAPPING_SKU_TO_PART_UPC_SKU",
+                                    "CUSTOM_MAPPING_SKU_TO_PART"
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "ProductMappingResponse": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseResponse"
+                    },
+                    {
+                        "title": "Product Mapping Response",
+                        "description": "Product Mapping Response",
+                        "properties": {
+                            "productMappings": {
+                                "description": "Product Mapping",
+                                "type": "object",
+                                "$ref": "#/components/schemas/ProductMapping"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
             },
             "JobQueueResponse": {
                 "allOf": [
@@ -4585,11 +4601,6 @@
                         "title": "Create Bin Request",
                         "description": "Request needed for creating a new bin",
                         "properties": {
-                            "locationCode": {
-                                "title": "location code",
-                                "description": "Location Code",
-                                "type": "string"
-                            },
                             "binTypeID": {
                                 "title": "bin type id",
                                 "description": "Bin Type Identifier",
@@ -4712,10 +4723,6 @@
                             "binID": {
                                 "description": "Bin identifier",
                                 "type": "integer"
-                            },
-                            "locationCode": {
-                                "description": "Bin Location Code",
-                                "type": "string"
                             },
                             "binTypeID": {
                                 "description": "New Bin's Type ID",
@@ -5546,36 +5553,6 @@
                     }
                 },
                 "type": "object"
-            },
-            "TenantConfigModel": {
-                "title": "Tenant Config Model",
-                "description": "Model of a tenant config.",
-                "properties": {
-                    "tenantID": {
-                        "description": "A Tenant ID",
-                        "type": "integer"
-                    },
-                    "numEventSenderWorkers": {
-                        "description": "Number of Event Sender Workers to run for this tenant.",
-                        "type": "integer"
-                    },
-                    "fetchWorkerConfigIds": {
-                        "description": "Config IDs of Fetch Worker Configs to regularly run. Set this to [0] to run all configs.",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "eventsToSend": {
-                        "description": "What level of events to send. Must be one of: NO_REFRESH_LOGS, WITH_REFRESH_LOGS, WITH_BASIC_EVENTS, ALL",
-                        "type": "string"
-                    },
-                    "enableSyncApi": {
-                        "description": "Whether our secret sync api is enabled for this tenant.",
-                        "type": "boolean"
-                    }
-                },
-                "type": "object"
             }
         },
         "parameters": {
@@ -6141,50 +6118,6 @@
                     }
                 }
             },
-            "CreateSiteRequest": {
-                "description": "Request to create a new site",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/CreateSiteRequest"
-                        }
-                    }
-                }
-            },
-            "CreateTenantRequest": {
-                "description": "Request to create a tenant",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/CreateTenantRequest"
-                        }
-                    }
-                }
-            },
-            "UpdateTenantConfigRequest": {
-                "description": "Request to create tenant config",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/UpdateTenantConfigRequest"
-                        }
-                    }
-                }
-            },
-            "CloneTenantRequest": {
-                "description": "Request to clone a tenant",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/CloneTenantRequest"
-                        }
-                    }
-                }
-            },
             "CreateExportSettingsRequest": {
                 "description": "Request to create a new Export Settings",
                 "required": true,
@@ -6269,6 +6202,17 @@
                     "application/json": {
                         "schema": {
                             "$ref": "#/components/schemas/WaveSuggestionRequest"
+                        }
+                    }
+                }
+            },
+            "ProductMappingRequest": {
+                "description": "Request to work with Product Mappings",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ProductMappingRequest"
                         }
                     }
                 }

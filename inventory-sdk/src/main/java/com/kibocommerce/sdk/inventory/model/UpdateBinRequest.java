@@ -28,15 +28,11 @@ import java.io.IOException;
 /**
  * UpdateBinRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-24T16:31:33.449-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T09:31:58.472-05:00[America/Chicago]")
 public class UpdateBinRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_BIN_I_D = "binID";
   @SerializedName(SERIALIZED_NAME_BIN_I_D)
   private Integer binID;
-
-  public static final String SERIALIZED_NAME_LOCATION_CODE = "locationCode";
-  @SerializedName(SERIALIZED_NAME_LOCATION_CODE)
-  private String locationCode;
 
   public static final String SERIALIZED_NAME_BIN_TYPE_I_D = "binTypeID";
   @SerializedName(SERIALIZED_NAME_BIN_TYPE_I_D)
@@ -62,24 +58,6 @@ public class UpdateBinRequest extends BaseRequest {
 
   public void setBinID(Integer binID) {
     this.binID = binID;
-  }
-
-  public UpdateBinRequest locationCode(String locationCode) {
-    this.locationCode = locationCode;
-    return this;
-  }
-
-   /**
-   * Bin Location Code
-   * @return locationCode
-  **/
-  @ApiModelProperty(required = true, value = "Bin Location Code")
-  public String getLocationCode() {
-    return locationCode;
-  }
-
-  public void setLocationCode(String locationCode) {
-    this.locationCode = locationCode;
   }
 
   public UpdateBinRequest binTypeID(Integer binTypeID) {
@@ -129,7 +107,6 @@ public class UpdateBinRequest extends BaseRequest {
     }
     UpdateBinRequest updateBinRequest = (UpdateBinRequest) o;
     return Objects.equals(this.binID, updateBinRequest.binID) &&
-        Objects.equals(this.locationCode, updateBinRequest.locationCode) &&
         Objects.equals(this.binTypeID, updateBinRequest.binTypeID) &&
         Objects.equals(this.binStatusID, updateBinRequest.binStatusID) &&
         super.equals(o);
@@ -137,7 +114,7 @@ public class UpdateBinRequest extends BaseRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(binID, locationCode, binTypeID, binStatusID, super.hashCode());
+    return Objects.hash(binID, binTypeID, binStatusID, super.hashCode());
   }
 
 
@@ -147,7 +124,6 @@ public class UpdateBinRequest extends BaseRequest {
     sb.append("class UpdateBinRequest {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    binID: ").append(toIndentedString(binID)).append("\n");
-    sb.append("    locationCode: ").append(toIndentedString(locationCode)).append("\n");
     sb.append("    binTypeID: ").append(toIndentedString(binTypeID)).append("\n");
     sb.append("    binStatusID: ").append(toIndentedString(binStatusID)).append("\n");
     sb.append("}");

@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * UpdateExportSettingsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-24T16:31:33.449-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T09:31:58.472-05:00[America/Chicago]")
 public class UpdateExportSettingsResponse extends BaseResponse {
   public static final String SERIALIZED_NAME_TENANT_I_D = "tenantID";
   @SerializedName(SERIALIZED_NAME_TENANT_I_D)
