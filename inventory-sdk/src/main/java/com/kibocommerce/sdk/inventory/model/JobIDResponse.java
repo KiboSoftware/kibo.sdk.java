@@ -25,24 +25,25 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * InlineResponse200
+ * Job ID Response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:19:08.239507-05:00[America/Chicago]")
-public class InlineResponse200 {
+@ApiModel(description = "Job ID Response")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+public class JobIDResponse {
   public static final String SERIALIZED_NAME_JOB_I_D = "jobID";
   @SerializedName(SERIALIZED_NAME_JOB_I_D)
   private Integer jobID;
 
-  public InlineResponse200 jobID(Integer jobID) {
+  public JobIDResponse jobID(Integer jobID) {
     this.jobID = jobID;
     return this;
   }
 
    /**
-   * Get jobID
+   * Job ID
    * @return jobID
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Job ID")
   public Integer getJobID() {
     return jobID;
   }
@@ -60,8 +61,8 @@ public class InlineResponse200 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.jobID, inlineResponse200.jobID);
+    JobIDResponse jobIDResponse = (JobIDResponse) o;
+    return Objects.equals(this.jobID, jobIDResponse.jobID);
   }
 
   @Override
@@ -73,7 +74,7 @@ public class InlineResponse200 {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse200 {\n");
+    sb.append("class JobIDResponse {\n");
     
     sb.append("    jobID: ").append(toIndentedString(jobID)).append("\n");
     sb.append("}");

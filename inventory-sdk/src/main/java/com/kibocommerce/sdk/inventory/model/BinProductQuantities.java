@@ -29,7 +29,7 @@ import java.io.IOException;
  * A bin and its associated products and quantities
  */
 @ApiModel(description = "A bin and its associated products and quantities")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:19:08.239507-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
 public class BinProductQuantities {
   public static final String SERIALIZED_NAME_BIN_NAME = "binName";
   @SerializedName(SERIALIZED_NAME_BIN_NAME)

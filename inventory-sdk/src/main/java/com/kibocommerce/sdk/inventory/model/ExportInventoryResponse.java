@@ -31,7 +31,7 @@ import java.util.List;
  * Response for Export Inventory api
  */
 @ApiModel(description = "Response for Export Inventory api")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:19:08.239507-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
 public class ExportInventoryResponse {
   public static final String SERIALIZED_NAME_EXPORT_INVENTORY_JOB_RESPONSES = "exportInventoryJobResponses";
   @SerializedName(SERIALIZED_NAME_EXPORT_INVENTORY_JOB_RESPONSES)

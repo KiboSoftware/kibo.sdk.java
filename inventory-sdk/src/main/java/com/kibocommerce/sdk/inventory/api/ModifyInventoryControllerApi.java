@@ -30,9 +30,9 @@ import java.io.IOException;
 import com.kibocommerce.sdk.inventory.model.AdjustRequest;
 import com.kibocommerce.sdk.inventory.model.DeleteItemRequest;
 import com.kibocommerce.sdk.inventory.model.DeleteItemResponse;
-import com.kibocommerce.sdk.inventory.model.InlineResponse200;
 import com.kibocommerce.sdk.inventory.model.InlineResponse404;
 import com.kibocommerce.sdk.inventory.model.InventoryResponse;
+import com.kibocommerce.sdk.inventory.model.JobIDResponse;
 import com.kibocommerce.sdk.inventory.model.RefreshRequest;
 
 import java.lang.reflect.Type;
@@ -137,11 +137,11 @@ public class ModifyInventoryControllerApi {
      * Adjust Inventory
      * @param xVolTenant Tenant ID (required)
      * @param adjustRequest Request to adjust inventory (required)
-     * @return InlineResponse200
+     * @return JobIDResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse200 adjust(Integer xVolTenant, AdjustRequest adjustRequest) throws ApiException {
-        ApiResponse<InlineResponse200> resp = adjustWithHttpInfo(xVolTenant, adjustRequest);
+    public JobIDResponse adjust(Integer xVolTenant, AdjustRequest adjustRequest) throws ApiException {
+        ApiResponse<JobIDResponse> resp = adjustWithHttpInfo(xVolTenant, adjustRequest);
         return resp.getData();
     }
 
@@ -150,12 +150,12 @@ public class ModifyInventoryControllerApi {
      * Adjust Inventory
      * @param xVolTenant Tenant ID (required)
      * @param adjustRequest Request to adjust inventory (required)
-     * @return ApiResponse&lt;InlineResponse200&gt;
+     * @return ApiResponse&lt;JobIDResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse200> adjustWithHttpInfo(Integer xVolTenant, AdjustRequest adjustRequest) throws ApiException {
+    public ApiResponse<JobIDResponse> adjustWithHttpInfo(Integer xVolTenant, AdjustRequest adjustRequest) throws ApiException {
         com.squareup.okhttp.Call call = adjustValidateBeforeCall(xVolTenant, adjustRequest, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobIDResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -168,7 +168,7 @@ public class ModifyInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call adjustAsync(Integer xVolTenant, AdjustRequest adjustRequest, final ApiCallback<InlineResponse200> callback) throws ApiException {
+    public com.squareup.okhttp.Call adjustAsync(Integer xVolTenant, AdjustRequest adjustRequest, final ApiCallback<JobIDResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -190,7 +190,7 @@ public class ModifyInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = adjustValidateBeforeCall(xVolTenant, adjustRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobIDResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -413,11 +413,11 @@ public class ModifyInventoryControllerApi {
      * Refresh Inventory
      * @param xVolTenant Tenant ID (required)
      * @param refreshRequest Request to refresh inventory (required)
-     * @return InlineResponse200
+     * @return JobIDResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse200 refresh(Integer xVolTenant, RefreshRequest refreshRequest) throws ApiException {
-        ApiResponse<InlineResponse200> resp = refreshWithHttpInfo(xVolTenant, refreshRequest);
+    public JobIDResponse refresh(Integer xVolTenant, RefreshRequest refreshRequest) throws ApiException {
+        ApiResponse<JobIDResponse> resp = refreshWithHttpInfo(xVolTenant, refreshRequest);
         return resp.getData();
     }
 
@@ -426,12 +426,12 @@ public class ModifyInventoryControllerApi {
      * Refresh Inventory
      * @param xVolTenant Tenant ID (required)
      * @param refreshRequest Request to refresh inventory (required)
-     * @return ApiResponse&lt;InlineResponse200&gt;
+     * @return ApiResponse&lt;JobIDResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse200> refreshWithHttpInfo(Integer xVolTenant, RefreshRequest refreshRequest) throws ApiException {
+    public ApiResponse<JobIDResponse> refreshWithHttpInfo(Integer xVolTenant, RefreshRequest refreshRequest) throws ApiException {
         com.squareup.okhttp.Call call = refreshValidateBeforeCall(xVolTenant, refreshRequest, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobIDResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -444,7 +444,7 @@ public class ModifyInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call refreshAsync(Integer xVolTenant, RefreshRequest refreshRequest, final ApiCallback<InlineResponse200> callback) throws ApiException {
+    public com.squareup.okhttp.Call refreshAsync(Integer xVolTenant, RefreshRequest refreshRequest, final ApiCallback<JobIDResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -466,7 +466,7 @@ public class ModifyInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = refreshValidateBeforeCall(xVolTenant, refreshRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<JobIDResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

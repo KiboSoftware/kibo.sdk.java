@@ -1,10 +1,10 @@
 
-# InlineResponse200
+# JobIDResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**jobID** | **Integer** |  |  [optional]
+**jobID** | **Integer** | Job ID |  [optional]
 
 
 
