@@ -20,47 +20,35 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kibocommerce.sdk.inventory.model.BaseRequest;
-import com.kibocommerce.sdk.inventory.model.RefreshItem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * RefreshRequest
+ * InlineResponse200
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:19:08.239507-05:00[America/Chicago]")
-public class RefreshRequest extends BaseRequest {
-  public static final String SERIALIZED_NAME_ITEMS = "items";
-  @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<RefreshItem> items = null;
+public class InlineResponse200 {
+  public static final String SERIALIZED_NAME_JOB_I_D = "jobID";
+  @SerializedName(SERIALIZED_NAME_JOB_I_D)
+  private Integer jobID;
 
-  public RefreshRequest items(List<RefreshItem> items) {
-    this.items = items;
-    return this;
-  }
-
-  public RefreshRequest addItemsItem(RefreshItem itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<RefreshItem>();
-    }
-    this.items.add(itemsItem);
+  public InlineResponse200 jobID(Integer jobID) {
+    this.jobID = jobID;
     return this;
   }
 
    /**
-   * List of items to refresh
-   * @return items
+   * Get jobID
+   * @return jobID
   **/
-  @ApiModelProperty(value = "List of items to refresh")
-  public List<RefreshItem> getItems() {
-    return items;
+  @ApiModelProperty(value = "")
+  public Integer getJobID() {
+    return jobID;
   }
 
-  public void setItems(List<RefreshItem> items) {
-    this.items = items;
+  public void setJobID(Integer jobID) {
+    this.jobID = jobID;
   }
 
 
@@ -72,23 +60,22 @@ public class RefreshRequest extends BaseRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RefreshRequest refreshRequest = (RefreshRequest) o;
-    return Objects.equals(this.items, refreshRequest.items) &&
-        super.equals(o);
+    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
+    return Objects.equals(this.jobID, inlineResponse200.jobID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, super.hashCode());
+    return Objects.hash(jobID);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RefreshRequest {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class InlineResponse200 {\n");
+    
+    sb.append("    jobID: ").append(toIndentedString(jobID)).append("\n");
     sb.append("}");
     return sb.toString();
   }

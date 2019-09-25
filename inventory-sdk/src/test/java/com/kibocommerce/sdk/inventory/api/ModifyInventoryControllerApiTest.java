@@ -17,6 +17,7 @@ import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.model.AdjustRequest;
 import com.kibocommerce.sdk.inventory.model.DeleteItemRequest;
 import com.kibocommerce.sdk.inventory.model.DeleteItemResponse;
+import com.kibocommerce.sdk.inventory.model.InlineResponse200;
 import com.kibocommerce.sdk.inventory.model.InlineResponse404;
 import com.kibocommerce.sdk.inventory.model.InventoryResponse;
 import com.kibocommerce.sdk.inventory.model.RefreshRequest;
@@ -49,7 +50,7 @@ public class ModifyInventoryControllerApiTest {
     public void adjustTest() throws ApiException {
         Integer xVolTenant = null;
         AdjustRequest adjustRequest = null;
-        Integer response = api.adjust(xVolTenant, adjustRequest);
+        InlineResponse200 response = api.adjust(xVolTenant, adjustRequest);
 
         // TODO: test validations
     }
@@ -84,7 +85,7 @@ public class ModifyInventoryControllerApiTest {
     public void refreshTest() throws ApiException {
         Integer xVolTenant = null;
         RefreshRequest refreshRequest = null;
-        Integer response = api.refresh(xVolTenant, refreshRequest);
+        InlineResponse200 response = api.refresh(xVolTenant, refreshRequest);
 
         // TODO: test validations
     }

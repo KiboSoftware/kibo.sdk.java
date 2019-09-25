@@ -1580,8 +1580,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "jobID",
-                                    "type": "integer"
+                                    "properties": {
+                                        "jobID": {
+                                            "title": "jobIDResponse",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -1663,8 +1668,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "jobID",
-                                    "type": "integer"
+                                    "properties": {
+                                        "jobID": {
+                                            "title": "jobIDResponse",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }

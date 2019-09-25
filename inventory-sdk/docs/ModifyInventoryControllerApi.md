@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="adjust"></a>
 # **adjust**
-> Integer adjust(xVolTenant, adjustRequest)
+> InlineResponse200 adjust(xVolTenant, adjustRequest)
 
 
 
@@ -30,7 +30,7 @@ ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 AdjustRequest adjustRequest = new AdjustRequest(); // AdjustRequest | Request to adjust inventory
 try {
-    Integer result = apiInstance.adjust(xVolTenant, adjustRequest);
+    InlineResponse200 result = apiInstance.adjust(xVolTenant, adjustRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ModifyInventoryControllerApi#adjust");
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Integer**
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ No authorization required
 
 <a name="refresh"></a>
 # **refresh**
-> Integer refresh(xVolTenant, refreshRequest)
+> InlineResponse200 refresh(xVolTenant, refreshRequest)
 
 
 
@@ -126,7 +126,7 @@ ModifyInventoryControllerApi apiInstance = new ModifyInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 RefreshRequest refreshRequest = new RefreshRequest(); // RefreshRequest | Request to refresh inventory
 try {
-    Integer result = apiInstance.refresh(xVolTenant, refreshRequest);
+    InlineResponse200 result = apiInstance.refresh(xVolTenant, refreshRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ModifyInventoryControllerApi#refresh");
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Integer**
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
