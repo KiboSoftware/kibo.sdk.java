@@ -1580,8 +1580,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "jobID",
-                                    "type": "integer"
+                                    "$ref": "#/components/schemas/JobIDResponse"
                                 }
                             }
                         }
@@ -1663,8 +1662,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "jobID",
-                                    "type": "integer"
+                                    "$ref": "#/components/schemas/JobIDResponse"
                                 }
                             }
                         }
@@ -3554,6 +3552,17 @@
                     },
                     "quantity": {
                         "description": "Quantity",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "JobIDResponse": {
+                "title": "Job ID Response",
+                "description": "Job ID Response",
+                "properties": {
+                    "jobID": {
+                        "description": "Job ID",
                         "type": "integer"
                     }
                 },

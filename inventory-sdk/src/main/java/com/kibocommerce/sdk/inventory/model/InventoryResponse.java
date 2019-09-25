@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * InventoryResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T09:31:58.472-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
 public class InventoryResponse extends BaseResponse {
   public static final String SERIALIZED_NAME_LOCATION_NAME = "locationName";
   @SerializedName(SERIALIZED_NAME_LOCATION_NAME)

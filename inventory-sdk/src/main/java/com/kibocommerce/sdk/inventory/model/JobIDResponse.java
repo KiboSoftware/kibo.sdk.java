@@ -25,53 +25,31 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Range of dates
+ * Job ID Response
  */
-@ApiModel(description = "Range of dates")
+@ApiModel(description = "Job ID Response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
-public class DateRange {
-  public static final String SERIALIZED_NAME_START_DATE = "startDate";
-  @SerializedName(SERIALIZED_NAME_START_DATE)
-  private String startDate;
+public class JobIDResponse {
+  public static final String SERIALIZED_NAME_JOB_I_D = "jobID";
+  @SerializedName(SERIALIZED_NAME_JOB_I_D)
+  private Integer jobID;
 
-  public static final String SERIALIZED_NAME_END_DATE = "endDate";
-  @SerializedName(SERIALIZED_NAME_END_DATE)
-  private String endDate;
-
-  public DateRange startDate(String startDate) {
-    this.startDate = startDate;
+  public JobIDResponse jobID(Integer jobID) {
+    this.jobID = jobID;
     return this;
   }
 
    /**
-   * Start Date
-   * @return startDate
+   * Job ID
+   * @return jobID
   **/
-  @ApiModelProperty(value = "Start Date")
-  public String getStartDate() {
-    return startDate;
+  @ApiModelProperty(value = "Job ID")
+  public Integer getJobID() {
+    return jobID;
   }
 
-  public void setStartDate(String startDate) {
-    this.startDate = startDate;
-  }
-
-  public DateRange endDate(String endDate) {
-    this.endDate = endDate;
-    return this;
-  }
-
-   /**
-   * End Date
-   * @return endDate
-  **/
-  @ApiModelProperty(value = "End Date")
-  public String getEndDate() {
-    return endDate;
-  }
-
-  public void setEndDate(String endDate) {
-    this.endDate = endDate;
+  public void setJobID(Integer jobID) {
+    this.jobID = jobID;
   }
 
 
@@ -83,24 +61,22 @@ public class DateRange {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DateRange dateRange = (DateRange) o;
-    return Objects.equals(this.startDate, dateRange.startDate) &&
-        Objects.equals(this.endDate, dateRange.endDate);
+    JobIDResponse jobIDResponse = (JobIDResponse) o;
+    return Objects.equals(this.jobID, jobIDResponse.jobID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startDate, endDate);
+    return Objects.hash(jobID);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DateRange {\n");
+    sb.append("class JobIDResponse {\n");
     
-    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
-    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    jobID: ").append(toIndentedString(jobID)).append("\n");
     sb.append("}");
     return sb.toString();
   }

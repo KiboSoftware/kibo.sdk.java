@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * BinSearchRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T09:31:58.472-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
 public class BinSearchRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_BIN_NAME = "binName";
   @SerializedName(SERIALIZED_NAME_BIN_NAME)
