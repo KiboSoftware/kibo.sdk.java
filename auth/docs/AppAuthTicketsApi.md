@@ -53,7 +53,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xVolTenant** | **Integer**|  |
+ **xVolTenant** | **Integer**|  | [optional]
  **xVolSite** | **Integer**|  | [optional]
  **mozuAppDevContractsOauthAuthRequest** | [**MozuAppDevContractsOauthAuthRequest**](MozuAppDevContractsOauthAuthRequest.md)|  | [optional]
 
