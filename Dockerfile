@@ -6,4 +6,4 @@ COPY pom.xml .
 COPY . .
 ARG BUILD_VER=1.0.0-SNAPSHOT
 
-RUN mvn -X -s settings.xml clean package -DbuildVersion=$BUILD_VER
+RUN mvn -X -s settings.xml clean package deploy -DbuildVersion=$BUILD_VER
