@@ -57,7 +57,7 @@ public class AppAuthTicketsApi {
 
     /**
      * Build call for oauthAuthenticateApp
-     * @param xVolTenant  (required)
+     * @param xVolTenant  (optional)
      * @param xVolSite  (optional)
      * @param mozuAppDevContractsOauthAuthRequest  (optional)
      * @param progressListener Progress listener
@@ -116,11 +116,6 @@ public class AppAuthTicketsApi {
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call oauthAuthenticateAppValidateBeforeCall(Integer xVolTenant, Integer xVolSite, MozuAppDevContractsOauthAuthRequest mozuAppDevContractsOauthAuthRequest, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'xVolTenant' is set
-        if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling oauthAuthenticateApp(Async)");
-        }
-        
 
         com.squareup.okhttp.Call call = oauthAuthenticateAppCall(xVolTenant, xVolSite, mozuAppDevContractsOauthAuthRequest, progressListener, progressRequestListener);
         return call;
@@ -130,7 +125,7 @@ public class AppAuthTicketsApi {
     /**
      * 
      * 
-     * @param xVolTenant  (required)
+     * @param xVolTenant  (optional)
      * @param xVolSite  (optional)
      * @param mozuAppDevContractsOauthAuthRequest  (optional)
      * @return MozuAppDevContractsOAuthAccessTokenResponse
@@ -144,7 +139,7 @@ public class AppAuthTicketsApi {
     /**
      * 
      * 
-     * @param xVolTenant  (required)
+     * @param xVolTenant  (optional)
      * @param xVolSite  (optional)
      * @param mozuAppDevContractsOauthAuthRequest  (optional)
      * @return ApiResponse&lt;MozuAppDevContractsOAuthAccessTokenResponse&gt;
@@ -159,7 +154,7 @@ public class AppAuthTicketsApi {
     /**
      *  (asynchronously)
      * 
-     * @param xVolTenant  (required)
+     * @param xVolTenant  (optional)
      * @param xVolSite  (optional)
      * @param mozuAppDevContractsOauthAuthRequest  (optional)
      * @param callback The callback to be executed when the API call finishes

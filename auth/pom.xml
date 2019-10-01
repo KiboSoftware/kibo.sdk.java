@@ -10,6 +10,7 @@
         <groupId>com.kibocommerce</groupId>
         <artifactId>kibo-sdk-java</artifactId>
         <version>${buildVersion}</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <build>
