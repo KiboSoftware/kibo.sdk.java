@@ -1,0 +1,5094 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "REST API backing the Kibo Fulfiller User Interface",
+        "version": "1.0",
+        "title": "Kibo Fulfillment API",
+        "termsOfService": "https://kibocommerce.com/api/TOS",
+        "license": {
+            "name": "Kibo Commercial License 1.0",
+            "url": "https://kibocommerce.com/api/LICENSE"
+        }
+    },
+    "host": "services-tp.dev01.kubedev.kibo-dev.com",
+    "basePath": "/kibo.fulfillment.webapi",
+    "tags": [
+        {
+            "name": "fulfillment-controller",
+            "description": "Fulfillment Controller"
+        },
+        {
+            "name": "pick-wave-controller",
+            "description": "Pick Wave Controller"
+        },
+        {
+            "name": "shipment-attributes-controller",
+            "description": "Shipment Attributes Controller"
+        },
+        {
+            "name": "shipment-controller",
+            "description": "Shipment Controller"
+        },
+        {
+            "name": "workflow-process-controller",
+            "description": "Workflow Process Controller"
+        }
+    ],
+    "paths": {
+        "/commerce/fulfillment": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "fulfillment",
+                "operationId": "fulfillmentUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/fulfillment/associate": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "storeAssociate",
+                "operationId": "storeAssociateUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/fulfillment/manager": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "storeManager",
+                "operationId": "storeManagerUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/fulfillment/user/behaviors": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "getAuthorizedUserRoles",
+                "operationId": "getAuthorizedUserRolesUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/fulfillment/user/hello": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "home",
+                "operationId": "homeUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/fulfillment/user/principal": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "getPrincipal",
+                "operationId": "getPrincipalUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Principal"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/fulfillment/user/username": {
+            "get": {
+                "tags": [
+                    "fulfillment-controller"
+                ],
+                "summary": "getAuthorizedUserName",
+                "operationId": "getAuthorizedUserNameUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/pickwaves": {
+            "post": {
+                "tags": [
+                    "pick-wave-controller"
+                ],
+                "summary": "createPickWave",
+                "operationId": "createPickWaveUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createPickWaveDto",
+                        "description": "createPickWaveDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreatePickWave"
+                        }
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfPickWave"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/pickwaves/open/{fulfillmentLocationCode}": {
+            "get": {
+                "tags": [
+                    "pick-wave-controller"
+                ],
+                "summary": "getOpenPickWaves",
+                "operationId": "getOpenPickWavesUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "fulfillmentLocationCode",
+                        "in": "path",
+                        "description": "fulfillmentLocationCode",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "shipmentType",
+                        "in": "query",
+                        "description": "shipmentType",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "userId",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourcesOfPickWave"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/pickwaves/{pickWaveNumber}": {
+            "get": {
+                "tags": [
+                    "pick-wave-controller"
+                ],
+                "summary": "getPickWave",
+                "operationId": "getPickWaveUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "pickWaveNumber",
+                        "in": "path",
+                        "description": "pickWaveNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfPickWave"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/pickwaves/{pickWaveNumber}/closed": {
+            "put": {
+                "tags": [
+                    "pick-wave-controller"
+                ],
+                "summary": "closePickWave",
+                "operationId": "closePickWaveUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "closePickWaveDto",
+                        "description": "closePickWaveDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ClosePickWave"
+                        }
+                    },
+                    {
+                        "name": "pickWaveNumber",
+                        "in": "path",
+                        "description": "pickWaveNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfPickWave"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/pickwaves/{pickWaveNumber}/shipments": {
+            "get": {
+                "tags": [
+                    "pick-wave-controller"
+                ],
+                "summary": "getShipmentsInPickWave",
+                "operationId": "getShipmentsInPickWaveUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "pickWaveNumber",
+                        "in": "path",
+                        "description": "pickWaveNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourcesOfShipment"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/processes/definitions": {
+            "get": {
+                "tags": [
+                    "workflow-process-controller"
+                ],
+                "summary": "getWorkflowProcesses",
+                "operationId": "getWorkflowProcessesUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourcesOfResourceOfWorkflowProcess"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/processes/definitions/{containerId}/{processId}": {
+            "get": {
+                "tags": [
+                    "workflow-process-controller"
+                ],
+                "summary": "getWorkflowProcess",
+                "operationId": "getWorkflowProcessUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "containerId",
+                        "in": "path",
+                        "description": "containerId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "processId",
+                        "in": "path",
+                        "description": "processId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfWorkflowProcess"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/processes/shipmentType/{shipmentType}": {
+            "get": {
+                "tags": [
+                    "workflow-process-controller"
+                ],
+                "summary": "getWorkflowProcess",
+                "operationId": "getWorkflowProcessUsingGET_1",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentType",
+                        "in": "path",
+                        "description": "shipmentType",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfWorkflowProcess"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments": {
+            "get": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "getShipments",
+                "operationId": "getShipmentsUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "isLate",
+                        "in": "query",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "quickSearch",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "workflowTaskName",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResourcesOfResourceOfShipment"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "newShipment",
+                "operationId": "newShipmentUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "newShipment",
+                        "description": "newShipment",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Shipment"
+                        }
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/dashboard": {
+            "get": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "getDashboard",
+                "operationId": "getDashboardUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "fulfillmentLocationCodes",
+                        "in": "query",
+                        "description": "fulfillmentLocationCodes",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourcesOfDashboardResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}": {
+            "get": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "getShipment",
+                "operationId": "getShipmentUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "replaceShipment",
+                "operationId": "replaceShipmentUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "newShipment",
+                        "description": "newShipment",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Shipment"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "deleteShipment",
+                "operationId": "deleteShipmentUsingDELETE",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/attributes": {
+            "get": {
+                "tags": [
+                    "shipment-attributes-controller"
+                ],
+                "summary": "getShipmentAttributes",
+                "operationId": "getShipmentAttributesUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attribute"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "shipment-attributes-controller"
+                ],
+                "summary": "setShipmentAttributes",
+                "operationId": "setShipmentAttributesUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "attributes",
+                        "description": "attributes",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attribute"
+                            }
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attribute"
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/attributes/{key}": {
+            "get": {
+                "tags": [
+                    "shipment-attributes-controller"
+                ],
+                "summary": "getShipmentAttribute",
+                "operationId": "getShipmentAttributeUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "key",
+                        "in": "path",
+                        "description": "key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Attribute"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "shipment-attributes-controller"
+                ],
+                "summary": "setShipmentAttribute",
+                "operationId": "setShipmentAttributeUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "attribute",
+                        "description": "attribute",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Attribute"
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "path",
+                        "description": "key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Attribute"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "shipment-attributes-controller"
+                ],
+                "summary": "deleteShipmentAttribute",
+                "operationId": "deleteShipmentAttributeUsingDELETE",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "key",
+                        "in": "path",
+                        "description": "key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/backordered": {
+            "post": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "backorderShipment",
+                "operationId": "backorderShipmentUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "backorderShipmentRequestDto",
+                        "description": "backorderShipmentRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BackorderShipmentRequest"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/backorderedItems": {
+            "post": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "backorderItems",
+                "operationId": "backorderItemsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "backorderItemsRequestDto",
+                        "description": "backorderItemsRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BackorderItemsRequest"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "backorderItemsUpdate",
+                "operationId": "backorderItemsUpdateUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "backorderItemsUpdateRequestDto",
+                        "description": "backorderItemsUpdateRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BackorderItemsUpdateRequest"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/canceled": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "cancelShipment",
+                "operationId": "cancelShipmentUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cancelShipmentRequestDto",
+                        "description": "cancelShipmentRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CancelShipment"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/canceledItems": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "cancelItems",
+                "operationId": "cancelItemsUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cancelItemsRequestDto",
+                        "description": "cancelItemsRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CancelItemsRequest"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/destination": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "destinationUpdate",
+                "operationId": "destinationUpdateUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "destinationDto",
+                        "description": "destinationDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Destination"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/fulfilled": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "fulfillShipment",
+                "operationId": "fulfillShipmentUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/packages/{packageId}": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "updatePackage",
+                "operationId": "updatePackageUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "packageDto",
+                        "description": "packageDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Package"
+                        }
+                    },
+                    {
+                        "name": "packageId",
+                        "in": "path",
+                        "description": "packageId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/reassigned": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "reassignShipment",
+                "operationId": "reassignShipmentUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "reassignShipmentRequestDto",
+                        "description": "reassignShipmentRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReassignShipment"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/reassignedItems": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "reassignItems",
+                "operationId": "reassignItemsUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "reassignItemsRequestDto",
+                        "description": "reassignItemsRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReassignItemsRequest"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/rejected": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "rejectShipment",
+                "operationId": "rejectShipmentUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "rejectShipmentRequestDto",
+                        "description": "rejectShipmentRequestDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RejectShipment"
+                        }
+                    },
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/tasks": {
+            "get": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingGET",
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourcesOfTask"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/tasks/{taskId}/completed": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "execute",
+                "operationId": "executeUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "body",
+                        "name": "taskCompleteDto",
+                        "description": "taskCompleteDto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TaskComplete"
+                        }
+                    },
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/tasks/{taskId}/reverted": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "revert",
+                "operationId": "revertUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/tasks/{taskId}/skipped": {
+            "put": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "skipTask",
+                "operationId": "skipTaskUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json",
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/workflow-definition-image": {
+            "get": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "workflowDefinitionImage",
+                "operationId": "workflowDefinitionImageUsingGET",
+                "produces": [
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/commerce/shipments/{shipmentNumber}/workflow-instance-image": {
+            "get": {
+                "tags": [
+                    "shipment-controller"
+                ],
+                "summary": "workflowInstanceImage",
+                "operationId": "workflowInstanceImageUsingGET",
+                "produces": [
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "shipmentNumber",
+                        "in": "path",
+                        "description": "shipmentNumber",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-site",
+                        "in": "header",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "x-vol-tenant",
+                        "in": "header",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "securityDefinitions": {
+        "AppClaims": {
+            "type": "apiKey",
+            "name": "x-vol-app-claims",
+            "in": "header"
+        },
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        },
+        "UserClaims": {
+            "type": "apiKey",
+            "name": "x-vol-user-claims",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "Address": {
+            "type": "object",
+            "properties": {
+                "address1": {
+                    "type": "string"
+                },
+                "address2": {
+                    "type": "string"
+                },
+                "address3": {
+                    "type": "string"
+                },
+                "address4": {
+                    "type": "string"
+                },
+                "addressType": {
+                    "type": "string",
+                    "enum": [
+                        "Commercial",
+                        "Residential"
+                    ]
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "cityOrTown": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "isValidated": {
+                    "type": "boolean"
+                },
+                "latitude": {
+                    "type": "string"
+                },
+                "longitude": {
+                    "type": "string"
+                },
+                "postalOrZipCode": {
+                    "type": "string"
+                },
+                "stateOrProvince": {
+                    "type": "string"
+                }
+            },
+            "title": "Address"
+        },
+        "Attribute": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "object"
+                }
+            },
+            "title": "Attribute"
+        },
+        "AuditInfo": {
+            "type": "object",
+            "properties": {
+                "createBy": {
+                    "type": "string"
+                },
+                "createDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updateBy": {
+                    "type": "string"
+                },
+                "updateDate": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "AuditInfo"
+        },
+        "BackorderItem": {
+            "type": "object",
+            "properties": {
+                "backorderReleaseDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "lineId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "BackorderItem"
+        },
+        "BackorderItemUpdate": {
+            "type": "object",
+            "properties": {
+                "backorderReleaseDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "lineId": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "BackorderItemUpdate"
+        },
+        "BackorderItemsRequest": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BackorderItem"
+                    }
+                }
+            },
+            "title": "BackorderItemsRequest"
+        },
+        "BackorderItemsUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BackorderItemUpdate"
+                    }
+                }
+            },
+            "title": "BackorderItemsUpdateRequest"
+        },
+        "BackorderShipmentRequest": {
+            "type": "object",
+            "properties": {
+                "backorderReleaseDate": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "title": "BackorderShipmentRequest"
+        },
+        "BinShipmentProductQuantity": {
+            "type": "object",
+            "properties": {
+                "actualQuantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "binName": {
+                    "type": "string"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "shipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "variationProductCode": {
+                    "type": "string"
+                }
+            },
+            "title": "BinShipmentProductQuantity"
+        },
+        "CancelItem": {
+            "type": "object",
+            "properties": {
+                "canceledReason": {
+                    "$ref": "#/definitions/CanceledReason"
+                },
+                "lineId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "CancelItem"
+        },
+        "CancelItemsRequest": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CancelItem"
+                    }
+                }
+            },
+            "title": "CancelItemsRequest"
+        },
+        "CancelShipment": {
+            "type": "object",
+            "properties": {
+                "canceledReason": {
+                    "$ref": "#/definitions/CanceledReason"
+                }
+            },
+            "title": "CancelShipment"
+        },
+        "CanceledItem": {
+            "type": "object",
+            "properties": {
+                "actualPrice": {
+                    "type": "number"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "backorderReleaseDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "canceledReason": {
+                    "$ref": "#/definitions/CanceledReason"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "duty": {
+                    "type": "number"
+                },
+                "fulfillmentItemType": {
+                    "type": "string",
+                    "enum": [
+                        "Physical",
+                        "Digital",
+                        "DigitalCredit"
+                    ]
+                },
+                "handling": {
+                    "type": "number"
+                },
+                "handlingDiscount": {
+                    "type": "number"
+                },
+                "handlingTax": {
+                    "type": "number"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "isTaxable": {
+                    "type": "boolean"
+                },
+                "itemDiscount": {
+                    "type": "number"
+                },
+                "itemTax": {
+                    "type": "number"
+                },
+                "lineId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lineItemCost": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "optionAttributeFQN": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProductOption"
+                    }
+                },
+                "originalOrderItemId": {
+                    "type": "string"
+                },
+                "overridePrice": {
+                    "type": "number"
+                },
+                "parentId": {
+                    "type": "string"
+                },
+                "partNumber": {
+                    "type": "string"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipping": {
+                    "type": "number"
+                },
+                "shippingDiscount": {
+                    "type": "number"
+                },
+                "shippingTax": {
+                    "type": "number"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "taxData": {
+                    "type": "object"
+                },
+                "unitPrice": {
+                    "type": "number"
+                },
+                "upc": {
+                    "type": "string"
+                },
+                "variationProductCode": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "number"
+                },
+                "weightUnit": {
+                    "type": "string"
+                }
+            },
+            "title": "CanceledItem"
+        },
+        "CanceledReason": {
+            "type": "object",
+            "properties": {
+                "moreInfo": {
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "type": "string"
+                }
+            },
+            "title": "CanceledReason"
+        },
+        "ChangeMessage": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "appId": {
+                    "type": "string"
+                },
+                "appKey": {
+                    "type": "string"
+                },
+                "appName": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "changeMessageId": {
+                    "type": "string"
+                },
+                "correlationId": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "identifier": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "string"
+                },
+                "newValue": {
+                    "type": "string"
+                },
+                "oldValue": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "subjectType": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "userFirstName": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                },
+                "userLastName": {
+                    "type": "string"
+                },
+                "verb": {
+                    "type": "string"
+                }
+            },
+            "title": "ChangeMessage"
+        },
+        "ClosePickWave": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "createRecovery": {
+                    "type": "boolean"
+                },
+                "quantities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BinShipmentProductQuantity"
+                    }
+                }
+            },
+            "title": "ClosePickWave"
+        },
+        "Contact": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/Address"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "companyOrOrganization": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lastNameOrSurname": {
+                    "type": "string"
+                },
+                "middleNameOrInitial": {
+                    "type": "string"
+                },
+                "phoneNumbers": {
+                    "$ref": "#/definitions/Phone"
+                }
+            },
+            "title": "Contact"
+        },
+        "CreatePickWave": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "binRanges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PickWaveBinRange"
+                    }
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "includeZeroInventory": {
+                    "type": "boolean"
+                },
+                "lockWave": {
+                    "type": "boolean"
+                },
+                "maxShipments": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickWaveType": {
+                    "type": "string",
+                    "enum": [
+                        "SPECIAL",
+                        "NORMAL",
+                        "SINGLE",
+                        "MULTIPLE"
+                    ]
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PickWaveProductMatch"
+                    }
+                },
+                "shipmentDateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "shipmentDateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "shipmentType": {
+                    "type": "string"
+                },
+                "shippingOption": {
+                    "type": "string",
+                    "enum": [
+                        "STANDARD_ONLY",
+                        "EXPRESS_ONLY",
+                        "ALL"
+                    ]
+                }
+            },
+            "title": "CreatePickWave"
+        },
+        "DashboardResponse": {
+            "type": "object",
+            "properties": {
+                "shipmentType": {
+                    "type": "string"
+                },
+                "shipmentTypeDisplayName": {
+                    "type": "string"
+                },
+                "steps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DashboardStepDto"
+                    }
+                }
+            },
+            "title": "DashboardResponse"
+        },
+        "DashboardStepDto": {
+            "type": "object",
+            "properties": {
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "DashboardStepDto"
+        },
+        "Destination": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "destinationContact": {
+                    "$ref": "#/definitions/Contact"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isDestinationCommercial": {
+                    "type": "boolean"
+                }
+            },
+            "title": "Destination"
+        },
+        "HandleOption": {
+            "type": "object",
+            "properties": {
+                "blockAssignment": {
+                    "type": "boolean"
+                }
+            },
+            "title": "HandleOption"
+        },
+        "Item": {
+            "type": "object",
+            "properties": {
+                "actualPrice": {
+                    "type": "number"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "backorderReleaseDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "duty": {
+                    "type": "number"
+                },
+                "fulfillmentItemType": {
+                    "type": "string",
+                    "enum": [
+                        "Physical",
+                        "Digital",
+                        "DigitalCredit"
+                    ]
+                },
+                "handling": {
+                    "type": "number"
+                },
+                "handlingDiscount": {
+                    "type": "number"
+                },
+                "handlingTax": {
+                    "type": "number"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "isTaxable": {
+                    "type": "boolean"
+                },
+                "itemDiscount": {
+                    "type": "number"
+                },
+                "itemTax": {
+                    "type": "number"
+                },
+                "lineId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lineItemCost": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "optionAttributeFQN": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProductOption"
+                    }
+                },
+                "originalOrderItemId": {
+                    "type": "string"
+                },
+                "overridePrice": {
+                    "type": "number"
+                },
+                "parentId": {
+                    "type": "string"
+                },
+                "partNumber": {
+                    "type": "string"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipping": {
+                    "type": "number"
+                },
+                "shippingDiscount": {
+                    "type": "number"
+                },
+                "shippingTax": {
+                    "type": "number"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "taxData": {
+                    "type": "object"
+                },
+                "unitPrice": {
+                    "type": "number"
+                },
+                "upc": {
+                    "type": "string"
+                },
+                "variationProductCode": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "number"
+                },
+                "weightUnit": {
+                    "type": "string"
+                }
+            },
+            "title": "Item"
+        },
+        "Link": {
+            "type": "object",
+            "properties": {
+                "deprecation": {
+                    "type": "string",
+                    "xml": {
+                        "name": "deprecation",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "href": {
+                    "type": "string",
+                    "xml": {
+                        "name": "href",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "hreflang": {
+                    "type": "string",
+                    "xml": {
+                        "name": "hreflang",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "media": {
+                    "type": "string",
+                    "xml": {
+                        "name": "media",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "rel": {
+                    "type": "string",
+                    "xml": {
+                        "name": "rel",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "templated": {
+                    "type": "boolean"
+                },
+                "title": {
+                    "type": "string",
+                    "xml": {
+                        "name": "title",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "xml": {
+                        "name": "type",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                }
+            },
+            "title": "Link"
+        },
+        "Measurement": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            },
+            "title": "Measurement"
+        },
+        "Package": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "measurements": {
+                    "$ref": "#/definitions/PackageMeasurements"
+                },
+                "packageId": {
+                    "type": "string"
+                },
+                "packagingType": {
+                    "type": "string"
+                },
+                "trackingNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "title": "Package"
+        },
+        "PackageMeasurements": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "height": {
+                    "$ref": "#/definitions/Measurement"
+                },
+                "length": {
+                    "$ref": "#/definitions/Measurement"
+                },
+                "weight": {
+                    "$ref": "#/definitions/Measurement"
+                },
+                "width": {
+                    "$ref": "#/definitions/Measurement"
+                }
+            },
+            "title": "PackageMeasurements"
+        },
+        "PageMetadata": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "number",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "size",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "totalElements": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "totalElements",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                },
+                "totalPages": {
+                    "type": "integer",
+                    "format": "int64",
+                    "xml": {
+                        "name": "totalPages",
+                        "attribute": true,
+                        "wrapped": false
+                    }
+                }
+            },
+            "title": "PageMetadata"
+        },
+        "PagedResourcesOfResourceOfShipment": {
+            "type": "object",
+            "properties": {
+                "_embedded": {
+                    "type": "object",
+                    "xml": {
+                        "name": "embedded",
+                        "attribute": false,
+                        "wrapped": true
+                    },
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/ResourceOfShipment"
+                        }
+                    }
+                },
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "page": {
+                    "$ref": "#/definitions/PageMetadata"
+                }
+            },
+            "title": "PagedResourcesOfResourceOfShipment",
+            "xml": {
+                "name": "pagedEntities",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "Phone": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "home": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "work": {
+                    "type": "string"
+                }
+            },
+            "title": "Phone"
+        },
+        "PickWave": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "contents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PickWaveContent"
+                    }
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "maxShipments": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "parentPickWaveNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickType": {
+                    "type": "string",
+                    "enum": [
+                        "SPECIAL",
+                        "NORMAL",
+                        "SINGLE",
+                        "MULTIPLE"
+                    ]
+                },
+                "pickWaveId": {
+                    "type": "string"
+                },
+                "pickWaveNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickWaveStatus": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "PENDING",
+                        "IN_PROGRESS",
+                        "CLOSED",
+                        "PENDING_RECOVERY"
+                    ]
+                },
+                "recoveryPickWaveNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipmentNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "shipmentType": {
+                    "type": "string"
+                },
+                "siteId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "title": "PickWave"
+        },
+        "PickWaveBinRange": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "endBinName": {
+                    "type": "string"
+                },
+                "startBinName": {
+                    "type": "string"
+                }
+            },
+            "title": "PickWaveBinRange"
+        },
+        "PickWaveContent": {
+            "type": "object",
+            "properties": {
+                "actualQuantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "binId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "binName": {
+                    "type": "string"
+                },
+                "contentId": {
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "itemLineId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "optionAttributeFQN": {
+                    "type": "string"
+                },
+                "orderNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "partNumber": {
+                    "type": "string"
+                },
+                "productCode": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "IN_PROGRESS",
+                        "PICKED",
+                        "REMOVED"
+                    ]
+                },
+                "upc": {
+                    "type": "string"
+                },
+                "variationProductCode": {
+                    "type": "string"
+                }
+            },
+            "title": "PickWaveContent"
+        },
+        "PickWaveProductMatch": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "identifier": {
+                    "type": "string",
+                    "enum": [
+                        "UPC",
+                        "PRODUCT_CODE"
+                    ]
+                },
+                "matchType": {
+                    "type": "string",
+                    "enum": [
+                        "EXACT",
+                        "CONTAINS",
+                        "STARTS_WITH",
+                        "ENDS_WITH"
+                    ]
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "title": "PickWaveProductMatch"
+        },
+        "Principal": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "title": "Principal"
+        },
+        "ProductOption": {
+            "type": "object",
+            "properties": {
+                "attributeFQN": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "dataType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "shopperEnteredValue": {
+                    "type": "object"
+                },
+                "stringValue": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "object"
+                }
+            },
+            "title": "ProductOption"
+        },
+        "ReassignItem": {
+            "type": "object",
+            "properties": {
+                "blockAssignment": {
+                    "type": "boolean"
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "lineId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "reassignedReason": {
+                    "$ref": "#/definitions/ReassignedReason"
+                }
+            },
+            "title": "ReassignItem"
+        },
+        "ReassignItemsRequest": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ReassignItem"
+                    }
+                }
+            },
+            "title": "ReassignItemsRequest"
+        },
+        "ReassignShipment": {
+            "type": "object",
+            "properties": {
+                "blockAssignment": {
+                    "type": "boolean"
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "reassignedReason": {
+                    "$ref": "#/definitions/ReassignedReason"
+                }
+            },
+            "title": "ReassignShipment"
+        },
+        "ReassignedReason": {
+            "type": "object",
+            "properties": {
+                "moreInfo": {
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "type": "string"
+                }
+            },
+            "title": "ReassignedReason"
+        },
+        "RejectShipment": {
+            "type": "object",
+            "properties": {
+                "blockAssignment": {
+                    "type": "boolean"
+                },
+                "rejectedReason": {
+                    "$ref": "#/definitions/RejectedReason"
+                }
+            },
+            "title": "RejectShipment"
+        },
+        "RejectedReason": {
+            "type": "object",
+            "properties": {
+                "moreInfo": {
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "type": "string"
+                }
+            },
+            "title": "RejectedReason"
+        },
+        "ResourceOfPickWave": {
+            "type": "object",
+            "properties": {
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "contents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PickWaveContent"
+                    }
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "maxShipments": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "parentPickWaveNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickType": {
+                    "type": "string",
+                    "enum": [
+                        "SPECIAL",
+                        "NORMAL",
+                        "SINGLE",
+                        "MULTIPLE"
+                    ]
+                },
+                "pickWaveId": {
+                    "type": "string"
+                },
+                "pickWaveNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickWaveStatus": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "PENDING",
+                        "IN_PROGRESS",
+                        "CLOSED",
+                        "PENDING_RECOVERY"
+                    ]
+                },
+                "recoveryPickWaveNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipmentNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "shipmentType": {
+                    "type": "string"
+                },
+                "siteId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            },
+            "title": "ResourceOfPickWave"
+        },
+        "ResourceOfShipment": {
+            "type": "object",
+            "properties": {
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "acceptedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "canceledItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CanceledItem"
+                    }
+                },
+                "changeMessages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ChangeMessage"
+                    }
+                },
+                "childShipmentNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "currencyCode": {
+                    "type": "string"
+                },
+                "customerAccountId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "customerAddressId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "customerTaxId": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "destination": {
+                    "$ref": "#/definitions/Destination"
+                },
+                "dutyAdjustment": {
+                    "type": "number"
+                },
+                "dutyTotal": {
+                    "type": "number"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "externalShipmentId": {
+                    "type": "string"
+                },
+                "fulfillmentDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "fulfillmentStatus": {
+                    "type": "string",
+                    "enum": [
+                        "NotFulfilled",
+                        "Fulfilled"
+                    ]
+                },
+                "handlingAdjustment": {
+                    "type": "number"
+                },
+                "handlingSubtotal": {
+                    "type": "number"
+                },
+                "handlingTaxAdjustment": {
+                    "type": "number"
+                },
+                "handlingTaxTotal": {
+                    "type": "number"
+                },
+                "handlingTotal": {
+                    "type": "number"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Item"
+                    }
+                },
+                "lineItemSubtotal": {
+                    "type": "number"
+                },
+                "lineItemTaxAdjustment": {
+                    "type": "number"
+                },
+                "lineItemTaxTotal": {
+                    "type": "number"
+                },
+                "lineItemTotal": {
+                    "type": "number"
+                },
+                "orderId": {
+                    "type": "string"
+                },
+                "orderNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "orderSubmitDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "originalOrderId": {
+                    "type": "string"
+                },
+                "originalShipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "packages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Package"
+                    }
+                },
+                "parentShipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickStatus": {
+                    "type": "string",
+                    "enum": [
+                        "AVAILABLE",
+                        "IN_WAVE",
+                        "PICKED",
+                        "TRANSFER",
+                        "COMPLETE"
+                    ]
+                },
+                "pickType": {
+                    "type": "string",
+                    "enum": [
+                        "SPECIAL",
+                        "NORMAL",
+                        "SINGLE",
+                        "MULTIPLE"
+                    ]
+                },
+                "readyForPickup": {
+                    "type": "boolean"
+                },
+                "readyForPickupDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "shipmentAdjustment": {
+                    "type": "number"
+                },
+                "shipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipmentStatus": {
+                    "type": "string",
+                    "enum": [
+                        "READY",
+                        "REASSIGNED",
+                        "BACKORDER",
+                        "CANCELED",
+                        "FULFILLED",
+                        "CUSTOMER_CARE"
+                    ]
+                },
+                "shipmentType": {
+                    "type": "string"
+                },
+                "shippingAdjustment": {
+                    "type": "number"
+                },
+                "shippingMethodCode": {
+                    "type": "string"
+                },
+                "shippingMethodName": {
+                    "type": "string"
+                },
+                "shippingSubtotal": {
+                    "type": "number"
+                },
+                "shippingTaxAdjustment": {
+                    "type": "number"
+                },
+                "shippingTaxTotal": {
+                    "type": "number"
+                },
+                "shippingTotal": {
+                    "type": "number"
+                },
+                "signatureRequired": {
+                    "type": "boolean"
+                },
+                "siteId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "taxData": {
+                    "type": "object"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "total": {
+                    "type": "number"
+                },
+                "trackingNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "workflowState": {
+                    "$ref": "#/definitions/WorkflowState"
+                }
+            },
+            "title": "ResourceOfShipment"
+        },
+        "ResourceOfWorkflowProcess": {
+            "type": "object",
+            "properties": {
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "containerId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskDefinition"
+                    }
+                },
+                "variables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WorkflowProcessVariable"
+                    }
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "title": "ResourceOfWorkflowProcess"
+        },
+        "ResourcesOfDashboardResponse": {
+            "type": "object",
+            "properties": {
+                "_embedded": {
+                    "type": "array",
+                    "xml": {
+                        "name": "embedded",
+                        "attribute": false,
+                        "wrapped": true
+                    },
+                    "items": {
+                        "$ref": "#/definitions/DashboardResponse"
+                    }
+                },
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            },
+            "title": "ResourcesOfDashboardResponse",
+            "xml": {
+                "name": "entities",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ResourcesOfPickWave": {
+            "type": "object",
+            "properties": {
+                "_embedded": {
+                    "type": "array",
+                    "xml": {
+                        "name": "embedded",
+                        "attribute": false,
+                        "wrapped": true
+                    },
+                    "items": {
+                        "$ref": "#/definitions/PickWave"
+                    }
+                },
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            },
+            "title": "ResourcesOfPickWave",
+            "xml": {
+                "name": "entities",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ResourcesOfResourceOfWorkflowProcess": {
+            "type": "object",
+            "properties": {
+                "_embedded": {
+                    "type": "array",
+                    "xml": {
+                        "name": "embedded",
+                        "attribute": false,
+                        "wrapped": true
+                    },
+                    "items": {
+                        "$ref": "#/definitions/ResourceOfWorkflowProcess"
+                    }
+                },
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            },
+            "title": "ResourcesOfResourceOfWorkflowProcess",
+            "xml": {
+                "name": "entities",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ResourcesOfShipment": {
+            "type": "object",
+            "properties": {
+                "_embedded": {
+                    "type": "array",
+                    "xml": {
+                        "name": "embedded",
+                        "attribute": false,
+                        "wrapped": true
+                    },
+                    "items": {
+                        "$ref": "#/definitions/Shipment"
+                    }
+                },
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            },
+            "title": "ResourcesOfShipment",
+            "xml": {
+                "name": "entities",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ResourcesOfTask": {
+            "type": "object",
+            "properties": {
+                "_embedded": {
+                    "type": "array",
+                    "xml": {
+                        "name": "embedded",
+                        "attribute": false,
+                        "wrapped": true
+                    },
+                    "items": {
+                        "$ref": "#/definitions/Task"
+                    }
+                },
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            },
+            "title": "ResourcesOfTask",
+            "xml": {
+                "name": "entities",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "Shipment": {
+            "type": "object",
+            "properties": {
+                "acceptedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "canceledItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CanceledItem"
+                    }
+                },
+                "changeMessages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ChangeMessage"
+                    }
+                },
+                "childShipmentNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "currencyCode": {
+                    "type": "string"
+                },
+                "customerAccountId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "customerAddressId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "customerTaxId": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "destination": {
+                    "$ref": "#/definitions/Destination"
+                },
+                "dutyAdjustment": {
+                    "type": "number"
+                },
+                "dutyTotal": {
+                    "type": "number"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "externalShipmentId": {
+                    "type": "string"
+                },
+                "fulfillmentDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "fulfillmentLocationCode": {
+                    "type": "string"
+                },
+                "fulfillmentStatus": {
+                    "type": "string",
+                    "enum": [
+                        "NotFulfilled",
+                        "Fulfilled"
+                    ]
+                },
+                "handlingAdjustment": {
+                    "type": "number"
+                },
+                "handlingSubtotal": {
+                    "type": "number"
+                },
+                "handlingTaxAdjustment": {
+                    "type": "number"
+                },
+                "handlingTaxTotal": {
+                    "type": "number"
+                },
+                "handlingTotal": {
+                    "type": "number"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Item"
+                    }
+                },
+                "lineItemSubtotal": {
+                    "type": "number"
+                },
+                "lineItemTaxAdjustment": {
+                    "type": "number"
+                },
+                "lineItemTaxTotal": {
+                    "type": "number"
+                },
+                "lineItemTotal": {
+                    "type": "number"
+                },
+                "orderId": {
+                    "type": "string"
+                },
+                "orderNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "orderSubmitDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "originalOrderId": {
+                    "type": "string"
+                },
+                "originalShipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "packages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Package"
+                    }
+                },
+                "parentShipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "pickStatus": {
+                    "type": "string",
+                    "enum": [
+                        "AVAILABLE",
+                        "IN_WAVE",
+                        "PICKED",
+                        "TRANSFER",
+                        "COMPLETE"
+                    ]
+                },
+                "pickType": {
+                    "type": "string",
+                    "enum": [
+                        "SPECIAL",
+                        "NORMAL",
+                        "SINGLE",
+                        "MULTIPLE"
+                    ]
+                },
+                "readyForPickup": {
+                    "type": "boolean"
+                },
+                "readyForPickupDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "shipmentAdjustment": {
+                    "type": "number"
+                },
+                "shipmentNumber": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipmentStatus": {
+                    "type": "string",
+                    "enum": [
+                        "READY",
+                        "REASSIGNED",
+                        "BACKORDER",
+                        "CANCELED",
+                        "FULFILLED",
+                        "CUSTOMER_CARE"
+                    ]
+                },
+                "shipmentType": {
+                    "type": "string"
+                },
+                "shippingAdjustment": {
+                    "type": "number"
+                },
+                "shippingMethodCode": {
+                    "type": "string"
+                },
+                "shippingMethodName": {
+                    "type": "string"
+                },
+                "shippingSubtotal": {
+                    "type": "number"
+                },
+                "shippingTaxAdjustment": {
+                    "type": "number"
+                },
+                "shippingTaxTotal": {
+                    "type": "number"
+                },
+                "shippingTotal": {
+                    "type": "number"
+                },
+                "signatureRequired": {
+                    "type": "boolean"
+                },
+                "siteId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "taxData": {
+                    "type": "object"
+                },
+                "tenantId": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "total": {
+                    "type": "number"
+                },
+                "trackingNumbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "workflowState": {
+                    "$ref": "#/definitions/WorkflowState"
+                }
+            },
+            "title": "Shipment"
+        },
+        "Task": {
+            "type": "object",
+            "properties": {
+                "_links": {
+                    "type": "object",
+                    "xml": {
+                        "name": "link",
+                        "attribute": false,
+                        "wrapped": false
+                    },
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "completed": {
+                    "type": "boolean"
+                },
+                "completedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskInput"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "skippable": {
+                    "type": "boolean"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "taskId": {
+                    "type": "string"
+                }
+            },
+            "title": "Task"
+        },
+        "TaskComplete": {
+            "type": "object",
+            "properties": {
+                "handleOption": {
+                    "$ref": "#/definitions/HandleOption"
+                },
+                "taskBody": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                }
+            },
+            "title": "TaskComplete"
+        },
+        "TaskDefinition": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskInput"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "skippable": {
+                    "type": "boolean"
+                },
+                "subject": {
+                    "type": "string"
+                }
+            },
+            "title": "TaskDefinition"
+        },
+        "TaskInput": {
+            "type": "object",
+            "properties": {
+                "helpMessage": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "minLength": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "STRING",
+                        "INTEGER",
+                        "NUMBER",
+                        "BOOLEAN",
+                        "OBJECT",
+                        "UNKNOWN"
+                    ]
+                }
+            },
+            "title": "TaskInput"
+        },
+        "WorkflowProcess": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "containerId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskDefinition"
+                    }
+                },
+                "variables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WorkflowProcessVariable"
+                    }
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "title": "WorkflowProcess"
+        },
+        "WorkflowProcessVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "STRING",
+                        "INTEGER",
+                        "NUMBER",
+                        "BOOLEAN",
+                        "OBJECT",
+                        "UNKNOWN"
+                    ]
+                }
+            },
+            "title": "WorkflowProcessVariable"
+        },
+        "WorkflowState": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object"
+                    }
+                },
+                "auditInfo": {
+                    "$ref": "#/definitions/AuditInfo"
+                },
+                "completedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "processInstanceId": {
+                    "type": "string"
+                },
+                "shipmentState": {
+                    "type": "string"
+                },
+                "taskList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Task"
+                    }
+                }
+            },
+            "title": "WorkflowState"
+        }
+    }
+}
