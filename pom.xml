@@ -9,7 +9,7 @@
 
     <groupId>com.kibocommerce</groupId>
     <artifactId>kibo-sdk-java</artifactId>
-    <version>${buidVersion}</version>
+    <version>${buildVersion}</version>
 
     <modules>
         <module>inventory-sdk</module>
