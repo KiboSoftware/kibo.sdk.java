@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm build.sbt
+rm README.md
 rm -rf docs
 rm -rf gradle
 rm -rf gradlew
