@@ -2,7 +2,7 @@
 
 Kibo Fulfillment API
 - API version: 1.0
-  - Build date: 2019-10-02T08:10:57.996506-05:00[America/Chicago]
+  - Build date: 2019-10-02T09:23:50.115103-05:00[America/Chicago]
 
 REST API backing the Kibo Fulfiller User Interface
 
