@@ -14,6 +14,7 @@
     <modules>
         <module>inventory-sdk</module>
         <module>auth</module>
+        <module>fulfillment-sdk</module>
     </modules>
 
     <licenses>
