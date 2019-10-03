@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.kibocommerce</groupId>
         <artifactId>kibo-sdk-java</artifactId>
-        <version>${buildVersion}</version>
+        <version>1.0.1-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
     <properties>
