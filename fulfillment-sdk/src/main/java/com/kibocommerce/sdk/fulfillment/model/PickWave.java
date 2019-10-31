@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * PickWave
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
 public class PickWave {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
@@ -191,13 +191,13 @@ public class PickWave {
   @SerializedName(SERIALIZED_NAME_SHIPMENT_TYPE)
   private String shipmentType;
 
-  public static final String SERIALIZED_NAME_SITE_ID = "siteId";
-  @SerializedName(SERIALIZED_NAME_SITE_ID)
-  private Integer siteId;
-
   public static final String SERIALIZED_NAME_TENANT_ID = "tenantId";
   @SerializedName(SERIALIZED_NAME_TENANT_ID)
   private Integer tenantId;
+
+  public static final String SERIALIZED_NAME_USER_DISPLAY_NAME = "userDisplayName";
+  @SerializedName(SERIALIZED_NAME_USER_DISPLAY_NAME)
+  private String userDisplayName;
 
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
@@ -461,24 +461,6 @@ public class PickWave {
     this.shipmentType = shipmentType;
   }
 
-  public PickWave siteId(Integer siteId) {
-    this.siteId = siteId;
-    return this;
-  }
-
-   /**
-   * Get siteId
-   * @return siteId
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getSiteId() {
-    return siteId;
-  }
-
-  public void setSiteId(Integer siteId) {
-    this.siteId = siteId;
-  }
-
   public PickWave tenantId(Integer tenantId) {
     this.tenantId = tenantId;
     return this;
@@ -495,6 +477,24 @@ public class PickWave {
 
   public void setTenantId(Integer tenantId) {
     this.tenantId = tenantId;
+  }
+
+  public PickWave userDisplayName(String userDisplayName) {
+    this.userDisplayName = userDisplayName;
+    return this;
+  }
+
+   /**
+   * Get userDisplayName
+   * @return userDisplayName
+  **/
+  @ApiModelProperty(value = "")
+  public String getUserDisplayName() {
+    return userDisplayName;
+  }
+
+  public void setUserDisplayName(String userDisplayName) {
+    this.userDisplayName = userDisplayName;
   }
 
   public PickWave userId(String userId) {
@@ -538,14 +538,14 @@ public class PickWave {
         Objects.equals(this.recoveryPickWaveNumber, pickWave.recoveryPickWaveNumber) &&
         Objects.equals(this.shipmentNumbers, pickWave.shipmentNumbers) &&
         Objects.equals(this.shipmentType, pickWave.shipmentType) &&
-        Objects.equals(this.siteId, pickWave.siteId) &&
         Objects.equals(this.tenantId, pickWave.tenantId) &&
+        Objects.equals(this.userDisplayName, pickWave.userDisplayName) &&
         Objects.equals(this.userId, pickWave.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, auditInfo, contents, fulfillmentLocationCode, maxShipments, parentPickWaveNumber, pickType, pickWaveId, pickWaveNumber, pickWaveStatus, recoveryPickWaveNumber, shipmentNumbers, shipmentType, siteId, tenantId, userId);
+    return Objects.hash(attributes, auditInfo, contents, fulfillmentLocationCode, maxShipments, parentPickWaveNumber, pickType, pickWaveId, pickWaveNumber, pickWaveStatus, recoveryPickWaveNumber, shipmentNumbers, shipmentType, tenantId, userDisplayName, userId);
   }
 
 
@@ -567,8 +567,8 @@ public class PickWave {
     sb.append("    recoveryPickWaveNumber: ").append(toIndentedString(recoveryPickWaveNumber)).append("\n");
     sb.append("    shipmentNumbers: ").append(toIndentedString(shipmentNumbers)).append("\n");
     sb.append("    shipmentType: ").append(toIndentedString(shipmentType)).append("\n");
-    sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    tenantId: ").append(toIndentedString(tenantId)).append("\n");
+    sb.append("    userDisplayName: ").append(toIndentedString(userDisplayName)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");
     return sb.toString();

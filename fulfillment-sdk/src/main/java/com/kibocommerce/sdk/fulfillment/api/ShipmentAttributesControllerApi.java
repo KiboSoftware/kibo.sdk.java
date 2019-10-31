@@ -27,7 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.sdk.fulfillment.model.Attribute;
+import com.kibocommerce.sdk.fulfillment.model.ShipmentAttribute;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -295,11 +295,11 @@ public class ShipmentAttributesControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return Attribute
+     * @return ShipmentAttribute
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Attribute getShipmentAttributeUsingGET(String key, Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<Attribute> resp = getShipmentAttributeUsingGETWithHttpInfo(key, shipmentNumber, xVolTenant, xVolSite);
+    public ShipmentAttribute getShipmentAttributeUsingGET(String key, Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<ShipmentAttribute> resp = getShipmentAttributeUsingGETWithHttpInfo(key, shipmentNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -310,12 +310,12 @@ public class ShipmentAttributesControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;Attribute&gt;
+     * @return ApiResponse&lt;ShipmentAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Attribute> getShipmentAttributeUsingGETWithHttpInfo(String key, Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<ShipmentAttribute> getShipmentAttributeUsingGETWithHttpInfo(String key, Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getShipmentAttributeUsingGETValidateBeforeCall(key, shipmentNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<Attribute>(){}.getType();
+        Type localVarReturnType = new TypeToken<ShipmentAttribute>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -330,7 +330,7 @@ public class ShipmentAttributesControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getShipmentAttributeUsingGETAsync(String key, Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<Attribute> callback) throws ApiException {
+    public com.squareup.okhttp.Call getShipmentAttributeUsingGETAsync(String key, Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<ShipmentAttribute> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -352,7 +352,7 @@ public class ShipmentAttributesControllerApi {
         }
 
         com.squareup.okhttp.Call call = getShipmentAttributeUsingGETValidateBeforeCall(key, shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Attribute>(){}.getType();
+        Type localVarReturnType = new TypeToken<ShipmentAttribute>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -440,11 +440,11 @@ public class ShipmentAttributesControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return List&lt;Attribute&gt;
+     * @return List&lt;ShipmentAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Attribute> getShipmentAttributesUsingGET(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<List<Attribute>> resp = getShipmentAttributesUsingGETWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+    public List<ShipmentAttribute> getShipmentAttributesUsingGET(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<List<ShipmentAttribute>> resp = getShipmentAttributesUsingGETWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -454,12 +454,12 @@ public class ShipmentAttributesControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;List&lt;Attribute&gt;&gt;
+     * @return ApiResponse&lt;List&lt;ShipmentAttribute&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Attribute>> getShipmentAttributesUsingGETWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<List<ShipmentAttribute>> getShipmentAttributesUsingGETWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getShipmentAttributesUsingGETValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<List<Attribute>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ShipmentAttribute>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -473,7 +473,7 @@ public class ShipmentAttributesControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getShipmentAttributesUsingGETAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<List<Attribute>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getShipmentAttributesUsingGETAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<List<ShipmentAttribute>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -495,7 +495,7 @@ public class ShipmentAttributesControllerApi {
         }
 
         com.squareup.okhttp.Call call = getShipmentAttributesUsingGETValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Attribute>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<ShipmentAttribute>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -504,15 +504,15 @@ public class ShipmentAttributesControllerApi {
      * @param key key (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attribute (required)
+     * @param shipmentAttribute attribute (required)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call setShipmentAttributeUsingPUTCall(String key, Integer shipmentNumber, Integer xVolTenant, Attribute attribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = attribute;
+    public com.squareup.okhttp.Call setShipmentAttributeUsingPUTCall(String key, Integer shipmentNumber, Integer xVolTenant, ShipmentAttribute shipmentAttribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = shipmentAttribute;
 
         // create path and map variables
         String localVarPath = "/commerce/shipments/{shipmentNumber}/attributes/{key}"
@@ -562,7 +562,7 @@ public class ShipmentAttributesControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call setShipmentAttributeUsingPUTValidateBeforeCall(String key, Integer shipmentNumber, Integer xVolTenant, Attribute attribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call setShipmentAttributeUsingPUTValidateBeforeCall(String key, Integer shipmentNumber, Integer xVolTenant, ShipmentAttribute shipmentAttribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'key' is set
         if (key == null) {
@@ -579,13 +579,13 @@ public class ShipmentAttributesControllerApi {
             throw new ApiException("Missing the required parameter 'xVolTenant' when calling setShipmentAttributeUsingPUT(Async)");
         }
         
-        // verify the required parameter 'attribute' is set
-        if (attribute == null) {
-            throw new ApiException("Missing the required parameter 'attribute' when calling setShipmentAttributeUsingPUT(Async)");
+        // verify the required parameter 'shipmentAttribute' is set
+        if (shipmentAttribute == null) {
+            throw new ApiException("Missing the required parameter 'shipmentAttribute' when calling setShipmentAttributeUsingPUT(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = setShipmentAttributeUsingPUTCall(key, shipmentNumber, xVolTenant, attribute, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = setShipmentAttributeUsingPUTCall(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -596,13 +596,13 @@ public class ShipmentAttributesControllerApi {
      * @param key key (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attribute (required)
+     * @param shipmentAttribute attribute (required)
      * @param xVolSite  (optional)
-     * @return Attribute
+     * @return ShipmentAttribute
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Attribute setShipmentAttributeUsingPUT(String key, Integer shipmentNumber, Integer xVolTenant, Attribute attribute, Integer xVolSite) throws ApiException {
-        ApiResponse<Attribute> resp = setShipmentAttributeUsingPUTWithHttpInfo(key, shipmentNumber, xVolTenant, attribute, xVolSite);
+    public ShipmentAttribute setShipmentAttributeUsingPUT(String key, Integer shipmentNumber, Integer xVolTenant, ShipmentAttribute shipmentAttribute, Integer xVolSite) throws ApiException {
+        ApiResponse<ShipmentAttribute> resp = setShipmentAttributeUsingPUTWithHttpInfo(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite);
         return resp.getData();
     }
 
@@ -612,14 +612,14 @@ public class ShipmentAttributesControllerApi {
      * @param key key (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attribute (required)
+     * @param shipmentAttribute attribute (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;Attribute&gt;
+     * @return ApiResponse&lt;ShipmentAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Attribute> setShipmentAttributeUsingPUTWithHttpInfo(String key, Integer shipmentNumber, Integer xVolTenant, Attribute attribute, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = setShipmentAttributeUsingPUTValidateBeforeCall(key, shipmentNumber, xVolTenant, attribute, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<Attribute>(){}.getType();
+    public ApiResponse<ShipmentAttribute> setShipmentAttributeUsingPUTWithHttpInfo(String key, Integer shipmentNumber, Integer xVolTenant, ShipmentAttribute shipmentAttribute, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = setShipmentAttributeUsingPUTValidateBeforeCall(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<ShipmentAttribute>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -629,13 +629,13 @@ public class ShipmentAttributesControllerApi {
      * @param key key (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attribute (required)
+     * @param shipmentAttribute attribute (required)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call setShipmentAttributeUsingPUTAsync(String key, Integer shipmentNumber, Integer xVolTenant, Attribute attribute, Integer xVolSite, final ApiCallback<Attribute> callback) throws ApiException {
+    public com.squareup.okhttp.Call setShipmentAttributeUsingPUTAsync(String key, Integer shipmentNumber, Integer xVolTenant, ShipmentAttribute shipmentAttribute, Integer xVolSite, final ApiCallback<ShipmentAttribute> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -656,8 +656,8 @@ public class ShipmentAttributesControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = setShipmentAttributeUsingPUTValidateBeforeCall(key, shipmentNumber, xVolTenant, attribute, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Attribute>(){}.getType();
+        com.squareup.okhttp.Call call = setShipmentAttributeUsingPUTValidateBeforeCall(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ShipmentAttribute>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -665,15 +665,15 @@ public class ShipmentAttributesControllerApi {
      * Build call for setShipmentAttributesUsingPUT
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attributes (required)
+     * @param shipmentAttribute attributes (required)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call setShipmentAttributesUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, List<Attribute> attribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = attribute;
+    public com.squareup.okhttp.Call setShipmentAttributesUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, List<ShipmentAttribute> shipmentAttribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = shipmentAttribute;
 
         // create path and map variables
         String localVarPath = "/commerce/shipments/{shipmentNumber}/attributes"
@@ -722,7 +722,7 @@ public class ShipmentAttributesControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call setShipmentAttributesUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, List<Attribute> attribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call setShipmentAttributesUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, List<ShipmentAttribute> shipmentAttribute, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'shipmentNumber' is set
         if (shipmentNumber == null) {
@@ -734,13 +734,13 @@ public class ShipmentAttributesControllerApi {
             throw new ApiException("Missing the required parameter 'xVolTenant' when calling setShipmentAttributesUsingPUT(Async)");
         }
         
-        // verify the required parameter 'attribute' is set
-        if (attribute == null) {
-            throw new ApiException("Missing the required parameter 'attribute' when calling setShipmentAttributesUsingPUT(Async)");
+        // verify the required parameter 'shipmentAttribute' is set
+        if (shipmentAttribute == null) {
+            throw new ApiException("Missing the required parameter 'shipmentAttribute' when calling setShipmentAttributesUsingPUT(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = setShipmentAttributesUsingPUTCall(shipmentNumber, xVolTenant, attribute, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = setShipmentAttributesUsingPUTCall(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -750,13 +750,13 @@ public class ShipmentAttributesControllerApi {
      * 
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attributes (required)
+     * @param shipmentAttribute attributes (required)
      * @param xVolSite  (optional)
-     * @return List&lt;Attribute&gt;
+     * @return List&lt;ShipmentAttribute&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Attribute> setShipmentAttributesUsingPUT(Integer shipmentNumber, Integer xVolTenant, List<Attribute> attribute, Integer xVolSite) throws ApiException {
-        ApiResponse<List<Attribute>> resp = setShipmentAttributesUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, attribute, xVolSite);
+    public List<ShipmentAttribute> setShipmentAttributesUsingPUT(Integer shipmentNumber, Integer xVolTenant, List<ShipmentAttribute> shipmentAttribute, Integer xVolSite) throws ApiException {
+        ApiResponse<List<ShipmentAttribute>> resp = setShipmentAttributesUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite);
         return resp.getData();
     }
 
@@ -765,14 +765,14 @@ public class ShipmentAttributesControllerApi {
      * 
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attributes (required)
+     * @param shipmentAttribute attributes (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;List&lt;Attribute&gt;&gt;
+     * @return ApiResponse&lt;List&lt;ShipmentAttribute&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Attribute>> setShipmentAttributesUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, List<Attribute> attribute, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = setShipmentAttributesUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, attribute, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<List<Attribute>>(){}.getType();
+    public ApiResponse<List<ShipmentAttribute>> setShipmentAttributesUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, List<ShipmentAttribute> shipmentAttribute, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = setShipmentAttributesUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<List<ShipmentAttribute>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -781,13 +781,13 @@ public class ShipmentAttributesControllerApi {
      * 
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param attribute attributes (required)
+     * @param shipmentAttribute attributes (required)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call setShipmentAttributesUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, List<Attribute> attribute, Integer xVolSite, final ApiCallback<List<Attribute>> callback) throws ApiException {
+    public com.squareup.okhttp.Call setShipmentAttributesUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, List<ShipmentAttribute> shipmentAttribute, Integer xVolSite, final ApiCallback<List<ShipmentAttribute>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -808,8 +808,8 @@ public class ShipmentAttributesControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = setShipmentAttributesUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, attribute, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Attribute>>(){}.getType();
+        com.squareup.okhttp.Call call = setShipmentAttributesUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<ShipmentAttribute>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

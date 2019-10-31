@@ -357,6 +357,7 @@ public class PickWaveControllerApi {
      * @param fulfillmentLocationCode fulfillmentLocationCode (required)
      * @param xVolTenant  (required)
      * @param shipmentType shipmentType (optional)
+     * @param userDisplayName userDisplayName (optional)
      * @param userId userId (optional)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
@@ -364,7 +365,7 @@ public class PickWaveControllerApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getOpenPickWavesUsingGETCall(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userId, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getOpenPickWavesUsingGETCall(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -375,6 +376,10 @@ public class PickWaveControllerApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (shipmentType != null) {
             localVarQueryParams.addAll(apiClient.parameterToPair("shipmentType", shipmentType));
+        }
+
+        if (userDisplayName != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("userDisplayName", userDisplayName));
         }
 
         if (userId != null) {
@@ -422,7 +427,7 @@ public class PickWaveControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getOpenPickWavesUsingGETValidateBeforeCall(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userId, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getOpenPickWavesUsingGETValidateBeforeCall(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'fulfillmentLocationCode' is set
         if (fulfillmentLocationCode == null) {
@@ -435,7 +440,7 @@ public class PickWaveControllerApi {
         }
         
 
-        com.squareup.okhttp.Call call = getOpenPickWavesUsingGETCall(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOpenPickWavesUsingGETCall(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -446,13 +451,14 @@ public class PickWaveControllerApi {
      * @param fulfillmentLocationCode fulfillmentLocationCode (required)
      * @param xVolTenant  (required)
      * @param shipmentType shipmentType (optional)
+     * @param userDisplayName userDisplayName (optional)
      * @param userId userId (optional)
      * @param xVolSite  (optional)
      * @return ResourcesOfPickWave
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourcesOfPickWave getOpenPickWavesUsingGET(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userId, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourcesOfPickWave> resp = getOpenPickWavesUsingGETWithHttpInfo(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite);
+    public ResourcesOfPickWave getOpenPickWavesUsingGET(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite) throws ApiException {
+        ApiResponse<ResourcesOfPickWave> resp = getOpenPickWavesUsingGETWithHttpInfo(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
         return resp.getData();
     }
 
@@ -462,13 +468,14 @@ public class PickWaveControllerApi {
      * @param fulfillmentLocationCode fulfillmentLocationCode (required)
      * @param xVolTenant  (required)
      * @param shipmentType shipmentType (optional)
+     * @param userDisplayName userDisplayName (optional)
      * @param userId userId (optional)
      * @param xVolSite  (optional)
      * @return ApiResponse&lt;ResourcesOfPickWave&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourcesOfPickWave> getOpenPickWavesUsingGETWithHttpInfo(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userId, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = getOpenPickWavesUsingGETValidateBeforeCall(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite, null, null);
+    public ApiResponse<ResourcesOfPickWave> getOpenPickWavesUsingGETWithHttpInfo(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getOpenPickWavesUsingGETValidateBeforeCall(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite, null, null);
         Type localVarReturnType = new TypeToken<ResourcesOfPickWave>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -479,13 +486,14 @@ public class PickWaveControllerApi {
      * @param fulfillmentLocationCode fulfillmentLocationCode (required)
      * @param xVolTenant  (required)
      * @param shipmentType shipmentType (optional)
+     * @param userDisplayName userDisplayName (optional)
      * @param userId userId (optional)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOpenPickWavesUsingGETAsync(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userId, Integer xVolSite, final ApiCallback<ResourcesOfPickWave> callback) throws ApiException {
+    public com.squareup.okhttp.Call getOpenPickWavesUsingGETAsync(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite, final ApiCallback<ResourcesOfPickWave> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -506,7 +514,7 @@ public class PickWaveControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getOpenPickWavesUsingGETValidateBeforeCall(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getOpenPickWavesUsingGETValidateBeforeCall(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ResourcesOfPickWave>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -32,11 +32,15 @@ import java.util.Map;
 /**
  * ModelPackage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
 public class ModelPackage {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private Map<String, Object> attributes = null;
+
+  public static final String SERIALIZED_NAME_HAS_LABEL = "hasLabel";
+  @SerializedName(SERIALIZED_NAME_HAS_LABEL)
+  private Boolean hasLabel;
 
   public static final String SERIALIZED_NAME_MEASUREMENTS = "measurements";
   @SerializedName(SERIALIZED_NAME_MEASUREMENTS)
@@ -78,6 +82,24 @@ public class ModelPackage {
 
   public void setAttributes(Map<String, Object> attributes) {
     this.attributes = attributes;
+  }
+
+  public ModelPackage hasLabel(Boolean hasLabel) {
+    this.hasLabel = hasLabel;
+    return this;
+  }
+
+   /**
+   * Get hasLabel
+   * @return hasLabel
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getHasLabel() {
+    return hasLabel;
+  }
+
+  public void setHasLabel(Boolean hasLabel) {
+    this.hasLabel = hasLabel;
   }
 
   public ModelPackage measurements(PackageMeasurements measurements) {
@@ -171,6 +193,7 @@ public class ModelPackage {
     }
     ModelPackage _package = (ModelPackage) o;
     return Objects.equals(this.attributes, _package.attributes) &&
+        Objects.equals(this.hasLabel, _package.hasLabel) &&
         Objects.equals(this.measurements, _package.measurements) &&
         Objects.equals(this.packageId, _package.packageId) &&
         Objects.equals(this.packagingType, _package.packagingType) &&
@@ -179,7 +202,7 @@ public class ModelPackage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, measurements, packageId, packagingType, trackingNumbers);
+    return Objects.hash(attributes, hasLabel, measurements, packageId, packagingType, trackingNumbers);
   }
 
 
@@ -189,6 +212,7 @@ public class ModelPackage {
     sb.append("class ModelPackage {\n");
     
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    hasLabel: ").append(toIndentedString(hasLabel)).append("\n");
     sb.append("    measurements: ").append(toIndentedString(measurements)).append("\n");
     sb.append("    packageId: ").append(toIndentedString(packageId)).append("\n");
     sb.append("    packagingType: ").append(toIndentedString(packagingType)).append("\n");

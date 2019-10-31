@@ -2649,13 +2649,14 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param shipment newShipment (required)
+     * @param updateFields updateFields (optional)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call replaceShipmentUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call replaceShipmentUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = shipment;
 
         // create path and map variables
@@ -2664,6 +2665,10 @@ public class ShipmentControllerApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (updateFields != null) {
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "updateFields", updateFields));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (xVolSite != null) {
             localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
@@ -2705,7 +2710,7 @@ public class ShipmentControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call replaceShipmentUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call replaceShipmentUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'shipmentNumber' is set
         if (shipmentNumber == null) {
@@ -2723,7 +2728,7 @@ public class ShipmentControllerApi {
         }
         
 
-        com.squareup.okhttp.Call call = replaceShipmentUsingPUTCall(shipmentNumber, xVolTenant, shipment, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = replaceShipmentUsingPUTCall(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2734,12 +2739,13 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param shipment newShipment (required)
+     * @param updateFields updateFields (optional)
      * @param xVolSite  (optional)
      * @return ResourceOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment replaceShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = replaceShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, shipment, xVolSite);
+    public ResourceOfShipment replaceShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite) throws ApiException {
+        ApiResponse<ResourceOfShipment> resp = replaceShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
         return resp.getData();
     }
 
@@ -2749,12 +2755,13 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param shipment newShipment (required)
+     * @param updateFields updateFields (optional)
      * @param xVolSite  (optional)
      * @return ApiResponse&lt;ResourceOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> replaceShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = replaceShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipment, xVolSite, null, null);
+    public ApiResponse<ResourceOfShipment> replaceShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = replaceShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite, null, null);
         Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2765,12 +2772,13 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param shipment newShipment (required)
+     * @param updateFields updateFields (optional)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call replaceShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call replaceShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2791,7 +2799,7 @@ public class ShipmentControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = replaceShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipment, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = replaceShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

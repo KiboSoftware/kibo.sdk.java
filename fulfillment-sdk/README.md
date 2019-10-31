@@ -2,7 +2,7 @@
 
 Kibo Fulfillment API
 - API version: 1.0
-  - Build date: 2019-10-02T09:23:50.115103-05:00[America/Chicago]
+  - Build date: 2019-10-31T10:37:23.152728-05:00[America/Chicago]
 
 REST API backing the Kibo Fulfiller User Interface
 
@@ -153,7 +153,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Address](docs/Address.md)
- - [Attribute](docs/Attribute.md)
  - [AuditInfo](docs/AuditInfo.md)
  - [BackorderItem](docs/BackorderItem.md)
  - [BackorderItemUpdate](docs/BackorderItemUpdate.md)
@@ -203,6 +202,8 @@ Class | Method | HTTP request | Description
  - [ResourcesOfShipment](docs/ResourcesOfShipment.md)
  - [ResourcesOfTask](docs/ResourcesOfTask.md)
  - [Shipment](docs/Shipment.md)
+ - [ShipmentAttribute](docs/ShipmentAttribute.md)
+ - [ShipmentStatusReason](docs/ShipmentStatusReason.md)
  - [Task](docs/Task.md)
  - [TaskComplete](docs/TaskComplete.md)
  - [TaskDefinition](docs/TaskDefinition.md)

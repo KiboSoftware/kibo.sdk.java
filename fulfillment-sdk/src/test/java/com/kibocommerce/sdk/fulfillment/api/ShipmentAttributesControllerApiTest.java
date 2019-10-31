@@ -14,7 +14,7 @@
 package com.kibocommerce.sdk.fulfillment.api;
 
 import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.model.Attribute;
+import com.kibocommerce.sdk.fulfillment.model.ShipmentAttribute;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -65,7 +65,7 @@ public class ShipmentAttributesControllerApiTest {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        Attribute response = api.getShipmentAttributeUsingGET(key, shipmentNumber, xVolTenant, xVolSite);
+        ShipmentAttribute response = api.getShipmentAttributeUsingGET(key, shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -83,7 +83,7 @@ public class ShipmentAttributesControllerApiTest {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        List<Attribute> response = api.getShipmentAttributesUsingGET(shipmentNumber, xVolTenant, xVolSite);
+        List<ShipmentAttribute> response = api.getShipmentAttributesUsingGET(shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -101,9 +101,9 @@ public class ShipmentAttributesControllerApiTest {
         String key = null;
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
-        Attribute attribute = null;
+        ShipmentAttribute shipmentAttribute = null;
         Integer xVolSite = null;
-        Attribute response = api.setShipmentAttributeUsingPUT(key, shipmentNumber, xVolTenant, attribute, xVolSite);
+        ShipmentAttribute response = api.setShipmentAttributeUsingPUT(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite);
 
         // TODO: test validations
     }
@@ -120,9 +120,9 @@ public class ShipmentAttributesControllerApiTest {
     public void setShipmentAttributesUsingPUTTest() throws ApiException {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
-        List<Attribute> attribute = null;
+        List<ShipmentAttribute> shipmentAttribute = null;
         Integer xVolSite = null;
-        List<Attribute> response = api.setShipmentAttributesUsingPUT(shipmentNumber, xVolTenant, attribute, xVolSite);
+        List<ShipmentAttribute> response = api.setShipmentAttributesUsingPUT(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite);
 
         // TODO: test validations
     }

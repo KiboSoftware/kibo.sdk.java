@@ -25,52 +25,52 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Attribute
+ * ShipmentStatusReason
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
-public class Attribute {
-  public static final String SERIALIZED_NAME_KEY = "key";
-  @SerializedName(SERIALIZED_NAME_KEY)
-  private String key;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+public class ShipmentStatusReason {
+  public static final String SERIALIZED_NAME_MORE_INFO = "moreInfo";
+  @SerializedName(SERIALIZED_NAME_MORE_INFO)
+  private String moreInfo;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private Object value = null;
+  public static final String SERIALIZED_NAME_REASON_CODE = "reasonCode";
+  @SerializedName(SERIALIZED_NAME_REASON_CODE)
+  private String reasonCode;
 
-  public Attribute key(String key) {
-    this.key = key;
+  public ShipmentStatusReason moreInfo(String moreInfo) {
+    this.moreInfo = moreInfo;
     return this;
   }
 
    /**
-   * Get key
-   * @return key
+   * Get moreInfo
+   * @return moreInfo
   **/
   @ApiModelProperty(value = "")
-  public String getKey() {
-    return key;
+  public String getMoreInfo() {
+    return moreInfo;
   }
 
-  public void setKey(String key) {
-    this.key = key;
+  public void setMoreInfo(String moreInfo) {
+    this.moreInfo = moreInfo;
   }
 
-  public Attribute value(Object value) {
-    this.value = value;
+  public ShipmentStatusReason reasonCode(String reasonCode) {
+    this.reasonCode = reasonCode;
     return this;
   }
 
    /**
-   * Get value
-   * @return value
+   * Get reasonCode
+   * @return reasonCode
   **/
   @ApiModelProperty(value = "")
-  public Object getValue() {
-    return value;
+  public String getReasonCode() {
+    return reasonCode;
   }
 
-  public void setValue(Object value) {
-    this.value = value;
+  public void setReasonCode(String reasonCode) {
+    this.reasonCode = reasonCode;
   }
 
 
@@ -82,24 +82,24 @@ public class Attribute {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Attribute attribute = (Attribute) o;
-    return Objects.equals(this.key, attribute.key) &&
-        Objects.equals(this.value, attribute.value);
+    ShipmentStatusReason shipmentStatusReason = (ShipmentStatusReason) o;
+    return Objects.equals(this.moreInfo, shipmentStatusReason.moreInfo) &&
+        Objects.equals(this.reasonCode, shipmentStatusReason.reasonCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, value);
+    return Objects.hash(moreInfo, reasonCode);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Attribute {\n");
+    sb.append("class ShipmentStatusReason {\n");
     
-    sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    moreInfo: ").append(toIndentedString(moreInfo)).append("\n");
+    sb.append("    reasonCode: ").append(toIndentedString(reasonCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

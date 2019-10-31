@@ -26,6 +26,8 @@ import com.kibocommerce.sdk.fulfillment.model.ChangeMessage;
 import com.kibocommerce.sdk.fulfillment.model.Destination;
 import com.kibocommerce.sdk.fulfillment.model.Item;
 import com.kibocommerce.sdk.fulfillment.model.ModelPackage;
+import com.kibocommerce.sdk.fulfillment.model.ReassignItem;
+import com.kibocommerce.sdk.fulfillment.model.ShipmentStatusReason;
 import com.kibocommerce.sdk.fulfillment.model.WorkflowState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -40,7 +42,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Shipment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
 public class Shipment {
   public static final String SERIALIZED_NAME_ACCEPTED_DATE = "acceptedDate";
   @SerializedName(SERIALIZED_NAME_ACCEPTED_DATE)
@@ -184,6 +186,10 @@ public class Shipment {
   public static final String SERIALIZED_NAME_HANDLING_TOTAL = "handlingTotal";
   @SerializedName(SERIALIZED_NAME_HANDLING_TOTAL)
   private BigDecimal handlingTotal;
+
+  public static final String SERIALIZED_NAME_HAS_LABEL = "hasLabel";
+  @SerializedName(SERIALIZED_NAME_HAS_LABEL)
+  private Boolean hasLabel;
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
@@ -353,6 +359,10 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_READY_FOR_PICKUP_DATE)
   private OffsetDateTime readyForPickupDate;
 
+  public static final String SERIALIZED_NAME_REASSIGNED_ITEMS = "reassignedItems";
+  @SerializedName(SERIALIZED_NAME_REASSIGNED_ITEMS)
+  private List<ReassignItem> reassignedItems = null;
+
   public static final String SERIALIZED_NAME_SHIPMENT_ADJUSTMENT = "shipmentAdjustment";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_ADJUSTMENT)
   private BigDecimal shipmentAdjustment;
@@ -419,6 +429,10 @@ public class Shipment {
   public static final String SERIALIZED_NAME_SHIPMENT_STATUS = "shipmentStatus";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_STATUS)
   private ShipmentStatusEnum shipmentStatus;
+
+  public static final String SERIALIZED_NAME_SHIPMENT_STATUS_REASON = "shipmentStatusReason";
+  @SerializedName(SERIALIZED_NAME_SHIPMENT_STATUS_REASON)
+  private ShipmentStatusReason shipmentStatusReason = null;
 
   public static final String SERIALIZED_NAME_SHIPMENT_TYPE = "shipmentType";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_TYPE)
@@ -944,6 +958,24 @@ public class Shipment {
     this.handlingTotal = handlingTotal;
   }
 
+  public Shipment hasLabel(Boolean hasLabel) {
+    this.hasLabel = hasLabel;
+    return this;
+  }
+
+   /**
+   * Get hasLabel
+   * @return hasLabel
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getHasLabel() {
+    return hasLabel;
+  }
+
+  public void setHasLabel(Boolean hasLabel) {
+    this.hasLabel = hasLabel;
+  }
+
   public Shipment items(List<Item> items) {
     this.items = items;
     return this;
@@ -1248,6 +1280,32 @@ public class Shipment {
     this.readyForPickupDate = readyForPickupDate;
   }
 
+  public Shipment reassignedItems(List<ReassignItem> reassignedItems) {
+    this.reassignedItems = reassignedItems;
+    return this;
+  }
+
+  public Shipment addReassignedItemsItem(ReassignItem reassignedItemsItem) {
+    if (this.reassignedItems == null) {
+      this.reassignedItems = new ArrayList<ReassignItem>();
+    }
+    this.reassignedItems.add(reassignedItemsItem);
+    return this;
+  }
+
+   /**
+   * Get reassignedItems
+   * @return reassignedItems
+  **/
+  @ApiModelProperty(value = "")
+  public List<ReassignItem> getReassignedItems() {
+    return reassignedItems;
+  }
+
+  public void setReassignedItems(List<ReassignItem> reassignedItems) {
+    this.reassignedItems = reassignedItems;
+  }
+
   public Shipment shipmentAdjustment(BigDecimal shipmentAdjustment) {
     this.shipmentAdjustment = shipmentAdjustment;
     return this;
@@ -1300,6 +1358,24 @@ public class Shipment {
 
   public void setShipmentStatus(ShipmentStatusEnum shipmentStatus) {
     this.shipmentStatus = shipmentStatus;
+  }
+
+  public Shipment shipmentStatusReason(ShipmentStatusReason shipmentStatusReason) {
+    this.shipmentStatusReason = shipmentStatusReason;
+    return this;
+  }
+
+   /**
+   * Get shipmentStatusReason
+   * @return shipmentStatusReason
+  **/
+  @ApiModelProperty(value = "")
+  public ShipmentStatusReason getShipmentStatusReason() {
+    return shipmentStatusReason;
+  }
+
+  public void setShipmentStatusReason(ShipmentStatusReason shipmentStatusReason) {
+    this.shipmentStatusReason = shipmentStatusReason;
   }
 
   public Shipment shipmentType(String shipmentType) {
@@ -1614,6 +1690,7 @@ public class Shipment {
         Objects.equals(this.handlingTaxAdjustment, shipment.handlingTaxAdjustment) &&
         Objects.equals(this.handlingTaxTotal, shipment.handlingTaxTotal) &&
         Objects.equals(this.handlingTotal, shipment.handlingTotal) &&
+        Objects.equals(this.hasLabel, shipment.hasLabel) &&
         Objects.equals(this.items, shipment.items) &&
         Objects.equals(this.lineItemSubtotal, shipment.lineItemSubtotal) &&
         Objects.equals(this.lineItemTaxAdjustment, shipment.lineItemTaxAdjustment) &&
@@ -1630,9 +1707,11 @@ public class Shipment {
         Objects.equals(this.pickType, shipment.pickType) &&
         Objects.equals(this.readyForPickup, shipment.readyForPickup) &&
         Objects.equals(this.readyForPickupDate, shipment.readyForPickupDate) &&
+        Objects.equals(this.reassignedItems, shipment.reassignedItems) &&
         Objects.equals(this.shipmentAdjustment, shipment.shipmentAdjustment) &&
         Objects.equals(this.shipmentNumber, shipment.shipmentNumber) &&
         Objects.equals(this.shipmentStatus, shipment.shipmentStatus) &&
+        Objects.equals(this.shipmentStatusReason, shipment.shipmentStatusReason) &&
         Objects.equals(this.shipmentType, shipment.shipmentType) &&
         Objects.equals(this.shippingAdjustment, shipment.shippingAdjustment) &&
         Objects.equals(this.shippingMethodCode, shipment.shippingMethodCode) &&
@@ -1652,7 +1731,7 @@ public class Shipment {
 
   @Override
   public int hashCode() {
-    return Objects.hash(acceptedDate, attributes, auditInfo, canceledItems, changeMessages, childShipmentNumbers, currencyCode, customerAccountId, customerAddressId, customerTaxId, data, destination, dutyAdjustment, dutyTotal, email, externalShipmentId, fulfillmentDate, fulfillmentLocationCode, fulfillmentStatus, handlingAdjustment, handlingSubtotal, handlingTaxAdjustment, handlingTaxTotal, handlingTotal, items, lineItemSubtotal, lineItemTaxAdjustment, lineItemTaxTotal, lineItemTotal, orderId, orderNumber, orderSubmitDate, originalOrderId, originalShipmentNumber, packages, parentShipmentNumber, pickStatus, pickType, readyForPickup, readyForPickupDate, shipmentAdjustment, shipmentNumber, shipmentStatus, shipmentType, shippingAdjustment, shippingMethodCode, shippingMethodName, shippingSubtotal, shippingTaxAdjustment, shippingTaxTotal, shippingTotal, signatureRequired, siteId, taxData, tenantId, total, trackingNumbers, workflowState);
+    return Objects.hash(acceptedDate, attributes, auditInfo, canceledItems, changeMessages, childShipmentNumbers, currencyCode, customerAccountId, customerAddressId, customerTaxId, data, destination, dutyAdjustment, dutyTotal, email, externalShipmentId, fulfillmentDate, fulfillmentLocationCode, fulfillmentStatus, handlingAdjustment, handlingSubtotal, handlingTaxAdjustment, handlingTaxTotal, handlingTotal, hasLabel, items, lineItemSubtotal, lineItemTaxAdjustment, lineItemTaxTotal, lineItemTotal, orderId, orderNumber, orderSubmitDate, originalOrderId, originalShipmentNumber, packages, parentShipmentNumber, pickStatus, pickType, readyForPickup, readyForPickupDate, reassignedItems, shipmentAdjustment, shipmentNumber, shipmentStatus, shipmentStatusReason, shipmentType, shippingAdjustment, shippingMethodCode, shippingMethodName, shippingSubtotal, shippingTaxAdjustment, shippingTaxTotal, shippingTotal, signatureRequired, siteId, taxData, tenantId, total, trackingNumbers, workflowState);
   }
 
 
@@ -1685,6 +1764,7 @@ public class Shipment {
     sb.append("    handlingTaxAdjustment: ").append(toIndentedString(handlingTaxAdjustment)).append("\n");
     sb.append("    handlingTaxTotal: ").append(toIndentedString(handlingTaxTotal)).append("\n");
     sb.append("    handlingTotal: ").append(toIndentedString(handlingTotal)).append("\n");
+    sb.append("    hasLabel: ").append(toIndentedString(hasLabel)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    lineItemSubtotal: ").append(toIndentedString(lineItemSubtotal)).append("\n");
     sb.append("    lineItemTaxAdjustment: ").append(toIndentedString(lineItemTaxAdjustment)).append("\n");
@@ -1701,9 +1781,11 @@ public class Shipment {
     sb.append("    pickType: ").append(toIndentedString(pickType)).append("\n");
     sb.append("    readyForPickup: ").append(toIndentedString(readyForPickup)).append("\n");
     sb.append("    readyForPickupDate: ").append(toIndentedString(readyForPickupDate)).append("\n");
+    sb.append("    reassignedItems: ").append(toIndentedString(reassignedItems)).append("\n");
     sb.append("    shipmentAdjustment: ").append(toIndentedString(shipmentAdjustment)).append("\n");
     sb.append("    shipmentNumber: ").append(toIndentedString(shipmentNumber)).append("\n");
     sb.append("    shipmentStatus: ").append(toIndentedString(shipmentStatus)).append("\n");
+    sb.append("    shipmentStatusReason: ").append(toIndentedString(shipmentStatusReason)).append("\n");
     sb.append("    shipmentType: ").append(toIndentedString(shipmentType)).append("\n");
     sb.append("    shippingAdjustment: ").append(toIndentedString(shippingAdjustment)).append("\n");
     sb.append("    shippingMethodCode: ").append(toIndentedString(shippingMethodCode)).append("\n");

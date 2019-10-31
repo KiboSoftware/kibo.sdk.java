@@ -61,7 +61,7 @@ No authorization required
 
 <a name="getShipmentAttributeUsingGET"></a>
 # **getShipmentAttributeUsingGET**
-> Attribute getShipmentAttributeUsingGET(key, shipmentNumber, xVolTenant, xVolSite)
+> ShipmentAttribute getShipmentAttributeUsingGET(key, shipmentNumber, xVolTenant, xVolSite)
 
 getShipmentAttribute
 
@@ -78,7 +78,7 @@ Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    Attribute result = apiInstance.getShipmentAttributeUsingGET(key, shipmentNumber, xVolTenant, xVolSite);
+    ShipmentAttribute result = apiInstance.getShipmentAttributeUsingGET(key, shipmentNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentAttributesControllerApi#getShipmentAttributeUsingGET");
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Attribute**](Attribute.md)
+[**ShipmentAttribute**](ShipmentAttribute.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ No authorization required
 
 <a name="getShipmentAttributesUsingGET"></a>
 # **getShipmentAttributesUsingGET**
-> List&lt;Attribute&gt; getShipmentAttributesUsingGET(shipmentNumber, xVolTenant, xVolSite)
+> List&lt;ShipmentAttribute&gt; getShipmentAttributesUsingGET(shipmentNumber, xVolTenant, xVolSite)
 
 getShipmentAttributes
 
@@ -126,7 +126,7 @@ Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    List<Attribute> result = apiInstance.getShipmentAttributesUsingGET(shipmentNumber, xVolTenant, xVolSite);
+    List<ShipmentAttribute> result = apiInstance.getShipmentAttributesUsingGET(shipmentNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentAttributesControllerApi#getShipmentAttributesUsingGET");
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;Attribute&gt;**](Attribute.md)
+[**List&lt;ShipmentAttribute&gt;**](ShipmentAttribute.md)
 
 ### Authorization
 
@@ -157,7 +157,7 @@ No authorization required
 
 <a name="setShipmentAttributeUsingPUT"></a>
 # **setShipmentAttributeUsingPUT**
-> Attribute setShipmentAttributeUsingPUT(key, shipmentNumber, xVolTenant, attribute, xVolSite)
+> ShipmentAttribute setShipmentAttributeUsingPUT(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite)
 
 setShipmentAttribute
 
@@ -172,10 +172,10 @@ ShipmentAttributesControllerApi apiInstance = new ShipmentAttributesControllerAp
 String key = "key_example"; // String | key
 Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
-Attribute attribute = new Attribute(); // Attribute | attribute
+ShipmentAttribute shipmentAttribute = new ShipmentAttribute(); // ShipmentAttribute | attribute
 Integer xVolSite = 56; // Integer | 
 try {
-    Attribute result = apiInstance.setShipmentAttributeUsingPUT(key, shipmentNumber, xVolTenant, attribute, xVolSite);
+    ShipmentAttribute result = apiInstance.setShipmentAttributeUsingPUT(key, shipmentNumber, xVolTenant, shipmentAttribute, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentAttributesControllerApi#setShipmentAttributeUsingPUT");
@@ -190,12 +190,12 @@ Name | Type | Description  | Notes
  **key** | **String**| key |
  **shipmentNumber** | **Integer**| shipmentNumber |
  **xVolTenant** | **Integer**|  |
- **attribute** | [**Attribute**](Attribute.md)| attribute |
+ **shipmentAttribute** | [**ShipmentAttribute**](ShipmentAttribute.md)| attribute |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**Attribute**](Attribute.md)
+[**ShipmentAttribute**](ShipmentAttribute.md)
 
 ### Authorization
 
@@ -208,7 +208,7 @@ No authorization required
 
 <a name="setShipmentAttributesUsingPUT"></a>
 # **setShipmentAttributesUsingPUT**
-> List&lt;Attribute&gt; setShipmentAttributesUsingPUT(shipmentNumber, xVolTenant, attribute, xVolSite)
+> List&lt;ShipmentAttribute&gt; setShipmentAttributesUsingPUT(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite)
 
 setShipmentAttributes
 
@@ -222,10 +222,10 @@ setShipmentAttributes
 ShipmentAttributesControllerApi apiInstance = new ShipmentAttributesControllerApi();
 Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
-List<Attribute> attribute = Arrays.asList(null); // List<Attribute> | attributes
+List<ShipmentAttribute> shipmentAttribute = Arrays.asList(null); // List<ShipmentAttribute> | attributes
 Integer xVolSite = 56; // Integer | 
 try {
-    List<Attribute> result = apiInstance.setShipmentAttributesUsingPUT(shipmentNumber, xVolTenant, attribute, xVolSite);
+    List<ShipmentAttribute> result = apiInstance.setShipmentAttributesUsingPUT(shipmentNumber, xVolTenant, shipmentAttribute, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentAttributesControllerApi#setShipmentAttributesUsingPUT");
@@ -239,12 +239,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentNumber** | **Integer**| shipmentNumber |
  **xVolTenant** | **Integer**|  |
- **attribute** | [**List&lt;Attribute&gt;**](List.md)| attributes |
+ **shipmentAttribute** | [**List&lt;ShipmentAttribute&gt;**](List.md)| attributes |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**List&lt;Attribute&gt;**](Attribute.md)
+[**List&lt;ShipmentAttribute&gt;**](ShipmentAttribute.md)
 
 ### Authorization
 

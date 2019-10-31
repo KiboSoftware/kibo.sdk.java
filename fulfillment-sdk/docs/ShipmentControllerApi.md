@@ -863,7 +863,7 @@ No authorization required
 
 <a name="replaceShipmentUsingPUT"></a>
 # **replaceShipmentUsingPUT**
-> ResourceOfShipment replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, xVolSite)
+> ResourceOfShipment replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite)
 
 replaceShipment
 
@@ -878,9 +878,10 @@ ShipmentControllerApi apiInstance = new ShipmentControllerApi();
 Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
 Shipment shipment = new Shipment(); // Shipment | newShipment
+List<String> updateFields = Arrays.asList(); // List<String> | updateFields
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, xVolSite);
+    ResourceOfShipment result = apiInstance.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#replaceShipmentUsingPUT");
@@ -895,6 +896,7 @@ Name | Type | Description  | Notes
  **shipmentNumber** | **Integer**| shipmentNumber |
  **xVolTenant** | **Integer**|  |
  **shipment** | [**Shipment**](Shipment.md)| newShipment |
+ **updateFields** | [**List&lt;String&gt;**](String.md)| updateFields | [optional]
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type

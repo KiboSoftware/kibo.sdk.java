@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**allowEmptyWave** | **Boolean** |  |  [optional]
 **attributes** | **Map&lt;String, Object&gt;** |  |  [optional]
 **binRanges** | [**List&lt;PickWaveBinRange&gt;**](PickWaveBinRange.md) |  |  [optional]
 **fulfillmentLocationCode** | **String** |  |  [optional]
