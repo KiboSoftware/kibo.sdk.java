@@ -34,7 +34,7 @@ import java.util.Map;
 /**
  * ResourceOfPickWave
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
 public class ResourceOfPickWave {
   public static final String SERIALIZED_NAME_LINKS = "_links";
   @SerializedName(SERIALIZED_NAME_LINKS)
@@ -196,13 +196,13 @@ public class ResourceOfPickWave {
   @SerializedName(SERIALIZED_NAME_SHIPMENT_TYPE)
   private String shipmentType;
 
-  public static final String SERIALIZED_NAME_SITE_ID = "siteId";
-  @SerializedName(SERIALIZED_NAME_SITE_ID)
-  private Integer siteId;
-
   public static final String SERIALIZED_NAME_TENANT_ID = "tenantId";
   @SerializedName(SERIALIZED_NAME_TENANT_ID)
   private Integer tenantId;
+
+  public static final String SERIALIZED_NAME_USER_DISPLAY_NAME = "userDisplayName";
+  @SerializedName(SERIALIZED_NAME_USER_DISPLAY_NAME)
+  private String userDisplayName;
 
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
@@ -492,24 +492,6 @@ public class ResourceOfPickWave {
     this.shipmentType = shipmentType;
   }
 
-  public ResourceOfPickWave siteId(Integer siteId) {
-    this.siteId = siteId;
-    return this;
-  }
-
-   /**
-   * Get siteId
-   * @return siteId
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getSiteId() {
-    return siteId;
-  }
-
-  public void setSiteId(Integer siteId) {
-    this.siteId = siteId;
-  }
-
   public ResourceOfPickWave tenantId(Integer tenantId) {
     this.tenantId = tenantId;
     return this;
@@ -526,6 +508,24 @@ public class ResourceOfPickWave {
 
   public void setTenantId(Integer tenantId) {
     this.tenantId = tenantId;
+  }
+
+  public ResourceOfPickWave userDisplayName(String userDisplayName) {
+    this.userDisplayName = userDisplayName;
+    return this;
+  }
+
+   /**
+   * Get userDisplayName
+   * @return userDisplayName
+  **/
+  @ApiModelProperty(value = "")
+  public String getUserDisplayName() {
+    return userDisplayName;
+  }
+
+  public void setUserDisplayName(String userDisplayName) {
+    this.userDisplayName = userDisplayName;
   }
 
   public ResourceOfPickWave userId(String userId) {
@@ -570,14 +570,14 @@ public class ResourceOfPickWave {
         Objects.equals(this.recoveryPickWaveNumber, resourceOfPickWave.recoveryPickWaveNumber) &&
         Objects.equals(this.shipmentNumbers, resourceOfPickWave.shipmentNumbers) &&
         Objects.equals(this.shipmentType, resourceOfPickWave.shipmentType) &&
-        Objects.equals(this.siteId, resourceOfPickWave.siteId) &&
         Objects.equals(this.tenantId, resourceOfPickWave.tenantId) &&
+        Objects.equals(this.userDisplayName, resourceOfPickWave.userDisplayName) &&
         Objects.equals(this.userId, resourceOfPickWave.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(links, attributes, auditInfo, contents, fulfillmentLocationCode, maxShipments, parentPickWaveNumber, pickType, pickWaveId, pickWaveNumber, pickWaveStatus, recoveryPickWaveNumber, shipmentNumbers, shipmentType, siteId, tenantId, userId);
+    return Objects.hash(links, attributes, auditInfo, contents, fulfillmentLocationCode, maxShipments, parentPickWaveNumber, pickType, pickWaveId, pickWaveNumber, pickWaveStatus, recoveryPickWaveNumber, shipmentNumbers, shipmentType, tenantId, userDisplayName, userId);
   }
 
 
@@ -600,8 +600,8 @@ public class ResourceOfPickWave {
     sb.append("    recoveryPickWaveNumber: ").append(toIndentedString(recoveryPickWaveNumber)).append("\n");
     sb.append("    shipmentNumbers: ").append(toIndentedString(shipmentNumbers)).append("\n");
     sb.append("    shipmentType: ").append(toIndentedString(shipmentType)).append("\n");
-    sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    tenantId: ").append(toIndentedString(tenantId)).append("\n");
+    sb.append("    userDisplayName: ").append(toIndentedString(userDisplayName)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");
     return sb.toString();

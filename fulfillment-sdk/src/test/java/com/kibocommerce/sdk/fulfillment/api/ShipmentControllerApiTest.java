@@ -383,8 +383,9 @@ public class ShipmentControllerApiTest {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
         Shipment shipment = null;
+        List<String> updateFields = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, xVolSite);
+        ResourceOfShipment response = api.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
 
         // TODO: test validations
     }

@@ -86,9 +86,10 @@ public class PickWaveControllerApiTest {
         String fulfillmentLocationCode = null;
         Integer xVolTenant = null;
         String shipmentType = null;
+        String userDisplayName = null;
         String userId = null;
         Integer xVolSite = null;
-        ResourcesOfPickWave response = api.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite);
+        ResourcesOfPickWave response = api.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
 
         // TODO: test validations
     }

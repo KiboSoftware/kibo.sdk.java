@@ -471,6 +471,13 @@
                         "type": "string"
                     },
                     {
+                        "name": "userDisplayName",
+                        "in": "query",
+                        "description": "userDisplayName",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "userId",
                         "in": "query",
                         "description": "userId",
@@ -1160,6 +1167,17 @@
                         "format": "int32"
                     },
                     {
+                        "name": "updateFields",
+                        "in": "query",
+                        "description": "updateFields",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
                         "name": "x-vol-site",
                         "in": "header",
                         "required": false,
@@ -1287,7 +1305,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Attribute"
+                                "$ref": "#/definitions/ShipmentAttribute"
                             }
                         }
                     },
@@ -1326,7 +1344,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Attribute"
+                                "$ref": "#/definitions/ShipmentAttribute"
                             }
                         }
                     },
@@ -1359,7 +1377,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Attribute"
+                                "$ref": "#/definitions/ShipmentAttribute"
                             }
                         }
                     },
@@ -1426,7 +1444,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Attribute"
+                            "$ref": "#/definitions/ShipmentAttribute"
                         }
                     },
                     "401": {
@@ -1462,7 +1480,7 @@
                         "description": "attribute",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Attribute"
+                            "$ref": "#/definitions/ShipmentAttribute"
                         }
                     },
                     {
@@ -1499,7 +1517,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Attribute"
+                            "$ref": "#/definitions/ShipmentAttribute"
                         }
                     },
                     "201": {
@@ -2801,18 +2819,6 @@
             },
             "title": "Address"
         },
-        "Attribute": {
-            "type": "object",
-            "properties": {
-                "key": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "object"
-                }
-            },
-            "title": "Attribute"
-        },
         "AuditInfo": {
             "type": "object",
             "properties": {
@@ -3076,6 +3082,15 @@
                 "taxData": {
                     "type": "object"
                 },
+                "taxableHandling": {
+                    "type": "number"
+                },
+                "taxableLineItemCost": {
+                    "type": "number"
+                },
+                "taxableShipping": {
+                    "type": "number"
+                },
                 "unitPrice": {
                     "type": "number"
                 },
@@ -3090,6 +3105,27 @@
                 },
                 "weightUnit": {
                     "type": "string"
+                },
+                "weightedDutyAdjustment": {
+                    "type": "number"
+                },
+                "weightedHandlingAdjustment": {
+                    "type": "number"
+                },
+                "weightedHandlingTaxAdjustment": {
+                    "type": "number"
+                },
+                "weightedLineItemTaxAdjustment": {
+                    "type": "number"
+                },
+                "weightedShipmentAdjustment": {
+                    "type": "number"
+                },
+                "weightedShippingAdjustment": {
+                    "type": "number"
+                },
+                "weightedShippingTaxAdjustment": {
+                    "type": "number"
                 }
             },
             "title": "CanceledItem"
@@ -3237,6 +3273,9 @@
         "CreatePickWave": {
             "type": "object",
             "properties": {
+                "allowEmptyWave": {
+                    "type": "boolean"
+                },
                 "attributes": {
                     "type": "object",
                     "additionalProperties": {
@@ -3481,6 +3520,15 @@
                 "taxData": {
                     "type": "object"
                 },
+                "taxableHandling": {
+                    "type": "number"
+                },
+                "taxableLineItemCost": {
+                    "type": "number"
+                },
+                "taxableShipping": {
+                    "type": "number"
+                },
                 "unitPrice": {
                     "type": "number"
                 },
@@ -3495,6 +3543,27 @@
                 },
                 "weightUnit": {
                     "type": "string"
+                },
+                "weightedDutyAdjustment": {
+                    "type": "number"
+                },
+                "weightedHandlingAdjustment": {
+                    "type": "number"
+                },
+                "weightedHandlingTaxAdjustment": {
+                    "type": "number"
+                },
+                "weightedLineItemTaxAdjustment": {
+                    "type": "number"
+                },
+                "weightedShipmentAdjustment": {
+                    "type": "number"
+                },
+                "weightedShippingAdjustment": {
+                    "type": "number"
+                },
+                "weightedShippingTaxAdjustment": {
+                    "type": "number"
                 }
             },
             "title": "Item"
@@ -3590,6 +3659,9 @@
                     "additionalProperties": {
                         "type": "object"
                     }
+                },
+                "hasLabel": {
+                    "type": "boolean"
                 },
                 "measurements": {
                     "$ref": "#/definitions/PackageMeasurements"
@@ -3804,13 +3876,12 @@
                 "shipmentType": {
                     "type": "string"
                 },
-                "siteId": {
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "tenantId": {
                     "type": "integer",
                     "format": "int32"
+                },
+                "userDisplayName": {
+                    "type": "string"
                 },
                 "userId": {
                     "type": "string"
@@ -4149,13 +4220,12 @@
                 "shipmentType": {
                     "type": "string"
                 },
-                "siteId": {
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "tenantId": {
                     "type": "integer",
                     "format": "int32"
+                },
+                "userDisplayName": {
+                    "type": "string"
                 },
                 "userId": {
                     "type": "string"
@@ -4270,6 +4340,9 @@
                 "handlingTotal": {
                     "type": "number"
                 },
+                "hasLabel": {
+                    "type": "boolean"
+                },
                 "items": {
                     "type": "array",
                     "items": {
@@ -4342,6 +4415,12 @@
                     "type": "string",
                     "format": "date-time"
                 },
+                "reassignedItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ReassignItem"
+                    }
+                },
                 "shipmentAdjustment": {
                     "type": "number"
                 },
@@ -4359,6 +4438,9 @@
                         "FULFILLED",
                         "CUSTOMER_CARE"
                     ]
+                },
+                "shipmentStatusReason": {
+                    "$ref": "#/definitions/ShipmentStatusReason"
                 },
                 "shipmentType": {
                     "type": "string"
@@ -4718,6 +4800,9 @@
                 "handlingTotal": {
                     "type": "number"
                 },
+                "hasLabel": {
+                    "type": "boolean"
+                },
                 "items": {
                     "type": "array",
                     "items": {
@@ -4790,6 +4875,12 @@
                     "type": "string",
                     "format": "date-time"
                 },
+                "reassignedItems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ReassignItem"
+                    }
+                },
                 "shipmentAdjustment": {
                     "type": "number"
                 },
@@ -4807,6 +4898,9 @@
                         "FULFILLED",
                         "CUSTOMER_CARE"
                     ]
+                },
+                "shipmentStatusReason": {
+                    "$ref": "#/definitions/ShipmentStatusReason"
                 },
                 "shipmentType": {
                     "type": "string"
@@ -4860,6 +4954,30 @@
                 }
             },
             "title": "Shipment"
+        },
+        "ShipmentAttribute": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "object"
+                }
+            },
+            "title": "ShipmentAttribute"
+        },
+        "ShipmentStatusReason": {
+            "type": "object",
+            "properties": {
+                "moreInfo": {
+                    "type": "string"
+                },
+                "reasonCode": {
+                    "type": "string"
+                }
+            },
+            "title": "ShipmentStatusReason"
         },
         "Task": {
             "type": "object",

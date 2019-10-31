@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **recoveryPickWaveNumber** | **Integer** |  |  [optional]
 **shipmentNumbers** | **List&lt;Integer&gt;** |  |  [optional]
 **shipmentType** | **String** |  |  [optional]
-**siteId** | **Integer** |  |  [optional]
 **tenantId** | **Integer** |  |  [optional]
+**userDisplayName** | **String** |  |  [optional]
 **userId** | **String** |  |  [optional]
 
 

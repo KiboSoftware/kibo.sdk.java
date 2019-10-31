@@ -34,11 +34,21 @@ Name | Type | Description | Notes
 **shippingTax** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **sku** | **String** |  |  [optional]
 **taxData** | [**Object**](.md) |  |  [optional]
+**taxableHandling** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**taxableLineItemCost** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**taxableShipping** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **unitPrice** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **upc** | **String** |  |  [optional]
 **variationProductCode** | **String** |  |  [optional]
 **weight** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **weightUnit** | **String** |  |  [optional]
+**weightedDutyAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**weightedHandlingAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**weightedHandlingTaxAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**weightedLineItemTaxAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**weightedShipmentAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**weightedShippingAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**weightedShippingTaxAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 
 
 <a name="FulfillmentItemTypeEnum"></a>

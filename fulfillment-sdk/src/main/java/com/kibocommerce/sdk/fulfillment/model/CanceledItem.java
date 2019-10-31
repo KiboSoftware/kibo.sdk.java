@@ -36,7 +36,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * CanceledItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
 public class CanceledItem {
   public static final String SERIALIZED_NAME_ACTUAL_PRICE = "actualPrice";
   @SerializedName(SERIALIZED_NAME_ACTUAL_PRICE)
@@ -211,6 +211,18 @@ public class CanceledItem {
   @SerializedName(SERIALIZED_NAME_TAX_DATA)
   private Object taxData = null;
 
+  public static final String SERIALIZED_NAME_TAXABLE_HANDLING = "taxableHandling";
+  @SerializedName(SERIALIZED_NAME_TAXABLE_HANDLING)
+  private BigDecimal taxableHandling;
+
+  public static final String SERIALIZED_NAME_TAXABLE_LINE_ITEM_COST = "taxableLineItemCost";
+  @SerializedName(SERIALIZED_NAME_TAXABLE_LINE_ITEM_COST)
+  private BigDecimal taxableLineItemCost;
+
+  public static final String SERIALIZED_NAME_TAXABLE_SHIPPING = "taxableShipping";
+  @SerializedName(SERIALIZED_NAME_TAXABLE_SHIPPING)
+  private BigDecimal taxableShipping;
+
   public static final String SERIALIZED_NAME_UNIT_PRICE = "unitPrice";
   @SerializedName(SERIALIZED_NAME_UNIT_PRICE)
   private BigDecimal unitPrice;
@@ -230,6 +242,34 @@ public class CanceledItem {
   public static final String SERIALIZED_NAME_WEIGHT_UNIT = "weightUnit";
   @SerializedName(SERIALIZED_NAME_WEIGHT_UNIT)
   private String weightUnit;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_DUTY_ADJUSTMENT = "weightedDutyAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_DUTY_ADJUSTMENT)
+  private BigDecimal weightedDutyAdjustment;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_HANDLING_ADJUSTMENT = "weightedHandlingAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_HANDLING_ADJUSTMENT)
+  private BigDecimal weightedHandlingAdjustment;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_HANDLING_TAX_ADJUSTMENT = "weightedHandlingTaxAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_HANDLING_TAX_ADJUSTMENT)
+  private BigDecimal weightedHandlingTaxAdjustment;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_LINE_ITEM_TAX_ADJUSTMENT = "weightedLineItemTaxAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_LINE_ITEM_TAX_ADJUSTMENT)
+  private BigDecimal weightedLineItemTaxAdjustment;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_SHIPMENT_ADJUSTMENT = "weightedShipmentAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_SHIPMENT_ADJUSTMENT)
+  private BigDecimal weightedShipmentAdjustment;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_SHIPPING_ADJUSTMENT = "weightedShippingAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_SHIPPING_ADJUSTMENT)
+  private BigDecimal weightedShippingAdjustment;
+
+  public static final String SERIALIZED_NAME_WEIGHTED_SHIPPING_TAX_ADJUSTMENT = "weightedShippingTaxAdjustment";
+  @SerializedName(SERIALIZED_NAME_WEIGHTED_SHIPPING_TAX_ADJUSTMENT)
+  private BigDecimal weightedShippingTaxAdjustment;
 
   public CanceledItem actualPrice(BigDecimal actualPrice) {
     this.actualPrice = actualPrice;
@@ -805,6 +845,60 @@ public class CanceledItem {
     this.taxData = taxData;
   }
 
+  public CanceledItem taxableHandling(BigDecimal taxableHandling) {
+    this.taxableHandling = taxableHandling;
+    return this;
+  }
+
+   /**
+   * Get taxableHandling
+   * @return taxableHandling
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getTaxableHandling() {
+    return taxableHandling;
+  }
+
+  public void setTaxableHandling(BigDecimal taxableHandling) {
+    this.taxableHandling = taxableHandling;
+  }
+
+  public CanceledItem taxableLineItemCost(BigDecimal taxableLineItemCost) {
+    this.taxableLineItemCost = taxableLineItemCost;
+    return this;
+  }
+
+   /**
+   * Get taxableLineItemCost
+   * @return taxableLineItemCost
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getTaxableLineItemCost() {
+    return taxableLineItemCost;
+  }
+
+  public void setTaxableLineItemCost(BigDecimal taxableLineItemCost) {
+    this.taxableLineItemCost = taxableLineItemCost;
+  }
+
+  public CanceledItem taxableShipping(BigDecimal taxableShipping) {
+    this.taxableShipping = taxableShipping;
+    return this;
+  }
+
+   /**
+   * Get taxableShipping
+   * @return taxableShipping
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getTaxableShipping() {
+    return taxableShipping;
+  }
+
+  public void setTaxableShipping(BigDecimal taxableShipping) {
+    this.taxableShipping = taxableShipping;
+  }
+
   public CanceledItem unitPrice(BigDecimal unitPrice) {
     this.unitPrice = unitPrice;
     return this;
@@ -895,6 +989,132 @@ public class CanceledItem {
     this.weightUnit = weightUnit;
   }
 
+  public CanceledItem weightedDutyAdjustment(BigDecimal weightedDutyAdjustment) {
+    this.weightedDutyAdjustment = weightedDutyAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedDutyAdjustment
+   * @return weightedDutyAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedDutyAdjustment() {
+    return weightedDutyAdjustment;
+  }
+
+  public void setWeightedDutyAdjustment(BigDecimal weightedDutyAdjustment) {
+    this.weightedDutyAdjustment = weightedDutyAdjustment;
+  }
+
+  public CanceledItem weightedHandlingAdjustment(BigDecimal weightedHandlingAdjustment) {
+    this.weightedHandlingAdjustment = weightedHandlingAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedHandlingAdjustment
+   * @return weightedHandlingAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedHandlingAdjustment() {
+    return weightedHandlingAdjustment;
+  }
+
+  public void setWeightedHandlingAdjustment(BigDecimal weightedHandlingAdjustment) {
+    this.weightedHandlingAdjustment = weightedHandlingAdjustment;
+  }
+
+  public CanceledItem weightedHandlingTaxAdjustment(BigDecimal weightedHandlingTaxAdjustment) {
+    this.weightedHandlingTaxAdjustment = weightedHandlingTaxAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedHandlingTaxAdjustment
+   * @return weightedHandlingTaxAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedHandlingTaxAdjustment() {
+    return weightedHandlingTaxAdjustment;
+  }
+
+  public void setWeightedHandlingTaxAdjustment(BigDecimal weightedHandlingTaxAdjustment) {
+    this.weightedHandlingTaxAdjustment = weightedHandlingTaxAdjustment;
+  }
+
+  public CanceledItem weightedLineItemTaxAdjustment(BigDecimal weightedLineItemTaxAdjustment) {
+    this.weightedLineItemTaxAdjustment = weightedLineItemTaxAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedLineItemTaxAdjustment
+   * @return weightedLineItemTaxAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedLineItemTaxAdjustment() {
+    return weightedLineItemTaxAdjustment;
+  }
+
+  public void setWeightedLineItemTaxAdjustment(BigDecimal weightedLineItemTaxAdjustment) {
+    this.weightedLineItemTaxAdjustment = weightedLineItemTaxAdjustment;
+  }
+
+  public CanceledItem weightedShipmentAdjustment(BigDecimal weightedShipmentAdjustment) {
+    this.weightedShipmentAdjustment = weightedShipmentAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedShipmentAdjustment
+   * @return weightedShipmentAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedShipmentAdjustment() {
+    return weightedShipmentAdjustment;
+  }
+
+  public void setWeightedShipmentAdjustment(BigDecimal weightedShipmentAdjustment) {
+    this.weightedShipmentAdjustment = weightedShipmentAdjustment;
+  }
+
+  public CanceledItem weightedShippingAdjustment(BigDecimal weightedShippingAdjustment) {
+    this.weightedShippingAdjustment = weightedShippingAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedShippingAdjustment
+   * @return weightedShippingAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedShippingAdjustment() {
+    return weightedShippingAdjustment;
+  }
+
+  public void setWeightedShippingAdjustment(BigDecimal weightedShippingAdjustment) {
+    this.weightedShippingAdjustment = weightedShippingAdjustment;
+  }
+
+  public CanceledItem weightedShippingTaxAdjustment(BigDecimal weightedShippingTaxAdjustment) {
+    this.weightedShippingTaxAdjustment = weightedShippingTaxAdjustment;
+    return this;
+  }
+
+   /**
+   * Get weightedShippingTaxAdjustment
+   * @return weightedShippingTaxAdjustment
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getWeightedShippingTaxAdjustment() {
+    return weightedShippingTaxAdjustment;
+  }
+
+  public void setWeightedShippingTaxAdjustment(BigDecimal weightedShippingTaxAdjustment) {
+    this.weightedShippingTaxAdjustment = weightedShippingTaxAdjustment;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -936,16 +1156,26 @@ public class CanceledItem {
         Objects.equals(this.shippingTax, canceledItem.shippingTax) &&
         Objects.equals(this.sku, canceledItem.sku) &&
         Objects.equals(this.taxData, canceledItem.taxData) &&
+        Objects.equals(this.taxableHandling, canceledItem.taxableHandling) &&
+        Objects.equals(this.taxableLineItemCost, canceledItem.taxableLineItemCost) &&
+        Objects.equals(this.taxableShipping, canceledItem.taxableShipping) &&
         Objects.equals(this.unitPrice, canceledItem.unitPrice) &&
         Objects.equals(this.upc, canceledItem.upc) &&
         Objects.equals(this.variationProductCode, canceledItem.variationProductCode) &&
         Objects.equals(this.weight, canceledItem.weight) &&
-        Objects.equals(this.weightUnit, canceledItem.weightUnit);
+        Objects.equals(this.weightUnit, canceledItem.weightUnit) &&
+        Objects.equals(this.weightedDutyAdjustment, canceledItem.weightedDutyAdjustment) &&
+        Objects.equals(this.weightedHandlingAdjustment, canceledItem.weightedHandlingAdjustment) &&
+        Objects.equals(this.weightedHandlingTaxAdjustment, canceledItem.weightedHandlingTaxAdjustment) &&
+        Objects.equals(this.weightedLineItemTaxAdjustment, canceledItem.weightedLineItemTaxAdjustment) &&
+        Objects.equals(this.weightedShipmentAdjustment, canceledItem.weightedShipmentAdjustment) &&
+        Objects.equals(this.weightedShippingAdjustment, canceledItem.weightedShippingAdjustment) &&
+        Objects.equals(this.weightedShippingTaxAdjustment, canceledItem.weightedShippingTaxAdjustment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualPrice, attributes, auditInfo, backorderReleaseDate, canceledReason, data, duty, fulfillmentItemType, handling, handlingDiscount, handlingTax, imageUrl, isTaxable, itemDiscount, itemTax, lineId, lineItemCost, name, optionAttributeFQN, options, originalOrderItemId, overridePrice, parentId, partNumber, productCode, quantity, shipping, shippingDiscount, shippingTax, sku, taxData, unitPrice, upc, variationProductCode, weight, weightUnit);
+    return Objects.hash(actualPrice, attributes, auditInfo, backorderReleaseDate, canceledReason, data, duty, fulfillmentItemType, handling, handlingDiscount, handlingTax, imageUrl, isTaxable, itemDiscount, itemTax, lineId, lineItemCost, name, optionAttributeFQN, options, originalOrderItemId, overridePrice, parentId, partNumber, productCode, quantity, shipping, shippingDiscount, shippingTax, sku, taxData, taxableHandling, taxableLineItemCost, taxableShipping, unitPrice, upc, variationProductCode, weight, weightUnit, weightedDutyAdjustment, weightedHandlingAdjustment, weightedHandlingTaxAdjustment, weightedLineItemTaxAdjustment, weightedShipmentAdjustment, weightedShippingAdjustment, weightedShippingTaxAdjustment);
   }
 
 
@@ -985,11 +1215,21 @@ public class CanceledItem {
     sb.append("    shippingTax: ").append(toIndentedString(shippingTax)).append("\n");
     sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
     sb.append("    taxData: ").append(toIndentedString(taxData)).append("\n");
+    sb.append("    taxableHandling: ").append(toIndentedString(taxableHandling)).append("\n");
+    sb.append("    taxableLineItemCost: ").append(toIndentedString(taxableLineItemCost)).append("\n");
+    sb.append("    taxableShipping: ").append(toIndentedString(taxableShipping)).append("\n");
     sb.append("    unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
     sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
     sb.append("    variationProductCode: ").append(toIndentedString(variationProductCode)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("    weightUnit: ").append(toIndentedString(weightUnit)).append("\n");
+    sb.append("    weightedDutyAdjustment: ").append(toIndentedString(weightedDutyAdjustment)).append("\n");
+    sb.append("    weightedHandlingAdjustment: ").append(toIndentedString(weightedHandlingAdjustment)).append("\n");
+    sb.append("    weightedHandlingTaxAdjustment: ").append(toIndentedString(weightedHandlingTaxAdjustment)).append("\n");
+    sb.append("    weightedLineItemTaxAdjustment: ").append(toIndentedString(weightedLineItemTaxAdjustment)).append("\n");
+    sb.append("    weightedShipmentAdjustment: ").append(toIndentedString(weightedShipmentAdjustment)).append("\n");
+    sb.append("    weightedShippingAdjustment: ").append(toIndentedString(weightedShippingAdjustment)).append("\n");
+    sb.append("    weightedShippingTaxAdjustment: ").append(toIndentedString(weightedShippingTaxAdjustment)).append("\n");
     sb.append("}");
     return sb.toString();
   }

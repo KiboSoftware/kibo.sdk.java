@@ -25,30 +25,52 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Principal
+ * ShipmentAttribute
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
-public class Principal {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class ShipmentAttribute {
+  public static final String SERIALIZED_NAME_KEY = "key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private String key;
 
-  public Principal name(String name) {
-    this.name = name;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private Object value = null;
+
+  public ShipmentAttribute key(String key) {
+    this.key = key;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get key
+   * @return key
   **/
   @ApiModelProperty(value = "")
-  public String getName() {
-    return name;
+  public String getKey() {
+    return key;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+  public ShipmentAttribute value(Object value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Get value
+   * @return value
+  **/
+  @ApiModelProperty(value = "")
+  public Object getValue() {
+    return value;
+  }
+
+  public void setValue(Object value) {
+    this.value = value;
   }
 
 
@@ -60,22 +82,24 @@ public class Principal {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Principal principal = (Principal) o;
-    return Objects.equals(this.name, principal.name);
+    ShipmentAttribute shipmentAttribute = (ShipmentAttribute) o;
+    return Objects.equals(this.key, shipmentAttribute.key) &&
+        Objects.equals(this.value, shipmentAttribute.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(key, value);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Principal {\n");
+    sb.append("class ShipmentAttribute {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

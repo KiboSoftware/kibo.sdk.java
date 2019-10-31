@@ -109,7 +109,7 @@ No authorization required
 
 <a name="getOpenPickWavesUsingGET"></a>
 # **getOpenPickWavesUsingGET**
-> ResourcesOfPickWave getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite)
+> ResourcesOfPickWave getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite)
 
 getOpenPickWaves
 
@@ -124,10 +124,11 @@ PickWaveControllerApi apiInstance = new PickWaveControllerApi();
 String fulfillmentLocationCode = "fulfillmentLocationCode_example"; // String | fulfillmentLocationCode
 Integer xVolTenant = 56; // Integer | 
 String shipmentType = "shipmentType_example"; // String | shipmentType
+String userDisplayName = "userDisplayName_example"; // String | userDisplayName
 String userId = "userId_example"; // String | userId
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourcesOfPickWave result = apiInstance.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userId, xVolSite);
+    ResourcesOfPickWave result = apiInstance.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PickWaveControllerApi#getOpenPickWavesUsingGET");
@@ -142,6 +143,7 @@ Name | Type | Description  | Notes
  **fulfillmentLocationCode** | **String**| fulfillmentLocationCode |
  **xVolTenant** | **Integer**|  |
  **shipmentType** | **String**| shipmentType | [optional]
+ **userDisplayName** | **String**| userDisplayName | [optional]
  **userId** | **String**| userId | [optional]
  **xVolSite** | **Integer**|  | [optional]
 

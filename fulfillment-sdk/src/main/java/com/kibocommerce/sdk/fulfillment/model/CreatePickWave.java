@@ -34,8 +34,12 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * CreatePickWave
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-02T09:23:50.115103-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
 public class CreatePickWave {
+  public static final String SERIALIZED_NAME_ALLOW_EMPTY_WAVE = "allowEmptyWave";
+  @SerializedName(SERIALIZED_NAME_ALLOW_EMPTY_WAVE)
+  private Boolean allowEmptyWave;
+
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private Map<String, Object> attributes = null;
@@ -183,6 +187,24 @@ public class CreatePickWave {
   public static final String SERIALIZED_NAME_SHIPPING_OPTION = "shippingOption";
   @SerializedName(SERIALIZED_NAME_SHIPPING_OPTION)
   private ShippingOptionEnum shippingOption;
+
+  public CreatePickWave allowEmptyWave(Boolean allowEmptyWave) {
+    this.allowEmptyWave = allowEmptyWave;
+    return this;
+  }
+
+   /**
+   * Get allowEmptyWave
+   * @return allowEmptyWave
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getAllowEmptyWave() {
+    return allowEmptyWave;
+  }
+
+  public void setAllowEmptyWave(Boolean allowEmptyWave) {
+    this.allowEmptyWave = allowEmptyWave;
+  }
 
   public CreatePickWave attributes(Map<String, Object> attributes) {
     this.attributes = attributes;
@@ -434,7 +456,8 @@ public class CreatePickWave {
       return false;
     }
     CreatePickWave createPickWave = (CreatePickWave) o;
-    return Objects.equals(this.attributes, createPickWave.attributes) &&
+    return Objects.equals(this.allowEmptyWave, createPickWave.allowEmptyWave) &&
+        Objects.equals(this.attributes, createPickWave.attributes) &&
         Objects.equals(this.binRanges, createPickWave.binRanges) &&
         Objects.equals(this.fulfillmentLocationCode, createPickWave.fulfillmentLocationCode) &&
         Objects.equals(this.includeZeroInventory, createPickWave.includeZeroInventory) &&
@@ -450,7 +473,7 @@ public class CreatePickWave {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, binRanges, fulfillmentLocationCode, includeZeroInventory, lockWave, maxShipments, pickWaveType, products, shipmentDateEnd, shipmentDateStart, shipmentType, shippingOption);
+    return Objects.hash(allowEmptyWave, attributes, binRanges, fulfillmentLocationCode, includeZeroInventory, lockWave, maxShipments, pickWaveType, products, shipmentDateEnd, shipmentDateStart, shipmentType, shippingOption);
   }
 
 
@@ -459,6 +482,7 @@ public class CreatePickWave {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreatePickWave {\n");
     
+    sb.append("    allowEmptyWave: ").append(toIndentedString(allowEmptyWave)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    binRanges: ").append(toIndentedString(binRanges)).append("\n");
     sb.append("    fulfillmentLocationCode: ").append(toIndentedString(fulfillmentLocationCode)).append("\n");
