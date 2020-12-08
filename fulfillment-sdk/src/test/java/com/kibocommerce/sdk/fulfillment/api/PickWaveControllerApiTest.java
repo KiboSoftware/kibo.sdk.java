@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -15,10 +15,10 @@ package com.kibocommerce.sdk.fulfillment.api;
 
 import com.kibocommerce.sdk.fulfillment.ApiException;
 import com.kibocommerce.sdk.fulfillment.model.ClosePickWave;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfPickWave;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfShipment;
 import com.kibocommerce.sdk.fulfillment.model.CreatePickWave;
-import com.kibocommerce.sdk.fulfillment.model.ResourceOfPickWave;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfPickWave;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfPickWave;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -50,7 +50,7 @@ public class PickWaveControllerApiTest {
         Integer xVolTenant = null;
         ClosePickWave closePickWave = null;
         Integer xVolSite = null;
-        ResourceOfPickWave response = api.closePickWaveUsingPUT(pickWaveNumber, xVolTenant, closePickWave, xVolSite);
+        EntityModelOfPickWave response = api.closePickWaveUsingPUT(pickWaveNumber, xVolTenant, closePickWave, xVolSite);
 
         // TODO: test validations
     }
@@ -68,7 +68,7 @@ public class PickWaveControllerApiTest {
         Integer xVolTenant = null;
         CreatePickWave createPickWave = null;
         Integer xVolSite = null;
-        ResourceOfPickWave response = api.createPickWaveUsingPOST(xVolTenant, createPickWave, xVolSite);
+        EntityModelOfPickWave response = api.createPickWaveUsingPOST(xVolTenant, createPickWave, xVolSite);
 
         // TODO: test validations
     }
@@ -89,7 +89,7 @@ public class PickWaveControllerApiTest {
         String userDisplayName = null;
         String userId = null;
         Integer xVolSite = null;
-        ResourcesOfPickWave response = api.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
+        CollectionModelOfPickWave response = api.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
 
         // TODO: test validations
     }
@@ -107,7 +107,7 @@ public class PickWaveControllerApiTest {
         Integer pickWaveNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfPickWave response = api.getPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
+        EntityModelOfPickWave response = api.getPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -125,7 +125,7 @@ public class PickWaveControllerApiTest {
         Integer pickWaveNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourcesOfShipment response = api.getShipmentsInPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
+        CollectionModelOfShipment response = api.getShipmentsInPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }

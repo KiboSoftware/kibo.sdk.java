@@ -26,6 +26,7 @@ INTEGER | &quot;INTEGER&quot;
 NUMBER | &quot;NUMBER&quot;
 BOOLEAN | &quot;BOOLEAN&quot;
 OBJECT | &quot;OBJECT&quot;
+LIST | &quot;LIST&quot;
 UNKNOWN | &quot;UNKNOWN&quot;
 
 

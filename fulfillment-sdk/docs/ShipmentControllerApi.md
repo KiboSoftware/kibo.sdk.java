@@ -1,6 +1,6 @@
 # ShipmentControllerApi
 
-All URIs are relative to *http://services-tp.dev01.kubedev.kibo-dev.com/kibo.fulfillment.webapi*
+All URIs are relative to *http://2.services.sb.ng-qa.dev.kibocommerce.com/kibo.fulfillment.webapi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,29 +9,45 @@ Method | HTTP request | Description
 [**backorderShipmentUsingPOST**](ShipmentControllerApi.md#backorderShipmentUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/backordered | backorderShipment
 [**cancelItemsUsingPUT**](ShipmentControllerApi.md#cancelItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/canceledItems | cancelItems
 [**cancelShipmentUsingPUT**](ShipmentControllerApi.md#cancelShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/canceled | cancelShipment
+[**cancelShipmentsUsingPUT**](ShipmentControllerApi.md#cancelShipmentsUsingPUT) | **PUT** /commerce/shipments/order/{orderId}/canceled | cancelShipments
+[**customerAtCurbsideUsingPUT**](ShipmentControllerApi.md#customerAtCurbsideUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerAtCurbside | customerAtCurbside
+[**customerAtStoreUsingPUT**](ShipmentControllerApi.md#customerAtStoreUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerAtStore | customerAtStore
+[**customerCareItemsUsingPOST**](ShipmentControllerApi.md#customerCareItemsUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/customerCaredItems | customerCareItems
+[**customerCareShipmentUsingPUT**](ShipmentControllerApi.md#customerCareShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerCared | customerCareShipment
+[**customerInTransitUsingPUT**](ShipmentControllerApi.md#customerInTransitUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/customerInTransit | customerInTransit
 [**deleteShipmentUsingDELETE**](ShipmentControllerApi.md#deleteShipmentUsingDELETE) | **DELETE** /commerce/shipments/{shipmentNumber} | deleteShipment
 [**destinationUpdateUsingPUT**](ShipmentControllerApi.md#destinationUpdateUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/destination | destinationUpdate
-[**executeUsingPUT**](ShipmentControllerApi.md#executeUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskId}/completed | execute
+[**executeUsingPUT**](ShipmentControllerApi.md#executeUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/completed | execute
 [**fulfillShipmentUsingPUT**](ShipmentControllerApi.md#fulfillShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/fulfilled | fulfillShipment
 [**getDashboardUsingGET**](ShipmentControllerApi.md#getDashboardUsingGET) | **GET** /commerce/shipments/dashboard | getDashboard
+[**getLocationSummaryReportUsingGET**](ShipmentControllerApi.md#getLocationSummaryReportUsingGET) | **GET** /commerce/shipments/locationSummaryReport | getLocationSummaryReport
+[**getShipmentStepCountByShipmentTypeUsingGET**](ShipmentControllerApi.md#getShipmentStepCountByShipmentTypeUsingGET) | **GET** /commerce/shipments/countsByStep | getShipmentStepCountByShipmentType
 [**getShipmentUsingGET**](ShipmentControllerApi.md#getShipmentUsingGET) | **GET** /commerce/shipments/{shipmentNumber} | getShipment
 [**getShipmentsUsingGET**](ShipmentControllerApi.md#getShipmentsUsingGET) | **GET** /commerce/shipments | getShipments
 [**getTasksUsingGET**](ShipmentControllerApi.md#getTasksUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/tasks | getTasks
 [**newShipmentUsingPOST**](ShipmentControllerApi.md#newShipmentUsingPOST) | **POST** /commerce/shipments | newShipment
+[**newShipmentsUsingPOST**](ShipmentControllerApi.md#newShipmentsUsingPOST) | **POST** /commerce/shipments/bulk | newShipments
+[**pickupItemsUsingPOST**](ShipmentControllerApi.md#pickupItemsUsingPOST) | **POST** /commerce/shipments/{shipmentNumber}/pickedUpItems | pickupItems
 [**reassignItemsUsingPUT**](ShipmentControllerApi.md#reassignItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/reassignedItems | reassignItems
 [**reassignShipmentUsingPUT**](ShipmentControllerApi.md#reassignShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/reassigned | reassignShipment
+[**receiveTransferUsingPUT**](ShipmentControllerApi.md#receiveTransferUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/received | receiveTransfer
+[**refreshShipmentUsingPUT**](ShipmentControllerApi.md#refreshShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/refresh | refreshShipment
+[**rejectItemsUsingPUT**](ShipmentControllerApi.md#rejectItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/rejectedItems | rejectItems
 [**rejectShipmentUsingPUT**](ShipmentControllerApi.md#rejectShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/rejected | rejectShipment
 [**replaceShipmentUsingPUT**](ShipmentControllerApi.md#replaceShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber} | replaceShipment
-[**revertUsingPUT**](ShipmentControllerApi.md#revertUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskId}/reverted | revert
-[**skipTaskUsingPUT**](ShipmentControllerApi.md#skipTaskUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskId}/skipped | skipTask
-[**updatePackageUsingPUT**](ShipmentControllerApi.md#updatePackageUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/packages/{packageId} | updatePackage
+[**retryFulfillingShipmentUsingPUT**](ShipmentControllerApi.md#retryFulfillingShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/retried | retryFulfillingShipment
+[**revertUsingPUT**](ShipmentControllerApi.md#revertUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/reverted | revert
+[**searchAndReceiveTransferUsingPUT**](ShipmentControllerApi.md#searchAndReceiveTransferUsingPUT) | **PUT** /commerce/shipments/received/{search} | searchAndReceiveTransfer
+[**skipTaskUsingPUT**](ShipmentControllerApi.md#skipTaskUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/tasks/{taskName}/skipped | skipTask
+[**transferItemsUsingPUT**](ShipmentControllerApi.md#transferItemsUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/transferredItems | transferItems
+[**transferShipmentUsingPUT**](ShipmentControllerApi.md#transferShipmentUsingPUT) | **PUT** /commerce/shipments/{shipmentNumber}/transferred | transferShipment
 [**workflowDefinitionImageUsingGET**](ShipmentControllerApi.md#workflowDefinitionImageUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/workflow-definition-image | workflowDefinitionImage
 [**workflowInstanceImageUsingGET**](ShipmentControllerApi.md#workflowInstanceImageUsingGET) | **GET** /commerce/shipments/{shipmentNumber}/workflow-instance-image | workflowInstanceImage
 
 
 <a name="backorderItemsUpdateUsingPUT"></a>
 # **backorderItemsUpdateUsingPUT**
-> ResourceOfShipment backorderItemsUpdateUsingPUT(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite)
+> EntityModelOfShipment backorderItemsUpdateUsingPUT(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite)
 
 backorderItemsUpdate
 
@@ -48,7 +64,7 @@ Integer xVolTenant = 56; // Integer |
 BackorderItemsUpdateRequest backorderItemsUpdateRequest = new BackorderItemsUpdateRequest(); // BackorderItemsUpdateRequest | backorderItemsUpdateRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.backorderItemsUpdateUsingPUT(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite);
+    EntityModelOfShipment result = apiInstance.backorderItemsUpdateUsingPUT(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#backorderItemsUpdateUsingPUT");
@@ -67,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -80,7 +96,7 @@ No authorization required
 
 <a name="backorderItemsUsingPOST"></a>
 # **backorderItemsUsingPOST**
-> ResourceOfShipment backorderItemsUsingPOST(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite)
+> EntityModelOfShipment backorderItemsUsingPOST(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite)
 
 backorderItems
 
@@ -97,7 +113,7 @@ Integer xVolTenant = 56; // Integer |
 BackorderItemsRequest backorderItemsRequest = new BackorderItemsRequest(); // BackorderItemsRequest | backorderItemsRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.backorderItemsUsingPOST(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite);
+    EntityModelOfShipment result = apiInstance.backorderItemsUsingPOST(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#backorderItemsUsingPOST");
@@ -116,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -129,7 +145,7 @@ No authorization required
 
 <a name="backorderShipmentUsingPOST"></a>
 # **backorderShipmentUsingPOST**
-> ResourceOfShipment backorderShipmentUsingPOST(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite)
+> EntityModelOfShipment backorderShipmentUsingPOST(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite)
 
 backorderShipment
 
@@ -146,7 +162,7 @@ Integer xVolTenant = 56; // Integer |
 BackorderShipmentRequest backorderShipmentRequest = new BackorderShipmentRequest(); // BackorderShipmentRequest | backorderShipmentRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.backorderShipmentUsingPOST(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite);
+    EntityModelOfShipment result = apiInstance.backorderShipmentUsingPOST(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#backorderShipmentUsingPOST");
@@ -165,7 +181,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -178,7 +194,7 @@ No authorization required
 
 <a name="cancelItemsUsingPUT"></a>
 # **cancelItemsUsingPUT**
-> ResourceOfShipment cancelItemsUsingPUT(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite)
+> EntityModelOfShipment cancelItemsUsingPUT(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite)
 
 cancelItems
 
@@ -195,7 +211,7 @@ Integer xVolTenant = 56; // Integer |
 CancelItemsRequest cancelItemsRequest = new CancelItemsRequest(); // CancelItemsRequest | cancelItemsRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.cancelItemsUsingPUT(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite);
+    EntityModelOfShipment result = apiInstance.cancelItemsUsingPUT(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#cancelItemsUsingPUT");
@@ -214,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -227,7 +243,7 @@ No authorization required
 
 <a name="cancelShipmentUsingPUT"></a>
 # **cancelShipmentUsingPUT**
-> ResourceOfShipment cancelShipmentUsingPUT(shipmentNumber, xVolTenant, cancelShipment, xVolSite)
+> EntityModelOfShipment cancelShipmentUsingPUT(shipmentNumber, xVolTenant, cancelShipment, xVolSite)
 
 cancelShipment
 
@@ -244,7 +260,7 @@ Integer xVolTenant = 56; // Integer |
 CancelShipment cancelShipment = new CancelShipment(); // CancelShipment | cancelShipmentRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.cancelShipmentUsingPUT(shipmentNumber, xVolTenant, cancelShipment, xVolSite);
+    EntityModelOfShipment result = apiInstance.cancelShipmentUsingPUT(shipmentNumber, xVolTenant, cancelShipment, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#cancelShipmentUsingPUT");
@@ -263,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -272,6 +288,296 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="cancelShipmentsUsingPUT"></a>
+# **cancelShipmentsUsingPUT**
+> CollectionModelOfShipment cancelShipmentsUsingPUT(orderId, xVolTenant, cancelShipment, xVolSite)
+
+cancelShipments
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+String orderId = "orderId_example"; // String | orderId
+Integer xVolTenant = 56; // Integer | 
+CancelShipment cancelShipment = new CancelShipment(); // CancelShipment | cancelShipmentRequestDto
+Integer xVolSite = 56; // Integer | 
+try {
+    CollectionModelOfShipment result = apiInstance.cancelShipmentsUsingPUT(orderId, xVolTenant, cancelShipment, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#cancelShipmentsUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**| orderId |
+ **xVolTenant** | **Integer**|  |
+ **cancelShipment** | [**CancelShipment**](CancelShipment.md)| cancelShipmentRequestDto |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**CollectionModelOfShipment**](CollectionModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="customerAtCurbsideUsingPUT"></a>
+# **customerAtCurbsideUsingPUT**
+> EntityModelOfShipment customerAtCurbsideUsingPUT(shipmentNumber, xVolTenant, requestBody, xVolSite)
+
+customerAtCurbside
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+Map<String, Object> requestBody = null; // Map<String, Object> | pickupInfo
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.customerAtCurbsideUsingPUT(shipmentNumber, xVolTenant, requestBody, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#customerAtCurbsideUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)| pickupInfo |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="customerAtStoreUsingPUT"></a>
+# **customerAtStoreUsingPUT**
+> EntityModelOfShipment customerAtStoreUsingPUT(shipmentNumber, xVolTenant, xVolSite)
+
+customerAtStore
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.customerAtStoreUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#customerAtStoreUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="customerCareItemsUsingPOST"></a>
+# **customerCareItemsUsingPOST**
+> EntityModelOfShipment customerCareItemsUsingPOST(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite)
+
+customerCareItems
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+RejectItemsRequest rejectItemsRequest = new RejectItemsRequest(); // RejectItemsRequest | rejectItemsRequestDto
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.customerCareItemsUsingPOST(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#customerCareItemsUsingPOST");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **rejectItemsRequest** | [**RejectItemsRequest**](RejectItemsRequest.md)| rejectItemsRequestDto |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="customerCareShipmentUsingPUT"></a>
+# **customerCareShipmentUsingPUT**
+> EntityModelOfShipment customerCareShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite)
+
+customerCareShipment
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+RejectShipment rejectShipment = new RejectShipment(); // RejectShipment | rejectShipmentRequestDto
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.customerCareShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#customerCareShipmentUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **rejectShipment** | [**RejectShipment**](RejectShipment.md)| rejectShipmentRequestDto |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="customerInTransitUsingPUT"></a>
+# **customerInTransitUsingPUT**
+> EntityModelOfShipment customerInTransitUsingPUT(shipmentNumber, xVolTenant, xVolSite)
+
+customerInTransit
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.customerInTransitUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#customerInTransitUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/xml, application/json, application/hal+json
 
 <a name="deleteShipmentUsingDELETE"></a>
@@ -322,7 +628,7 @@ No authorization required
 
 <a name="destinationUpdateUsingPUT"></a>
 # **destinationUpdateUsingPUT**
-> ResourceOfShipment destinationUpdateUsingPUT(shipmentNumber, xVolTenant, destination, xVolSite)
+> EntityModelOfShipment destinationUpdateUsingPUT(shipmentNumber, xVolTenant, destination, xVolSite)
 
 destinationUpdate
 
@@ -339,7 +645,7 @@ Integer xVolTenant = 56; // Integer |
 Destination destination = new Destination(); // Destination | destinationDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.destinationUpdateUsingPUT(shipmentNumber, xVolTenant, destination, xVolSite);
+    EntityModelOfShipment result = apiInstance.destinationUpdateUsingPUT(shipmentNumber, xVolTenant, destination, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#destinationUpdateUsingPUT");
@@ -358,7 +664,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -371,7 +677,7 @@ No authorization required
 
 <a name="executeUsingPUT"></a>
 # **executeUsingPUT**
-> ResourceOfShipment executeUsingPUT(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite)
+> EntityModelOfShipment executeUsingPUT(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite)
 
 execute
 
@@ -384,12 +690,12 @@ execute
 
 ShipmentControllerApi apiInstance = new ShipmentControllerApi();
 Integer shipmentNumber = 56; // Integer | shipmentNumber
-String taskId = "taskId_example"; // String | taskId
+String taskName = "taskName_example"; // String | taskName
 Integer xVolTenant = 56; // Integer | 
 TaskComplete taskComplete = new TaskComplete(); // TaskComplete | taskCompleteDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.executeUsingPUT(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite);
+    EntityModelOfShipment result = apiInstance.executeUsingPUT(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#executeUsingPUT");
@@ -402,14 +708,14 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentNumber** | **Integer**| shipmentNumber |
- **taskId** | **String**| taskId |
+ **taskName** | **String**| taskName |
  **xVolTenant** | **Integer**|  |
  **taskComplete** | [**TaskComplete**](TaskComplete.md)| taskCompleteDto |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -422,7 +728,7 @@ No authorization required
 
 <a name="fulfillShipmentUsingPUT"></a>
 # **fulfillShipmentUsingPUT**
-> ResourceOfShipment fulfillShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite)
+> EntityModelOfShipment fulfillShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite)
 
 fulfillShipment
 
@@ -438,7 +744,7 @@ Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.fulfillShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+    EntityModelOfShipment result = apiInstance.fulfillShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#fulfillShipmentUsingPUT");
@@ -456,7 +762,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -469,7 +775,7 @@ No authorization required
 
 <a name="getDashboardUsingGET"></a>
 # **getDashboardUsingGET**
-> ResourcesOfDashboardResponse getDashboardUsingGET(fulfillmentLocationCodes, xVolTenant, xVolSite)
+> CollectionModelOfDashboardResponse getDashboardUsingGET(xVolTenant, fulfillmentLocationCodes, xVolSite)
 
 getDashboard
 
@@ -481,11 +787,11 @@ getDashboard
 
 
 ShipmentControllerApi apiInstance = new ShipmentControllerApi();
-List<String> fulfillmentLocationCodes = Arrays.asList(); // List<String> | fulfillmentLocationCodes
 Integer xVolTenant = 56; // Integer | 
+List<String> fulfillmentLocationCodes = Arrays.asList(); // List<String> | fulfillmentLocationCodes
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourcesOfDashboardResponse result = apiInstance.getDashboardUsingGET(fulfillmentLocationCodes, xVolTenant, xVolSite);
+    CollectionModelOfDashboardResponse result = apiInstance.getDashboardUsingGET(xVolTenant, fulfillmentLocationCodes, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#getDashboardUsingGET");
@@ -497,13 +803,111 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fulfillmentLocationCodes** | [**List&lt;String&gt;**](String.md)| fulfillmentLocationCodes |
+ **xVolTenant** | **Integer**|  |
+ **fulfillmentLocationCodes** | [**List&lt;String&gt;**](String.md)| fulfillmentLocationCodes | [optional]
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**CollectionModelOfDashboardResponse**](CollectionModelOfDashboardResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="getLocationSummaryReportUsingGET"></a>
+# **getLocationSummaryReportUsingGET**
+> CollectionModelOfLocationSummary getLocationSummaryReportUsingGET(locationCodes, startDateTime, xVolTenant, xVolSite)
+
+getLocationSummaryReport
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+List<String> locationCodes = Arrays.asList(); // List<String> | locationCodes
+OffsetDateTime startDateTime = new OffsetDateTime(); // OffsetDateTime | startDateTime
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    CollectionModelOfLocationSummary result = apiInstance.getLocationSummaryReportUsingGET(locationCodes, startDateTime, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#getLocationSummaryReportUsingGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **locationCodes** | [**List&lt;String&gt;**](String.md)| locationCodes |
+ **startDateTime** | **OffsetDateTime**| startDateTime |
  **xVolTenant** | **Integer**|  |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**ResourcesOfDashboardResponse**](ResourcesOfDashboardResponse.md)
+[**CollectionModelOfLocationSummary**](CollectionModelOfLocationSummary.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="getShipmentStepCountByShipmentTypeUsingGET"></a>
+# **getShipmentStepCountByShipmentTypeUsingGET**
+> EntityModelOfDashboardResponse getShipmentStepCountByShipmentTypeUsingGET(shipmentType, xVolTenant, assignedLocations, xVolSite)
+
+getShipmentStepCountByShipmentType
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+String shipmentType = "shipmentType_example"; // String | shipmentType
+Integer xVolTenant = 56; // Integer | 
+List<String> assignedLocations = Arrays.asList(); // List<String> | assignedLocations
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfDashboardResponse result = apiInstance.getShipmentStepCountByShipmentTypeUsingGET(shipmentType, xVolTenant, assignedLocations, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#getShipmentStepCountByShipmentTypeUsingGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentType** | **String**| shipmentType |
+ **xVolTenant** | **Integer**|  |
+ **assignedLocations** | [**List&lt;String&gt;**](String.md)| assignedLocations | [optional]
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfDashboardResponse**](EntityModelOfDashboardResponse.md)
 
 ### Authorization
 
@@ -516,7 +920,7 @@ No authorization required
 
 <a name="getShipmentUsingGET"></a>
 # **getShipmentUsingGET**
-> ResourceOfShipment getShipmentUsingGET(shipmentNumber, xVolTenant, xVolSite)
+> EntityModelOfShipment getShipmentUsingGET(shipmentNumber, xVolTenant, xVolSite)
 
 getShipment
 
@@ -532,7 +936,7 @@ Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.getShipmentUsingGET(shipmentNumber, xVolTenant, xVolSite);
+    EntityModelOfShipment result = apiInstance.getShipmentUsingGET(shipmentNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#getShipmentUsingGET");
@@ -550,7 +954,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -563,7 +967,7 @@ No authorization required
 
 <a name="getShipmentsUsingGET"></a>
 # **getShipmentsUsingGET**
-> PagedResourcesOfResourceOfShipment getShipmentsUsingGET(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite)
+> PagedModelOfEntityModelOfShipment getShipmentsUsingGET(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite)
 
 getShipments
 
@@ -585,7 +989,7 @@ String sort = "sort_example"; // String |
 String workflowTaskName = "workflowTaskName_example"; // String | 
 Integer xVolSite = 56; // Integer | 
 try {
-    PagedResourcesOfResourceOfShipment result = apiInstance.getShipmentsUsingGET(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite);
+    PagedModelOfEntityModelOfShipment result = apiInstance.getShipmentsUsingGET(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#getShipmentsUsingGET");
@@ -609,7 +1013,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PagedResourcesOfResourceOfShipment**](PagedResourcesOfResourceOfShipment.md)
+[**PagedModelOfEntityModelOfShipment**](PagedModelOfEntityModelOfShipment.md)
 
 ### Authorization
 
@@ -622,7 +1026,7 @@ No authorization required
 
 <a name="getTasksUsingGET"></a>
 # **getTasksUsingGET**
-> ResourcesOfTask getTasksUsingGET(shipmentNumber, xVolTenant, xVolSite)
+> CollectionModelOfTask getTasksUsingGET(shipmentNumber, xVolTenant, xVolSite)
 
 getTasks
 
@@ -638,7 +1042,7 @@ Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourcesOfTask result = apiInstance.getTasksUsingGET(shipmentNumber, xVolTenant, xVolSite);
+    CollectionModelOfTask result = apiInstance.getTasksUsingGET(shipmentNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#getTasksUsingGET");
@@ -656,7 +1060,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourcesOfTask**](ResourcesOfTask.md)
+[**CollectionModelOfTask**](CollectionModelOfTask.md)
 
 ### Authorization
 
@@ -669,7 +1073,7 @@ No authorization required
 
 <a name="newShipmentUsingPOST"></a>
 # **newShipmentUsingPOST**
-> ResourceOfShipment newShipmentUsingPOST(xVolTenant, shipment, xVolSite)
+> EntityModelOfShipment newShipmentUsingPOST(xVolTenant, shipment, xVolSite)
 
 newShipment
 
@@ -685,7 +1089,7 @@ Integer xVolTenant = 56; // Integer |
 Shipment shipment = new Shipment(); // Shipment | newShipment
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.newShipmentUsingPOST(xVolTenant, shipment, xVolSite);
+    EntityModelOfShipment result = apiInstance.newShipmentUsingPOST(xVolTenant, shipment, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#newShipmentUsingPOST");
@@ -703,7 +1107,103 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="newShipmentsUsingPOST"></a>
+# **newShipmentsUsingPOST**
+> CollectionModelOfEntityModelOfShipment newShipmentsUsingPOST(xVolTenant, shipment, xVolSite)
+
+newShipments
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer xVolTenant = 56; // Integer | 
+List<Shipment> shipment = Arrays.asList(null); // List<Shipment> | newShipments
+Integer xVolSite = 56; // Integer | 
+try {
+    CollectionModelOfEntityModelOfShipment result = apiInstance.newShipmentsUsingPOST(xVolTenant, shipment, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#newShipmentsUsingPOST");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xVolTenant** | **Integer**|  |
+ **shipment** | [**List&lt;Shipment&gt;**](List.md)| newShipments |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**CollectionModelOfEntityModelOfShipment**](CollectionModelOfEntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="pickupItemsUsingPOST"></a>
+# **pickupItemsUsingPOST**
+> EntityModelOfShipment pickupItemsUsingPOST(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite)
+
+pickupItems
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+PickupItemsRequest pickupItemsRequest = new PickupItemsRequest(); // PickupItemsRequest | pickupItemsRequestDto
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.pickupItemsUsingPOST(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#pickupItemsUsingPOST");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **pickupItemsRequest** | [**PickupItemsRequest**](PickupItemsRequest.md)| pickupItemsRequestDto |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -716,7 +1216,7 @@ No authorization required
 
 <a name="reassignItemsUsingPUT"></a>
 # **reassignItemsUsingPUT**
-> ResourceOfShipment reassignItemsUsingPUT(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite)
+> EntityModelOfShipment reassignItemsUsingPUT(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite)
 
 reassignItems
 
@@ -733,7 +1233,7 @@ Integer xVolTenant = 56; // Integer |
 ReassignItemsRequest reassignItemsRequest = new ReassignItemsRequest(); // ReassignItemsRequest | reassignItemsRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.reassignItemsUsingPUT(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite);
+    EntityModelOfShipment result = apiInstance.reassignItemsUsingPUT(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#reassignItemsUsingPUT");
@@ -752,7 +1252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -765,7 +1265,7 @@ No authorization required
 
 <a name="reassignShipmentUsingPUT"></a>
 # **reassignShipmentUsingPUT**
-> ResourceOfShipment reassignShipmentUsingPUT(shipmentNumber, xVolTenant, reassignShipment, xVolSite)
+> EntityModelOfShipment reassignShipmentUsingPUT(shipmentNumber, xVolTenant, reassignShipment, xVolSite)
 
 reassignShipment
 
@@ -782,7 +1282,7 @@ Integer xVolTenant = 56; // Integer |
 ReassignShipment reassignShipment = new ReassignShipment(); // ReassignShipment | reassignShipmentRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.reassignShipmentUsingPUT(shipmentNumber, xVolTenant, reassignShipment, xVolSite);
+    EntityModelOfShipment result = apiInstance.reassignShipmentUsingPUT(shipmentNumber, xVolTenant, reassignShipment, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#reassignShipmentUsingPUT");
@@ -801,7 +1301,152 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="receiveTransferUsingPUT"></a>
+# **receiveTransferUsingPUT**
+> EntityModelOfShipment receiveTransferUsingPUT(shipmentNumber, xVolTenant, xVolSite)
+
+receiveTransfer
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.receiveTransferUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#receiveTransferUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="refreshShipmentUsingPUT"></a>
+# **refreshShipmentUsingPUT**
+> EntityModelOfShipment refreshShipmentUsingPUT(shipmentNumber, xVolTenant, shouldLog, xVolSite)
+
+refreshShipment
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+Boolean shouldLog = true; // Boolean | shouldLog
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.refreshShipmentUsingPUT(shipmentNumber, xVolTenant, shouldLog, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#refreshShipmentUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **shouldLog** | **Boolean**| shouldLog | [optional]
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="rejectItemsUsingPUT"></a>
+# **rejectItemsUsingPUT**
+> EntityModelOfShipment rejectItemsUsingPUT(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite)
+
+rejectItems
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+RejectItemsRequest rejectItemsRequest = new RejectItemsRequest(); // RejectItemsRequest | rejectItemsRequestDto
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.rejectItemsUsingPUT(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#rejectItemsUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **rejectItemsRequest** | [**RejectItemsRequest**](RejectItemsRequest.md)| rejectItemsRequestDto |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -814,7 +1459,7 @@ No authorization required
 
 <a name="rejectShipmentUsingPUT"></a>
 # **rejectShipmentUsingPUT**
-> ResourceOfShipment rejectShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite)
+> EntityModelOfShipment rejectShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite)
 
 rejectShipment
 
@@ -831,7 +1476,7 @@ Integer xVolTenant = 56; // Integer |
 RejectShipment rejectShipment = new RejectShipment(); // RejectShipment | rejectShipmentRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.rejectShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
+    EntityModelOfShipment result = apiInstance.rejectShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#rejectShipmentUsingPUT");
@@ -850,7 +1495,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -863,7 +1508,7 @@ No authorization required
 
 <a name="replaceShipmentUsingPUT"></a>
 # **replaceShipmentUsingPUT**
-> ResourceOfShipment replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite)
+> EntityModelOfShipment replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite)
 
 replaceShipment
 
@@ -881,7 +1526,7 @@ Shipment shipment = new Shipment(); // Shipment | newShipment
 List<String> updateFields = Arrays.asList(); // List<String> | updateFields
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
+    EntityModelOfShipment result = apiInstance.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#replaceShipmentUsingPUT");
@@ -901,7 +1546,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -912,9 +1557,56 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/xml, application/json, application/hal+json
 
+<a name="retryFulfillingShipmentUsingPUT"></a>
+# **retryFulfillingShipmentUsingPUT**
+> EntityModelOfShipment retryFulfillingShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite)
+
+retryFulfillingShipment
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.retryFulfillingShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#retryFulfillingShipmentUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
 <a name="revertUsingPUT"></a>
 # **revertUsingPUT**
-> ResourceOfShipment revertUsingPUT(shipmentNumber, taskId, xVolTenant, xVolSite)
+> EntityModelOfShipment revertUsingPUT(shipmentNumber, taskName, xVolTenant, xVolSite)
 
 revert
 
@@ -927,11 +1619,11 @@ revert
 
 ShipmentControllerApi apiInstance = new ShipmentControllerApi();
 Integer shipmentNumber = 56; // Integer | shipmentNumber
-String taskId = "taskId_example"; // String | taskId
+String taskName = "taskName_example"; // String | taskName
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.revertUsingPUT(shipmentNumber, taskId, xVolTenant, xVolSite);
+    EntityModelOfShipment result = apiInstance.revertUsingPUT(shipmentNumber, taskName, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#revertUsingPUT");
@@ -944,13 +1636,60 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentNumber** | **Integer**| shipmentNumber |
- **taskId** | **String**| taskId |
+ **taskName** | **String**| taskName |
  **xVolTenant** | **Integer**|  |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="searchAndReceiveTransferUsingPUT"></a>
+# **searchAndReceiveTransferUsingPUT**
+> EntityModelOfShipment searchAndReceiveTransferUsingPUT(search, xVolTenant, xVolSite)
+
+searchAndReceiveTransfer
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+String search = "search_example"; // String | search
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.searchAndReceiveTransferUsingPUT(search, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#searchAndReceiveTransferUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **search** | **String**| search |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -963,7 +1702,7 @@ No authorization required
 
 <a name="skipTaskUsingPUT"></a>
 # **skipTaskUsingPUT**
-> ResourceOfShipment skipTaskUsingPUT(shipmentNumber, taskId, xVolTenant, xVolSite)
+> EntityModelOfShipment skipTaskUsingPUT(shipmentNumber, taskName, xVolTenant, xVolSite)
 
 skipTask
 
@@ -976,11 +1715,11 @@ skipTask
 
 ShipmentControllerApi apiInstance = new ShipmentControllerApi();
 Integer shipmentNumber = 56; // Integer | shipmentNumber
-String taskId = "taskId_example"; // String | taskId
+String taskName = "taskName_example"; // String | taskName
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.skipTaskUsingPUT(shipmentNumber, taskId, xVolTenant, xVolSite);
+    EntityModelOfShipment result = apiInstance.skipTaskUsingPUT(shipmentNumber, taskName, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ShipmentControllerApi#skipTaskUsingPUT");
@@ -993,13 +1732,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentNumber** | **Integer**| shipmentNumber |
- **taskId** | **String**| taskId |
+ **taskName** | **String**| taskName |
  **xVolTenant** | **Integer**|  |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -1010,11 +1749,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/xml, application/json, application/hal+json
 
-<a name="updatePackageUsingPUT"></a>
-# **updatePackageUsingPUT**
-> ResourceOfShipment updatePackageUsingPUT(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite)
+<a name="transferItemsUsingPUT"></a>
+# **transferItemsUsingPUT**
+> EntityModelOfShipment transferItemsUsingPUT(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite)
 
-updatePackage
+transferItems
 
 ### Example
 ```java
@@ -1024,16 +1763,15 @@ updatePackage
 
 
 ShipmentControllerApi apiInstance = new ShipmentControllerApi();
-String packageId = "packageId_example"; // String | packageId
 Integer shipmentNumber = 56; // Integer | shipmentNumber
 Integer xVolTenant = 56; // Integer | 
-ModelPackage modelPackage = new ModelPackage(); // ModelPackage | packageDto
+TransferItemsRequest transferItemsRequest = new TransferItemsRequest(); // TransferItemsRequest | transferItemsRequestDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfShipment result = apiInstance.updatePackageUsingPUT(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite);
+    EntityModelOfShipment result = apiInstance.transferItemsUsingPUT(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ShipmentControllerApi#updatePackageUsingPUT");
+    System.err.println("Exception when calling ShipmentControllerApi#transferItemsUsingPUT");
     e.printStackTrace();
 }
 ```
@@ -1042,15 +1780,63 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **packageId** | **String**| packageId |
  **shipmentNumber** | **Integer**| shipmentNumber |
  **xVolTenant** | **Integer**|  |
- **modelPackage** | [**ModelPackage**](ModelPackage.md)| packageDto |
+ **transferItemsRequest** | [**TransferItemsRequest**](TransferItemsRequest.md)| transferItemsRequestDto |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**ResourceOfShipment**](ResourceOfShipment.md)
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="transferShipmentUsingPUT"></a>
+# **transferShipmentUsingPUT**
+> EntityModelOfShipment transferShipmentUsingPUT(shipmentNumber, xVolTenant, transferShipment, xVolSite)
+
+transferShipment
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.ShipmentControllerApi;
+
+
+ShipmentControllerApi apiInstance = new ShipmentControllerApi();
+Integer shipmentNumber = 56; // Integer | shipmentNumber
+Integer xVolTenant = 56; // Integer | 
+TransferShipment transferShipment = new TransferShipment(); // TransferShipment | transferShipmentRequestDto
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfShipment result = apiInstance.transferShipmentUsingPUT(shipmentNumber, xVolTenant, transferShipment, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ShipmentControllerApi#transferShipmentUsingPUT");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **shipmentNumber** | **Integer**| shipmentNumber |
+ **xVolTenant** | **Integer**|  |
+ **transferShipment** | [**TransferShipment**](TransferShipment.md)| transferShipmentRequestDto |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfShipment**](EntityModelOfShipment.md)
 
 ### Authorization
 
@@ -1106,7 +1892,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml
+ - **Accept**: application/xml, image/svg+xml
 
 <a name="workflowInstanceImageUsingGET"></a>
 # **workflowInstanceImageUsingGET**
@@ -1153,5 +1939,5 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/xml
+ - **Accept**: application/xml, image/svg+xml
 

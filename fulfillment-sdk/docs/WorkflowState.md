@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **processInstanceId** | **String** |  |  [optional]
 **shipmentState** | **String** |  |  [optional]
 **taskList** | [**List&lt;Task&gt;**](Task.md) |  |  [optional]
+**variables** | [**Map&lt;String, BpmVariable&gt;**](BpmVariable.md) |  |  [optional]
 
 
 

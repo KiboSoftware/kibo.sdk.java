@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -14,8 +14,8 @@
 package com.kibocommerce.sdk.fulfillment.api;
 
 import com.kibocommerce.sdk.fulfillment.ApiException;
-import com.kibocommerce.sdk.fulfillment.model.ResourceOfWorkflowProcess;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfResourceOfWorkflowProcess;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfEntityModelOfWorkflowProcess;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfWorkflowProcess;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -34,7 +34,7 @@ public class WorkflowProcessControllerApiTest {
 
     
     /**
-     * getWorkflowProcess
+     * getDefinitionImage
      *
      * 
      *
@@ -42,12 +42,68 @@ public class WorkflowProcessControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getWorkflowProcessUsingGETTest() throws ApiException {
-        String containerId = null;
+    public void getDefinitionImageUsingGETTest() throws ApiException {
+        String containerIdOrAlias = null;
         String processId = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfWorkflowProcess response = api.getWorkflowProcessUsingGET(containerId, processId, xVolTenant, xVolSite);
+        String response = api.getDefinitionImageUsingGET(containerIdOrAlias, processId, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * getWorkflowProcessByShipmentTypeLocationCode
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getWorkflowProcessByShipmentTypeLocationCodeUsingGETTest() throws ApiException {
+        String locationCode = null;
+        String shipmentType = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfWorkflowProcess response = api.getWorkflowProcessByShipmentTypeLocationCodeUsingGET(locationCode, shipmentType, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETTest() throws ApiException {
+        String locationGroupCode = null;
+        String shipmentType = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfWorkflowProcess response = api.getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(locationGroupCode, shipmentType, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * getWorkflowProcessByShipmentType
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getWorkflowProcessByShipmentTypeUsingGETTest() throws ApiException {
+        String shipmentType = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfWorkflowProcess response = api.getWorkflowProcessByShipmentTypeUsingGET(shipmentType, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -61,11 +117,12 @@ public class WorkflowProcessControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getWorkflowProcessUsingGET1Test() throws ApiException {
-        String shipmentType = null;
+    public void getWorkflowProcessUsingGETTest() throws ApiException {
+        String containerIdOrAlias = null;
+        String processId = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfWorkflowProcess response = api.getWorkflowProcessUsingGET1(shipmentType, xVolTenant, xVolSite);
+        EntityModelOfWorkflowProcess response = api.getWorkflowProcessUsingGET(containerIdOrAlias, processId, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -82,7 +139,7 @@ public class WorkflowProcessControllerApiTest {
     public void getWorkflowProcessesUsingGETTest() throws ApiException {
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourcesOfResourceOfWorkflowProcess response = api.getWorkflowProcessesUsingGET(xVolTenant, xVolSite);
+        CollectionModelOfEntityModelOfWorkflowProcess response = api.getWorkflowProcessesUsingGET(xVolTenant, xVolSite);
 
         // TODO: test validations
     }

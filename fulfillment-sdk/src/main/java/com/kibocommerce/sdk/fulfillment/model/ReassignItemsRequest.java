@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -30,11 +30,33 @@ import java.util.List;
 /**
  * ReassignItemsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class ReassignItemsRequest {
+  public static final String SERIALIZED_NAME_IS_USER_ACTION = "isUserAction";
+  @SerializedName(SERIALIZED_NAME_IS_USER_ACTION)
+  private Boolean isUserAction;
+
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<ReassignItem> items = null;
+
+  public ReassignItemsRequest isUserAction(Boolean isUserAction) {
+    this.isUserAction = isUserAction;
+    return this;
+  }
+
+   /**
+   * Get isUserAction
+   * @return isUserAction
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getIsUserAction() {
+    return isUserAction;
+  }
+
+  public void setIsUserAction(Boolean isUserAction) {
+    this.isUserAction = isUserAction;
+  }
 
   public ReassignItemsRequest items(List<ReassignItem> items) {
     this.items = items;
@@ -72,12 +94,13 @@ public class ReassignItemsRequest {
       return false;
     }
     ReassignItemsRequest reassignItemsRequest = (ReassignItemsRequest) o;
-    return Objects.equals(this.items, reassignItemsRequest.items);
+    return Objects.equals(this.isUserAction, reassignItemsRequest.isUserAction) &&
+        Objects.equals(this.items, reassignItemsRequest.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(isUserAction, items);
   }
 
 
@@ -86,6 +109,7 @@ public class ReassignItemsRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReassignItemsRequest {\n");
     
+    sb.append("    isUserAction: ").append(toIndentedString(isUserAction)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();

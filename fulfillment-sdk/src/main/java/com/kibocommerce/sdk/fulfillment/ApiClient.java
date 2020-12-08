@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -57,7 +57,7 @@ import com.kibocommerce.sdk.fulfillment.auth.OAuthFlow;
 
 public class ApiClient {
 
-    private String basePath = "http://services-tp.dev01.kubedev.kibo-dev.com/kibo.fulfillment.webapi";
+    private String basePath = "http://2.services.sb.ng-qa.dev.kibocommerce.com/kibo.fulfillment.webapi";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
@@ -118,7 +118,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g http://services-tp.dev01.kubedev.kibo-dev.com/kibo.fulfillment.webapi
+     * @param basePath Base path of the URL (e.g http://2.services.sb.ng-qa.dev.kibocommerce.com/kibo.fulfillment.webapi
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

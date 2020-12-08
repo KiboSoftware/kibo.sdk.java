@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * Destination
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class Destination {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
@@ -38,13 +38,13 @@ public class Destination {
   @SerializedName(SERIALIZED_NAME_DESTINATION_CONTACT)
   private Contact destinationContact = null;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
   public static final String SERIALIZED_NAME_IS_DESTINATION_COMMERCIAL = "isDestinationCommercial";
   @SerializedName(SERIALIZED_NAME_IS_DESTINATION_COMMERCIAL)
   private Boolean isDestinationCommercial;
+
+  public static final String SERIALIZED_NAME_LOCATION_CODE = "locationCode";
+  @SerializedName(SERIALIZED_NAME_LOCATION_CODE)
+  private String locationCode;
 
   public Destination data(Object data) {
     this.data = data;
@@ -82,24 +82,6 @@ public class Destination {
     this.destinationContact = destinationContact;
   }
 
-  public Destination id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
   public Destination isDestinationCommercial(Boolean isDestinationCommercial) {
     this.isDestinationCommercial = isDestinationCommercial;
     return this;
@@ -118,6 +100,24 @@ public class Destination {
     this.isDestinationCommercial = isDestinationCommercial;
   }
 
+  public Destination locationCode(String locationCode) {
+    this.locationCode = locationCode;
+    return this;
+  }
+
+   /**
+   * Get locationCode
+   * @return locationCode
+  **/
+  @ApiModelProperty(value = "")
+  public String getLocationCode() {
+    return locationCode;
+  }
+
+  public void setLocationCode(String locationCode) {
+    this.locationCode = locationCode;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -130,13 +130,13 @@ public class Destination {
     Destination destination = (Destination) o;
     return Objects.equals(this.data, destination.data) &&
         Objects.equals(this.destinationContact, destination.destinationContact) &&
-        Objects.equals(this.id, destination.id) &&
-        Objects.equals(this.isDestinationCommercial, destination.isDestinationCommercial);
+        Objects.equals(this.isDestinationCommercial, destination.isDestinationCommercial) &&
+        Objects.equals(this.locationCode, destination.locationCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, destinationContact, id, isDestinationCommercial);
+    return Objects.hash(data, destinationContact, isDestinationCommercial, locationCode);
   }
 
 
@@ -147,8 +147,8 @@ public class Destination {
     
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    destinationContact: ").append(toIndentedString(destinationContact)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isDestinationCommercial: ").append(toIndentedString(isDestinationCommercial)).append("\n");
+    sb.append("    locationCode: ").append(toIndentedString(locationCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

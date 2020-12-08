@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -32,17 +32,25 @@ import com.kibocommerce.sdk.fulfillment.model.BackorderItemsUpdateRequest;
 import com.kibocommerce.sdk.fulfillment.model.BackorderShipmentRequest;
 import com.kibocommerce.sdk.fulfillment.model.CancelItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.CancelShipment;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfDashboardResponse;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfEntityModelOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfLocationSummary;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfTask;
 import com.kibocommerce.sdk.fulfillment.model.Destination;
-import com.kibocommerce.sdk.fulfillment.model.ModelPackage;
-import com.kibocommerce.sdk.fulfillment.model.PagedResourcesOfResourceOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfDashboardResponse;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfShipment;
+import org.threeten.bp.OffsetDateTime;
+import com.kibocommerce.sdk.fulfillment.model.PagedModelOfEntityModelOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.PickupItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.ReassignItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.ReassignShipment;
+import com.kibocommerce.sdk.fulfillment.model.RejectItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.RejectShipment;
-import com.kibocommerce.sdk.fulfillment.model.ResourceOfShipment;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfDashboardResponse;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfTask;
 import com.kibocommerce.sdk.fulfillment.model.Shipment;
 import com.kibocommerce.sdk.fulfillment.model.TaskComplete;
+import com.kibocommerce.sdk.fulfillment.model.TransferItemsRequest;
+import com.kibocommerce.sdk.fulfillment.model.TransferShipment;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -160,11 +168,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param backorderItemsUpdateRequest backorderItemsUpdateRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment backorderItemsUpdateUsingPUT(Integer shipmentNumber, Integer xVolTenant, BackorderItemsUpdateRequest backorderItemsUpdateRequest, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = backorderItemsUpdateUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite);
+    public EntityModelOfShipment backorderItemsUpdateUsingPUT(Integer shipmentNumber, Integer xVolTenant, BackorderItemsUpdateRequest backorderItemsUpdateRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = backorderItemsUpdateUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite);
         return resp.getData();
     }
 
@@ -175,12 +183,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param backorderItemsUpdateRequest backorderItemsUpdateRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> backorderItemsUpdateUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, BackorderItemsUpdateRequest backorderItemsUpdateRequest, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> backorderItemsUpdateUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, BackorderItemsUpdateRequest backorderItemsUpdateRequest, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = backorderItemsUpdateUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -195,7 +203,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call backorderItemsUpdateUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, BackorderItemsUpdateRequest backorderItemsUpdateRequest, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call backorderItemsUpdateUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, BackorderItemsUpdateRequest backorderItemsUpdateRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -217,7 +225,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = backorderItemsUpdateUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -312,11 +320,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param backorderItemsRequest backorderItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment backorderItemsUsingPOST(Integer shipmentNumber, Integer xVolTenant, BackorderItemsRequest backorderItemsRequest, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = backorderItemsUsingPOSTWithHttpInfo(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite);
+    public EntityModelOfShipment backorderItemsUsingPOST(Integer shipmentNumber, Integer xVolTenant, BackorderItemsRequest backorderItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = backorderItemsUsingPOSTWithHttpInfo(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite);
         return resp.getData();
     }
 
@@ -327,12 +335,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param backorderItemsRequest backorderItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> backorderItemsUsingPOSTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, BackorderItemsRequest backorderItemsRequest, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> backorderItemsUsingPOSTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, BackorderItemsRequest backorderItemsRequest, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = backorderItemsUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -347,7 +355,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call backorderItemsUsingPOSTAsync(Integer shipmentNumber, Integer xVolTenant, BackorderItemsRequest backorderItemsRequest, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call backorderItemsUsingPOSTAsync(Integer shipmentNumber, Integer xVolTenant, BackorderItemsRequest backorderItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -369,7 +377,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = backorderItemsUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -464,11 +472,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param backorderShipmentRequest backorderShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment backorderShipmentUsingPOST(Integer shipmentNumber, Integer xVolTenant, BackorderShipmentRequest backorderShipmentRequest, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = backorderShipmentUsingPOSTWithHttpInfo(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite);
+    public EntityModelOfShipment backorderShipmentUsingPOST(Integer shipmentNumber, Integer xVolTenant, BackorderShipmentRequest backorderShipmentRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = backorderShipmentUsingPOSTWithHttpInfo(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite);
         return resp.getData();
     }
 
@@ -479,12 +487,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param backorderShipmentRequest backorderShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> backorderShipmentUsingPOSTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, BackorderShipmentRequest backorderShipmentRequest, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> backorderShipmentUsingPOSTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, BackorderShipmentRequest backorderShipmentRequest, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = backorderShipmentUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -499,7 +507,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call backorderShipmentUsingPOSTAsync(Integer shipmentNumber, Integer xVolTenant, BackorderShipmentRequest backorderShipmentRequest, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call backorderShipmentUsingPOSTAsync(Integer shipmentNumber, Integer xVolTenant, BackorderShipmentRequest backorderShipmentRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -521,7 +529,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = backorderShipmentUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -616,11 +624,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param cancelItemsRequest cancelItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment cancelItemsUsingPUT(Integer shipmentNumber, Integer xVolTenant, CancelItemsRequest cancelItemsRequest, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = cancelItemsUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite);
+    public EntityModelOfShipment cancelItemsUsingPUT(Integer shipmentNumber, Integer xVolTenant, CancelItemsRequest cancelItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = cancelItemsUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite);
         return resp.getData();
     }
 
@@ -631,12 +639,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param cancelItemsRequest cancelItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> cancelItemsUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, CancelItemsRequest cancelItemsRequest, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> cancelItemsUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, CancelItemsRequest cancelItemsRequest, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = cancelItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -651,7 +659,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call cancelItemsUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, CancelItemsRequest cancelItemsRequest, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call cancelItemsUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, CancelItemsRequest cancelItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -673,7 +681,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = cancelItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -768,11 +776,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param cancelShipment cancelShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment cancelShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = cancelShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, cancelShipment, xVolSite);
+    public EntityModelOfShipment cancelShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = cancelShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, cancelShipment, xVolSite);
         return resp.getData();
     }
 
@@ -783,12 +791,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param cancelShipment cancelShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> cancelShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> cancelShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = cancelShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, cancelShipment, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -803,7 +811,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call cancelShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call cancelShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -825,7 +833,901 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = cancelShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, cancelShipment, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for cancelShipmentsUsingPUT
+     * @param orderId orderId (required)
+     * @param xVolTenant  (required)
+     * @param cancelShipment cancelShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call cancelShipmentsUsingPUTCall(String orderId, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = cancelShipment;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/order/{orderId}/canceled"
+            .replaceAll("\\{" + "orderId" + "\\}", apiClient.escapeString(orderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call cancelShipmentsUsingPUTValidateBeforeCall(String orderId, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling cancelShipmentsUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling cancelShipmentsUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'cancelShipment' is set
+        if (cancelShipment == null) {
+            throw new ApiException("Missing the required parameter 'cancelShipment' when calling cancelShipmentsUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = cancelShipmentsUsingPUTCall(orderId, xVolTenant, cancelShipment, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * cancelShipments
+     * 
+     * @param orderId orderId (required)
+     * @param xVolTenant  (required)
+     * @param cancelShipment cancelShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return CollectionModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CollectionModelOfShipment cancelShipmentsUsingPUT(String orderId, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfShipment> resp = cancelShipmentsUsingPUTWithHttpInfo(orderId, xVolTenant, cancelShipment, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * cancelShipments
+     * 
+     * @param orderId orderId (required)
+     * @param xVolTenant  (required)
+     * @param cancelShipment cancelShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;CollectionModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CollectionModelOfShipment> cancelShipmentsUsingPUTWithHttpInfo(String orderId, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = cancelShipmentsUsingPUTValidateBeforeCall(orderId, xVolTenant, cancelShipment, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<CollectionModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * cancelShipments (asynchronously)
+     * 
+     * @param orderId orderId (required)
+     * @param xVolTenant  (required)
+     * @param cancelShipment cancelShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call cancelShipmentsUsingPUTAsync(String orderId, Integer xVolTenant, CancelShipment cancelShipment, Integer xVolSite, final ApiCallback<CollectionModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = cancelShipmentsUsingPUTValidateBeforeCall(orderId, xVolTenant, cancelShipment, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CollectionModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for customerAtCurbsideUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param requestBody pickupInfo (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call customerAtCurbsideUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Map<String, Object> requestBody, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = requestBody;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/customerAtCurbside"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call customerAtCurbsideUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Map<String, Object> requestBody, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling customerAtCurbsideUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling customerAtCurbsideUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling customerAtCurbsideUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = customerAtCurbsideUsingPUTCall(shipmentNumber, xVolTenant, requestBody, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * customerAtCurbside
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param requestBody pickupInfo (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment customerAtCurbsideUsingPUT(Integer shipmentNumber, Integer xVolTenant, Map<String, Object> requestBody, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = customerAtCurbsideUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, requestBody, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * customerAtCurbside
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param requestBody pickupInfo (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> customerAtCurbsideUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Map<String, Object> requestBody, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = customerAtCurbsideUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, requestBody, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * customerAtCurbside (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param requestBody pickupInfo (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call customerAtCurbsideUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Map<String, Object> requestBody, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = customerAtCurbsideUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, requestBody, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for customerAtStoreUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call customerAtStoreUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/customerAtStore"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call customerAtStoreUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling customerAtStoreUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling customerAtStoreUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = customerAtStoreUsingPUTCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * customerAtStore
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment customerAtStoreUsingPUT(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = customerAtStoreUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * customerAtStore
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> customerAtStoreUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = customerAtStoreUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * customerAtStore (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call customerAtStoreUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = customerAtStoreUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for customerCareItemsUsingPOST
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call customerCareItemsUsingPOSTCall(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = rejectItemsRequest;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/customerCaredItems"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call customerCareItemsUsingPOSTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling customerCareItemsUsingPOST(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling customerCareItemsUsingPOST(Async)");
+        }
+        
+        // verify the required parameter 'rejectItemsRequest' is set
+        if (rejectItemsRequest == null) {
+            throw new ApiException("Missing the required parameter 'rejectItemsRequest' when calling customerCareItemsUsingPOST(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = customerCareItemsUsingPOSTCall(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * customerCareItems
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment customerCareItemsUsingPOST(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = customerCareItemsUsingPOSTWithHttpInfo(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * customerCareItems
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> customerCareItemsUsingPOSTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = customerCareItemsUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * customerCareItems (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call customerCareItemsUsingPOSTAsync(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = customerCareItemsUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for customerCareShipmentUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectShipment rejectShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call customerCareShipmentUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = rejectShipment;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/customerCared"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call customerCareShipmentUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling customerCareShipmentUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling customerCareShipmentUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'rejectShipment' is set
+        if (rejectShipment == null) {
+            throw new ApiException("Missing the required parameter 'rejectShipment' when calling customerCareShipmentUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = customerCareShipmentUsingPUTCall(shipmentNumber, xVolTenant, rejectShipment, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * customerCareShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectShipment rejectShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment customerCareShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = customerCareShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * customerCareShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectShipment rejectShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> customerCareShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = customerCareShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, rejectShipment, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * customerCareShipment (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectShipment rejectShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call customerCareShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = customerCareShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, rejectShipment, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for customerInTransitUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call customerInTransitUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/customerInTransit"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call customerInTransitUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling customerInTransitUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling customerInTransitUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = customerInTransitUsingPUTCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * customerInTransit
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment customerInTransitUsingPUT(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = customerInTransitUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * customerInTransit
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> customerInTransitUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = customerInTransitUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * customerInTransit (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call customerInTransitUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = customerInTransitUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1059,11 +1961,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param destination destinationDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment destinationUpdateUsingPUT(Integer shipmentNumber, Integer xVolTenant, Destination destination, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = destinationUpdateUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, destination, xVolSite);
+    public EntityModelOfShipment destinationUpdateUsingPUT(Integer shipmentNumber, Integer xVolTenant, Destination destination, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = destinationUpdateUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, destination, xVolSite);
         return resp.getData();
     }
 
@@ -1074,12 +1976,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param destination destinationDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> destinationUpdateUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Destination destination, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> destinationUpdateUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Destination destination, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = destinationUpdateUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, destination, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1094,7 +1996,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call destinationUpdateUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Destination destination, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call destinationUpdateUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Destination destination, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1116,14 +2018,14 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = destinationUpdateUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, destination, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for executeUsingPUT
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param taskComplete taskCompleteDto (required)
      * @param xVolSite  (optional)
@@ -1132,13 +2034,13 @@ public class ShipmentControllerApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call executeUsingPUTCall(Integer shipmentNumber, String taskId, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call executeUsingPUTCall(Integer shipmentNumber, String taskName, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = taskComplete;
 
         // create path and map variables
-        String localVarPath = "/commerce/shipments/{shipmentNumber}/tasks/{taskId}/completed"
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/tasks/{taskName}/completed"
             .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()))
-            .replaceAll("\\{" + "taskId" + "\\}", apiClient.escapeString(taskId.toString()));
+            .replaceAll("\\{" + "taskName" + "\\}", apiClient.escapeString(taskName.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1183,16 +2085,16 @@ public class ShipmentControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call executeUsingPUTValidateBeforeCall(Integer shipmentNumber, String taskId, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call executeUsingPUTValidateBeforeCall(Integer shipmentNumber, String taskName, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'shipmentNumber' is set
         if (shipmentNumber == null) {
             throw new ApiException("Missing the required parameter 'shipmentNumber' when calling executeUsingPUT(Async)");
         }
         
-        // verify the required parameter 'taskId' is set
-        if (taskId == null) {
-            throw new ApiException("Missing the required parameter 'taskId' when calling executeUsingPUT(Async)");
+        // verify the required parameter 'taskName' is set
+        if (taskName == null) {
+            throw new ApiException("Missing the required parameter 'taskName' when calling executeUsingPUT(Async)");
         }
         
         // verify the required parameter 'xVolTenant' is set
@@ -1206,7 +2108,7 @@ public class ShipmentControllerApi {
         }
         
 
-        com.squareup.okhttp.Call call = executeUsingPUTCall(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = executeUsingPUTCall(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1215,15 +2117,15 @@ public class ShipmentControllerApi {
      * execute
      * 
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param taskComplete taskCompleteDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment executeUsingPUT(Integer shipmentNumber, String taskId, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = executeUsingPUTWithHttpInfo(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite);
+    public EntityModelOfShipment executeUsingPUT(Integer shipmentNumber, String taskName, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = executeUsingPUTWithHttpInfo(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite);
         return resp.getData();
     }
 
@@ -1231,16 +2133,16 @@ public class ShipmentControllerApi {
      * execute
      * 
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param taskComplete taskCompleteDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> executeUsingPUTWithHttpInfo(Integer shipmentNumber, String taskId, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = executeUsingPUTValidateBeforeCall(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+    public ApiResponse<EntityModelOfShipment> executeUsingPUTWithHttpInfo(Integer shipmentNumber, String taskName, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = executeUsingPUTValidateBeforeCall(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1248,7 +2150,7 @@ public class ShipmentControllerApi {
      * execute (asynchronously)
      * 
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param taskComplete taskCompleteDto (required)
      * @param xVolSite  (optional)
@@ -1256,7 +2158,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call executeUsingPUTAsync(Integer shipmentNumber, String taskId, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call executeUsingPUTAsync(Integer shipmentNumber, String taskName, Integer xVolTenant, TaskComplete taskComplete, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1277,8 +2179,8 @@ public class ShipmentControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = executeUsingPUTValidateBeforeCall(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        com.squareup.okhttp.Call call = executeUsingPUTValidateBeforeCall(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1366,11 +2268,11 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment fulfillShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = fulfillShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+    public EntityModelOfShipment fulfillShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = fulfillShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -1380,12 +2282,12 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> fulfillShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> fulfillShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = fulfillShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1399,7 +2301,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call fulfillShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call fulfillShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1421,21 +2323,21 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = fulfillShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for getDashboardUsingGET
-     * @param fulfillmentLocationCodes fulfillmentLocationCodes (required)
      * @param xVolTenant  (required)
+     * @param fulfillmentLocationCodes fulfillmentLocationCodes (optional)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getDashboardUsingGETCall(List<String> fulfillmentLocationCodes, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getDashboardUsingGETCall(Integer xVolTenant, List<String> fulfillmentLocationCodes, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -1488,12 +2390,7 @@ public class ShipmentControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getDashboardUsingGETValidateBeforeCall(List<String> fulfillmentLocationCodes, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'fulfillmentLocationCodes' is set
-        if (fulfillmentLocationCodes == null) {
-            throw new ApiException("Missing the required parameter 'fulfillmentLocationCodes' when calling getDashboardUsingGET(Async)");
-        }
+    private com.squareup.okhttp.Call getDashboardUsingGETValidateBeforeCall(Integer xVolTenant, List<String> fulfillmentLocationCodes, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
@@ -1501,7 +2398,7 @@ public class ShipmentControllerApi {
         }
         
 
-        com.squareup.okhttp.Call call = getDashboardUsingGETCall(fulfillmentLocationCodes, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDashboardUsingGETCall(xVolTenant, fulfillmentLocationCodes, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1509,43 +2406,43 @@ public class ShipmentControllerApi {
     /**
      * getDashboard
      * 
-     * @param fulfillmentLocationCodes fulfillmentLocationCodes (required)
      * @param xVolTenant  (required)
+     * @param fulfillmentLocationCodes fulfillmentLocationCodes (optional)
      * @param xVolSite  (optional)
-     * @return ResourcesOfDashboardResponse
+     * @return CollectionModelOfDashboardResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourcesOfDashboardResponse getDashboardUsingGET(List<String> fulfillmentLocationCodes, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourcesOfDashboardResponse> resp = getDashboardUsingGETWithHttpInfo(fulfillmentLocationCodes, xVolTenant, xVolSite);
+    public CollectionModelOfDashboardResponse getDashboardUsingGET(Integer xVolTenant, List<String> fulfillmentLocationCodes, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfDashboardResponse> resp = getDashboardUsingGETWithHttpInfo(xVolTenant, fulfillmentLocationCodes, xVolSite);
         return resp.getData();
     }
 
     /**
      * getDashboard
      * 
-     * @param fulfillmentLocationCodes fulfillmentLocationCodes (required)
      * @param xVolTenant  (required)
+     * @param fulfillmentLocationCodes fulfillmentLocationCodes (optional)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourcesOfDashboardResponse&gt;
+     * @return ApiResponse&lt;CollectionModelOfDashboardResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourcesOfDashboardResponse> getDashboardUsingGETWithHttpInfo(List<String> fulfillmentLocationCodes, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = getDashboardUsingGETValidateBeforeCall(fulfillmentLocationCodes, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourcesOfDashboardResponse>(){}.getType();
+    public ApiResponse<CollectionModelOfDashboardResponse> getDashboardUsingGETWithHttpInfo(Integer xVolTenant, List<String> fulfillmentLocationCodes, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getDashboardUsingGETValidateBeforeCall(xVolTenant, fulfillmentLocationCodes, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<CollectionModelOfDashboardResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
      * getDashboard (asynchronously)
      * 
-     * @param fulfillmentLocationCodes fulfillmentLocationCodes (required)
      * @param xVolTenant  (required)
+     * @param fulfillmentLocationCodes fulfillmentLocationCodes (optional)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getDashboardUsingGETAsync(List<String> fulfillmentLocationCodes, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourcesOfDashboardResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getDashboardUsingGETAsync(Integer xVolTenant, List<String> fulfillmentLocationCodes, Integer xVolSite, final ApiCallback<CollectionModelOfDashboardResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1566,8 +2463,321 @@ public class ShipmentControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getDashboardUsingGETValidateBeforeCall(fulfillmentLocationCodes, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourcesOfDashboardResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getDashboardUsingGETValidateBeforeCall(xVolTenant, fulfillmentLocationCodes, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CollectionModelOfDashboardResponse>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getLocationSummaryReportUsingGET
+     * @param locationCodes locationCodes (required)
+     * @param startDateTime startDateTime (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getLocationSummaryReportUsingGETCall(List<String> locationCodes, OffsetDateTime startDateTime, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/locationSummaryReport";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (locationCodes != null) {
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "locationCodes", locationCodes));
+        }
+
+        if (startDateTime != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("startDateTime", startDateTime));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getLocationSummaryReportUsingGETValidateBeforeCall(List<String> locationCodes, OffsetDateTime startDateTime, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'locationCodes' is set
+        if (locationCodes == null) {
+            throw new ApiException("Missing the required parameter 'locationCodes' when calling getLocationSummaryReportUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'startDateTime' is set
+        if (startDateTime == null) {
+            throw new ApiException("Missing the required parameter 'startDateTime' when calling getLocationSummaryReportUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getLocationSummaryReportUsingGET(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getLocationSummaryReportUsingGETCall(locationCodes, startDateTime, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * getLocationSummaryReport
+     * 
+     * @param locationCodes locationCodes (required)
+     * @param startDateTime startDateTime (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return CollectionModelOfLocationSummary
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CollectionModelOfLocationSummary getLocationSummaryReportUsingGET(List<String> locationCodes, OffsetDateTime startDateTime, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfLocationSummary> resp = getLocationSummaryReportUsingGETWithHttpInfo(locationCodes, startDateTime, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * getLocationSummaryReport
+     * 
+     * @param locationCodes locationCodes (required)
+     * @param startDateTime startDateTime (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;CollectionModelOfLocationSummary&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CollectionModelOfLocationSummary> getLocationSummaryReportUsingGETWithHttpInfo(List<String> locationCodes, OffsetDateTime startDateTime, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getLocationSummaryReportUsingGETValidateBeforeCall(locationCodes, startDateTime, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<CollectionModelOfLocationSummary>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * getLocationSummaryReport (asynchronously)
+     * 
+     * @param locationCodes locationCodes (required)
+     * @param startDateTime startDateTime (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getLocationSummaryReportUsingGETAsync(List<String> locationCodes, OffsetDateTime startDateTime, Integer xVolTenant, Integer xVolSite, final ApiCallback<CollectionModelOfLocationSummary> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getLocationSummaryReportUsingGETValidateBeforeCall(locationCodes, startDateTime, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CollectionModelOfLocationSummary>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getShipmentStepCountByShipmentTypeUsingGET
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param assignedLocations assignedLocations (optional)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getShipmentStepCountByShipmentTypeUsingGETCall(String shipmentType, Integer xVolTenant, List<String> assignedLocations, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/countsByStep";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (assignedLocations != null) {
+            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "assignedLocations", assignedLocations));
+        }
+
+        if (shipmentType != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("shipmentType", shipmentType));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getShipmentStepCountByShipmentTypeUsingGETValidateBeforeCall(String shipmentType, Integer xVolTenant, List<String> assignedLocations, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentType' is set
+        if (shipmentType == null) {
+            throw new ApiException("Missing the required parameter 'shipmentType' when calling getShipmentStepCountByShipmentTypeUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getShipmentStepCountByShipmentTypeUsingGET(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getShipmentStepCountByShipmentTypeUsingGETCall(shipmentType, xVolTenant, assignedLocations, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * getShipmentStepCountByShipmentType
+     * 
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param assignedLocations assignedLocations (optional)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfDashboardResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfDashboardResponse getShipmentStepCountByShipmentTypeUsingGET(String shipmentType, Integer xVolTenant, List<String> assignedLocations, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfDashboardResponse> resp = getShipmentStepCountByShipmentTypeUsingGETWithHttpInfo(shipmentType, xVolTenant, assignedLocations, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * getShipmentStepCountByShipmentType
+     * 
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param assignedLocations assignedLocations (optional)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfDashboardResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfDashboardResponse> getShipmentStepCountByShipmentTypeUsingGETWithHttpInfo(String shipmentType, Integer xVolTenant, List<String> assignedLocations, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getShipmentStepCountByShipmentTypeUsingGETValidateBeforeCall(shipmentType, xVolTenant, assignedLocations, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfDashboardResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * getShipmentStepCountByShipmentType (asynchronously)
+     * 
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param assignedLocations assignedLocations (optional)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getShipmentStepCountByShipmentTypeUsingGETAsync(String shipmentType, Integer xVolTenant, List<String> assignedLocations, Integer xVolSite, final ApiCallback<EntityModelOfDashboardResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getShipmentStepCountByShipmentTypeUsingGETValidateBeforeCall(shipmentType, xVolTenant, assignedLocations, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfDashboardResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1655,11 +2865,11 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment getShipmentUsingGET(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = getShipmentUsingGETWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+    public EntityModelOfShipment getShipmentUsingGET(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = getShipmentUsingGETWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -1669,12 +2879,12 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> getShipmentUsingGETWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> getShipmentUsingGETWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getShipmentUsingGETValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1688,7 +2898,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getShipmentUsingGETAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call getShipmentUsingGETAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1710,7 +2920,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = getShipmentUsingGETValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1832,11 +3042,11 @@ public class ShipmentControllerApi {
      * @param sort  (optional)
      * @param workflowTaskName  (optional)
      * @param xVolSite  (optional)
-     * @return PagedResourcesOfResourceOfShipment
+     * @return PagedModelOfEntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public PagedResourcesOfResourceOfShipment getShipmentsUsingGET(Integer xVolTenant, String filter, Boolean isLate, Integer page, Integer pageSize, String quickSearch, String sort, String workflowTaskName, Integer xVolSite) throws ApiException {
-        ApiResponse<PagedResourcesOfResourceOfShipment> resp = getShipmentsUsingGETWithHttpInfo(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite);
+    public PagedModelOfEntityModelOfShipment getShipmentsUsingGET(Integer xVolTenant, String filter, Boolean isLate, Integer page, Integer pageSize, String quickSearch, String sort, String workflowTaskName, Integer xVolSite) throws ApiException {
+        ApiResponse<PagedModelOfEntityModelOfShipment> resp = getShipmentsUsingGETWithHttpInfo(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite);
         return resp.getData();
     }
 
@@ -1852,12 +3062,12 @@ public class ShipmentControllerApi {
      * @param sort  (optional)
      * @param workflowTaskName  (optional)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;PagedResourcesOfResourceOfShipment&gt;
+     * @return ApiResponse&lt;PagedModelOfEntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PagedResourcesOfResourceOfShipment> getShipmentsUsingGETWithHttpInfo(Integer xVolTenant, String filter, Boolean isLate, Integer page, Integer pageSize, String quickSearch, String sort, String workflowTaskName, Integer xVolSite) throws ApiException {
+    public ApiResponse<PagedModelOfEntityModelOfShipment> getShipmentsUsingGETWithHttpInfo(Integer xVolTenant, String filter, Boolean isLate, Integer page, Integer pageSize, String quickSearch, String sort, String workflowTaskName, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getShipmentsUsingGETValidateBeforeCall(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<PagedResourcesOfResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<PagedModelOfEntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1877,7 +3087,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getShipmentsUsingGETAsync(Integer xVolTenant, String filter, Boolean isLate, Integer page, Integer pageSize, String quickSearch, String sort, String workflowTaskName, Integer xVolSite, final ApiCallback<PagedResourcesOfResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call getShipmentsUsingGETAsync(Integer xVolTenant, String filter, Boolean isLate, Integer page, Integer pageSize, String quickSearch, String sort, String workflowTaskName, Integer xVolSite, final ApiCallback<PagedModelOfEntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1899,7 +3109,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = getShipmentsUsingGETValidateBeforeCall(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<PagedResourcesOfResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<PagedModelOfEntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1987,11 +3197,11 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourcesOfTask
+     * @return CollectionModelOfTask
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourcesOfTask getTasksUsingGET(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourcesOfTask> resp = getTasksUsingGETWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+    public CollectionModelOfTask getTasksUsingGET(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfTask> resp = getTasksUsingGETWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -2001,12 +3211,12 @@ public class ShipmentControllerApi {
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourcesOfTask&gt;
+     * @return ApiResponse&lt;CollectionModelOfTask&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourcesOfTask> getTasksUsingGETWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<CollectionModelOfTask> getTasksUsingGETWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getTasksUsingGETValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourcesOfTask>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfTask>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2020,7 +3230,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getTasksUsingGETAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourcesOfTask> callback) throws ApiException {
+    public com.squareup.okhttp.Call getTasksUsingGETAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<CollectionModelOfTask> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2042,7 +3252,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = getTasksUsingGETValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourcesOfTask>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfTask>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2129,11 +3339,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param shipment newShipment (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment newShipmentUsingPOST(Integer xVolTenant, Shipment shipment, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = newShipmentUsingPOSTWithHttpInfo(xVolTenant, shipment, xVolSite);
+    public EntityModelOfShipment newShipmentUsingPOST(Integer xVolTenant, Shipment shipment, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = newShipmentUsingPOSTWithHttpInfo(xVolTenant, shipment, xVolSite);
         return resp.getData();
     }
 
@@ -2143,12 +3353,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param shipment newShipment (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> newShipmentUsingPOSTWithHttpInfo(Integer xVolTenant, Shipment shipment, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> newShipmentUsingPOSTWithHttpInfo(Integer xVolTenant, Shipment shipment, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = newShipmentUsingPOSTValidateBeforeCall(xVolTenant, shipment, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2162,7 +3372,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call newShipmentUsingPOSTAsync(Integer xVolTenant, Shipment shipment, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call newShipmentUsingPOSTAsync(Integer xVolTenant, Shipment shipment, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2184,7 +3394,301 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = newShipmentUsingPOSTValidateBeforeCall(xVolTenant, shipment, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for newShipmentsUsingPOST
+     * @param xVolTenant  (required)
+     * @param shipment newShipments (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call newShipmentsUsingPOSTCall(Integer xVolTenant, List<Shipment> shipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = shipment;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/bulk";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call newShipmentsUsingPOSTValidateBeforeCall(Integer xVolTenant, List<Shipment> shipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling newShipmentsUsingPOST(Async)");
+        }
+        
+        // verify the required parameter 'shipment' is set
+        if (shipment == null) {
+            throw new ApiException("Missing the required parameter 'shipment' when calling newShipmentsUsingPOST(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = newShipmentsUsingPOSTCall(xVolTenant, shipment, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * newShipments
+     * 
+     * @param xVolTenant  (required)
+     * @param shipment newShipments (required)
+     * @param xVolSite  (optional)
+     * @return CollectionModelOfEntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CollectionModelOfEntityModelOfShipment newShipmentsUsingPOST(Integer xVolTenant, List<Shipment> shipment, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfEntityModelOfShipment> resp = newShipmentsUsingPOSTWithHttpInfo(xVolTenant, shipment, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * newShipments
+     * 
+     * @param xVolTenant  (required)
+     * @param shipment newShipments (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;CollectionModelOfEntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<CollectionModelOfEntityModelOfShipment> newShipmentsUsingPOSTWithHttpInfo(Integer xVolTenant, List<Shipment> shipment, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = newShipmentsUsingPOSTValidateBeforeCall(xVolTenant, shipment, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<CollectionModelOfEntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * newShipments (asynchronously)
+     * 
+     * @param xVolTenant  (required)
+     * @param shipment newShipments (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call newShipmentsUsingPOSTAsync(Integer xVolTenant, List<Shipment> shipment, Integer xVolSite, final ApiCallback<CollectionModelOfEntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = newShipmentsUsingPOSTValidateBeforeCall(xVolTenant, shipment, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CollectionModelOfEntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for pickupItemsUsingPOST
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param pickupItemsRequest pickupItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call pickupItemsUsingPOSTCall(Integer shipmentNumber, Integer xVolTenant, PickupItemsRequest pickupItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = pickupItemsRequest;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/pickedUpItems"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call pickupItemsUsingPOSTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, PickupItemsRequest pickupItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling pickupItemsUsingPOST(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling pickupItemsUsingPOST(Async)");
+        }
+        
+        // verify the required parameter 'pickupItemsRequest' is set
+        if (pickupItemsRequest == null) {
+            throw new ApiException("Missing the required parameter 'pickupItemsRequest' when calling pickupItemsUsingPOST(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = pickupItemsUsingPOSTCall(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * pickupItems
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param pickupItemsRequest pickupItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment pickupItemsUsingPOST(Integer shipmentNumber, Integer xVolTenant, PickupItemsRequest pickupItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = pickupItemsUsingPOSTWithHttpInfo(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * pickupItems
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param pickupItemsRequest pickupItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> pickupItemsUsingPOSTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, PickupItemsRequest pickupItemsRequest, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = pickupItemsUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * pickupItems (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param pickupItemsRequest pickupItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call pickupItemsUsingPOSTAsync(Integer shipmentNumber, Integer xVolTenant, PickupItemsRequest pickupItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = pickupItemsUsingPOSTValidateBeforeCall(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2279,11 +3783,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param reassignItemsRequest reassignItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment reassignItemsUsingPUT(Integer shipmentNumber, Integer xVolTenant, ReassignItemsRequest reassignItemsRequest, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = reassignItemsUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite);
+    public EntityModelOfShipment reassignItemsUsingPUT(Integer shipmentNumber, Integer xVolTenant, ReassignItemsRequest reassignItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = reassignItemsUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite);
         return resp.getData();
     }
 
@@ -2294,12 +3798,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param reassignItemsRequest reassignItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> reassignItemsUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, ReassignItemsRequest reassignItemsRequest, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> reassignItemsUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, ReassignItemsRequest reassignItemsRequest, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = reassignItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2314,7 +3818,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call reassignItemsUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, ReassignItemsRequest reassignItemsRequest, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call reassignItemsUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, ReassignItemsRequest reassignItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2336,7 +3840,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = reassignItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2431,11 +3935,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param reassignShipment reassignShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment reassignShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, ReassignShipment reassignShipment, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = reassignShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, reassignShipment, xVolSite);
+    public EntityModelOfShipment reassignShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, ReassignShipment reassignShipment, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = reassignShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, reassignShipment, xVolSite);
         return resp.getData();
     }
 
@@ -2446,12 +3950,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param reassignShipment reassignShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> reassignShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, ReassignShipment reassignShipment, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> reassignShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, ReassignShipment reassignShipment, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = reassignShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, reassignShipment, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2466,7 +3970,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call reassignShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, ReassignShipment reassignShipment, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call reassignShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, ReassignShipment reassignShipment, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2488,7 +3992,453 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = reassignShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, reassignShipment, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for receiveTransferUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call receiveTransferUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/received"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call receiveTransferUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling receiveTransferUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling receiveTransferUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = receiveTransferUsingPUTCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * receiveTransfer
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment receiveTransferUsingPUT(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = receiveTransferUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * receiveTransfer
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> receiveTransferUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = receiveTransferUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * receiveTransfer (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call receiveTransferUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = receiveTransferUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for refreshShipmentUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param shouldLog shouldLog (optional)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call refreshShipmentUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Boolean shouldLog, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/refresh"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (shouldLog != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("shouldLog", shouldLog));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call refreshShipmentUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Boolean shouldLog, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling refreshShipmentUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling refreshShipmentUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = refreshShipmentUsingPUTCall(shipmentNumber, xVolTenant, shouldLog, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * refreshShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param shouldLog shouldLog (optional)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment refreshShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Boolean shouldLog, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = refreshShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, shouldLog, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * refreshShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param shouldLog shouldLog (optional)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> refreshShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Boolean shouldLog, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = refreshShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shouldLog, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * refreshShipment (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param shouldLog shouldLog (optional)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call refreshShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Boolean shouldLog, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = refreshShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shouldLog, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for rejectItemsUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call rejectItemsUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = rejectItemsRequest;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/rejectedItems"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call rejectItemsUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling rejectItemsUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling rejectItemsUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'rejectItemsRequest' is set
+        if (rejectItemsRequest == null) {
+            throw new ApiException("Missing the required parameter 'rejectItemsRequest' when calling rejectItemsUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = rejectItemsUsingPUTCall(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * rejectItems
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment rejectItemsUsingPUT(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = rejectItemsUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * rejectItems
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> rejectItemsUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = rejectItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * rejectItems (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param rejectItemsRequest rejectItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call rejectItemsUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, RejectItemsRequest rejectItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = rejectItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2583,11 +4533,11 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param rejectShipment rejectShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment rejectShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = rejectShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
+    public EntityModelOfShipment rejectShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = rejectShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
         return resp.getData();
     }
 
@@ -2598,12 +4548,12 @@ public class ShipmentControllerApi {
      * @param xVolTenant  (required)
      * @param rejectShipment rejectShipmentRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> rejectShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> rejectShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = rejectShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, rejectShipment, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2618,7 +4568,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call rejectShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call rejectShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, RejectShipment rejectShipment, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2640,7 +4590,7 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = rejectShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, rejectShipment, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2741,11 +4691,11 @@ public class ShipmentControllerApi {
      * @param shipment newShipment (required)
      * @param updateFields updateFields (optional)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment replaceShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = replaceShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
+    public EntityModelOfShipment replaceShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = replaceShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
         return resp.getData();
     }
 
@@ -2757,12 +4707,12 @@ public class ShipmentControllerApi {
      * @param shipment newShipment (required)
      * @param updateFields updateFields (optional)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> replaceShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfShipment> replaceShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = replaceShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2778,7 +4728,7 @@ public class ShipmentControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call replaceShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call replaceShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Shipment shipment, List<String> updateFields, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2800,14 +4750,13 @@ public class ShipmentControllerApi {
         }
 
         com.squareup.okhttp.Call call = replaceShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for revertUsingPUT
+     * Build call for retryFulfillingShipmentUsingPUT
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
@@ -2815,13 +4764,12 @@ public class ShipmentControllerApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call revertUsingPUTCall(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call retryFulfillingShipmentUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/commerce/shipments/{shipmentNumber}/tasks/{taskId}/reverted"
-            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()))
-            .replaceAll("\\{" + "taskId" + "\\}", apiClient.escapeString(taskId.toString()));
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/retried"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2866,16 +4814,161 @@ public class ShipmentControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call revertUsingPUTValidateBeforeCall(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call retryFulfillingShipmentUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling retryFulfillingShipmentUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling retryFulfillingShipmentUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = retryFulfillingShipmentUsingPUTCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * retryFulfillingShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment retryFulfillingShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = retryFulfillingShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * retryFulfillingShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> retryFulfillingShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = retryFulfillingShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * retryFulfillingShipment (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call retryFulfillingShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = retryFulfillingShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for revertUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param taskName taskName (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call revertUsingPUTCall(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/tasks/{taskName}/reverted"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()))
+            .replaceAll("\\{" + "taskName" + "\\}", apiClient.escapeString(taskName.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call revertUsingPUTValidateBeforeCall(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'shipmentNumber' is set
         if (shipmentNumber == null) {
             throw new ApiException("Missing the required parameter 'shipmentNumber' when calling revertUsingPUT(Async)");
         }
         
-        // verify the required parameter 'taskId' is set
-        if (taskId == null) {
-            throw new ApiException("Missing the required parameter 'taskId' when calling revertUsingPUT(Async)");
+        // verify the required parameter 'taskName' is set
+        if (taskName == null) {
+            throw new ApiException("Missing the required parameter 'taskName' when calling revertUsingPUT(Async)");
         }
         
         // verify the required parameter 'xVolTenant' is set
@@ -2884,7 +4977,7 @@ public class ShipmentControllerApi {
         }
         
 
-        com.squareup.okhttp.Call call = revertUsingPUTCall(shipmentNumber, taskId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = revertUsingPUTCall(shipmentNumber, taskName, xVolTenant, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2893,14 +4986,14 @@ public class ShipmentControllerApi {
      * revert
      * 
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment revertUsingPUT(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = revertUsingPUTWithHttpInfo(shipmentNumber, taskId, xVolTenant, xVolSite);
+    public EntityModelOfShipment revertUsingPUT(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = revertUsingPUTWithHttpInfo(shipmentNumber, taskName, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -2908,15 +5001,15 @@ public class ShipmentControllerApi {
      * revert
      * 
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> revertUsingPUTWithHttpInfo(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = revertUsingPUTValidateBeforeCall(shipmentNumber, taskId, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+    public ApiResponse<EntityModelOfShipment> revertUsingPUTWithHttpInfo(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = revertUsingPUTValidateBeforeCall(shipmentNumber, taskName, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2924,14 +5017,14 @@ public class ShipmentControllerApi {
      * revert (asynchronously)
      * 
      * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call revertUsingPUTAsync(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call revertUsingPUTAsync(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2952,15 +5045,14 @@ public class ShipmentControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = revertUsingPUTValidateBeforeCall(shipmentNumber, taskId, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        com.squareup.okhttp.Call call = revertUsingPUTValidateBeforeCall(shipmentNumber, taskName, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for skipTaskUsingPUT
-     * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * Build call for searchAndReceiveTransferUsingPUT
+     * @param search search (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
@@ -2968,13 +5060,12 @@ public class ShipmentControllerApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call skipTaskUsingPUTCall(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call searchAndReceiveTransferUsingPUTCall(String search, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/commerce/shipments/{shipmentNumber}/tasks/{taskId}/skipped"
-            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()))
-            .replaceAll("\\{" + "taskId" + "\\}", apiClient.escapeString(taskId.toString()));
+        String localVarPath = "/commerce/shipments/received/{search}"
+            .replaceAll("\\{" + "search" + "\\}", apiClient.escapeString(search.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3019,72 +5110,64 @@ public class ShipmentControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call skipTaskUsingPUTValidateBeforeCall(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call searchAndReceiveTransferUsingPUTValidateBeforeCall(String search, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'shipmentNumber' is set
-        if (shipmentNumber == null) {
-            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling skipTaskUsingPUT(Async)");
-        }
-        
-        // verify the required parameter 'taskId' is set
-        if (taskId == null) {
-            throw new ApiException("Missing the required parameter 'taskId' when calling skipTaskUsingPUT(Async)");
+        // verify the required parameter 'search' is set
+        if (search == null) {
+            throw new ApiException("Missing the required parameter 'search' when calling searchAndReceiveTransferUsingPUT(Async)");
         }
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling skipTaskUsingPUT(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling searchAndReceiveTransferUsingPUT(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = skipTaskUsingPUTCall(shipmentNumber, taskId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = searchAndReceiveTransferUsingPUTCall(search, xVolTenant, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * skipTask
+     * searchAndReceiveTransfer
      * 
-     * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param search search (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment skipTaskUsingPUT(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = skipTaskUsingPUTWithHttpInfo(shipmentNumber, taskId, xVolTenant, xVolSite);
+    public EntityModelOfShipment searchAndReceiveTransferUsingPUT(String search, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = searchAndReceiveTransferUsingPUTWithHttpInfo(search, xVolTenant, xVolSite);
         return resp.getData();
     }
 
     /**
-     * skipTask
+     * searchAndReceiveTransfer
      * 
-     * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param search search (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> skipTaskUsingPUTWithHttpInfo(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = skipTaskUsingPUTValidateBeforeCall(shipmentNumber, taskId, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+    public ApiResponse<EntityModelOfShipment> searchAndReceiveTransferUsingPUTWithHttpInfo(String search, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = searchAndReceiveTransferUsingPUTValidateBeforeCall(search, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * skipTask (asynchronously)
+     * searchAndReceiveTransfer (asynchronously)
      * 
-     * @param shipmentNumber shipmentNumber (required)
-     * @param taskId taskId (required)
+     * @param search search (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call skipTaskUsingPUTAsync(Integer shipmentNumber, String taskId, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call searchAndReceiveTransferUsingPUTAsync(String search, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3105,29 +5188,180 @@ public class ShipmentControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = skipTaskUsingPUTValidateBeforeCall(shipmentNumber, taskId, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        com.squareup.okhttp.Call call = searchAndReceiveTransferUsingPUTValidateBeforeCall(search, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for updatePackageUsingPUT
-     * @param packageId packageId (required)
+     * Build call for skipTaskUsingPUT
      * @param shipmentNumber shipmentNumber (required)
+     * @param taskName taskName (required)
      * @param xVolTenant  (required)
-     * @param modelPackage packageDto (required)
      * @param xVolSite  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updatePackageUsingPUTCall(String packageId, Integer shipmentNumber, Integer xVolTenant, ModelPackage modelPackage, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = modelPackage;
+    public com.squareup.okhttp.Call skipTaskUsingPUTCall(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/commerce/shipments/{shipmentNumber}/packages/{packageId}"
-            .replaceAll("\\{" + "packageId" + "\\}", apiClient.escapeString(packageId.toString()))
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/tasks/{taskName}/skipped"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()))
+            .replaceAll("\\{" + "taskName" + "\\}", apiClient.escapeString(taskName.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call skipTaskUsingPUTValidateBeforeCall(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling skipTaskUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'taskName' is set
+        if (taskName == null) {
+            throw new ApiException("Missing the required parameter 'taskName' when calling skipTaskUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling skipTaskUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = skipTaskUsingPUTCall(shipmentNumber, taskName, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * skipTask
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param taskName taskName (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment skipTaskUsingPUT(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = skipTaskUsingPUTWithHttpInfo(shipmentNumber, taskName, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * skipTask
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param taskName taskName (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> skipTaskUsingPUTWithHttpInfo(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = skipTaskUsingPUTValidateBeforeCall(shipmentNumber, taskName, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * skipTask (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param taskName taskName (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call skipTaskUsingPUTAsync(Integer shipmentNumber, String taskName, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = skipTaskUsingPUTValidateBeforeCall(shipmentNumber, taskName, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for transferItemsUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param transferItemsRequest transferItemsRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call transferItemsUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, TransferItemsRequest transferItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = transferItemsRequest;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/transferredItems"
             .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -3173,80 +5407,72 @@ public class ShipmentControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updatePackageUsingPUTValidateBeforeCall(String packageId, Integer shipmentNumber, Integer xVolTenant, ModelPackage modelPackage, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'packageId' is set
-        if (packageId == null) {
-            throw new ApiException("Missing the required parameter 'packageId' when calling updatePackageUsingPUT(Async)");
-        }
+    private com.squareup.okhttp.Call transferItemsUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, TransferItemsRequest transferItemsRequest, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'shipmentNumber' is set
         if (shipmentNumber == null) {
-            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling updatePackageUsingPUT(Async)");
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling transferItemsUsingPUT(Async)");
         }
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling updatePackageUsingPUT(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling transferItemsUsingPUT(Async)");
         }
         
-        // verify the required parameter 'modelPackage' is set
-        if (modelPackage == null) {
-            throw new ApiException("Missing the required parameter 'modelPackage' when calling updatePackageUsingPUT(Async)");
+        // verify the required parameter 'transferItemsRequest' is set
+        if (transferItemsRequest == null) {
+            throw new ApiException("Missing the required parameter 'transferItemsRequest' when calling transferItemsUsingPUT(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = updatePackageUsingPUTCall(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = transferItemsUsingPUTCall(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * updatePackage
+     * transferItems
      * 
-     * @param packageId packageId (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param modelPackage packageDto (required)
+     * @param transferItemsRequest transferItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfShipment
+     * @return EntityModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfShipment updatePackageUsingPUT(String packageId, Integer shipmentNumber, Integer xVolTenant, ModelPackage modelPackage, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfShipment> resp = updatePackageUsingPUTWithHttpInfo(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite);
+    public EntityModelOfShipment transferItemsUsingPUT(Integer shipmentNumber, Integer xVolTenant, TransferItemsRequest transferItemsRequest, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = transferItemsUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite);
         return resp.getData();
     }
 
     /**
-     * updatePackage
+     * transferItems
      * 
-     * @param packageId packageId (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param modelPackage packageDto (required)
+     * @param transferItemsRequest transferItemsRequestDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfShipment&gt;
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfShipment> updatePackageUsingPUTWithHttpInfo(String packageId, Integer shipmentNumber, Integer xVolTenant, ModelPackage modelPackage, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = updatePackageUsingPUTValidateBeforeCall(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+    public ApiResponse<EntityModelOfShipment> transferItemsUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, TransferItemsRequest transferItemsRequest, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = transferItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * updatePackage (asynchronously)
+     * transferItems (asynchronously)
      * 
-     * @param packageId packageId (required)
      * @param shipmentNumber shipmentNumber (required)
      * @param xVolTenant  (required)
-     * @param modelPackage packageDto (required)
+     * @param transferItemsRequest transferItemsRequestDto (required)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updatePackageUsingPUTAsync(String packageId, Integer shipmentNumber, Integer xVolTenant, ModelPackage modelPackage, Integer xVolSite, final ApiCallback<ResourceOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call transferItemsUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, TransferItemsRequest transferItemsRequest, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3267,8 +5493,160 @@ public class ShipmentControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updatePackageUsingPUTValidateBeforeCall(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfShipment>(){}.getType();
+        com.squareup.okhttp.Call call = transferItemsUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for transferShipmentUsingPUT
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param transferShipment transferShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call transferShipmentUsingPUTCall(Integer shipmentNumber, Integer xVolTenant, TransferShipment transferShipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = transferShipment;
+
+        // create path and map variables
+        String localVarPath = "/commerce/shipments/{shipmentNumber}/transferred"
+            .replaceAll("\\{" + "shipmentNumber" + "\\}", apiClient.escapeString(shipmentNumber.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call transferShipmentUsingPUTValidateBeforeCall(Integer shipmentNumber, Integer xVolTenant, TransferShipment transferShipment, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'shipmentNumber' is set
+        if (shipmentNumber == null) {
+            throw new ApiException("Missing the required parameter 'shipmentNumber' when calling transferShipmentUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling transferShipmentUsingPUT(Async)");
+        }
+        
+        // verify the required parameter 'transferShipment' is set
+        if (transferShipment == null) {
+            throw new ApiException("Missing the required parameter 'transferShipment' when calling transferShipmentUsingPUT(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = transferShipmentUsingPUTCall(shipmentNumber, xVolTenant, transferShipment, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * transferShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param transferShipment transferShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfShipment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfShipment transferShipmentUsingPUT(Integer shipmentNumber, Integer xVolTenant, TransferShipment transferShipment, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfShipment> resp = transferShipmentUsingPUTWithHttpInfo(shipmentNumber, xVolTenant, transferShipment, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * transferShipment
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param transferShipment transferShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfShipment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfShipment> transferShipmentUsingPUTWithHttpInfo(Integer shipmentNumber, Integer xVolTenant, TransferShipment transferShipment, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = transferShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, transferShipment, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * transferShipment (asynchronously)
+     * 
+     * @param shipmentNumber shipmentNumber (required)
+     * @param xVolTenant  (required)
+     * @param transferShipment transferShipmentRequestDto (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call transferShipmentUsingPUTAsync(Integer shipmentNumber, Integer xVolTenant, TransferShipment transferShipment, Integer xVolSite, final ApiCallback<EntityModelOfShipment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = transferShipmentUsingPUTValidateBeforeCall(shipmentNumber, xVolTenant, transferShipment, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -3302,7 +5680,7 @@ public class ShipmentControllerApi {
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/xml"
+            "application/xml", "image/svg+xml"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3445,7 +5823,7 @@ public class ShipmentControllerApi {
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/xml"
+            "application/xml", "image/svg+xml"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {

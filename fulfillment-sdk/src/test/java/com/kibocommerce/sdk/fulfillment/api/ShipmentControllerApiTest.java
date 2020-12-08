@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -19,17 +19,25 @@ import com.kibocommerce.sdk.fulfillment.model.BackorderItemsUpdateRequest;
 import com.kibocommerce.sdk.fulfillment.model.BackorderShipmentRequest;
 import com.kibocommerce.sdk.fulfillment.model.CancelItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.CancelShipment;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfDashboardResponse;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfEntityModelOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfLocationSummary;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfTask;
 import com.kibocommerce.sdk.fulfillment.model.Destination;
-import com.kibocommerce.sdk.fulfillment.model.ModelPackage;
-import com.kibocommerce.sdk.fulfillment.model.PagedResourcesOfResourceOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfDashboardResponse;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfShipment;
+import org.threeten.bp.OffsetDateTime;
+import com.kibocommerce.sdk.fulfillment.model.PagedModelOfEntityModelOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.PickupItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.ReassignItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.ReassignShipment;
+import com.kibocommerce.sdk.fulfillment.model.RejectItemsRequest;
 import com.kibocommerce.sdk.fulfillment.model.RejectShipment;
-import com.kibocommerce.sdk.fulfillment.model.ResourceOfShipment;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfDashboardResponse;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfTask;
 import com.kibocommerce.sdk.fulfillment.model.Shipment;
 import com.kibocommerce.sdk.fulfillment.model.TaskComplete;
+import com.kibocommerce.sdk.fulfillment.model.TransferItemsRequest;
+import com.kibocommerce.sdk.fulfillment.model.TransferShipment;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -61,7 +69,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         BackorderItemsUpdateRequest backorderItemsUpdateRequest = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.backorderItemsUpdateUsingPUT(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite);
+        EntityModelOfShipment response = api.backorderItemsUpdateUsingPUT(shipmentNumber, xVolTenant, backorderItemsUpdateRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -80,7 +88,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         BackorderItemsRequest backorderItemsRequest = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.backorderItemsUsingPOST(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite);
+        EntityModelOfShipment response = api.backorderItemsUsingPOST(shipmentNumber, xVolTenant, backorderItemsRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -99,7 +107,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         BackorderShipmentRequest backorderShipmentRequest = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.backorderShipmentUsingPOST(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite);
+        EntityModelOfShipment response = api.backorderShipmentUsingPOST(shipmentNumber, xVolTenant, backorderShipmentRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -118,7 +126,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         CancelItemsRequest cancelItemsRequest = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.cancelItemsUsingPUT(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite);
+        EntityModelOfShipment response = api.cancelItemsUsingPUT(shipmentNumber, xVolTenant, cancelItemsRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -137,7 +145,119 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         CancelShipment cancelShipment = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.cancelShipmentUsingPUT(shipmentNumber, xVolTenant, cancelShipment, xVolSite);
+        EntityModelOfShipment response = api.cancelShipmentUsingPUT(shipmentNumber, xVolTenant, cancelShipment, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * cancelShipments
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void cancelShipmentsUsingPUTTest() throws ApiException {
+        String orderId = null;
+        Integer xVolTenant = null;
+        CancelShipment cancelShipment = null;
+        Integer xVolSite = null;
+        CollectionModelOfShipment response = api.cancelShipmentsUsingPUT(orderId, xVolTenant, cancelShipment, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * customerAtCurbside
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void customerAtCurbsideUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        Map<String, Object> requestBody = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.customerAtCurbsideUsingPUT(shipmentNumber, xVolTenant, requestBody, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * customerAtStore
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void customerAtStoreUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.customerAtStoreUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * customerCareItems
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void customerCareItemsUsingPOSTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        RejectItemsRequest rejectItemsRequest = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.customerCareItemsUsingPOST(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * customerCareShipment
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void customerCareShipmentUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        RejectShipment rejectShipment = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.customerCareShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * customerInTransit
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void customerInTransitUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.customerInTransitUsingPUT(shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -174,7 +294,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         Destination destination = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.destinationUpdateUsingPUT(shipmentNumber, xVolTenant, destination, xVolSite);
+        EntityModelOfShipment response = api.destinationUpdateUsingPUT(shipmentNumber, xVolTenant, destination, xVolSite);
 
         // TODO: test validations
     }
@@ -190,11 +310,11 @@ public class ShipmentControllerApiTest {
     @Test
     public void executeUsingPUTTest() throws ApiException {
         Integer shipmentNumber = null;
-        String taskId = null;
+        String taskName = null;
         Integer xVolTenant = null;
         TaskComplete taskComplete = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.executeUsingPUT(shipmentNumber, taskId, xVolTenant, taskComplete, xVolSite);
+        EntityModelOfShipment response = api.executeUsingPUT(shipmentNumber, taskName, xVolTenant, taskComplete, xVolSite);
 
         // TODO: test validations
     }
@@ -212,7 +332,7 @@ public class ShipmentControllerApiTest {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.fulfillShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+        EntityModelOfShipment response = api.fulfillShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -227,10 +347,48 @@ public class ShipmentControllerApiTest {
      */
     @Test
     public void getDashboardUsingGETTest() throws ApiException {
+        Integer xVolTenant = null;
         List<String> fulfillmentLocationCodes = null;
+        Integer xVolSite = null;
+        CollectionModelOfDashboardResponse response = api.getDashboardUsingGET(xVolTenant, fulfillmentLocationCodes, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * getLocationSummaryReport
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getLocationSummaryReportUsingGETTest() throws ApiException {
+        List<String> locationCodes = null;
+        OffsetDateTime startDateTime = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourcesOfDashboardResponse response = api.getDashboardUsingGET(fulfillmentLocationCodes, xVolTenant, xVolSite);
+        CollectionModelOfLocationSummary response = api.getLocationSummaryReportUsingGET(locationCodes, startDateTime, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * getShipmentStepCountByShipmentType
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getShipmentStepCountByShipmentTypeUsingGETTest() throws ApiException {
+        String shipmentType = null;
+        Integer xVolTenant = null;
+        List<String> assignedLocations = null;
+        Integer xVolSite = null;
+        EntityModelOfDashboardResponse response = api.getShipmentStepCountByShipmentTypeUsingGET(shipmentType, xVolTenant, assignedLocations, xVolSite);
 
         // TODO: test validations
     }
@@ -248,7 +406,7 @@ public class ShipmentControllerApiTest {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.getShipmentUsingGET(shipmentNumber, xVolTenant, xVolSite);
+        EntityModelOfShipment response = api.getShipmentUsingGET(shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -272,7 +430,7 @@ public class ShipmentControllerApiTest {
         String sort = null;
         String workflowTaskName = null;
         Integer xVolSite = null;
-        PagedResourcesOfResourceOfShipment response = api.getShipmentsUsingGET(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite);
+        PagedModelOfEntityModelOfShipment response = api.getShipmentsUsingGET(xVolTenant, filter, isLate, page, pageSize, quickSearch, sort, workflowTaskName, xVolSite);
 
         // TODO: test validations
     }
@@ -290,7 +448,7 @@ public class ShipmentControllerApiTest {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourcesOfTask response = api.getTasksUsingGET(shipmentNumber, xVolTenant, xVolSite);
+        CollectionModelOfTask response = api.getTasksUsingGET(shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -308,7 +466,44 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         Shipment shipment = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.newShipmentUsingPOST(xVolTenant, shipment, xVolSite);
+        EntityModelOfShipment response = api.newShipmentUsingPOST(xVolTenant, shipment, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * newShipments
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void newShipmentsUsingPOSTTest() throws ApiException {
+        Integer xVolTenant = null;
+        List<Shipment> shipment = null;
+        Integer xVolSite = null;
+        CollectionModelOfEntityModelOfShipment response = api.newShipmentsUsingPOST(xVolTenant, shipment, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * pickupItems
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void pickupItemsUsingPOSTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        PickupItemsRequest pickupItemsRequest = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.pickupItemsUsingPOST(shipmentNumber, xVolTenant, pickupItemsRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -327,7 +522,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         ReassignItemsRequest reassignItemsRequest = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.reassignItemsUsingPUT(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite);
+        EntityModelOfShipment response = api.reassignItemsUsingPUT(shipmentNumber, xVolTenant, reassignItemsRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -346,7 +541,63 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         ReassignShipment reassignShipment = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.reassignShipmentUsingPUT(shipmentNumber, xVolTenant, reassignShipment, xVolSite);
+        EntityModelOfShipment response = api.reassignShipmentUsingPUT(shipmentNumber, xVolTenant, reassignShipment, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * receiveTransfer
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void receiveTransferUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.receiveTransferUsingPUT(shipmentNumber, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * refreshShipment
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void refreshShipmentUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        Boolean shouldLog = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.refreshShipmentUsingPUT(shipmentNumber, xVolTenant, shouldLog, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * rejectItems
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void rejectItemsUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        RejectItemsRequest rejectItemsRequest = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.rejectItemsUsingPUT(shipmentNumber, xVolTenant, rejectItemsRequest, xVolSite);
 
         // TODO: test validations
     }
@@ -365,7 +616,7 @@ public class ShipmentControllerApiTest {
         Integer xVolTenant = null;
         RejectShipment rejectShipment = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.rejectShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
+        EntityModelOfShipment response = api.rejectShipmentUsingPUT(shipmentNumber, xVolTenant, rejectShipment, xVolSite);
 
         // TODO: test validations
     }
@@ -385,7 +636,25 @@ public class ShipmentControllerApiTest {
         Shipment shipment = null;
         List<String> updateFields = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
+        EntityModelOfShipment response = api.replaceShipmentUsingPUT(shipmentNumber, xVolTenant, shipment, updateFields, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * retryFulfillingShipment
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void retryFulfillingShipmentUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.retryFulfillingShipmentUsingPUT(shipmentNumber, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -401,10 +670,28 @@ public class ShipmentControllerApiTest {
     @Test
     public void revertUsingPUTTest() throws ApiException {
         Integer shipmentNumber = null;
-        String taskId = null;
+        String taskName = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.revertUsingPUT(shipmentNumber, taskId, xVolTenant, xVolSite);
+        EntityModelOfShipment response = api.revertUsingPUT(shipmentNumber, taskName, xVolTenant, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * searchAndReceiveTransfer
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void searchAndReceiveTransferUsingPUTTest() throws ApiException {
+        String search = null;
+        Integer xVolTenant = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.searchAndReceiveTransferUsingPUT(search, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
@@ -420,16 +707,16 @@ public class ShipmentControllerApiTest {
     @Test
     public void skipTaskUsingPUTTest() throws ApiException {
         Integer shipmentNumber = null;
-        String taskId = null;
+        String taskName = null;
         Integer xVolTenant = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.skipTaskUsingPUT(shipmentNumber, taskId, xVolTenant, xVolSite);
+        EntityModelOfShipment response = api.skipTaskUsingPUT(shipmentNumber, taskName, xVolTenant, xVolSite);
 
         // TODO: test validations
     }
     
     /**
-     * updatePackage
+     * transferItems
      *
      * 
      *
@@ -437,13 +724,31 @@ public class ShipmentControllerApiTest {
      *          if the Api call fails
      */
     @Test
-    public void updatePackageUsingPUTTest() throws ApiException {
-        String packageId = null;
+    public void transferItemsUsingPUTTest() throws ApiException {
         Integer shipmentNumber = null;
         Integer xVolTenant = null;
-        ModelPackage modelPackage = null;
+        TransferItemsRequest transferItemsRequest = null;
         Integer xVolSite = null;
-        ResourceOfShipment response = api.updatePackageUsingPUT(packageId, shipmentNumber, xVolTenant, modelPackage, xVolSite);
+        EntityModelOfShipment response = api.transferItemsUsingPUT(shipmentNumber, xVolTenant, transferItemsRequest, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * transferShipment
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void transferShipmentUsingPUTTest() throws ApiException {
+        Integer shipmentNumber = null;
+        Integer xVolTenant = null;
+        TransferShipment transferShipment = null;
+        Integer xVolSite = null;
+        EntityModelOfShipment response = api.transferShipmentUsingPUT(shipmentNumber, xVolTenant, transferShipment, xVolSite);
 
         // TODO: test validations
     }

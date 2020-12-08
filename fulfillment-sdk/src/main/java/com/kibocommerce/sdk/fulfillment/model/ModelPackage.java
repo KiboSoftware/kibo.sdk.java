@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -20,7 +20,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kibocommerce.sdk.fulfillment.model.AuditInfo;
 import com.kibocommerce.sdk.fulfillment.model.PackageMeasurements;
+import com.kibocommerce.sdk.fulfillment.model.Tracking;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -32,15 +34,31 @@ import java.util.Map;
 /**
  * ModelPackage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class ModelPackage {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private Map<String, Object> attributes = null;
 
+  public static final String SERIALIZED_NAME_AUDIT_INFO = "auditInfo";
+  @SerializedName(SERIALIZED_NAME_AUDIT_INFO)
+  private AuditInfo auditInfo = null;
+
+  public static final String SERIALIZED_NAME_CARRIER = "carrier";
+  @SerializedName(SERIALIZED_NAME_CARRIER)
+  private String carrier;
+
   public static final String SERIALIZED_NAME_HAS_LABEL = "hasLabel";
   @SerializedName(SERIALIZED_NAME_HAS_LABEL)
   private Boolean hasLabel;
+
+  public static final String SERIALIZED_NAME_INTEGRATOR_ID = "integratorId";
+  @SerializedName(SERIALIZED_NAME_INTEGRATOR_ID)
+  private String integratorId;
+
+  public static final String SERIALIZED_NAME_MANIFEST_ID = "manifestId";
+  @SerializedName(SERIALIZED_NAME_MANIFEST_ID)
+  private String manifestId;
 
   public static final String SERIALIZED_NAME_MEASUREMENTS = "measurements";
   @SerializedName(SERIALIZED_NAME_MEASUREMENTS)
@@ -54,9 +72,37 @@ public class ModelPackage {
   @SerializedName(SERIALIZED_NAME_PACKAGING_TYPE)
   private String packagingType;
 
+  public static final String SERIALIZED_NAME_RETURN_CARRIER = "returnCarrier";
+  @SerializedName(SERIALIZED_NAME_RETURN_CARRIER)
+  private String returnCarrier;
+
+  public static final String SERIALIZED_NAME_RETURN_TRACKING_NUMBERS = "returnTrackingNumbers";
+  @SerializedName(SERIALIZED_NAME_RETURN_TRACKING_NUMBERS)
+  private List<String> returnTrackingNumbers = null;
+
+  public static final String SERIALIZED_NAME_RETURN_TRACKINGS = "returnTrackings";
+  @SerializedName(SERIALIZED_NAME_RETURN_TRACKINGS)
+  private List<Tracking> returnTrackings = null;
+
+  public static final String SERIALIZED_NAME_SHIPPING_METHOD_CODE = "shippingMethodCode";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_METHOD_CODE)
+  private String shippingMethodCode;
+
+  public static final String SERIALIZED_NAME_SHIPPING_METHOD_NAME = "shippingMethodName";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_METHOD_NAME)
+  private String shippingMethodName;
+
+  public static final String SERIALIZED_NAME_SIGNATURE_REQUIRED = "signatureRequired";
+  @SerializedName(SERIALIZED_NAME_SIGNATURE_REQUIRED)
+  private Boolean signatureRequired;
+
   public static final String SERIALIZED_NAME_TRACKING_NUMBERS = "trackingNumbers";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBERS)
   private List<String> trackingNumbers = null;
+
+  public static final String SERIALIZED_NAME_TRACKINGS = "trackings";
+  @SerializedName(SERIALIZED_NAME_TRACKINGS)
+  private List<Tracking> trackings = null;
 
   public ModelPackage attributes(Map<String, Object> attributes) {
     this.attributes = attributes;
@@ -84,6 +130,42 @@ public class ModelPackage {
     this.attributes = attributes;
   }
 
+  public ModelPackage auditInfo(AuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
+    return this;
+  }
+
+   /**
+   * Get auditInfo
+   * @return auditInfo
+  **/
+  @ApiModelProperty(value = "")
+  public AuditInfo getAuditInfo() {
+    return auditInfo;
+  }
+
+  public void setAuditInfo(AuditInfo auditInfo) {
+    this.auditInfo = auditInfo;
+  }
+
+  public ModelPackage carrier(String carrier) {
+    this.carrier = carrier;
+    return this;
+  }
+
+   /**
+   * Get carrier
+   * @return carrier
+  **/
+  @ApiModelProperty(value = "")
+  public String getCarrier() {
+    return carrier;
+  }
+
+  public void setCarrier(String carrier) {
+    this.carrier = carrier;
+  }
+
   public ModelPackage hasLabel(Boolean hasLabel) {
     this.hasLabel = hasLabel;
     return this;
@@ -100,6 +182,42 @@ public class ModelPackage {
 
   public void setHasLabel(Boolean hasLabel) {
     this.hasLabel = hasLabel;
+  }
+
+  public ModelPackage integratorId(String integratorId) {
+    this.integratorId = integratorId;
+    return this;
+  }
+
+   /**
+   * Get integratorId
+   * @return integratorId
+  **/
+  @ApiModelProperty(value = "")
+  public String getIntegratorId() {
+    return integratorId;
+  }
+
+  public void setIntegratorId(String integratorId) {
+    this.integratorId = integratorId;
+  }
+
+  public ModelPackage manifestId(String manifestId) {
+    this.manifestId = manifestId;
+    return this;
+  }
+
+   /**
+   * Get manifestId
+   * @return manifestId
+  **/
+  @ApiModelProperty(value = "")
+  public String getManifestId() {
+    return manifestId;
+  }
+
+  public void setManifestId(String manifestId) {
+    this.manifestId = manifestId;
   }
 
   public ModelPackage measurements(PackageMeasurements measurements) {
@@ -156,6 +274,130 @@ public class ModelPackage {
     this.packagingType = packagingType;
   }
 
+  public ModelPackage returnCarrier(String returnCarrier) {
+    this.returnCarrier = returnCarrier;
+    return this;
+  }
+
+   /**
+   * Get returnCarrier
+   * @return returnCarrier
+  **/
+  @ApiModelProperty(value = "")
+  public String getReturnCarrier() {
+    return returnCarrier;
+  }
+
+  public void setReturnCarrier(String returnCarrier) {
+    this.returnCarrier = returnCarrier;
+  }
+
+  public ModelPackage returnTrackingNumbers(List<String> returnTrackingNumbers) {
+    this.returnTrackingNumbers = returnTrackingNumbers;
+    return this;
+  }
+
+  public ModelPackage addReturnTrackingNumbersItem(String returnTrackingNumbersItem) {
+    if (this.returnTrackingNumbers == null) {
+      this.returnTrackingNumbers = new ArrayList<String>();
+    }
+    this.returnTrackingNumbers.add(returnTrackingNumbersItem);
+    return this;
+  }
+
+   /**
+   * Get returnTrackingNumbers
+   * @return returnTrackingNumbers
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getReturnTrackingNumbers() {
+    return returnTrackingNumbers;
+  }
+
+  public void setReturnTrackingNumbers(List<String> returnTrackingNumbers) {
+    this.returnTrackingNumbers = returnTrackingNumbers;
+  }
+
+  public ModelPackage returnTrackings(List<Tracking> returnTrackings) {
+    this.returnTrackings = returnTrackings;
+    return this;
+  }
+
+  public ModelPackage addReturnTrackingsItem(Tracking returnTrackingsItem) {
+    if (this.returnTrackings == null) {
+      this.returnTrackings = new ArrayList<Tracking>();
+    }
+    this.returnTrackings.add(returnTrackingsItem);
+    return this;
+  }
+
+   /**
+   * Get returnTrackings
+   * @return returnTrackings
+  **/
+  @ApiModelProperty(value = "")
+  public List<Tracking> getReturnTrackings() {
+    return returnTrackings;
+  }
+
+  public void setReturnTrackings(List<Tracking> returnTrackings) {
+    this.returnTrackings = returnTrackings;
+  }
+
+  public ModelPackage shippingMethodCode(String shippingMethodCode) {
+    this.shippingMethodCode = shippingMethodCode;
+    return this;
+  }
+
+   /**
+   * Get shippingMethodCode
+   * @return shippingMethodCode
+  **/
+  @ApiModelProperty(value = "")
+  public String getShippingMethodCode() {
+    return shippingMethodCode;
+  }
+
+  public void setShippingMethodCode(String shippingMethodCode) {
+    this.shippingMethodCode = shippingMethodCode;
+  }
+
+  public ModelPackage shippingMethodName(String shippingMethodName) {
+    this.shippingMethodName = shippingMethodName;
+    return this;
+  }
+
+   /**
+   * Get shippingMethodName
+   * @return shippingMethodName
+  **/
+  @ApiModelProperty(value = "")
+  public String getShippingMethodName() {
+    return shippingMethodName;
+  }
+
+  public void setShippingMethodName(String shippingMethodName) {
+    this.shippingMethodName = shippingMethodName;
+  }
+
+  public ModelPackage signatureRequired(Boolean signatureRequired) {
+    this.signatureRequired = signatureRequired;
+    return this;
+  }
+
+   /**
+   * Get signatureRequired
+   * @return signatureRequired
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getSignatureRequired() {
+    return signatureRequired;
+  }
+
+  public void setSignatureRequired(Boolean signatureRequired) {
+    this.signatureRequired = signatureRequired;
+  }
+
   public ModelPackage trackingNumbers(List<String> trackingNumbers) {
     this.trackingNumbers = trackingNumbers;
     return this;
@@ -182,6 +424,32 @@ public class ModelPackage {
     this.trackingNumbers = trackingNumbers;
   }
 
+  public ModelPackage trackings(List<Tracking> trackings) {
+    this.trackings = trackings;
+    return this;
+  }
+
+  public ModelPackage addTrackingsItem(Tracking trackingsItem) {
+    if (this.trackings == null) {
+      this.trackings = new ArrayList<Tracking>();
+    }
+    this.trackings.add(trackingsItem);
+    return this;
+  }
+
+   /**
+   * Get trackings
+   * @return trackings
+  **/
+  @ApiModelProperty(value = "")
+  public List<Tracking> getTrackings() {
+    return trackings;
+  }
+
+  public void setTrackings(List<Tracking> trackings) {
+    this.trackings = trackings;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -193,16 +461,27 @@ public class ModelPackage {
     }
     ModelPackage _package = (ModelPackage) o;
     return Objects.equals(this.attributes, _package.attributes) &&
+        Objects.equals(this.auditInfo, _package.auditInfo) &&
+        Objects.equals(this.carrier, _package.carrier) &&
         Objects.equals(this.hasLabel, _package.hasLabel) &&
+        Objects.equals(this.integratorId, _package.integratorId) &&
+        Objects.equals(this.manifestId, _package.manifestId) &&
         Objects.equals(this.measurements, _package.measurements) &&
         Objects.equals(this.packageId, _package.packageId) &&
         Objects.equals(this.packagingType, _package.packagingType) &&
-        Objects.equals(this.trackingNumbers, _package.trackingNumbers);
+        Objects.equals(this.returnCarrier, _package.returnCarrier) &&
+        Objects.equals(this.returnTrackingNumbers, _package.returnTrackingNumbers) &&
+        Objects.equals(this.returnTrackings, _package.returnTrackings) &&
+        Objects.equals(this.shippingMethodCode, _package.shippingMethodCode) &&
+        Objects.equals(this.shippingMethodName, _package.shippingMethodName) &&
+        Objects.equals(this.signatureRequired, _package.signatureRequired) &&
+        Objects.equals(this.trackingNumbers, _package.trackingNumbers) &&
+        Objects.equals(this.trackings, _package.trackings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, hasLabel, measurements, packageId, packagingType, trackingNumbers);
+    return Objects.hash(attributes, auditInfo, carrier, hasLabel, integratorId, manifestId, measurements, packageId, packagingType, returnCarrier, returnTrackingNumbers, returnTrackings, shippingMethodCode, shippingMethodName, signatureRequired, trackingNumbers, trackings);
   }
 
 
@@ -212,11 +491,22 @@ public class ModelPackage {
     sb.append("class ModelPackage {\n");
     
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
+    sb.append("    carrier: ").append(toIndentedString(carrier)).append("\n");
     sb.append("    hasLabel: ").append(toIndentedString(hasLabel)).append("\n");
+    sb.append("    integratorId: ").append(toIndentedString(integratorId)).append("\n");
+    sb.append("    manifestId: ").append(toIndentedString(manifestId)).append("\n");
     sb.append("    measurements: ").append(toIndentedString(measurements)).append("\n");
     sb.append("    packageId: ").append(toIndentedString(packageId)).append("\n");
     sb.append("    packagingType: ").append(toIndentedString(packagingType)).append("\n");
+    sb.append("    returnCarrier: ").append(toIndentedString(returnCarrier)).append("\n");
+    sb.append("    returnTrackingNumbers: ").append(toIndentedString(returnTrackingNumbers)).append("\n");
+    sb.append("    returnTrackings: ").append(toIndentedString(returnTrackings)).append("\n");
+    sb.append("    shippingMethodCode: ").append(toIndentedString(shippingMethodCode)).append("\n");
+    sb.append("    shippingMethodName: ").append(toIndentedString(shippingMethodName)).append("\n");
+    sb.append("    signatureRequired: ").append(toIndentedString(signatureRequired)).append("\n");
     sb.append("    trackingNumbers: ").append(toIndentedString(trackingNumbers)).append("\n");
+    sb.append("    trackings: ").append(toIndentedString(trackings)).append("\n");
     sb.append("}");
     return sb.toString();
   }

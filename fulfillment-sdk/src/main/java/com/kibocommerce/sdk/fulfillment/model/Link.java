@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -20,6 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kibocommerce.sdk.fulfillment.model.LinkRelation;
+import com.kibocommerce.sdk.fulfillment.model.UriTemplate;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -27,7 +29,7 @@ import java.io.IOException;
 /**
  * Link
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class Link {
   public static final String SERIALIZED_NAME_DEPRECATION = "deprecation";
   @SerializedName(SERIALIZED_NAME_DEPRECATION)
@@ -45,9 +47,21 @@ public class Link {
   @SerializedName(SERIALIZED_NAME_MEDIA)
   private String media;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
+
+  public static final String SERIALIZED_NAME_PROFILE = "profile";
+  @SerializedName(SERIALIZED_NAME_PROFILE)
+  private String profile;
+
   public static final String SERIALIZED_NAME_REL = "rel";
   @SerializedName(SERIALIZED_NAME_REL)
-  private String rel;
+  private LinkRelation rel = null;
+
+  public static final String SERIALIZED_NAME_TEMPLATE = "template";
+  @SerializedName(SERIALIZED_NAME_TEMPLATE)
+  private UriTemplate template = null;
 
   public static final String SERIALIZED_NAME_TEMPLATED = "templated";
   @SerializedName(SERIALIZED_NAME_TEMPLATED)
@@ -133,7 +147,43 @@ public class Link {
     this.media = media;
   }
 
-  public Link rel(String rel) {
+  public Link name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @ApiModelProperty(value = "")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Link profile(String profile) {
+    this.profile = profile;
+    return this;
+  }
+
+   /**
+   * Get profile
+   * @return profile
+  **/
+  @ApiModelProperty(value = "")
+  public String getProfile() {
+    return profile;
+  }
+
+  public void setProfile(String profile) {
+    this.profile = profile;
+  }
+
+  public Link rel(LinkRelation rel) {
     this.rel = rel;
     return this;
   }
@@ -143,12 +193,30 @@ public class Link {
    * @return rel
   **/
   @ApiModelProperty(value = "")
-  public String getRel() {
+  public LinkRelation getRel() {
     return rel;
   }
 
-  public void setRel(String rel) {
+  public void setRel(LinkRelation rel) {
     this.rel = rel;
+  }
+
+  public Link template(UriTemplate template) {
+    this.template = template;
+    return this;
+  }
+
+   /**
+   * Get template
+   * @return template
+  **/
+  @ApiModelProperty(value = "")
+  public UriTemplate getTemplate() {
+    return template;
+  }
+
+  public void setTemplate(UriTemplate template) {
+    this.template = template;
   }
 
   public Link templated(Boolean templated) {
@@ -219,7 +287,10 @@ public class Link {
         Objects.equals(this.href, link.href) &&
         Objects.equals(this.hreflang, link.hreflang) &&
         Objects.equals(this.media, link.media) &&
+        Objects.equals(this.name, link.name) &&
+        Objects.equals(this.profile, link.profile) &&
         Objects.equals(this.rel, link.rel) &&
+        Objects.equals(this.template, link.template) &&
         Objects.equals(this.templated, link.templated) &&
         Objects.equals(this.title, link.title) &&
         Objects.equals(this.type, link.type);
@@ -227,7 +298,7 @@ public class Link {
 
   @Override
   public int hashCode() {
-    return Objects.hash(deprecation, href, hreflang, media, rel, templated, title, type);
+    return Objects.hash(deprecation, href, hreflang, media, name, profile, rel, template, templated, title, type);
   }
 
 
@@ -240,7 +311,10 @@ public class Link {
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    hreflang: ").append(toIndentedString(hreflang)).append("\n");
     sb.append("    media: ").append(toIndentedString(media)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    profile: ").append(toIndentedString(profile)).append("\n");
     sb.append("    rel: ").append(toIndentedString(rel)).append("\n");
+    sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    templated: ").append(toIndentedString(templated)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

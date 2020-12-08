@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kibocommerce.sdk.fulfillment.model.AuditInfo;
+import com.kibocommerce.sdk.fulfillment.model.BpmVariable;
 import com.kibocommerce.sdk.fulfillment.model.Task;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -34,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * WorkflowState
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class WorkflowState {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
@@ -59,6 +60,10 @@ public class WorkflowState {
   public static final String SERIALIZED_NAME_TASK_LIST = "taskList";
   @SerializedName(SERIALIZED_NAME_TASK_LIST)
   private List<Task> taskList = null;
+
+  public static final String SERIALIZED_NAME_VARIABLES = "variables";
+  @SerializedName(SERIALIZED_NAME_VARIABLES)
+  private Map<String, BpmVariable> variables = null;
 
   public WorkflowState attributes(Map<String, Object> attributes) {
     this.attributes = attributes;
@@ -184,6 +189,32 @@ public class WorkflowState {
     this.taskList = taskList;
   }
 
+  public WorkflowState variables(Map<String, BpmVariable> variables) {
+    this.variables = variables;
+    return this;
+  }
+
+  public WorkflowState putVariablesItem(String key, BpmVariable variablesItem) {
+    if (this.variables == null) {
+      this.variables = new HashMap<String, BpmVariable>();
+    }
+    this.variables.put(key, variablesItem);
+    return this;
+  }
+
+   /**
+   * Get variables
+   * @return variables
+  **/
+  @ApiModelProperty(value = "")
+  public Map<String, BpmVariable> getVariables() {
+    return variables;
+  }
+
+  public void setVariables(Map<String, BpmVariable> variables) {
+    this.variables = variables;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -199,12 +230,13 @@ public class WorkflowState {
         Objects.equals(this.completedDate, workflowState.completedDate) &&
         Objects.equals(this.processInstanceId, workflowState.processInstanceId) &&
         Objects.equals(this.shipmentState, workflowState.shipmentState) &&
-        Objects.equals(this.taskList, workflowState.taskList);
+        Objects.equals(this.taskList, workflowState.taskList) &&
+        Objects.equals(this.variables, workflowState.variables);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, auditInfo, completedDate, processInstanceId, shipmentState, taskList);
+    return Objects.hash(attributes, auditInfo, completedDate, processInstanceId, shipmentState, taskList, variables);
   }
 
 
@@ -219,6 +251,7 @@ public class WorkflowState {
     sb.append("    processInstanceId: ").append(toIndentedString(processInstanceId)).append("\n");
     sb.append("    shipmentState: ").append(toIndentedString(shipmentState)).append("\n");
     sb.append("    taskList: ").append(toIndentedString(taskList)).append("\n");
+    sb.append("    variables: ").append(toIndentedString(variables)).append("\n");
     sb.append("}");
     return sb.toString();
   }

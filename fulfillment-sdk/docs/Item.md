@@ -5,12 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actualPrice** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**allowsBackOrder** | **Boolean** |  |  [optional]
 **attributes** | **Map&lt;String, Object&gt;** |  |  [optional]
 **auditInfo** | [**AuditInfo**](AuditInfo.md) |  |  [optional]
 **backorderReleaseDate** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
-**data** | [**Object**](.md) |  |  [optional]
+**creditCurrencyCode** | **String** |  |  [optional]
+**creditValue** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**data** | **Map&lt;String, Object&gt;** |  |  [optional]
 **duty** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
-**fulfillmentItemType** | [**FulfillmentItemTypeEnum**](#FulfillmentItemTypeEnum) |  |  [optional]
+**expectedDeliveryDate** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**giftCards** | [**List&lt;GiftCard&gt;**](GiftCard.md) |  |  [optional]
+**goodsType** | [**GoodsTypeEnum**](#GoodsTypeEnum) |  |  [optional]
 **handling** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **handlingDiscount** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **handlingTax** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
@@ -29,6 +34,7 @@ Name | Type | Description | Notes
 **partNumber** | **String** |  |  [optional]
 **productCode** | **String** |  |  [optional]
 **quantity** | **Integer** |  |  [optional]
+**readyForPickupQuantity** | **Integer** |  |  [optional]
 **shipping** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **shippingDiscount** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **shippingTax** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
@@ -37,6 +43,8 @@ Name | Type | Description | Notes
 **taxableHandling** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **taxableLineItemCost** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **taxableShipping** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
+**transferQuantity** | **Integer** |  |  [optional]
+**trueTransferQuantity** | **Integer** |  |  [optional]
 **unitPrice** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 **upc** | **String** |  |  [optional]
 **variationProductCode** | **String** |  |  [optional]
@@ -51,13 +59,14 @@ Name | Type | Description | Notes
 **weightedShippingTaxAdjustment** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 
 
-<a name="FulfillmentItemTypeEnum"></a>
-## Enum: FulfillmentItemTypeEnum
+<a name="GoodsTypeEnum"></a>
+## Enum: GoodsTypeEnum
 Name | Value
 ---- | -----
 PHYSICAL | &quot;Physical&quot;
 DIGITAL | &quot;Digital&quot;
 DIGITALCREDIT | &quot;DigitalCredit&quot;
+DIGITALGIFTCARD | &quot;DigitalGiftCard&quot;
 
 
 

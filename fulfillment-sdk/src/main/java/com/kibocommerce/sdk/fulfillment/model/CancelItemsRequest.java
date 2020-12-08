@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -30,11 +30,37 @@ import java.util.List;
 /**
  * CancelItemsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class CancelItemsRequest {
+  public static final String SERIALIZED_NAME_IS_USER_ACTION = "isUserAction";
+  @SerializedName(SERIALIZED_NAME_IS_USER_ACTION)
+  private Boolean isUserAction;
+
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<CancelItem> items = null;
+
+  public static final String SERIALIZED_NAME_SEND_NOTIFICATIONS = "sendNotifications";
+  @SerializedName(SERIALIZED_NAME_SEND_NOTIFICATIONS)
+  private Boolean sendNotifications;
+
+  public CancelItemsRequest isUserAction(Boolean isUserAction) {
+    this.isUserAction = isUserAction;
+    return this;
+  }
+
+   /**
+   * Get isUserAction
+   * @return isUserAction
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getIsUserAction() {
+    return isUserAction;
+  }
+
+  public void setIsUserAction(Boolean isUserAction) {
+    this.isUserAction = isUserAction;
+  }
 
   public CancelItemsRequest items(List<CancelItem> items) {
     this.items = items;
@@ -62,6 +88,24 @@ public class CancelItemsRequest {
     this.items = items;
   }
 
+  public CancelItemsRequest sendNotifications(Boolean sendNotifications) {
+    this.sendNotifications = sendNotifications;
+    return this;
+  }
+
+   /**
+   * Get sendNotifications
+   * @return sendNotifications
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getSendNotifications() {
+    return sendNotifications;
+  }
+
+  public void setSendNotifications(Boolean sendNotifications) {
+    this.sendNotifications = sendNotifications;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -72,12 +116,14 @@ public class CancelItemsRequest {
       return false;
     }
     CancelItemsRequest cancelItemsRequest = (CancelItemsRequest) o;
-    return Objects.equals(this.items, cancelItemsRequest.items);
+    return Objects.equals(this.isUserAction, cancelItemsRequest.isUserAction) &&
+        Objects.equals(this.items, cancelItemsRequest.items) &&
+        Objects.equals(this.sendNotifications, cancelItemsRequest.sendNotifications);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(isUserAction, items, sendNotifications);
   }
 
 
@@ -86,7 +132,9 @@ public class CancelItemsRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CancelItemsRequest {\n");
     
+    sb.append("    isUserAction: ").append(toIndentedString(isUserAction)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    sendNotifications: ").append(toIndentedString(sendNotifications)).append("\n");
     sb.append("}");
     return sb.toString();
   }

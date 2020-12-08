@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **companyOrOrganization** | **String** |  |  [optional]
 **email** | **String** |  |  [optional]
 **firstName** | **String** |  |  [optional]
+**fullName** | **String** |  |  [optional]
 **id** | **Integer** |  |  [optional]
 **lastNameOrSurname** | **String** |  |  [optional]
 **middleNameOrInitial** | **String** |  |  [optional]
 **phoneNumbers** | [**Phone**](Phone.md) |  |  [optional]
+**shortFullName** | **String** |  |  [optional]
 
 
 

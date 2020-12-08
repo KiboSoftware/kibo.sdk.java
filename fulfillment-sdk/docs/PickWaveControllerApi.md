@@ -1,6 +1,6 @@
 # PickWaveControllerApi
 
-All URIs are relative to *http://services-tp.dev01.kubedev.kibo-dev.com/kibo.fulfillment.webapi*
+All URIs are relative to *http://2.services.sb.ng-qa.dev.kibocommerce.com/kibo.fulfillment.webapi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="closePickWaveUsingPUT"></a>
 # **closePickWaveUsingPUT**
-> ResourceOfPickWave closePickWaveUsingPUT(pickWaveNumber, xVolTenant, closePickWave, xVolSite)
+> EntityModelOfPickWave closePickWaveUsingPUT(pickWaveNumber, xVolTenant, closePickWave, xVolSite)
 
 closePickWave
 
@@ -30,7 +30,7 @@ Integer xVolTenant = 56; // Integer |
 ClosePickWave closePickWave = new ClosePickWave(); // ClosePickWave | closePickWaveDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfPickWave result = apiInstance.closePickWaveUsingPUT(pickWaveNumber, xVolTenant, closePickWave, xVolSite);
+    EntityModelOfPickWave result = apiInstance.closePickWaveUsingPUT(pickWaveNumber, xVolTenant, closePickWave, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PickWaveControllerApi#closePickWaveUsingPUT");
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfPickWave**](ResourceOfPickWave.md)
+[**EntityModelOfPickWave**](EntityModelOfPickWave.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 
 <a name="createPickWaveUsingPOST"></a>
 # **createPickWaveUsingPOST**
-> ResourceOfPickWave createPickWaveUsingPOST(xVolTenant, createPickWave, xVolSite)
+> EntityModelOfPickWave createPickWaveUsingPOST(xVolTenant, createPickWave, xVolSite)
 
 createPickWave
 
@@ -78,7 +78,7 @@ Integer xVolTenant = 56; // Integer |
 CreatePickWave createPickWave = new CreatePickWave(); // CreatePickWave | createPickWaveDto
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfPickWave result = apiInstance.createPickWaveUsingPOST(xVolTenant, createPickWave, xVolSite);
+    EntityModelOfPickWave result = apiInstance.createPickWaveUsingPOST(xVolTenant, createPickWave, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PickWaveControllerApi#createPickWaveUsingPOST");
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfPickWave**](ResourceOfPickWave.md)
+[**EntityModelOfPickWave**](EntityModelOfPickWave.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ No authorization required
 
 <a name="getOpenPickWavesUsingGET"></a>
 # **getOpenPickWavesUsingGET**
-> ResourcesOfPickWave getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite)
+> CollectionModelOfPickWave getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite)
 
 getOpenPickWaves
 
@@ -128,7 +128,7 @@ String userDisplayName = "userDisplayName_example"; // String | userDisplayName
 String userId = "userId_example"; // String | userId
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourcesOfPickWave result = apiInstance.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
+    CollectionModelOfPickWave result = apiInstance.getOpenPickWavesUsingGET(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PickWaveControllerApi#getOpenPickWavesUsingGET");
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourcesOfPickWave**](ResourcesOfPickWave.md)
+[**CollectionModelOfPickWave**](CollectionModelOfPickWave.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ No authorization required
 
 <a name="getPickWaveUsingGET"></a>
 # **getPickWaveUsingGET**
-> ResourceOfPickWave getPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite)
+> EntityModelOfPickWave getPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite)
 
 getPickWave
 
@@ -178,7 +178,7 @@ Integer pickWaveNumber = 56; // Integer | pickWaveNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfPickWave result = apiInstance.getPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
+    EntityModelOfPickWave result = apiInstance.getPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PickWaveControllerApi#getPickWaveUsingGET");
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfPickWave**](ResourceOfPickWave.md)
+[**EntityModelOfPickWave**](EntityModelOfPickWave.md)
 
 ### Authorization
 
@@ -209,7 +209,7 @@ No authorization required
 
 <a name="getShipmentsInPickWaveUsingGET"></a>
 # **getShipmentsInPickWaveUsingGET**
-> ResourcesOfShipment getShipmentsInPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite)
+> CollectionModelOfShipment getShipmentsInPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite)
 
 getShipmentsInPickWave
 
@@ -225,7 +225,7 @@ Integer pickWaveNumber = 56; // Integer | pickWaveNumber
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourcesOfShipment result = apiInstance.getShipmentsInPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
+    CollectionModelOfShipment result = apiInstance.getShipmentsInPickWaveUsingGET(pickWaveNumber, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PickWaveControllerApi#getShipmentsInPickWaveUsingGET");
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourcesOfShipment**](ResourcesOfShipment.md)
+[**CollectionModelOfShipment**](CollectionModelOfShipment.md)
 
 ### Authorization
 
