@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -23,10 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import com.kibocommerce.sdk.fulfillment.model.AuditInfo;
 import com.kibocommerce.sdk.fulfillment.model.CanceledItem;
 import com.kibocommerce.sdk.fulfillment.model.ChangeMessage;
+import com.kibocommerce.sdk.fulfillment.model.Customer;
 import com.kibocommerce.sdk.fulfillment.model.Destination;
 import com.kibocommerce.sdk.fulfillment.model.Item;
 import com.kibocommerce.sdk.fulfillment.model.ModelPackage;
 import com.kibocommerce.sdk.fulfillment.model.ReassignItem;
+import com.kibocommerce.sdk.fulfillment.model.RejectedItem;
 import com.kibocommerce.sdk.fulfillment.model.ShipmentStatusReason;
 import com.kibocommerce.sdk.fulfillment.model.WorkflowState;
 import io.swagger.annotations.ApiModel;
@@ -42,11 +44,15 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Shipment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class Shipment {
   public static final String SERIALIZED_NAME_ACCEPTED_DATE = "acceptedDate";
   @SerializedName(SERIALIZED_NAME_ACCEPTED_DATE)
   private OffsetDateTime acceptedDate;
+
+  public static final String SERIALIZED_NAME_ASSIGNED_LOCATION_CODE = "assignedLocationCode";
+  @SerializedName(SERIALIZED_NAME_ASSIGNED_LOCATION_CODE)
+  private String assignedLocationCode;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
@@ -72,6 +78,10 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_CURRENCY_CODE)
   private String currencyCode;
 
+  public static final String SERIALIZED_NAME_CUSTOMER = "customer";
+  @SerializedName(SERIALIZED_NAME_CUSTOMER)
+  private Customer customer = null;
+
   public static final String SERIALIZED_NAME_CUSTOMER_ACCOUNT_ID = "customerAccountId";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ACCOUNT_ID)
   private Integer customerAccountId;
@@ -86,7 +96,7 @@ public class Shipment {
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Object data = null;
+  private Map<String, Object> data = null;
 
   public static final String SERIALIZED_NAME_DESTINATION = "destination";
   @SerializedName(SERIALIZED_NAME_DESTINATION)
@@ -104,9 +114,9 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_EMAIL)
   private String email;
 
-  public static final String SERIALIZED_NAME_EXTERNAL_SHIPMENT_ID = "externalShipmentId";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_SHIPMENT_ID)
-  private String externalShipmentId;
+  public static final String SERIALIZED_NAME_EXTERNAL_ORDER_ID = "externalOrderId";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_ORDER_ID)
+  private String externalOrderId;
 
   public static final String SERIALIZED_NAME_FULFILLMENT_DATE = "fulfillmentDate";
   @SerializedName(SERIALIZED_NAME_FULFILLMENT_DATE)
@@ -187,9 +197,13 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_HANDLING_TOTAL)
   private BigDecimal handlingTotal;
 
-  public static final String SERIALIZED_NAME_HAS_LABEL = "hasLabel";
-  @SerializedName(SERIALIZED_NAME_HAS_LABEL)
-  private Boolean hasLabel;
+  public static final String SERIALIZED_NAME_IS_EXPRESS = "isExpress";
+  @SerializedName(SERIALIZED_NAME_IS_EXPRESS)
+  private Boolean isExpress;
+
+  public static final String SERIALIZED_NAME_IS_OPT_IN_FOR_SMS = "isOptInForSms";
+  @SerializedName(SERIALIZED_NAME_IS_OPT_IN_FOR_SMS)
+  private Boolean isOptInForSms;
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
@@ -222,10 +236,6 @@ public class Shipment {
   public static final String SERIALIZED_NAME_ORDER_SUBMIT_DATE = "orderSubmitDate";
   @SerializedName(SERIALIZED_NAME_ORDER_SUBMIT_DATE)
   private OffsetDateTime orderSubmitDate;
-
-  public static final String SERIALIZED_NAME_ORIGINAL_ORDER_ID = "originalOrderId";
-  @SerializedName(SERIALIZED_NAME_ORIGINAL_ORDER_ID)
-  private String originalOrderId;
 
   public static final String SERIALIZED_NAME_ORIGINAL_SHIPMENT_NUMBER = "originalShipmentNumber";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_SHIPMENT_NUMBER)
@@ -301,8 +311,6 @@ public class Shipment {
    */
   @JsonAdapter(PickTypeEnum.Adapter.class)
   public enum PickTypeEnum {
-    SPECIAL("SPECIAL"),
-    
     NORMAL("NORMAL"),
     
     SINGLE("SINGLE"),
@@ -351,6 +359,14 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_PICK_TYPE)
   private PickTypeEnum pickType;
 
+  public static final String SERIALIZED_NAME_PICK_WAVE_NUMBER = "pickWaveNumber";
+  @SerializedName(SERIALIZED_NAME_PICK_WAVE_NUMBER)
+  private Integer pickWaveNumber;
+
+  public static final String SERIALIZED_NAME_PICKUP_INFO = "pickupInfo";
+  @SerializedName(SERIALIZED_NAME_PICKUP_INFO)
+  private Map<String, Object> pickupInfo = null;
+
   public static final String SERIALIZED_NAME_READY_FOR_PICKUP = "readyForPickup";
   @SerializedName(SERIALIZED_NAME_READY_FOR_PICKUP)
   private Boolean readyForPickup;
@@ -359,9 +375,29 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_READY_FOR_PICKUP_DATE)
   private OffsetDateTime readyForPickupDate;
 
+  public static final String SERIALIZED_NAME_READY_TO_CAPTURE = "readyToCapture";
+  @SerializedName(SERIALIZED_NAME_READY_TO_CAPTURE)
+  private Boolean readyToCapture;
+
   public static final String SERIALIZED_NAME_REASSIGNED_ITEMS = "reassignedItems";
   @SerializedName(SERIALIZED_NAME_REASSIGNED_ITEMS)
   private List<ReassignItem> reassignedItems = null;
+
+  public static final String SERIALIZED_NAME_RECEIVED_DATE = "receivedDate";
+  @SerializedName(SERIALIZED_NAME_RECEIVED_DATE)
+  private OffsetDateTime receivedDate;
+
+  public static final String SERIALIZED_NAME_REJECTED_ITEMS = "rejectedItems";
+  @SerializedName(SERIALIZED_NAME_REJECTED_ITEMS)
+  private List<RejectedItem> rejectedItems = null;
+
+  public static final String SERIALIZED_NAME_SENT_CUSTOMER_AT_STORE_NOTIFICATION = "sentCustomerAtStoreNotification";
+  @SerializedName(SERIALIZED_NAME_SENT_CUSTOMER_AT_STORE_NOTIFICATION)
+  private Boolean sentCustomerAtStoreNotification;
+
+  public static final String SERIALIZED_NAME_SENT_CUSTOMER_IN_TRANSIT_NOTIFICATION = "sentCustomerInTransitNotification";
+  @SerializedName(SERIALIZED_NAME_SENT_CUSTOMER_IN_TRANSIT_NOTIFICATION)
+  private Boolean sentCustomerInTransitNotification;
 
   public static final String SERIALIZED_NAME_SHIPMENT_ADJUSTMENT = "shipmentAdjustment";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_ADJUSTMENT)
@@ -466,10 +502,6 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_SHIPPING_TOTAL)
   private BigDecimal shippingTotal;
 
-  public static final String SERIALIZED_NAME_SIGNATURE_REQUIRED = "signatureRequired";
-  @SerializedName(SERIALIZED_NAME_SIGNATURE_REQUIRED)
-  private Boolean signatureRequired;
-
   public static final String SERIALIZED_NAME_SITE_ID = "siteId";
   @SerializedName(SERIALIZED_NAME_SITE_ID)
   private Integer siteId;
@@ -486,9 +518,25 @@ public class Shipment {
   @SerializedName(SERIALIZED_NAME_TOTAL)
   private BigDecimal total;
 
-  public static final String SERIALIZED_NAME_TRACKING_NUMBERS = "trackingNumbers";
-  @SerializedName(SERIALIZED_NAME_TRACKING_NUMBERS)
-  private List<String> trackingNumbers = null;
+  public static final String SERIALIZED_NAME_TRANSFER_SHIPMENT_NUMBERS = "transferShipmentNumbers";
+  @SerializedName(SERIALIZED_NAME_TRANSFER_SHIPMENT_NUMBERS)
+  private List<Integer> transferShipmentNumbers = null;
+
+  public static final String SERIALIZED_NAME_TRANSIT_TIME = "transitTime";
+  @SerializedName(SERIALIZED_NAME_TRANSIT_TIME)
+  private String transitTime;
+
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private String userId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_PROCESS_CONTAINER_ID = "workflowProcessContainerId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_PROCESS_CONTAINER_ID)
+  private String workflowProcessContainerId;
+
+  public static final String SERIALIZED_NAME_WORKFLOW_PROCESS_ID = "workflowProcessId";
+  @SerializedName(SERIALIZED_NAME_WORKFLOW_PROCESS_ID)
+  private String workflowProcessId;
 
   public static final String SERIALIZED_NAME_WORKFLOW_STATE = "workflowState";
   @SerializedName(SERIALIZED_NAME_WORKFLOW_STATE)
@@ -510,6 +558,24 @@ public class Shipment {
 
   public void setAcceptedDate(OffsetDateTime acceptedDate) {
     this.acceptedDate = acceptedDate;
+  }
+
+  public Shipment assignedLocationCode(String assignedLocationCode) {
+    this.assignedLocationCode = assignedLocationCode;
+    return this;
+  }
+
+   /**
+   * Get assignedLocationCode
+   * @return assignedLocationCode
+  **/
+  @ApiModelProperty(value = "")
+  public String getAssignedLocationCode() {
+    return assignedLocationCode;
+  }
+
+  public void setAssignedLocationCode(String assignedLocationCode) {
+    this.assignedLocationCode = assignedLocationCode;
   }
 
   public Shipment attributes(Map<String, Object> attributes) {
@@ -652,6 +718,24 @@ public class Shipment {
     this.currencyCode = currencyCode;
   }
 
+  public Shipment customer(Customer customer) {
+    this.customer = customer;
+    return this;
+  }
+
+   /**
+   * Get customer
+   * @return customer
+  **/
+  @ApiModelProperty(value = "")
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
+
   public Shipment customerAccountId(Integer customerAccountId) {
     this.customerAccountId = customerAccountId;
     return this;
@@ -706,8 +790,16 @@ public class Shipment {
     this.customerTaxId = customerTaxId;
   }
 
-  public Shipment data(Object data) {
+  public Shipment data(Map<String, Object> data) {
     this.data = data;
+    return this;
+  }
+
+  public Shipment putDataItem(String key, Object dataItem) {
+    if (this.data == null) {
+      this.data = new HashMap<String, Object>();
+    }
+    this.data.put(key, dataItem);
     return this;
   }
 
@@ -716,11 +808,11 @@ public class Shipment {
    * @return data
   **/
   @ApiModelProperty(value = "")
-  public Object getData() {
+  public Map<String, Object> getData() {
     return data;
   }
 
-  public void setData(Object data) {
+  public void setData(Map<String, Object> data) {
     this.data = data;
   }
 
@@ -796,22 +888,22 @@ public class Shipment {
     this.email = email;
   }
 
-  public Shipment externalShipmentId(String externalShipmentId) {
-    this.externalShipmentId = externalShipmentId;
+  public Shipment externalOrderId(String externalOrderId) {
+    this.externalOrderId = externalOrderId;
     return this;
   }
 
    /**
-   * Get externalShipmentId
-   * @return externalShipmentId
+   * Get externalOrderId
+   * @return externalOrderId
   **/
   @ApiModelProperty(value = "")
-  public String getExternalShipmentId() {
-    return externalShipmentId;
+  public String getExternalOrderId() {
+    return externalOrderId;
   }
 
-  public void setExternalShipmentId(String externalShipmentId) {
-    this.externalShipmentId = externalShipmentId;
+  public void setExternalOrderId(String externalOrderId) {
+    this.externalOrderId = externalOrderId;
   }
 
   public Shipment fulfillmentDate(OffsetDateTime fulfillmentDate) {
@@ -958,22 +1050,40 @@ public class Shipment {
     this.handlingTotal = handlingTotal;
   }
 
-  public Shipment hasLabel(Boolean hasLabel) {
-    this.hasLabel = hasLabel;
+  public Shipment isExpress(Boolean isExpress) {
+    this.isExpress = isExpress;
     return this;
   }
 
    /**
-   * Get hasLabel
-   * @return hasLabel
+   * Get isExpress
+   * @return isExpress
   **/
   @ApiModelProperty(value = "")
-  public Boolean getHasLabel() {
-    return hasLabel;
+  public Boolean getIsExpress() {
+    return isExpress;
   }
 
-  public void setHasLabel(Boolean hasLabel) {
-    this.hasLabel = hasLabel;
+  public void setIsExpress(Boolean isExpress) {
+    this.isExpress = isExpress;
+  }
+
+  public Shipment isOptInForSms(Boolean isOptInForSms) {
+    this.isOptInForSms = isOptInForSms;
+    return this;
+  }
+
+   /**
+   * Get isOptInForSms
+   * @return isOptInForSms
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getIsOptInForSms() {
+    return isOptInForSms;
+  }
+
+  public void setIsOptInForSms(Boolean isOptInForSms) {
+    this.isOptInForSms = isOptInForSms;
   }
 
   public Shipment items(List<Item> items) {
@@ -1128,24 +1238,6 @@ public class Shipment {
     this.orderSubmitDate = orderSubmitDate;
   }
 
-  public Shipment originalOrderId(String originalOrderId) {
-    this.originalOrderId = originalOrderId;
-    return this;
-  }
-
-   /**
-   * Get originalOrderId
-   * @return originalOrderId
-  **/
-  @ApiModelProperty(value = "")
-  public String getOriginalOrderId() {
-    return originalOrderId;
-  }
-
-  public void setOriginalOrderId(String originalOrderId) {
-    this.originalOrderId = originalOrderId;
-  }
-
   public Shipment originalShipmentNumber(Integer originalShipmentNumber) {
     this.originalShipmentNumber = originalShipmentNumber;
     return this;
@@ -1244,6 +1336,50 @@ public class Shipment {
     this.pickType = pickType;
   }
 
+  public Shipment pickWaveNumber(Integer pickWaveNumber) {
+    this.pickWaveNumber = pickWaveNumber;
+    return this;
+  }
+
+   /**
+   * Get pickWaveNumber
+   * @return pickWaveNumber
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getPickWaveNumber() {
+    return pickWaveNumber;
+  }
+
+  public void setPickWaveNumber(Integer pickWaveNumber) {
+    this.pickWaveNumber = pickWaveNumber;
+  }
+
+  public Shipment pickupInfo(Map<String, Object> pickupInfo) {
+    this.pickupInfo = pickupInfo;
+    return this;
+  }
+
+  public Shipment putPickupInfoItem(String key, Object pickupInfoItem) {
+    if (this.pickupInfo == null) {
+      this.pickupInfo = new HashMap<String, Object>();
+    }
+    this.pickupInfo.put(key, pickupInfoItem);
+    return this;
+  }
+
+   /**
+   * Get pickupInfo
+   * @return pickupInfo
+  **/
+  @ApiModelProperty(value = "")
+  public Map<String, Object> getPickupInfo() {
+    return pickupInfo;
+  }
+
+  public void setPickupInfo(Map<String, Object> pickupInfo) {
+    this.pickupInfo = pickupInfo;
+  }
+
   public Shipment readyForPickup(Boolean readyForPickup) {
     this.readyForPickup = readyForPickup;
     return this;
@@ -1280,6 +1416,24 @@ public class Shipment {
     this.readyForPickupDate = readyForPickupDate;
   }
 
+  public Shipment readyToCapture(Boolean readyToCapture) {
+    this.readyToCapture = readyToCapture;
+    return this;
+  }
+
+   /**
+   * Get readyToCapture
+   * @return readyToCapture
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getReadyToCapture() {
+    return readyToCapture;
+  }
+
+  public void setReadyToCapture(Boolean readyToCapture) {
+    this.readyToCapture = readyToCapture;
+  }
+
   public Shipment reassignedItems(List<ReassignItem> reassignedItems) {
     this.reassignedItems = reassignedItems;
     return this;
@@ -1304,6 +1458,86 @@ public class Shipment {
 
   public void setReassignedItems(List<ReassignItem> reassignedItems) {
     this.reassignedItems = reassignedItems;
+  }
+
+  public Shipment receivedDate(OffsetDateTime receivedDate) {
+    this.receivedDate = receivedDate;
+    return this;
+  }
+
+   /**
+   * Get receivedDate
+   * @return receivedDate
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getReceivedDate() {
+    return receivedDate;
+  }
+
+  public void setReceivedDate(OffsetDateTime receivedDate) {
+    this.receivedDate = receivedDate;
+  }
+
+  public Shipment rejectedItems(List<RejectedItem> rejectedItems) {
+    this.rejectedItems = rejectedItems;
+    return this;
+  }
+
+  public Shipment addRejectedItemsItem(RejectedItem rejectedItemsItem) {
+    if (this.rejectedItems == null) {
+      this.rejectedItems = new ArrayList<RejectedItem>();
+    }
+    this.rejectedItems.add(rejectedItemsItem);
+    return this;
+  }
+
+   /**
+   * Get rejectedItems
+   * @return rejectedItems
+  **/
+  @ApiModelProperty(value = "")
+  public List<RejectedItem> getRejectedItems() {
+    return rejectedItems;
+  }
+
+  public void setRejectedItems(List<RejectedItem> rejectedItems) {
+    this.rejectedItems = rejectedItems;
+  }
+
+  public Shipment sentCustomerAtStoreNotification(Boolean sentCustomerAtStoreNotification) {
+    this.sentCustomerAtStoreNotification = sentCustomerAtStoreNotification;
+    return this;
+  }
+
+   /**
+   * Get sentCustomerAtStoreNotification
+   * @return sentCustomerAtStoreNotification
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getSentCustomerAtStoreNotification() {
+    return sentCustomerAtStoreNotification;
+  }
+
+  public void setSentCustomerAtStoreNotification(Boolean sentCustomerAtStoreNotification) {
+    this.sentCustomerAtStoreNotification = sentCustomerAtStoreNotification;
+  }
+
+  public Shipment sentCustomerInTransitNotification(Boolean sentCustomerInTransitNotification) {
+    this.sentCustomerInTransitNotification = sentCustomerInTransitNotification;
+    return this;
+  }
+
+   /**
+   * Get sentCustomerInTransitNotification
+   * @return sentCustomerInTransitNotification
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getSentCustomerInTransitNotification() {
+    return sentCustomerInTransitNotification;
+  }
+
+  public void setSentCustomerInTransitNotification(Boolean sentCustomerInTransitNotification) {
+    this.sentCustomerInTransitNotification = sentCustomerInTransitNotification;
   }
 
   public Shipment shipmentAdjustment(BigDecimal shipmentAdjustment) {
@@ -1522,24 +1756,6 @@ public class Shipment {
     this.shippingTotal = shippingTotal;
   }
 
-  public Shipment signatureRequired(Boolean signatureRequired) {
-    this.signatureRequired = signatureRequired;
-    return this;
-  }
-
-   /**
-   * Get signatureRequired
-   * @return signatureRequired
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean getSignatureRequired() {
-    return signatureRequired;
-  }
-
-  public void setSignatureRequired(Boolean signatureRequired) {
-    this.signatureRequired = signatureRequired;
-  }
-
   public Shipment siteId(Integer siteId) {
     this.siteId = siteId;
     return this;
@@ -1612,30 +1828,102 @@ public class Shipment {
     this.total = total;
   }
 
-  public Shipment trackingNumbers(List<String> trackingNumbers) {
-    this.trackingNumbers = trackingNumbers;
+  public Shipment transferShipmentNumbers(List<Integer> transferShipmentNumbers) {
+    this.transferShipmentNumbers = transferShipmentNumbers;
     return this;
   }
 
-  public Shipment addTrackingNumbersItem(String trackingNumbersItem) {
-    if (this.trackingNumbers == null) {
-      this.trackingNumbers = new ArrayList<String>();
+  public Shipment addTransferShipmentNumbersItem(Integer transferShipmentNumbersItem) {
+    if (this.transferShipmentNumbers == null) {
+      this.transferShipmentNumbers = new ArrayList<Integer>();
     }
-    this.trackingNumbers.add(trackingNumbersItem);
+    this.transferShipmentNumbers.add(transferShipmentNumbersItem);
     return this;
   }
 
    /**
-   * Get trackingNumbers
-   * @return trackingNumbers
+   * Get transferShipmentNumbers
+   * @return transferShipmentNumbers
   **/
   @ApiModelProperty(value = "")
-  public List<String> getTrackingNumbers() {
-    return trackingNumbers;
+  public List<Integer> getTransferShipmentNumbers() {
+    return transferShipmentNumbers;
   }
 
-  public void setTrackingNumbers(List<String> trackingNumbers) {
-    this.trackingNumbers = trackingNumbers;
+  public void setTransferShipmentNumbers(List<Integer> transferShipmentNumbers) {
+    this.transferShipmentNumbers = transferShipmentNumbers;
+  }
+
+  public Shipment transitTime(String transitTime) {
+    this.transitTime = transitTime;
+    return this;
+  }
+
+   /**
+   * Get transitTime
+   * @return transitTime
+  **/
+  @ApiModelProperty(value = "")
+  public String getTransitTime() {
+    return transitTime;
+  }
+
+  public void setTransitTime(String transitTime) {
+    this.transitTime = transitTime;
+  }
+
+  public Shipment userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+   /**
+   * Get userId
+   * @return userId
+  **/
+  @ApiModelProperty(value = "")
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public Shipment workflowProcessContainerId(String workflowProcessContainerId) {
+    this.workflowProcessContainerId = workflowProcessContainerId;
+    return this;
+  }
+
+   /**
+   * Get workflowProcessContainerId
+   * @return workflowProcessContainerId
+  **/
+  @ApiModelProperty(value = "")
+  public String getWorkflowProcessContainerId() {
+    return workflowProcessContainerId;
+  }
+
+  public void setWorkflowProcessContainerId(String workflowProcessContainerId) {
+    this.workflowProcessContainerId = workflowProcessContainerId;
+  }
+
+  public Shipment workflowProcessId(String workflowProcessId) {
+    this.workflowProcessId = workflowProcessId;
+    return this;
+  }
+
+   /**
+   * Get workflowProcessId
+   * @return workflowProcessId
+  **/
+  @ApiModelProperty(value = "")
+  public String getWorkflowProcessId() {
+    return workflowProcessId;
+  }
+
+  public void setWorkflowProcessId(String workflowProcessId) {
+    this.workflowProcessId = workflowProcessId;
   }
 
   public Shipment workflowState(WorkflowState workflowState) {
@@ -1667,12 +1955,14 @@ public class Shipment {
     }
     Shipment shipment = (Shipment) o;
     return Objects.equals(this.acceptedDate, shipment.acceptedDate) &&
+        Objects.equals(this.assignedLocationCode, shipment.assignedLocationCode) &&
         Objects.equals(this.attributes, shipment.attributes) &&
         Objects.equals(this.auditInfo, shipment.auditInfo) &&
         Objects.equals(this.canceledItems, shipment.canceledItems) &&
         Objects.equals(this.changeMessages, shipment.changeMessages) &&
         Objects.equals(this.childShipmentNumbers, shipment.childShipmentNumbers) &&
         Objects.equals(this.currencyCode, shipment.currencyCode) &&
+        Objects.equals(this.customer, shipment.customer) &&
         Objects.equals(this.customerAccountId, shipment.customerAccountId) &&
         Objects.equals(this.customerAddressId, shipment.customerAddressId) &&
         Objects.equals(this.customerTaxId, shipment.customerTaxId) &&
@@ -1681,7 +1971,7 @@ public class Shipment {
         Objects.equals(this.dutyAdjustment, shipment.dutyAdjustment) &&
         Objects.equals(this.dutyTotal, shipment.dutyTotal) &&
         Objects.equals(this.email, shipment.email) &&
-        Objects.equals(this.externalShipmentId, shipment.externalShipmentId) &&
+        Objects.equals(this.externalOrderId, shipment.externalOrderId) &&
         Objects.equals(this.fulfillmentDate, shipment.fulfillmentDate) &&
         Objects.equals(this.fulfillmentLocationCode, shipment.fulfillmentLocationCode) &&
         Objects.equals(this.fulfillmentStatus, shipment.fulfillmentStatus) &&
@@ -1690,7 +1980,8 @@ public class Shipment {
         Objects.equals(this.handlingTaxAdjustment, shipment.handlingTaxAdjustment) &&
         Objects.equals(this.handlingTaxTotal, shipment.handlingTaxTotal) &&
         Objects.equals(this.handlingTotal, shipment.handlingTotal) &&
-        Objects.equals(this.hasLabel, shipment.hasLabel) &&
+        Objects.equals(this.isExpress, shipment.isExpress) &&
+        Objects.equals(this.isOptInForSms, shipment.isOptInForSms) &&
         Objects.equals(this.items, shipment.items) &&
         Objects.equals(this.lineItemSubtotal, shipment.lineItemSubtotal) &&
         Objects.equals(this.lineItemTaxAdjustment, shipment.lineItemTaxAdjustment) &&
@@ -1699,15 +1990,21 @@ public class Shipment {
         Objects.equals(this.orderId, shipment.orderId) &&
         Objects.equals(this.orderNumber, shipment.orderNumber) &&
         Objects.equals(this.orderSubmitDate, shipment.orderSubmitDate) &&
-        Objects.equals(this.originalOrderId, shipment.originalOrderId) &&
         Objects.equals(this.originalShipmentNumber, shipment.originalShipmentNumber) &&
         Objects.equals(this.packages, shipment.packages) &&
         Objects.equals(this.parentShipmentNumber, shipment.parentShipmentNumber) &&
         Objects.equals(this.pickStatus, shipment.pickStatus) &&
         Objects.equals(this.pickType, shipment.pickType) &&
+        Objects.equals(this.pickWaveNumber, shipment.pickWaveNumber) &&
+        Objects.equals(this.pickupInfo, shipment.pickupInfo) &&
         Objects.equals(this.readyForPickup, shipment.readyForPickup) &&
         Objects.equals(this.readyForPickupDate, shipment.readyForPickupDate) &&
+        Objects.equals(this.readyToCapture, shipment.readyToCapture) &&
         Objects.equals(this.reassignedItems, shipment.reassignedItems) &&
+        Objects.equals(this.receivedDate, shipment.receivedDate) &&
+        Objects.equals(this.rejectedItems, shipment.rejectedItems) &&
+        Objects.equals(this.sentCustomerAtStoreNotification, shipment.sentCustomerAtStoreNotification) &&
+        Objects.equals(this.sentCustomerInTransitNotification, shipment.sentCustomerInTransitNotification) &&
         Objects.equals(this.shipmentAdjustment, shipment.shipmentAdjustment) &&
         Objects.equals(this.shipmentNumber, shipment.shipmentNumber) &&
         Objects.equals(this.shipmentStatus, shipment.shipmentStatus) &&
@@ -1720,18 +2017,21 @@ public class Shipment {
         Objects.equals(this.shippingTaxAdjustment, shipment.shippingTaxAdjustment) &&
         Objects.equals(this.shippingTaxTotal, shipment.shippingTaxTotal) &&
         Objects.equals(this.shippingTotal, shipment.shippingTotal) &&
-        Objects.equals(this.signatureRequired, shipment.signatureRequired) &&
         Objects.equals(this.siteId, shipment.siteId) &&
         Objects.equals(this.taxData, shipment.taxData) &&
         Objects.equals(this.tenantId, shipment.tenantId) &&
         Objects.equals(this.total, shipment.total) &&
-        Objects.equals(this.trackingNumbers, shipment.trackingNumbers) &&
+        Objects.equals(this.transferShipmentNumbers, shipment.transferShipmentNumbers) &&
+        Objects.equals(this.transitTime, shipment.transitTime) &&
+        Objects.equals(this.userId, shipment.userId) &&
+        Objects.equals(this.workflowProcessContainerId, shipment.workflowProcessContainerId) &&
+        Objects.equals(this.workflowProcessId, shipment.workflowProcessId) &&
         Objects.equals(this.workflowState, shipment.workflowState);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(acceptedDate, attributes, auditInfo, canceledItems, changeMessages, childShipmentNumbers, currencyCode, customerAccountId, customerAddressId, customerTaxId, data, destination, dutyAdjustment, dutyTotal, email, externalShipmentId, fulfillmentDate, fulfillmentLocationCode, fulfillmentStatus, handlingAdjustment, handlingSubtotal, handlingTaxAdjustment, handlingTaxTotal, handlingTotal, hasLabel, items, lineItemSubtotal, lineItemTaxAdjustment, lineItemTaxTotal, lineItemTotal, orderId, orderNumber, orderSubmitDate, originalOrderId, originalShipmentNumber, packages, parentShipmentNumber, pickStatus, pickType, readyForPickup, readyForPickupDate, reassignedItems, shipmentAdjustment, shipmentNumber, shipmentStatus, shipmentStatusReason, shipmentType, shippingAdjustment, shippingMethodCode, shippingMethodName, shippingSubtotal, shippingTaxAdjustment, shippingTaxTotal, shippingTotal, signatureRequired, siteId, taxData, tenantId, total, trackingNumbers, workflowState);
+    return Objects.hash(acceptedDate, assignedLocationCode, attributes, auditInfo, canceledItems, changeMessages, childShipmentNumbers, currencyCode, customer, customerAccountId, customerAddressId, customerTaxId, data, destination, dutyAdjustment, dutyTotal, email, externalOrderId, fulfillmentDate, fulfillmentLocationCode, fulfillmentStatus, handlingAdjustment, handlingSubtotal, handlingTaxAdjustment, handlingTaxTotal, handlingTotal, isExpress, isOptInForSms, items, lineItemSubtotal, lineItemTaxAdjustment, lineItemTaxTotal, lineItemTotal, orderId, orderNumber, orderSubmitDate, originalShipmentNumber, packages, parentShipmentNumber, pickStatus, pickType, pickWaveNumber, pickupInfo, readyForPickup, readyForPickupDate, readyToCapture, reassignedItems, receivedDate, rejectedItems, sentCustomerAtStoreNotification, sentCustomerInTransitNotification, shipmentAdjustment, shipmentNumber, shipmentStatus, shipmentStatusReason, shipmentType, shippingAdjustment, shippingMethodCode, shippingMethodName, shippingSubtotal, shippingTaxAdjustment, shippingTaxTotal, shippingTotal, siteId, taxData, tenantId, total, transferShipmentNumbers, transitTime, userId, workflowProcessContainerId, workflowProcessId, workflowState);
   }
 
 
@@ -1741,12 +2041,14 @@ public class Shipment {
     sb.append("class Shipment {\n");
     
     sb.append("    acceptedDate: ").append(toIndentedString(acceptedDate)).append("\n");
+    sb.append("    assignedLocationCode: ").append(toIndentedString(assignedLocationCode)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
     sb.append("    canceledItems: ").append(toIndentedString(canceledItems)).append("\n");
     sb.append("    changeMessages: ").append(toIndentedString(changeMessages)).append("\n");
     sb.append("    childShipmentNumbers: ").append(toIndentedString(childShipmentNumbers)).append("\n");
     sb.append("    currencyCode: ").append(toIndentedString(currencyCode)).append("\n");
+    sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
     sb.append("    customerAccountId: ").append(toIndentedString(customerAccountId)).append("\n");
     sb.append("    customerAddressId: ").append(toIndentedString(customerAddressId)).append("\n");
     sb.append("    customerTaxId: ").append(toIndentedString(customerTaxId)).append("\n");
@@ -1755,7 +2057,7 @@ public class Shipment {
     sb.append("    dutyAdjustment: ").append(toIndentedString(dutyAdjustment)).append("\n");
     sb.append("    dutyTotal: ").append(toIndentedString(dutyTotal)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    externalShipmentId: ").append(toIndentedString(externalShipmentId)).append("\n");
+    sb.append("    externalOrderId: ").append(toIndentedString(externalOrderId)).append("\n");
     sb.append("    fulfillmentDate: ").append(toIndentedString(fulfillmentDate)).append("\n");
     sb.append("    fulfillmentLocationCode: ").append(toIndentedString(fulfillmentLocationCode)).append("\n");
     sb.append("    fulfillmentStatus: ").append(toIndentedString(fulfillmentStatus)).append("\n");
@@ -1764,7 +2066,8 @@ public class Shipment {
     sb.append("    handlingTaxAdjustment: ").append(toIndentedString(handlingTaxAdjustment)).append("\n");
     sb.append("    handlingTaxTotal: ").append(toIndentedString(handlingTaxTotal)).append("\n");
     sb.append("    handlingTotal: ").append(toIndentedString(handlingTotal)).append("\n");
-    sb.append("    hasLabel: ").append(toIndentedString(hasLabel)).append("\n");
+    sb.append("    isExpress: ").append(toIndentedString(isExpress)).append("\n");
+    sb.append("    isOptInForSms: ").append(toIndentedString(isOptInForSms)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    lineItemSubtotal: ").append(toIndentedString(lineItemSubtotal)).append("\n");
     sb.append("    lineItemTaxAdjustment: ").append(toIndentedString(lineItemTaxAdjustment)).append("\n");
@@ -1773,15 +2076,21 @@ public class Shipment {
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    orderNumber: ").append(toIndentedString(orderNumber)).append("\n");
     sb.append("    orderSubmitDate: ").append(toIndentedString(orderSubmitDate)).append("\n");
-    sb.append("    originalOrderId: ").append(toIndentedString(originalOrderId)).append("\n");
     sb.append("    originalShipmentNumber: ").append(toIndentedString(originalShipmentNumber)).append("\n");
     sb.append("    packages: ").append(toIndentedString(packages)).append("\n");
     sb.append("    parentShipmentNumber: ").append(toIndentedString(parentShipmentNumber)).append("\n");
     sb.append("    pickStatus: ").append(toIndentedString(pickStatus)).append("\n");
     sb.append("    pickType: ").append(toIndentedString(pickType)).append("\n");
+    sb.append("    pickWaveNumber: ").append(toIndentedString(pickWaveNumber)).append("\n");
+    sb.append("    pickupInfo: ").append(toIndentedString(pickupInfo)).append("\n");
     sb.append("    readyForPickup: ").append(toIndentedString(readyForPickup)).append("\n");
     sb.append("    readyForPickupDate: ").append(toIndentedString(readyForPickupDate)).append("\n");
+    sb.append("    readyToCapture: ").append(toIndentedString(readyToCapture)).append("\n");
     sb.append("    reassignedItems: ").append(toIndentedString(reassignedItems)).append("\n");
+    sb.append("    receivedDate: ").append(toIndentedString(receivedDate)).append("\n");
+    sb.append("    rejectedItems: ").append(toIndentedString(rejectedItems)).append("\n");
+    sb.append("    sentCustomerAtStoreNotification: ").append(toIndentedString(sentCustomerAtStoreNotification)).append("\n");
+    sb.append("    sentCustomerInTransitNotification: ").append(toIndentedString(sentCustomerInTransitNotification)).append("\n");
     sb.append("    shipmentAdjustment: ").append(toIndentedString(shipmentAdjustment)).append("\n");
     sb.append("    shipmentNumber: ").append(toIndentedString(shipmentNumber)).append("\n");
     sb.append("    shipmentStatus: ").append(toIndentedString(shipmentStatus)).append("\n");
@@ -1794,12 +2103,15 @@ public class Shipment {
     sb.append("    shippingTaxAdjustment: ").append(toIndentedString(shippingTaxAdjustment)).append("\n");
     sb.append("    shippingTaxTotal: ").append(toIndentedString(shippingTaxTotal)).append("\n");
     sb.append("    shippingTotal: ").append(toIndentedString(shippingTotal)).append("\n");
-    sb.append("    signatureRequired: ").append(toIndentedString(signatureRequired)).append("\n");
     sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
     sb.append("    taxData: ").append(toIndentedString(taxData)).append("\n");
     sb.append("    tenantId: ").append(toIndentedString(tenantId)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    trackingNumbers: ").append(toIndentedString(trackingNumbers)).append("\n");
+    sb.append("    transferShipmentNumbers: ").append(toIndentedString(transferShipmentNumbers)).append("\n");
+    sb.append("    transitTime: ").append(toIndentedString(transitTime)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    workflowProcessContainerId: ").append(toIndentedString(workflowProcessContainerId)).append("\n");
+    sb.append("    workflowProcessId: ").append(toIndentedString(workflowProcessId)).append("\n");
     sb.append("    workflowState: ").append(toIndentedString(workflowState)).append("\n");
     sb.append("}");
     return sb.toString();

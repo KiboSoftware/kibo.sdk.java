@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **subject** | **String** |  |  [optional]
 **subjectType** | **String** |  |  [optional]
 **success** | **Boolean** |  |  [optional]
+**userDisplayName** | **String** |  |  [optional]
 **userFirstName** | **String** |  |  [optional]
 **userId** | **String** |  |  [optional]
 **userLastName** | **String** |  |  [optional]

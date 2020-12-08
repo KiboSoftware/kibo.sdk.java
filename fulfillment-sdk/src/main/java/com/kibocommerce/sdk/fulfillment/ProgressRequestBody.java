@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0

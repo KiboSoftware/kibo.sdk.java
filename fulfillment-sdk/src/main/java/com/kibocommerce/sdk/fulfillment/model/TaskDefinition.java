@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -30,11 +30,15 @@ import java.util.List;
 /**
  * TaskDefinition
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class TaskDefinition {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
 
   public static final String SERIALIZED_NAME_INPUTS = "inputs";
   @SerializedName(SERIALIZED_NAME_INPUTS)
@@ -43,6 +47,10 @@ public class TaskDefinition {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  public static final String SERIALIZED_NAME_PRIORITY = "priority";
+  @SerializedName(SERIALIZED_NAME_PRIORITY)
+  private Integer priority;
 
   public static final String SERIALIZED_NAME_SKIPPABLE = "skippable";
   @SerializedName(SERIALIZED_NAME_SKIPPABLE)
@@ -68,6 +76,24 @@ public class TaskDefinition {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public TaskDefinition id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(value = "")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public TaskDefinition inputs(List<TaskInput> inputs) {
@@ -112,6 +138,24 @@ public class TaskDefinition {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public TaskDefinition priority(Integer priority) {
+    this.priority = priority;
+    return this;
+  }
+
+   /**
+   * Get priority
+   * @return priority
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getPriority() {
+    return priority;
+  }
+
+  public void setPriority(Integer priority) {
+    this.priority = priority;
   }
 
   public TaskDefinition skippable(Boolean skippable) {
@@ -161,15 +205,17 @@ public class TaskDefinition {
     }
     TaskDefinition taskDefinition = (TaskDefinition) o;
     return Objects.equals(this.description, taskDefinition.description) &&
+        Objects.equals(this.id, taskDefinition.id) &&
         Objects.equals(this.inputs, taskDefinition.inputs) &&
         Objects.equals(this.name, taskDefinition.name) &&
+        Objects.equals(this.priority, taskDefinition.priority) &&
         Objects.equals(this.skippable, taskDefinition.skippable) &&
         Objects.equals(this.subject, taskDefinition.subject);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, inputs, name, skippable, subject);
+    return Objects.hash(description, id, inputs, name, priority, skippable, subject);
   }
 
 
@@ -179,8 +225,10 @@ public class TaskDefinition {
     sb.append("class TaskDefinition {\n");
     
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    inputs: ").append(toIndentedString(inputs)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    skippable: ").append(toIndentedString(skippable)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("}");

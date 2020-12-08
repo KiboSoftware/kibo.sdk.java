@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -28,11 +28,15 @@ import java.io.IOException;
 /**
  * CancelShipment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class CancelShipment {
   public static final String SERIALIZED_NAME_CANCELED_REASON = "canceledReason";
   @SerializedName(SERIALIZED_NAME_CANCELED_REASON)
   private CanceledReason canceledReason = null;
+
+  public static final String SERIALIZED_NAME_SEND_NOTIFICATIONS = "sendNotifications";
+  @SerializedName(SERIALIZED_NAME_SEND_NOTIFICATIONS)
+  private Boolean sendNotifications;
 
   public CancelShipment canceledReason(CanceledReason canceledReason) {
     this.canceledReason = canceledReason;
@@ -52,6 +56,24 @@ public class CancelShipment {
     this.canceledReason = canceledReason;
   }
 
+  public CancelShipment sendNotifications(Boolean sendNotifications) {
+    this.sendNotifications = sendNotifications;
+    return this;
+  }
+
+   /**
+   * Get sendNotifications
+   * @return sendNotifications
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getSendNotifications() {
+    return sendNotifications;
+  }
+
+  public void setSendNotifications(Boolean sendNotifications) {
+    this.sendNotifications = sendNotifications;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -62,12 +84,13 @@ public class CancelShipment {
       return false;
     }
     CancelShipment cancelShipment = (CancelShipment) o;
-    return Objects.equals(this.canceledReason, cancelShipment.canceledReason);
+    return Objects.equals(this.canceledReason, cancelShipment.canceledReason) &&
+        Objects.equals(this.sendNotifications, cancelShipment.sendNotifications);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(canceledReason);
+    return Objects.hash(canceledReason, sendNotifications);
   }
 
 
@@ -77,6 +100,7 @@ public class CancelShipment {
     sb.append("class CancelShipment {\n");
     
     sb.append("    canceledReason: ").append(toIndentedString(canceledReason)).append("\n");
+    sb.append("    sendNotifications: ").append(toIndentedString(sendNotifications)).append("\n");
     sb.append("}");
     return sb.toString();
   }

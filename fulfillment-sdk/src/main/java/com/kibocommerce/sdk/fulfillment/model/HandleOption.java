@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -20,18 +20,30 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kibocommerce.sdk.fulfillment.model.Item;
+import com.kibocommerce.sdk.fulfillment.model.TaskReason;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * HandleOption
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class HandleOption {
   public static final String SERIALIZED_NAME_BLOCK_ASSIGNMENT = "blockAssignment";
   @SerializedName(SERIALIZED_NAME_BLOCK_ASSIGNMENT)
   private Boolean blockAssignment;
+
+  public static final String SERIALIZED_NAME_ITEMS = "items";
+  @SerializedName(SERIALIZED_NAME_ITEMS)
+  private List<Item> items = null;
+
+  public static final String SERIALIZED_NAME_REASON = "reason";
+  @SerializedName(SERIALIZED_NAME_REASON)
+  private TaskReason reason = null;
 
   public HandleOption blockAssignment(Boolean blockAssignment) {
     this.blockAssignment = blockAssignment;
@@ -51,6 +63,50 @@ public class HandleOption {
     this.blockAssignment = blockAssignment;
   }
 
+  public HandleOption items(List<Item> items) {
+    this.items = items;
+    return this;
+  }
+
+  public HandleOption addItemsItem(Item itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<Item>();
+    }
+    this.items.add(itemsItem);
+    return this;
+  }
+
+   /**
+   * Get items
+   * @return items
+  **/
+  @ApiModelProperty(value = "")
+  public List<Item> getItems() {
+    return items;
+  }
+
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
+
+  public HandleOption reason(TaskReason reason) {
+    this.reason = reason;
+    return this;
+  }
+
+   /**
+   * Get reason
+   * @return reason
+  **/
+  @ApiModelProperty(value = "")
+  public TaskReason getReason() {
+    return reason;
+  }
+
+  public void setReason(TaskReason reason) {
+    this.reason = reason;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -61,12 +117,14 @@ public class HandleOption {
       return false;
     }
     HandleOption handleOption = (HandleOption) o;
-    return Objects.equals(this.blockAssignment, handleOption.blockAssignment);
+    return Objects.equals(this.blockAssignment, handleOption.blockAssignment) &&
+        Objects.equals(this.items, handleOption.items) &&
+        Objects.equals(this.reason, handleOption.reason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(blockAssignment);
+    return Objects.hash(blockAssignment, items, reason);
   }
 
 
@@ -76,6 +134,8 @@ public class HandleOption {
     sb.append("class HandleOption {\n");
     
     sb.append("    blockAssignment: ").append(toIndentedString(blockAssignment)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("}");
     return sb.toString();
   }

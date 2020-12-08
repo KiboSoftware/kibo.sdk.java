@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -28,10 +28,10 @@ import java.io.IOException;
 
 
 import com.kibocommerce.sdk.fulfillment.model.ClosePickWave;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfPickWave;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfShipment;
 import com.kibocommerce.sdk.fulfillment.model.CreatePickWave;
-import com.kibocommerce.sdk.fulfillment.model.ResourceOfPickWave;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfPickWave;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfShipment;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfPickWave;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -149,11 +149,11 @@ public class PickWaveControllerApi {
      * @param xVolTenant  (required)
      * @param closePickWave closePickWaveDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfPickWave
+     * @return EntityModelOfPickWave
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfPickWave closePickWaveUsingPUT(Integer pickWaveNumber, Integer xVolTenant, ClosePickWave closePickWave, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfPickWave> resp = closePickWaveUsingPUTWithHttpInfo(pickWaveNumber, xVolTenant, closePickWave, xVolSite);
+    public EntityModelOfPickWave closePickWaveUsingPUT(Integer pickWaveNumber, Integer xVolTenant, ClosePickWave closePickWave, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfPickWave> resp = closePickWaveUsingPUTWithHttpInfo(pickWaveNumber, xVolTenant, closePickWave, xVolSite);
         return resp.getData();
     }
 
@@ -164,12 +164,12 @@ public class PickWaveControllerApi {
      * @param xVolTenant  (required)
      * @param closePickWave closePickWaveDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfPickWave&gt;
+     * @return ApiResponse&lt;EntityModelOfPickWave&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfPickWave> closePickWaveUsingPUTWithHttpInfo(Integer pickWaveNumber, Integer xVolTenant, ClosePickWave closePickWave, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfPickWave> closePickWaveUsingPUTWithHttpInfo(Integer pickWaveNumber, Integer xVolTenant, ClosePickWave closePickWave, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = closePickWaveUsingPUTValidateBeforeCall(pickWaveNumber, xVolTenant, closePickWave, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfPickWave>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -184,7 +184,7 @@ public class PickWaveControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call closePickWaveUsingPUTAsync(Integer pickWaveNumber, Integer xVolTenant, ClosePickWave closePickWave, Integer xVolSite, final ApiCallback<ResourceOfPickWave> callback) throws ApiException {
+    public com.squareup.okhttp.Call closePickWaveUsingPUTAsync(Integer pickWaveNumber, Integer xVolTenant, ClosePickWave closePickWave, Integer xVolSite, final ApiCallback<EntityModelOfPickWave> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -206,7 +206,7 @@ public class PickWaveControllerApi {
         }
 
         com.squareup.okhttp.Call call = closePickWaveUsingPUTValidateBeforeCall(pickWaveNumber, xVolTenant, closePickWave, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfPickWave>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -293,11 +293,11 @@ public class PickWaveControllerApi {
      * @param xVolTenant  (required)
      * @param createPickWave createPickWaveDto (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfPickWave
+     * @return EntityModelOfPickWave
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfPickWave createPickWaveUsingPOST(Integer xVolTenant, CreatePickWave createPickWave, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfPickWave> resp = createPickWaveUsingPOSTWithHttpInfo(xVolTenant, createPickWave, xVolSite);
+    public EntityModelOfPickWave createPickWaveUsingPOST(Integer xVolTenant, CreatePickWave createPickWave, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfPickWave> resp = createPickWaveUsingPOSTWithHttpInfo(xVolTenant, createPickWave, xVolSite);
         return resp.getData();
     }
 
@@ -307,12 +307,12 @@ public class PickWaveControllerApi {
      * @param xVolTenant  (required)
      * @param createPickWave createPickWaveDto (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfPickWave&gt;
+     * @return ApiResponse&lt;EntityModelOfPickWave&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfPickWave> createPickWaveUsingPOSTWithHttpInfo(Integer xVolTenant, CreatePickWave createPickWave, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfPickWave> createPickWaveUsingPOSTWithHttpInfo(Integer xVolTenant, CreatePickWave createPickWave, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = createPickWaveUsingPOSTValidateBeforeCall(xVolTenant, createPickWave, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfPickWave>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -326,7 +326,7 @@ public class PickWaveControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createPickWaveUsingPOSTAsync(Integer xVolTenant, CreatePickWave createPickWave, Integer xVolSite, final ApiCallback<ResourceOfPickWave> callback) throws ApiException {
+    public com.squareup.okhttp.Call createPickWaveUsingPOSTAsync(Integer xVolTenant, CreatePickWave createPickWave, Integer xVolSite, final ApiCallback<EntityModelOfPickWave> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -348,7 +348,7 @@ public class PickWaveControllerApi {
         }
 
         com.squareup.okhttp.Call call = createPickWaveUsingPOSTValidateBeforeCall(xVolTenant, createPickWave, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfPickWave>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -454,11 +454,11 @@ public class PickWaveControllerApi {
      * @param userDisplayName userDisplayName (optional)
      * @param userId userId (optional)
      * @param xVolSite  (optional)
-     * @return ResourcesOfPickWave
+     * @return CollectionModelOfPickWave
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourcesOfPickWave getOpenPickWavesUsingGET(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourcesOfPickWave> resp = getOpenPickWavesUsingGETWithHttpInfo(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
+    public CollectionModelOfPickWave getOpenPickWavesUsingGET(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfPickWave> resp = getOpenPickWavesUsingGETWithHttpInfo(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite);
         return resp.getData();
     }
 
@@ -471,12 +471,12 @@ public class PickWaveControllerApi {
      * @param userDisplayName userDisplayName (optional)
      * @param userId userId (optional)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourcesOfPickWave&gt;
+     * @return ApiResponse&lt;CollectionModelOfPickWave&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourcesOfPickWave> getOpenPickWavesUsingGETWithHttpInfo(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite) throws ApiException {
+    public ApiResponse<CollectionModelOfPickWave> getOpenPickWavesUsingGETWithHttpInfo(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getOpenPickWavesUsingGETValidateBeforeCall(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourcesOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfPickWave>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -493,7 +493,7 @@ public class PickWaveControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getOpenPickWavesUsingGETAsync(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite, final ApiCallback<ResourcesOfPickWave> callback) throws ApiException {
+    public com.squareup.okhttp.Call getOpenPickWavesUsingGETAsync(String fulfillmentLocationCode, Integer xVolTenant, String shipmentType, String userDisplayName, String userId, Integer xVolSite, final ApiCallback<CollectionModelOfPickWave> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -515,7 +515,7 @@ public class PickWaveControllerApi {
         }
 
         com.squareup.okhttp.Call call = getOpenPickWavesUsingGETValidateBeforeCall(fulfillmentLocationCode, xVolTenant, shipmentType, userDisplayName, userId, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourcesOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfPickWave>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -603,11 +603,11 @@ public class PickWaveControllerApi {
      * @param pickWaveNumber pickWaveNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfPickWave
+     * @return EntityModelOfPickWave
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfPickWave getPickWaveUsingGET(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfPickWave> resp = getPickWaveUsingGETWithHttpInfo(pickWaveNumber, xVolTenant, xVolSite);
+    public EntityModelOfPickWave getPickWaveUsingGET(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfPickWave> resp = getPickWaveUsingGETWithHttpInfo(pickWaveNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -617,12 +617,12 @@ public class PickWaveControllerApi {
      * @param pickWaveNumber pickWaveNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfPickWave&gt;
+     * @return ApiResponse&lt;EntityModelOfPickWave&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfPickWave> getPickWaveUsingGETWithHttpInfo(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<EntityModelOfPickWave> getPickWaveUsingGETWithHttpInfo(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getPickWaveUsingGETValidateBeforeCall(pickWaveNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfPickWave>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -636,7 +636,7 @@ public class PickWaveControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getPickWaveUsingGETAsync(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfPickWave> callback) throws ApiException {
+    public com.squareup.okhttp.Call getPickWaveUsingGETAsync(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfPickWave> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -658,7 +658,7 @@ public class PickWaveControllerApi {
         }
 
         com.squareup.okhttp.Call call = getPickWaveUsingGETValidateBeforeCall(pickWaveNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfPickWave>(){}.getType();
+        Type localVarReturnType = new TypeToken<EntityModelOfPickWave>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -746,11 +746,11 @@ public class PickWaveControllerApi {
      * @param pickWaveNumber pickWaveNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourcesOfShipment
+     * @return CollectionModelOfShipment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourcesOfShipment getShipmentsInPickWaveUsingGET(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourcesOfShipment> resp = getShipmentsInPickWaveUsingGETWithHttpInfo(pickWaveNumber, xVolTenant, xVolSite);
+    public CollectionModelOfShipment getShipmentsInPickWaveUsingGET(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfShipment> resp = getShipmentsInPickWaveUsingGETWithHttpInfo(pickWaveNumber, xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -760,12 +760,12 @@ public class PickWaveControllerApi {
      * @param pickWaveNumber pickWaveNumber (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourcesOfShipment&gt;
+     * @return ApiResponse&lt;CollectionModelOfShipment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourcesOfShipment> getShipmentsInPickWaveUsingGETWithHttpInfo(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<CollectionModelOfShipment> getShipmentsInPickWaveUsingGETWithHttpInfo(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getShipmentsInPickWaveUsingGETValidateBeforeCall(pickWaveNumber, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourcesOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfShipment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -779,7 +779,7 @@ public class PickWaveControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getShipmentsInPickWaveUsingGETAsync(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourcesOfShipment> callback) throws ApiException {
+    public com.squareup.okhttp.Call getShipmentsInPickWaveUsingGETAsync(Integer pickWaveNumber, Integer xVolTenant, Integer xVolSite, final ApiCallback<CollectionModelOfShipment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -801,7 +801,7 @@ public class PickWaveControllerApi {
         }
 
         com.squareup.okhttp.Call call = getShipmentsInPickWaveUsingGETValidateBeforeCall(pickWaveNumber, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourcesOfShipment>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfShipment>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

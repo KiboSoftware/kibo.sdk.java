@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **binId** | **Integer** |  |  [optional]
 **binName** | **String** |  |  [optional]
 **contentId** | **String** |  |  [optional]
+**externalOrderId** | **String** |  |  [optional]
 **imageUrl** | **String** |  |  [optional]
 **itemLineId** | **Integer** |  |  [optional]
 **name** | **String** |  |  [optional]

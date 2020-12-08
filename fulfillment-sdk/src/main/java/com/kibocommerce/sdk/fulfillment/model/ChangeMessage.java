@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * ChangeMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class ChangeMessage {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -97,6 +97,10 @@ public class ChangeMessage {
   public static final String SERIALIZED_NAME_SUCCESS = "success";
   @SerializedName(SERIALIZED_NAME_SUCCESS)
   private Boolean success;
+
+  public static final String SERIALIZED_NAME_USER_DISPLAY_NAME = "userDisplayName";
+  @SerializedName(SERIALIZED_NAME_USER_DISPLAY_NAME)
+  private String userDisplayName;
 
   public static final String SERIALIZED_NAME_USER_FIRST_NAME = "userFirstName";
   @SerializedName(SERIALIZED_NAME_USER_FIRST_NAME)
@@ -410,6 +414,24 @@ public class ChangeMessage {
     this.success = success;
   }
 
+  public ChangeMessage userDisplayName(String userDisplayName) {
+    this.userDisplayName = userDisplayName;
+    return this;
+  }
+
+   /**
+   * Get userDisplayName
+   * @return userDisplayName
+  **/
+  @ApiModelProperty(value = "")
+  public String getUserDisplayName() {
+    return userDisplayName;
+  }
+
+  public void setUserDisplayName(String userDisplayName) {
+    this.userDisplayName = userDisplayName;
+  }
+
   public ChangeMessage userFirstName(String userFirstName) {
     this.userFirstName = userFirstName;
     return this;
@@ -508,6 +530,7 @@ public class ChangeMessage {
         Objects.equals(this.subject, changeMessage.subject) &&
         Objects.equals(this.subjectType, changeMessage.subjectType) &&
         Objects.equals(this.success, changeMessage.success) &&
+        Objects.equals(this.userDisplayName, changeMessage.userDisplayName) &&
         Objects.equals(this.userFirstName, changeMessage.userFirstName) &&
         Objects.equals(this.userId, changeMessage.userId) &&
         Objects.equals(this.userLastName, changeMessage.userLastName) &&
@@ -516,7 +539,7 @@ public class ChangeMessage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, appId, appKey, appName, attributes, changeMessageId, correlationId, createdDate, identifier, message, metadata, newValue, oldValue, subject, subjectType, success, userFirstName, userId, userLastName, verb);
+    return Objects.hash(amount, appId, appKey, appName, attributes, changeMessageId, correlationId, createdDate, identifier, message, metadata, newValue, oldValue, subject, subjectType, success, userDisplayName, userFirstName, userId, userLastName, verb);
   }
 
 
@@ -541,6 +564,7 @@ public class ChangeMessage {
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    subjectType: ").append(toIndentedString(subjectType)).append("\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
+    sb.append("    userDisplayName: ").append(toIndentedString(userDisplayName)).append("\n");
     sb.append("    userFirstName: ").append(toIndentedString(userFirstName)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    userLastName: ").append(toIndentedString(userLastName)).append("\n");

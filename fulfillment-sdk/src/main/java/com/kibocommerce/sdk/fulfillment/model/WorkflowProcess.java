@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -33,11 +33,15 @@ import java.util.Map;
 /**
  * WorkflowProcess
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class WorkflowProcess {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private Map<String, Object> attributes = null;
+
+  public static final String SERIALIZED_NAME_CONTAINER_ALIAS = "containerAlias";
+  @SerializedName(SERIALIZED_NAME_CONTAINER_ALIAS)
+  private String containerAlias;
 
   public static final String SERIALIZED_NAME_CONTAINER_ID = "containerId";
   @SerializedName(SERIALIZED_NAME_CONTAINER_ID)
@@ -83,6 +87,24 @@ public class WorkflowProcess {
 
   public void setAttributes(Map<String, Object> attributes) {
     this.attributes = attributes;
+  }
+
+  public WorkflowProcess containerAlias(String containerAlias) {
+    this.containerAlias = containerAlias;
+    return this;
+  }
+
+   /**
+   * Get containerAlias
+   * @return containerAlias
+  **/
+  @ApiModelProperty(value = "")
+  public String getContainerAlias() {
+    return containerAlias;
+  }
+
+  public void setContainerAlias(String containerAlias) {
+    this.containerAlias = containerAlias;
   }
 
   public WorkflowProcess containerId(String containerId) {
@@ -202,6 +224,7 @@ public class WorkflowProcess {
     }
     WorkflowProcess workflowProcess = (WorkflowProcess) o;
     return Objects.equals(this.attributes, workflowProcess.attributes) &&
+        Objects.equals(this.containerAlias, workflowProcess.containerAlias) &&
         Objects.equals(this.containerId, workflowProcess.containerId) &&
         Objects.equals(this.id, workflowProcess.id) &&
         Objects.equals(this.tasks, workflowProcess.tasks) &&
@@ -211,7 +234,7 @@ public class WorkflowProcess {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, containerId, id, tasks, variables, version);
+    return Objects.hash(attributes, containerAlias, containerId, id, tasks, variables, version);
   }
 
 
@@ -221,6 +244,7 @@ public class WorkflowProcess {
     sb.append("class WorkflowProcess {\n");
     
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    containerAlias: ").append(toIndentedString(containerAlias)).append("\n");
     sb.append("    containerId: ").append(toIndentedString(containerId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");

@@ -23,7 +23,6 @@ Name | Type | Description | Notes
 ## Enum: PickWaveTypeEnum
 Name | Value
 ---- | -----
-SPECIAL | &quot;SPECIAL&quot;
 NORMAL | &quot;NORMAL&quot;
 SINGLE | &quot;SINGLE&quot;
 MULTIPLE | &quot;MULTIPLE&quot;

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attributes** | **Map&lt;String, Object&gt;** |  |  [optional]
+**containerAlias** | **String** |  |  [optional]
 **containerId** | **String** |  |  [optional]
 **id** | **String** |  |  [optional]
 **tasks** | [**List&lt;TaskDefinition&gt;**](TaskDefinition.md) |  |  [optional]

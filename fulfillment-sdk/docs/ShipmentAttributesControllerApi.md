@@ -1,6 +1,6 @@
 # ShipmentAttributesControllerApi
 
-All URIs are relative to *http://services-tp.dev01.kubedev.kibo-dev.com/kibo.fulfillment.webapi*
+All URIs are relative to *http://2.services.sb.ng-qa.dev.kibocommerce.com/kibo.fulfillment.webapi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kibocommerce.sdk.fulfillment.model.AuditInfo;
 import com.kibocommerce.sdk.fulfillment.model.CanceledReason;
+import com.kibocommerce.sdk.fulfillment.model.GiftCard;
 import com.kibocommerce.sdk.fulfillment.model.ProductOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -36,11 +37,15 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * CanceledItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class CanceledItem {
   public static final String SERIALIZED_NAME_ACTUAL_PRICE = "actualPrice";
   @SerializedName(SERIALIZED_NAME_ACTUAL_PRICE)
   private BigDecimal actualPrice;
+
+  public static final String SERIALIZED_NAME_ALLOWS_BACK_ORDER = "allowsBackOrder";
+  @SerializedName(SERIALIZED_NAME_ALLOWS_BACK_ORDER)
+  private Boolean allowsBackOrder;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
@@ -54,32 +59,54 @@ public class CanceledItem {
   @SerializedName(SERIALIZED_NAME_BACKORDER_RELEASE_DATE)
   private OffsetDateTime backorderReleaseDate;
 
+  public static final String SERIALIZED_NAME_BLOCK_ASSIGNMENT = "blockAssignment";
+  @SerializedName(SERIALIZED_NAME_BLOCK_ASSIGNMENT)
+  private Boolean blockAssignment;
+
   public static final String SERIALIZED_NAME_CANCELED_REASON = "canceledReason";
   @SerializedName(SERIALIZED_NAME_CANCELED_REASON)
   private CanceledReason canceledReason = null;
 
+  public static final String SERIALIZED_NAME_CREDIT_CURRENCY_CODE = "creditCurrencyCode";
+  @SerializedName(SERIALIZED_NAME_CREDIT_CURRENCY_CODE)
+  private String creditCurrencyCode;
+
+  public static final String SERIALIZED_NAME_CREDIT_VALUE = "creditValue";
+  @SerializedName(SERIALIZED_NAME_CREDIT_VALUE)
+  private BigDecimal creditValue;
+
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private Object data = null;
+  private Map<String, Object> data = null;
 
   public static final String SERIALIZED_NAME_DUTY = "duty";
   @SerializedName(SERIALIZED_NAME_DUTY)
   private BigDecimal duty;
 
+  public static final String SERIALIZED_NAME_EXPECTED_DELIVERY_DATE = "expectedDeliveryDate";
+  @SerializedName(SERIALIZED_NAME_EXPECTED_DELIVERY_DATE)
+  private OffsetDateTime expectedDeliveryDate;
+
+  public static final String SERIALIZED_NAME_GIFT_CARDS = "giftCards";
+  @SerializedName(SERIALIZED_NAME_GIFT_CARDS)
+  private List<GiftCard> giftCards = null;
+
   /**
-   * Gets or Sets fulfillmentItemType
+   * Gets or Sets goodsType
    */
-  @JsonAdapter(FulfillmentItemTypeEnum.Adapter.class)
-  public enum FulfillmentItemTypeEnum {
+  @JsonAdapter(GoodsTypeEnum.Adapter.class)
+  public enum GoodsTypeEnum {
     PHYSICAL("Physical"),
     
     DIGITAL("Digital"),
     
-    DIGITALCREDIT("DigitalCredit");
+    DIGITALCREDIT("DigitalCredit"),
+    
+    DIGITALGIFTCARD("DigitalGiftCard");
 
     private String value;
 
-    FulfillmentItemTypeEnum(String value) {
+    GoodsTypeEnum(String value) {
       this.value = value;
     }
 
@@ -92,8 +119,8 @@ public class CanceledItem {
       return String.valueOf(value);
     }
 
-    public static FulfillmentItemTypeEnum fromValue(String text) {
-      for (FulfillmentItemTypeEnum b : FulfillmentItemTypeEnum.values()) {
+    public static GoodsTypeEnum fromValue(String text) {
+      for (GoodsTypeEnum b : GoodsTypeEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -101,23 +128,23 @@ public class CanceledItem {
       throw new IllegalArgumentException("Unexpected value '" + text + "'");
     }
 
-    public static class Adapter extends TypeAdapter<FulfillmentItemTypeEnum> {
+    public static class Adapter extends TypeAdapter<GoodsTypeEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final FulfillmentItemTypeEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final GoodsTypeEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public FulfillmentItemTypeEnum read(final JsonReader jsonReader) throws IOException {
+      public GoodsTypeEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return FulfillmentItemTypeEnum.fromValue(String.valueOf(value));
+        return GoodsTypeEnum.fromValue(String.valueOf(value));
       }
     }
   }
 
-  public static final String SERIALIZED_NAME_FULFILLMENT_ITEM_TYPE = "fulfillmentItemType";
-  @SerializedName(SERIALIZED_NAME_FULFILLMENT_ITEM_TYPE)
-  private FulfillmentItemTypeEnum fulfillmentItemType;
+  public static final String SERIALIZED_NAME_GOODS_TYPE = "goodsType";
+  @SerializedName(SERIALIZED_NAME_GOODS_TYPE)
+  private GoodsTypeEnum goodsType;
 
   public static final String SERIALIZED_NAME_HANDLING = "handling";
   @SerializedName(SERIALIZED_NAME_HANDLING)
@@ -191,6 +218,10 @@ public class CanceledItem {
   @SerializedName(SERIALIZED_NAME_QUANTITY)
   private Integer quantity;
 
+  public static final String SERIALIZED_NAME_READY_FOR_PICKUP_QUANTITY = "readyForPickupQuantity";
+  @SerializedName(SERIALIZED_NAME_READY_FOR_PICKUP_QUANTITY)
+  private Integer readyForPickupQuantity;
+
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
   @SerializedName(SERIALIZED_NAME_SHIPPING)
   private BigDecimal shipping;
@@ -222,6 +253,14 @@ public class CanceledItem {
   public static final String SERIALIZED_NAME_TAXABLE_SHIPPING = "taxableShipping";
   @SerializedName(SERIALIZED_NAME_TAXABLE_SHIPPING)
   private BigDecimal taxableShipping;
+
+  public static final String SERIALIZED_NAME_TRANSFER_QUANTITY = "transferQuantity";
+  @SerializedName(SERIALIZED_NAME_TRANSFER_QUANTITY)
+  private Integer transferQuantity;
+
+  public static final String SERIALIZED_NAME_TRUE_TRANSFER_QUANTITY = "trueTransferQuantity";
+  @SerializedName(SERIALIZED_NAME_TRUE_TRANSFER_QUANTITY)
+  private Integer trueTransferQuantity;
 
   public static final String SERIALIZED_NAME_UNIT_PRICE = "unitPrice";
   @SerializedName(SERIALIZED_NAME_UNIT_PRICE)
@@ -289,6 +328,24 @@ public class CanceledItem {
     this.actualPrice = actualPrice;
   }
 
+  public CanceledItem allowsBackOrder(Boolean allowsBackOrder) {
+    this.allowsBackOrder = allowsBackOrder;
+    return this;
+  }
+
+   /**
+   * Get allowsBackOrder
+   * @return allowsBackOrder
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getAllowsBackOrder() {
+    return allowsBackOrder;
+  }
+
+  public void setAllowsBackOrder(Boolean allowsBackOrder) {
+    this.allowsBackOrder = allowsBackOrder;
+  }
+
   public CanceledItem attributes(Map<String, Object> attributes) {
     this.attributes = attributes;
     return this;
@@ -351,6 +408,24 @@ public class CanceledItem {
     this.backorderReleaseDate = backorderReleaseDate;
   }
 
+  public CanceledItem blockAssignment(Boolean blockAssignment) {
+    this.blockAssignment = blockAssignment;
+    return this;
+  }
+
+   /**
+   * Get blockAssignment
+   * @return blockAssignment
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getBlockAssignment() {
+    return blockAssignment;
+  }
+
+  public void setBlockAssignment(Boolean blockAssignment) {
+    this.blockAssignment = blockAssignment;
+  }
+
   public CanceledItem canceledReason(CanceledReason canceledReason) {
     this.canceledReason = canceledReason;
     return this;
@@ -369,8 +444,52 @@ public class CanceledItem {
     this.canceledReason = canceledReason;
   }
 
-  public CanceledItem data(Object data) {
+  public CanceledItem creditCurrencyCode(String creditCurrencyCode) {
+    this.creditCurrencyCode = creditCurrencyCode;
+    return this;
+  }
+
+   /**
+   * Get creditCurrencyCode
+   * @return creditCurrencyCode
+  **/
+  @ApiModelProperty(value = "")
+  public String getCreditCurrencyCode() {
+    return creditCurrencyCode;
+  }
+
+  public void setCreditCurrencyCode(String creditCurrencyCode) {
+    this.creditCurrencyCode = creditCurrencyCode;
+  }
+
+  public CanceledItem creditValue(BigDecimal creditValue) {
+    this.creditValue = creditValue;
+    return this;
+  }
+
+   /**
+   * Get creditValue
+   * @return creditValue
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getCreditValue() {
+    return creditValue;
+  }
+
+  public void setCreditValue(BigDecimal creditValue) {
+    this.creditValue = creditValue;
+  }
+
+  public CanceledItem data(Map<String, Object> data) {
     this.data = data;
+    return this;
+  }
+
+  public CanceledItem putDataItem(String key, Object dataItem) {
+    if (this.data == null) {
+      this.data = new HashMap<String, Object>();
+    }
+    this.data.put(key, dataItem);
     return this;
   }
 
@@ -379,11 +498,11 @@ public class CanceledItem {
    * @return data
   **/
   @ApiModelProperty(value = "")
-  public Object getData() {
+  public Map<String, Object> getData() {
     return data;
   }
 
-  public void setData(Object data) {
+  public void setData(Map<String, Object> data) {
     this.data = data;
   }
 
@@ -405,22 +524,66 @@ public class CanceledItem {
     this.duty = duty;
   }
 
-  public CanceledItem fulfillmentItemType(FulfillmentItemTypeEnum fulfillmentItemType) {
-    this.fulfillmentItemType = fulfillmentItemType;
+  public CanceledItem expectedDeliveryDate(OffsetDateTime expectedDeliveryDate) {
+    this.expectedDeliveryDate = expectedDeliveryDate;
     return this;
   }
 
    /**
-   * Get fulfillmentItemType
-   * @return fulfillmentItemType
+   * Get expectedDeliveryDate
+   * @return expectedDeliveryDate
   **/
   @ApiModelProperty(value = "")
-  public FulfillmentItemTypeEnum getFulfillmentItemType() {
-    return fulfillmentItemType;
+  public OffsetDateTime getExpectedDeliveryDate() {
+    return expectedDeliveryDate;
   }
 
-  public void setFulfillmentItemType(FulfillmentItemTypeEnum fulfillmentItemType) {
-    this.fulfillmentItemType = fulfillmentItemType;
+  public void setExpectedDeliveryDate(OffsetDateTime expectedDeliveryDate) {
+    this.expectedDeliveryDate = expectedDeliveryDate;
+  }
+
+  public CanceledItem giftCards(List<GiftCard> giftCards) {
+    this.giftCards = giftCards;
+    return this;
+  }
+
+  public CanceledItem addGiftCardsItem(GiftCard giftCardsItem) {
+    if (this.giftCards == null) {
+      this.giftCards = new ArrayList<GiftCard>();
+    }
+    this.giftCards.add(giftCardsItem);
+    return this;
+  }
+
+   /**
+   * Get giftCards
+   * @return giftCards
+  **/
+  @ApiModelProperty(value = "")
+  public List<GiftCard> getGiftCards() {
+    return giftCards;
+  }
+
+  public void setGiftCards(List<GiftCard> giftCards) {
+    this.giftCards = giftCards;
+  }
+
+  public CanceledItem goodsType(GoodsTypeEnum goodsType) {
+    this.goodsType = goodsType;
+    return this;
+  }
+
+   /**
+   * Get goodsType
+   * @return goodsType
+  **/
+  @ApiModelProperty(value = "")
+  public GoodsTypeEnum getGoodsType() {
+    return goodsType;
+  }
+
+  public void setGoodsType(GoodsTypeEnum goodsType) {
+    this.goodsType = goodsType;
   }
 
   public CanceledItem handling(BigDecimal handling) {
@@ -755,6 +918,24 @@ public class CanceledItem {
     this.quantity = quantity;
   }
 
+  public CanceledItem readyForPickupQuantity(Integer readyForPickupQuantity) {
+    this.readyForPickupQuantity = readyForPickupQuantity;
+    return this;
+  }
+
+   /**
+   * Get readyForPickupQuantity
+   * @return readyForPickupQuantity
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getReadyForPickupQuantity() {
+    return readyForPickupQuantity;
+  }
+
+  public void setReadyForPickupQuantity(Integer readyForPickupQuantity) {
+    this.readyForPickupQuantity = readyForPickupQuantity;
+  }
+
   public CanceledItem shipping(BigDecimal shipping) {
     this.shipping = shipping;
     return this;
@@ -897,6 +1078,42 @@ public class CanceledItem {
 
   public void setTaxableShipping(BigDecimal taxableShipping) {
     this.taxableShipping = taxableShipping;
+  }
+
+  public CanceledItem transferQuantity(Integer transferQuantity) {
+    this.transferQuantity = transferQuantity;
+    return this;
+  }
+
+   /**
+   * Get transferQuantity
+   * @return transferQuantity
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getTransferQuantity() {
+    return transferQuantity;
+  }
+
+  public void setTransferQuantity(Integer transferQuantity) {
+    this.transferQuantity = transferQuantity;
+  }
+
+  public CanceledItem trueTransferQuantity(Integer trueTransferQuantity) {
+    this.trueTransferQuantity = trueTransferQuantity;
+    return this;
+  }
+
+   /**
+   * Get trueTransferQuantity
+   * @return trueTransferQuantity
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getTrueTransferQuantity() {
+    return trueTransferQuantity;
+  }
+
+  public void setTrueTransferQuantity(Integer trueTransferQuantity) {
+    this.trueTransferQuantity = trueTransferQuantity;
   }
 
   public CanceledItem unitPrice(BigDecimal unitPrice) {
@@ -1126,13 +1343,19 @@ public class CanceledItem {
     }
     CanceledItem canceledItem = (CanceledItem) o;
     return Objects.equals(this.actualPrice, canceledItem.actualPrice) &&
+        Objects.equals(this.allowsBackOrder, canceledItem.allowsBackOrder) &&
         Objects.equals(this.attributes, canceledItem.attributes) &&
         Objects.equals(this.auditInfo, canceledItem.auditInfo) &&
         Objects.equals(this.backorderReleaseDate, canceledItem.backorderReleaseDate) &&
+        Objects.equals(this.blockAssignment, canceledItem.blockAssignment) &&
         Objects.equals(this.canceledReason, canceledItem.canceledReason) &&
+        Objects.equals(this.creditCurrencyCode, canceledItem.creditCurrencyCode) &&
+        Objects.equals(this.creditValue, canceledItem.creditValue) &&
         Objects.equals(this.data, canceledItem.data) &&
         Objects.equals(this.duty, canceledItem.duty) &&
-        Objects.equals(this.fulfillmentItemType, canceledItem.fulfillmentItemType) &&
+        Objects.equals(this.expectedDeliveryDate, canceledItem.expectedDeliveryDate) &&
+        Objects.equals(this.giftCards, canceledItem.giftCards) &&
+        Objects.equals(this.goodsType, canceledItem.goodsType) &&
         Objects.equals(this.handling, canceledItem.handling) &&
         Objects.equals(this.handlingDiscount, canceledItem.handlingDiscount) &&
         Objects.equals(this.handlingTax, canceledItem.handlingTax) &&
@@ -1151,6 +1374,7 @@ public class CanceledItem {
         Objects.equals(this.partNumber, canceledItem.partNumber) &&
         Objects.equals(this.productCode, canceledItem.productCode) &&
         Objects.equals(this.quantity, canceledItem.quantity) &&
+        Objects.equals(this.readyForPickupQuantity, canceledItem.readyForPickupQuantity) &&
         Objects.equals(this.shipping, canceledItem.shipping) &&
         Objects.equals(this.shippingDiscount, canceledItem.shippingDiscount) &&
         Objects.equals(this.shippingTax, canceledItem.shippingTax) &&
@@ -1159,6 +1383,8 @@ public class CanceledItem {
         Objects.equals(this.taxableHandling, canceledItem.taxableHandling) &&
         Objects.equals(this.taxableLineItemCost, canceledItem.taxableLineItemCost) &&
         Objects.equals(this.taxableShipping, canceledItem.taxableShipping) &&
+        Objects.equals(this.transferQuantity, canceledItem.transferQuantity) &&
+        Objects.equals(this.trueTransferQuantity, canceledItem.trueTransferQuantity) &&
         Objects.equals(this.unitPrice, canceledItem.unitPrice) &&
         Objects.equals(this.upc, canceledItem.upc) &&
         Objects.equals(this.variationProductCode, canceledItem.variationProductCode) &&
@@ -1175,7 +1401,7 @@ public class CanceledItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualPrice, attributes, auditInfo, backorderReleaseDate, canceledReason, data, duty, fulfillmentItemType, handling, handlingDiscount, handlingTax, imageUrl, isTaxable, itemDiscount, itemTax, lineId, lineItemCost, name, optionAttributeFQN, options, originalOrderItemId, overridePrice, parentId, partNumber, productCode, quantity, shipping, shippingDiscount, shippingTax, sku, taxData, taxableHandling, taxableLineItemCost, taxableShipping, unitPrice, upc, variationProductCode, weight, weightUnit, weightedDutyAdjustment, weightedHandlingAdjustment, weightedHandlingTaxAdjustment, weightedLineItemTaxAdjustment, weightedShipmentAdjustment, weightedShippingAdjustment, weightedShippingTaxAdjustment);
+    return Objects.hash(actualPrice, allowsBackOrder, attributes, auditInfo, backorderReleaseDate, blockAssignment, canceledReason, creditCurrencyCode, creditValue, data, duty, expectedDeliveryDate, giftCards, goodsType, handling, handlingDiscount, handlingTax, imageUrl, isTaxable, itemDiscount, itemTax, lineId, lineItemCost, name, optionAttributeFQN, options, originalOrderItemId, overridePrice, parentId, partNumber, productCode, quantity, readyForPickupQuantity, shipping, shippingDiscount, shippingTax, sku, taxData, taxableHandling, taxableLineItemCost, taxableShipping, transferQuantity, trueTransferQuantity, unitPrice, upc, variationProductCode, weight, weightUnit, weightedDutyAdjustment, weightedHandlingAdjustment, weightedHandlingTaxAdjustment, weightedLineItemTaxAdjustment, weightedShipmentAdjustment, weightedShippingAdjustment, weightedShippingTaxAdjustment);
   }
 
 
@@ -1185,13 +1411,19 @@ public class CanceledItem {
     sb.append("class CanceledItem {\n");
     
     sb.append("    actualPrice: ").append(toIndentedString(actualPrice)).append("\n");
+    sb.append("    allowsBackOrder: ").append(toIndentedString(allowsBackOrder)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    auditInfo: ").append(toIndentedString(auditInfo)).append("\n");
     sb.append("    backorderReleaseDate: ").append(toIndentedString(backorderReleaseDate)).append("\n");
+    sb.append("    blockAssignment: ").append(toIndentedString(blockAssignment)).append("\n");
     sb.append("    canceledReason: ").append(toIndentedString(canceledReason)).append("\n");
+    sb.append("    creditCurrencyCode: ").append(toIndentedString(creditCurrencyCode)).append("\n");
+    sb.append("    creditValue: ").append(toIndentedString(creditValue)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    duty: ").append(toIndentedString(duty)).append("\n");
-    sb.append("    fulfillmentItemType: ").append(toIndentedString(fulfillmentItemType)).append("\n");
+    sb.append("    expectedDeliveryDate: ").append(toIndentedString(expectedDeliveryDate)).append("\n");
+    sb.append("    giftCards: ").append(toIndentedString(giftCards)).append("\n");
+    sb.append("    goodsType: ").append(toIndentedString(goodsType)).append("\n");
     sb.append("    handling: ").append(toIndentedString(handling)).append("\n");
     sb.append("    handlingDiscount: ").append(toIndentedString(handlingDiscount)).append("\n");
     sb.append("    handlingTax: ").append(toIndentedString(handlingTax)).append("\n");
@@ -1210,6 +1442,7 @@ public class CanceledItem {
     sb.append("    partNumber: ").append(toIndentedString(partNumber)).append("\n");
     sb.append("    productCode: ").append(toIndentedString(productCode)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
+    sb.append("    readyForPickupQuantity: ").append(toIndentedString(readyForPickupQuantity)).append("\n");
     sb.append("    shipping: ").append(toIndentedString(shipping)).append("\n");
     sb.append("    shippingDiscount: ").append(toIndentedString(shippingDiscount)).append("\n");
     sb.append("    shippingTax: ").append(toIndentedString(shippingTax)).append("\n");
@@ -1218,6 +1451,8 @@ public class CanceledItem {
     sb.append("    taxableHandling: ").append(toIndentedString(taxableHandling)).append("\n");
     sb.append("    taxableLineItemCost: ").append(toIndentedString(taxableLineItemCost)).append("\n");
     sb.append("    taxableShipping: ").append(toIndentedString(taxableShipping)).append("\n");
+    sb.append("    transferQuantity: ").append(toIndentedString(transferQuantity)).append("\n");
+    sb.append("    trueTransferQuantity: ").append(toIndentedString(trueTransferQuantity)).append("\n");
     sb.append("    unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
     sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
     sb.append("    variationProductCode: ").append(toIndentedString(variationProductCode)).append("\n");

@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Task
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class Task {
   public static final String SERIALIZED_NAME_LINKS = "_links";
   @SerializedName(SERIALIZED_NAME_LINKS)
@@ -43,10 +43,6 @@ public class Task {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
   private Boolean active;
-
-  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  private Map<String, Object> attributes = null;
 
   public static final String SERIALIZED_NAME_COMPLETED = "completed";
   @SerializedName(SERIALIZED_NAME_COMPLETED)
@@ -122,32 +118,6 @@ public class Task {
 
   public void setActive(Boolean active) {
     this.active = active;
-  }
-
-  public Task attributes(Map<String, Object> attributes) {
-    this.attributes = attributes;
-    return this;
-  }
-
-  public Task putAttributesItem(String key, Object attributesItem) {
-    if (this.attributes == null) {
-      this.attributes = new HashMap<String, Object>();
-    }
-    this.attributes.put(key, attributesItem);
-    return this;
-  }
-
-   /**
-   * Get attributes
-   * @return attributes
-  **/
-  @ApiModelProperty(value = "")
-  public Map<String, Object> getAttributes() {
-    return attributes;
-  }
-
-  public void setAttributes(Map<String, Object> attributes) {
-    this.attributes = attributes;
   }
 
   public Task completed(Boolean completed) {
@@ -314,7 +284,6 @@ public class Task {
     Task task = (Task) o;
     return Objects.equals(this.links, task.links) &&
         Objects.equals(this.active, task.active) &&
-        Objects.equals(this.attributes, task.attributes) &&
         Objects.equals(this.completed, task.completed) &&
         Objects.equals(this.completedDate, task.completedDate) &&
         Objects.equals(this.description, task.description) &&
@@ -327,7 +296,7 @@ public class Task {
 
   @Override
   public int hashCode() {
-    return Objects.hash(links, active, attributes, completed, completedDate, description, inputs, name, skippable, subject, taskId);
+    return Objects.hash(links, active, completed, completedDate, description, inputs, name, skippable, subject, taskId);
   }
 
 
@@ -338,7 +307,6 @@ public class Task {
     
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
-    sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
     sb.append("    completed: ").append(toIndentedString(completed)).append("\n");
     sb.append("    completedDate: ").append(toIndentedString(completedDate)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");

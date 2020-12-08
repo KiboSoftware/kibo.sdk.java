@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -30,11 +30,33 @@ import java.util.List;
 /**
  * BackorderItemsRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class BackorderItemsRequest {
+  public static final String SERIALIZED_NAME_IS_USER_ACTION = "isUserAction";
+  @SerializedName(SERIALIZED_NAME_IS_USER_ACTION)
+  private Boolean isUserAction;
+
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<BackorderItem> items = null;
+
+  public BackorderItemsRequest isUserAction(Boolean isUserAction) {
+    this.isUserAction = isUserAction;
+    return this;
+  }
+
+   /**
+   * Get isUserAction
+   * @return isUserAction
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getIsUserAction() {
+    return isUserAction;
+  }
+
+  public void setIsUserAction(Boolean isUserAction) {
+    this.isUserAction = isUserAction;
+  }
 
   public BackorderItemsRequest items(List<BackorderItem> items) {
     this.items = items;
@@ -72,12 +94,13 @@ public class BackorderItemsRequest {
       return false;
     }
     BackorderItemsRequest backorderItemsRequest = (BackorderItemsRequest) o;
-    return Objects.equals(this.items, backorderItemsRequest.items);
+    return Objects.equals(this.isUserAction, backorderItemsRequest.isUserAction) &&
+        Objects.equals(this.items, backorderItemsRequest.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(isUserAction, items);
   }
 
 
@@ -86,6 +109,7 @@ public class BackorderItemsRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class BackorderItemsRequest {\n");
     
+    sb.append("    isUserAction: ").append(toIndentedString(isUserAction)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();

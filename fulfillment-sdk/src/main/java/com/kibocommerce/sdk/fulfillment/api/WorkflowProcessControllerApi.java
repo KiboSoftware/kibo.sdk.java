@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import com.kibocommerce.sdk.fulfillment.model.ResourceOfWorkflowProcess;
-import com.kibocommerce.sdk.fulfillment.model.ResourcesOfResourceOfWorkflowProcess;
+import com.kibocommerce.sdk.fulfillment.model.CollectionModelOfEntityModelOfWorkflowProcess;
+import com.kibocommerce.sdk.fulfillment.model.EntityModelOfWorkflowProcess;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -56,8 +56,8 @@ public class WorkflowProcessControllerApi {
     }
 
     /**
-     * Build call for getWorkflowProcessUsingGET
-     * @param containerId containerId (required)
+     * Build call for getDefinitionImageUsingGET
+     * @param containerIdOrAlias containerIdOrAlias (required)
      * @param processId processId (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
@@ -66,13 +66,166 @@ public class WorkflowProcessControllerApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getWorkflowProcessUsingGETCall(String containerId, String processId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getDefinitionImageUsingGETCall(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/commerce/processes/definitions/{containerId}/{processId}"
-            .replaceAll("\\{" + "containerId" + "\\}", apiClient.escapeString(containerId.toString()))
+        String localVarPath = "/commerce/processes/definitionImage/{containerIdOrAlias}/{processId}"
+            .replaceAll("\\{" + "containerIdOrAlias" + "\\}", apiClient.escapeString(containerIdOrAlias.toString()))
             .replaceAll("\\{" + "processId" + "\\}", apiClient.escapeString(processId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "image/svg+xml"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getDefinitionImageUsingGETValidateBeforeCall(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'containerIdOrAlias' is set
+        if (containerIdOrAlias == null) {
+            throw new ApiException("Missing the required parameter 'containerIdOrAlias' when calling getDefinitionImageUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'processId' is set
+        if (processId == null) {
+            throw new ApiException("Missing the required parameter 'processId' when calling getDefinitionImageUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getDefinitionImageUsingGET(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getDefinitionImageUsingGETCall(containerIdOrAlias, processId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * getDefinitionImage
+     * 
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String getDefinitionImageUsingGET(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<String> resp = getDefinitionImageUsingGETWithHttpInfo(containerIdOrAlias, processId, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * getDefinitionImage
+     * 
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> getDefinitionImageUsingGETWithHttpInfo(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getDefinitionImageUsingGETValidateBeforeCall(containerIdOrAlias, processId, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * getDefinitionImage (asynchronously)
+     * 
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getDefinitionImageUsingGETAsync(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getDefinitionImageUsingGETValidateBeforeCall(containerIdOrAlias, processId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getWorkflowProcessByShipmentTypeLocationCodeUsingGET
+     * @param locationCode locationCode (required)
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeLocationCodeUsingGETCall(String locationCode, String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/processes/shipmentType/{shipmentType}/location/{locationCode}"
+            .replaceAll("\\{" + "locationCode" + "\\}", apiClient.escapeString(locationCode.toString()))
+            .replaceAll("\\{" + "shipmentType" + "\\}", apiClient.escapeString(shipmentType.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -117,72 +270,72 @@ public class WorkflowProcessControllerApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getWorkflowProcessUsingGETValidateBeforeCall(String containerId, String processId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeLocationCodeUsingGETValidateBeforeCall(String locationCode, String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'containerId' is set
-        if (containerId == null) {
-            throw new ApiException("Missing the required parameter 'containerId' when calling getWorkflowProcessUsingGET(Async)");
+        // verify the required parameter 'locationCode' is set
+        if (locationCode == null) {
+            throw new ApiException("Missing the required parameter 'locationCode' when calling getWorkflowProcessByShipmentTypeLocationCodeUsingGET(Async)");
         }
         
-        // verify the required parameter 'processId' is set
-        if (processId == null) {
-            throw new ApiException("Missing the required parameter 'processId' when calling getWorkflowProcessUsingGET(Async)");
+        // verify the required parameter 'shipmentType' is set
+        if (shipmentType == null) {
+            throw new ApiException("Missing the required parameter 'shipmentType' when calling getWorkflowProcessByShipmentTypeLocationCodeUsingGET(Async)");
         }
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWorkflowProcessUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWorkflowProcessByShipmentTypeLocationCodeUsingGET(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getWorkflowProcessUsingGETCall(containerId, processId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeLocationCodeUsingGETCall(locationCode, shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * getWorkflowProcess
+     * getWorkflowProcessByShipmentTypeLocationCode
      * 
-     * @param containerId containerId (required)
-     * @param processId processId (required)
+     * @param locationCode locationCode (required)
+     * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfWorkflowProcess
+     * @return EntityModelOfWorkflowProcess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceOfWorkflowProcess getWorkflowProcessUsingGET(String containerId, String processId, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfWorkflowProcess> resp = getWorkflowProcessUsingGETWithHttpInfo(containerId, processId, xVolTenant, xVolSite);
+    public EntityModelOfWorkflowProcess getWorkflowProcessByShipmentTypeLocationCodeUsingGET(String locationCode, String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfWorkflowProcess> resp = getWorkflowProcessByShipmentTypeLocationCodeUsingGETWithHttpInfo(locationCode, shipmentType, xVolTenant, xVolSite);
         return resp.getData();
     }
 
     /**
-     * getWorkflowProcess
+     * getWorkflowProcessByShipmentTypeLocationCode
      * 
-     * @param containerId containerId (required)
-     * @param processId processId (required)
+     * @param locationCode locationCode (required)
+     * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfWorkflowProcess&gt;
+     * @return ApiResponse&lt;EntityModelOfWorkflowProcess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceOfWorkflowProcess> getWorkflowProcessUsingGETWithHttpInfo(String containerId, String processId, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = getWorkflowProcessUsingGETValidateBeforeCall(containerId, processId, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfWorkflowProcess>(){}.getType();
+    public ApiResponse<EntityModelOfWorkflowProcess> getWorkflowProcessByShipmentTypeLocationCodeUsingGETWithHttpInfo(String locationCode, String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeLocationCodeUsingGETValidateBeforeCall(locationCode, shipmentType, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * getWorkflowProcess (asynchronously)
+     * getWorkflowProcessByShipmentTypeLocationCode (asynchronously)
      * 
-     * @param containerId containerId (required)
-     * @param processId processId (required)
+     * @param locationCode locationCode (required)
+     * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getWorkflowProcessUsingGETAsync(String containerId, String processId, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfWorkflowProcess> callback) throws ApiException {
+    public com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeLocationCodeUsingGETAsync(String locationCode, String shipmentType, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfWorkflowProcess> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -203,13 +356,14 @@ public class WorkflowProcessControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getWorkflowProcessUsingGETValidateBeforeCall(containerId, processId, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfWorkflowProcess>(){}.getType();
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeLocationCodeUsingGETValidateBeforeCall(locationCode, shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getWorkflowProcessUsingGET1
+     * Build call for getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET
+     * @param locationGroupCode locationGroupCode (required)
      * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
@@ -218,7 +372,161 @@ public class WorkflowProcessControllerApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getWorkflowProcessUsingGET1Call(String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETCall(String locationGroupCode, String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/processes/shipmentType/{shipmentType}/locationGroup/{locationGroupCode}"
+            .replaceAll("\\{" + "locationGroupCode" + "\\}", apiClient.escapeString(locationGroupCode.toString()))
+            .replaceAll("\\{" + "shipmentType" + "\\}", apiClient.escapeString(shipmentType.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETValidateBeforeCall(String locationGroupCode, String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'locationGroupCode' is set
+        if (locationGroupCode == null) {
+            throw new ApiException("Missing the required parameter 'locationGroupCode' when calling getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'shipmentType' is set
+        if (shipmentType == null) {
+            throw new ApiException("Missing the required parameter 'shipmentType' when calling getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETCall(locationGroupCode, shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     * 
+     * @param locationGroupCode locationGroupCode (required)
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfWorkflowProcess
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfWorkflowProcess getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(String locationGroupCode, String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfWorkflowProcess> resp = getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETWithHttpInfo(locationGroupCode, shipmentType, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationGroupCode
+     * 
+     * @param locationGroupCode locationGroupCode (required)
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfWorkflowProcess&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfWorkflowProcess> getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETWithHttpInfo(String locationGroupCode, String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETValidateBeforeCall(locationGroupCode, shipmentType, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * getWorkflowProcessByShipmentTypeLocationGroupCode (asynchronously)
+     * 
+     * @param locationGroupCode locationGroupCode (required)
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETAsync(String locationGroupCode, String shipmentType, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfWorkflowProcess> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGETValidateBeforeCall(locationGroupCode, shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getWorkflowProcessByShipmentTypeUsingGET
+     * @param shipmentType shipmentType (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @deprecated
+     */
+    @Deprecated
+    public com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeUsingGETCall(String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -267,56 +575,61 @@ public class WorkflowProcessControllerApi {
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getWorkflowProcessUsingGET1ValidateBeforeCall(String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeUsingGETValidateBeforeCall(String shipmentType, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'shipmentType' is set
         if (shipmentType == null) {
-            throw new ApiException("Missing the required parameter 'shipmentType' when calling getWorkflowProcessUsingGET1(Async)");
+            throw new ApiException("Missing the required parameter 'shipmentType' when calling getWorkflowProcessByShipmentTypeUsingGET(Async)");
         }
         
         // verify the required parameter 'xVolTenant' is set
         if (xVolTenant == null) {
-            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWorkflowProcessUsingGET1(Async)");
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWorkflowProcessByShipmentTypeUsingGET(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = getWorkflowProcessUsingGET1Call(shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeUsingGETCall(shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * getWorkflowProcess
+     * getWorkflowProcessByShipmentType
      * 
      * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourceOfWorkflowProcess
+     * @return EntityModelOfWorkflowProcess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @deprecated
      */
-    public ResourceOfWorkflowProcess getWorkflowProcessUsingGET1(String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourceOfWorkflowProcess> resp = getWorkflowProcessUsingGET1WithHttpInfo(shipmentType, xVolTenant, xVolSite);
+    @Deprecated
+    public EntityModelOfWorkflowProcess getWorkflowProcessByShipmentTypeUsingGET(String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfWorkflowProcess> resp = getWorkflowProcessByShipmentTypeUsingGETWithHttpInfo(shipmentType, xVolTenant, xVolSite);
         return resp.getData();
     }
 
     /**
-     * getWorkflowProcess
+     * getWorkflowProcessByShipmentType
      * 
      * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourceOfWorkflowProcess&gt;
+     * @return ApiResponse&lt;EntityModelOfWorkflowProcess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @deprecated
      */
-    public ApiResponse<ResourceOfWorkflowProcess> getWorkflowProcessUsingGET1WithHttpInfo(String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
-        com.squareup.okhttp.Call call = getWorkflowProcessUsingGET1ValidateBeforeCall(shipmentType, xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourceOfWorkflowProcess>(){}.getType();
+    @Deprecated
+    public ApiResponse<EntityModelOfWorkflowProcess> getWorkflowProcessByShipmentTypeUsingGETWithHttpInfo(String shipmentType, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeUsingGETValidateBeforeCall(shipmentType, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * getWorkflowProcess (asynchronously)
+     * getWorkflowProcessByShipmentType (asynchronously)
      * 
      * @param shipmentType shipmentType (required)
      * @param xVolTenant  (required)
@@ -324,8 +637,10 @@ public class WorkflowProcessControllerApi {
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @deprecated
      */
-    public com.squareup.okhttp.Call getWorkflowProcessUsingGET1Async(String shipmentType, Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourceOfWorkflowProcess> callback) throws ApiException {
+    @Deprecated
+    public com.squareup.okhttp.Call getWorkflowProcessByShipmentTypeUsingGETAsync(String shipmentType, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfWorkflowProcess> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -346,8 +661,161 @@ public class WorkflowProcessControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getWorkflowProcessUsingGET1ValidateBeforeCall(shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourceOfWorkflowProcess>(){}.getType();
+        com.squareup.okhttp.Call call = getWorkflowProcessByShipmentTypeUsingGETValidateBeforeCall(shipmentType, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getWorkflowProcessUsingGET
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getWorkflowProcessUsingGETCall(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/commerce/processes/definitions/{containerIdOrAlias}/{processId}"
+            .replaceAll("\\{" + "containerIdOrAlias" + "\\}", apiClient.escapeString(containerIdOrAlias.toString()))
+            .replaceAll("\\{" + "processId" + "\\}", apiClient.escapeString(processId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (xVolSite != null) {
+            localVarHeaderParams.put("x-vol-site", apiClient.parameterToString(xVolSite));
+        }
+
+        if (xVolTenant != null) {
+            localVarHeaderParams.put("x-vol-tenant", apiClient.parameterToString(xVolTenant));
+        }
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/xml", "application/json", "application/hal+json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getWorkflowProcessUsingGETValidateBeforeCall(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'containerIdOrAlias' is set
+        if (containerIdOrAlias == null) {
+            throw new ApiException("Missing the required parameter 'containerIdOrAlias' when calling getWorkflowProcessUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'processId' is set
+        if (processId == null) {
+            throw new ApiException("Missing the required parameter 'processId' when calling getWorkflowProcessUsingGET(Async)");
+        }
+        
+        // verify the required parameter 'xVolTenant' is set
+        if (xVolTenant == null) {
+            throw new ApiException("Missing the required parameter 'xVolTenant' when calling getWorkflowProcessUsingGET(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = getWorkflowProcessUsingGETCall(containerIdOrAlias, processId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * getWorkflowProcess
+     * 
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return EntityModelOfWorkflowProcess
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EntityModelOfWorkflowProcess getWorkflowProcessUsingGET(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<EntityModelOfWorkflowProcess> resp = getWorkflowProcessUsingGETWithHttpInfo(containerIdOrAlias, processId, xVolTenant, xVolSite);
+        return resp.getData();
+    }
+
+    /**
+     * getWorkflowProcess
+     * 
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @return ApiResponse&lt;EntityModelOfWorkflowProcess&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EntityModelOfWorkflowProcess> getWorkflowProcessUsingGETWithHttpInfo(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite) throws ApiException {
+        com.squareup.okhttp.Call call = getWorkflowProcessUsingGETValidateBeforeCall(containerIdOrAlias, processId, xVolTenant, xVolSite, null, null);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * getWorkflowProcess (asynchronously)
+     * 
+     * @param containerIdOrAlias containerIdOrAlias (required)
+     * @param processId processId (required)
+     * @param xVolTenant  (required)
+     * @param xVolSite  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getWorkflowProcessUsingGETAsync(String containerIdOrAlias, String processId, Integer xVolTenant, Integer xVolSite, final ApiCallback<EntityModelOfWorkflowProcess> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getWorkflowProcessUsingGETValidateBeforeCall(containerIdOrAlias, processId, xVolTenant, xVolSite, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EntityModelOfWorkflowProcess>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -427,11 +895,11 @@ public class WorkflowProcessControllerApi {
      * 
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ResourcesOfResourceOfWorkflowProcess
+     * @return CollectionModelOfEntityModelOfWorkflowProcess
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourcesOfResourceOfWorkflowProcess getWorkflowProcessesUsingGET(Integer xVolTenant, Integer xVolSite) throws ApiException {
-        ApiResponse<ResourcesOfResourceOfWorkflowProcess> resp = getWorkflowProcessesUsingGETWithHttpInfo(xVolTenant, xVolSite);
+    public CollectionModelOfEntityModelOfWorkflowProcess getWorkflowProcessesUsingGET(Integer xVolTenant, Integer xVolSite) throws ApiException {
+        ApiResponse<CollectionModelOfEntityModelOfWorkflowProcess> resp = getWorkflowProcessesUsingGETWithHttpInfo(xVolTenant, xVolSite);
         return resp.getData();
     }
 
@@ -440,12 +908,12 @@ public class WorkflowProcessControllerApi {
      * 
      * @param xVolTenant  (required)
      * @param xVolSite  (optional)
-     * @return ApiResponse&lt;ResourcesOfResourceOfWorkflowProcess&gt;
+     * @return ApiResponse&lt;CollectionModelOfEntityModelOfWorkflowProcess&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourcesOfResourceOfWorkflowProcess> getWorkflowProcessesUsingGETWithHttpInfo(Integer xVolTenant, Integer xVolSite) throws ApiException {
+    public ApiResponse<CollectionModelOfEntityModelOfWorkflowProcess> getWorkflowProcessesUsingGETWithHttpInfo(Integer xVolTenant, Integer xVolSite) throws ApiException {
         com.squareup.okhttp.Call call = getWorkflowProcessesUsingGETValidateBeforeCall(xVolTenant, xVolSite, null, null);
-        Type localVarReturnType = new TypeToken<ResourcesOfResourceOfWorkflowProcess>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfEntityModelOfWorkflowProcess>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -458,7 +926,7 @@ public class WorkflowProcessControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getWorkflowProcessesUsingGETAsync(Integer xVolTenant, Integer xVolSite, final ApiCallback<ResourcesOfResourceOfWorkflowProcess> callback) throws ApiException {
+    public com.squareup.okhttp.Call getWorkflowProcessesUsingGETAsync(Integer xVolTenant, Integer xVolSite, final ApiCallback<CollectionModelOfEntityModelOfWorkflowProcess> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -480,7 +948,7 @@ public class WorkflowProcessControllerApi {
         }
 
         com.squareup.okhttp.Call call = getWorkflowProcessesUsingGETValidateBeforeCall(xVolTenant, xVolSite, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ResourcesOfResourceOfWorkflowProcess>(){}.getType();
+        Type localVarReturnType = new TypeToken<CollectionModelOfEntityModelOfWorkflowProcess>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

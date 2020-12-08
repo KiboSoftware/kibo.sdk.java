@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * Contact
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class Contact {
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
@@ -54,6 +54,10 @@ public class Contact {
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
   private String firstName;
 
+  public static final String SERIALIZED_NAME_FULL_NAME = "fullName";
+  @SerializedName(SERIALIZED_NAME_FULL_NAME)
+  private String fullName;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private Integer id;
@@ -69,6 +73,10 @@ public class Contact {
   public static final String SERIALIZED_NAME_PHONE_NUMBERS = "phoneNumbers";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBERS)
   private Phone phoneNumbers = null;
+
+  public static final String SERIALIZED_NAME_SHORT_FULL_NAME = "shortFullName";
+  @SerializedName(SERIALIZED_NAME_SHORT_FULL_NAME)
+  private String shortFullName;
 
   public Contact address(Address address) {
     this.address = address;
@@ -168,6 +176,24 @@ public class Contact {
     this.firstName = firstName;
   }
 
+  public Contact fullName(String fullName) {
+    this.fullName = fullName;
+    return this;
+  }
+
+   /**
+   * Get fullName
+   * @return fullName
+  **/
+  @ApiModelProperty(value = "")
+  public String getFullName() {
+    return fullName;
+  }
+
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
+  }
+
   public Contact id(Integer id) {
     this.id = id;
     return this;
@@ -240,6 +266,24 @@ public class Contact {
     this.phoneNumbers = phoneNumbers;
   }
 
+  public Contact shortFullName(String shortFullName) {
+    this.shortFullName = shortFullName;
+    return this;
+  }
+
+   /**
+   * Get shortFullName
+   * @return shortFullName
+  **/
+  @ApiModelProperty(value = "")
+  public String getShortFullName() {
+    return shortFullName;
+  }
+
+  public void setShortFullName(String shortFullName) {
+    this.shortFullName = shortFullName;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -255,15 +299,17 @@ public class Contact {
         Objects.equals(this.companyOrOrganization, contact.companyOrOrganization) &&
         Objects.equals(this.email, contact.email) &&
         Objects.equals(this.firstName, contact.firstName) &&
+        Objects.equals(this.fullName, contact.fullName) &&
         Objects.equals(this.id, contact.id) &&
         Objects.equals(this.lastNameOrSurname, contact.lastNameOrSurname) &&
         Objects.equals(this.middleNameOrInitial, contact.middleNameOrInitial) &&
-        Objects.equals(this.phoneNumbers, contact.phoneNumbers);
+        Objects.equals(this.phoneNumbers, contact.phoneNumbers) &&
+        Objects.equals(this.shortFullName, contact.shortFullName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, attributes, companyOrOrganization, email, firstName, id, lastNameOrSurname, middleNameOrInitial, phoneNumbers);
+    return Objects.hash(address, attributes, companyOrOrganization, email, firstName, fullName, id, lastNameOrSurname, middleNameOrInitial, phoneNumbers, shortFullName);
   }
 
 
@@ -277,10 +323,12 @@ public class Contact {
     sb.append("    companyOrOrganization: ").append(toIndentedString(companyOrOrganization)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    lastNameOrSurname: ").append(toIndentedString(lastNameOrSurname)).append("\n");
     sb.append("    middleNameOrInitial: ").append(toIndentedString(middleNameOrInitial)).append("\n");
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
+    sb.append("    shortFullName: ").append(toIndentedString(shortFullName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

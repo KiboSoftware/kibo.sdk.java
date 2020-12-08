@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kibocommerce.sdk.fulfillment.model.DashboardStepDto;
+import com.kibocommerce.sdk.fulfillment.model.DashboardStep;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * DashboardResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class DashboardResponse {
   public static final String SERIALIZED_NAME_SHIPMENT_TYPE = "shipmentType";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_TYPE)
@@ -42,7 +42,7 @@ public class DashboardResponse {
 
   public static final String SERIALIZED_NAME_STEPS = "steps";
   @SerializedName(SERIALIZED_NAME_STEPS)
-  private List<DashboardStepDto> steps = null;
+  private List<DashboardStep> steps = null;
 
   public DashboardResponse shipmentType(String shipmentType) {
     this.shipmentType = shipmentType;
@@ -80,14 +80,14 @@ public class DashboardResponse {
     this.shipmentTypeDisplayName = shipmentTypeDisplayName;
   }
 
-  public DashboardResponse steps(List<DashboardStepDto> steps) {
+  public DashboardResponse steps(List<DashboardStep> steps) {
     this.steps = steps;
     return this;
   }
 
-  public DashboardResponse addStepsItem(DashboardStepDto stepsItem) {
+  public DashboardResponse addStepsItem(DashboardStep stepsItem) {
     if (this.steps == null) {
-      this.steps = new ArrayList<DashboardStepDto>();
+      this.steps = new ArrayList<DashboardStep>();
     }
     this.steps.add(stepsItem);
     return this;
@@ -98,11 +98,11 @@ public class DashboardResponse {
    * @return steps
   **/
   @ApiModelProperty(value = "")
-  public List<DashboardStepDto> getSteps() {
+  public List<DashboardStep> getSteps() {
     return steps;
   }
 
-  public void setSteps(List<DashboardStepDto> steps) {
+  public void setSteps(List<DashboardStep> steps) {
     this.steps = steps;
   }
 

@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * PickWave
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class PickWave {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
@@ -64,8 +64,6 @@ public class PickWave {
    */
   @JsonAdapter(PickTypeEnum.Adapter.class)
   public enum PickTypeEnum {
-    SPECIAL("SPECIAL"),
-    
     NORMAL("NORMAL"),
     
     SINGLE("SINGLE"),

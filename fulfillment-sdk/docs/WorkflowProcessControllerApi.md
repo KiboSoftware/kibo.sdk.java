@@ -1,19 +1,22 @@
 # WorkflowProcessControllerApi
 
-All URIs are relative to *http://services-tp.dev01.kubedev.kibo-dev.com/kibo.fulfillment.webapi*
+All URIs are relative to *http://2.services.sb.ng-qa.dev.kibocommerce.com/kibo.fulfillment.webapi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getWorkflowProcessUsingGET**](WorkflowProcessControllerApi.md#getWorkflowProcessUsingGET) | **GET** /commerce/processes/definitions/{containerId}/{processId} | getWorkflowProcess
-[**getWorkflowProcessUsingGET1**](WorkflowProcessControllerApi.md#getWorkflowProcessUsingGET1) | **GET** /commerce/processes/shipmentType/{shipmentType} | getWorkflowProcess
+[**getDefinitionImageUsingGET**](WorkflowProcessControllerApi.md#getDefinitionImageUsingGET) | **GET** /commerce/processes/definitionImage/{containerIdOrAlias}/{processId} | getDefinitionImage
+[**getWorkflowProcessByShipmentTypeLocationCodeUsingGET**](WorkflowProcessControllerApi.md#getWorkflowProcessByShipmentTypeLocationCodeUsingGET) | **GET** /commerce/processes/shipmentType/{shipmentType}/location/{locationCode} | getWorkflowProcessByShipmentTypeLocationCode
+[**getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET**](WorkflowProcessControllerApi.md#getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET) | **GET** /commerce/processes/shipmentType/{shipmentType}/locationGroup/{locationGroupCode} | getWorkflowProcessByShipmentTypeLocationGroupCode
+[**getWorkflowProcessByShipmentTypeUsingGET**](WorkflowProcessControllerApi.md#getWorkflowProcessByShipmentTypeUsingGET) | **GET** /commerce/processes/shipmentType/{shipmentType} | getWorkflowProcessByShipmentType
+[**getWorkflowProcessUsingGET**](WorkflowProcessControllerApi.md#getWorkflowProcessUsingGET) | **GET** /commerce/processes/definitions/{containerIdOrAlias}/{processId} | getWorkflowProcess
 [**getWorkflowProcessesUsingGET**](WorkflowProcessControllerApi.md#getWorkflowProcessesUsingGET) | **GET** /commerce/processes/definitions | getWorkflowProcesses
 
 
-<a name="getWorkflowProcessUsingGET"></a>
-# **getWorkflowProcessUsingGET**
-> ResourceOfWorkflowProcess getWorkflowProcessUsingGET(containerId, processId, xVolTenant, xVolSite)
+<a name="getDefinitionImageUsingGET"></a>
+# **getDefinitionImageUsingGET**
+> String getDefinitionImageUsingGET(containerIdOrAlias, processId, xVolTenant, xVolSite)
 
-getWorkflowProcess
+getDefinitionImage
 
 ### Example
 ```java
@@ -23,15 +26,15 @@ getWorkflowProcess
 
 
 WorkflowProcessControllerApi apiInstance = new WorkflowProcessControllerApi();
-String containerId = "containerId_example"; // String | containerId
+String containerIdOrAlias = "containerIdOrAlias_example"; // String | containerIdOrAlias
 String processId = "processId_example"; // String | processId
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfWorkflowProcess result = apiInstance.getWorkflowProcessUsingGET(containerId, processId, xVolTenant, xVolSite);
+    String result = apiInstance.getDefinitionImageUsingGET(containerIdOrAlias, processId, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessUsingGET");
+    System.err.println("Exception when calling WorkflowProcessControllerApi#getDefinitionImageUsingGET");
     e.printStackTrace();
 }
 ```
@@ -40,14 +43,63 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **containerId** | **String**| containerId |
+ **containerIdOrAlias** | **String**| containerIdOrAlias |
  **processId** | **String**| processId |
  **xVolTenant** | **Integer**|  |
  **xVolSite** | **Integer**|  | [optional]
 
 ### Return type
 
-[**ResourceOfWorkflowProcess**](ResourceOfWorkflowProcess.md)
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, image/svg+xml
+
+<a name="getWorkflowProcessByShipmentTypeLocationCodeUsingGET"></a>
+# **getWorkflowProcessByShipmentTypeLocationCodeUsingGET**
+> EntityModelOfWorkflowProcess getWorkflowProcessByShipmentTypeLocationCodeUsingGET(locationCode, shipmentType, xVolTenant, xVolSite)
+
+getWorkflowProcessByShipmentTypeLocationCode
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.WorkflowProcessControllerApi;
+
+
+WorkflowProcessControllerApi apiInstance = new WorkflowProcessControllerApi();
+String locationCode = "locationCode_example"; // String | locationCode
+String shipmentType = "shipmentType_example"; // String | shipmentType
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfWorkflowProcess result = apiInstance.getWorkflowProcessByShipmentTypeLocationCodeUsingGET(locationCode, shipmentType, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessByShipmentTypeLocationCodeUsingGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **locationCode** | **String**| locationCode |
+ **shipmentType** | **String**| shipmentType |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfWorkflowProcess**](EntityModelOfWorkflowProcess.md)
 
 ### Authorization
 
@@ -58,11 +110,60 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/xml, application/json, application/hal+json
 
-<a name="getWorkflowProcessUsingGET1"></a>
-# **getWorkflowProcessUsingGET1**
-> ResourceOfWorkflowProcess getWorkflowProcessUsingGET1(shipmentType, xVolTenant, xVolSite)
+<a name="getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET"></a>
+# **getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET**
+> EntityModelOfWorkflowProcess getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(locationGroupCode, shipmentType, xVolTenant, xVolSite)
 
-getWorkflowProcess
+getWorkflowProcessByShipmentTypeLocationGroupCode
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.WorkflowProcessControllerApi;
+
+
+WorkflowProcessControllerApi apiInstance = new WorkflowProcessControllerApi();
+String locationGroupCode = "locationGroupCode_example"; // String | locationGroupCode
+String shipmentType = "shipmentType_example"; // String | shipmentType
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfWorkflowProcess result = apiInstance.getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET(locationGroupCode, shipmentType, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessByShipmentTypeLocationGroupCodeUsingGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **locationGroupCode** | **String**| locationGroupCode |
+ **shipmentType** | **String**| shipmentType |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfWorkflowProcess**](EntityModelOfWorkflowProcess.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="getWorkflowProcessByShipmentTypeUsingGET"></a>
+# **getWorkflowProcessByShipmentTypeUsingGET**
+> EntityModelOfWorkflowProcess getWorkflowProcessByShipmentTypeUsingGET(shipmentType, xVolTenant, xVolSite)
+
+getWorkflowProcessByShipmentType
 
 ### Example
 ```java
@@ -76,10 +177,10 @@ String shipmentType = "shipmentType_example"; // String | shipmentType
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourceOfWorkflowProcess result = apiInstance.getWorkflowProcessUsingGET1(shipmentType, xVolTenant, xVolSite);
+    EntityModelOfWorkflowProcess result = apiInstance.getWorkflowProcessByShipmentTypeUsingGET(shipmentType, xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessUsingGET1");
+    System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessByShipmentTypeUsingGET");
     e.printStackTrace();
 }
 ```
@@ -94,7 +195,56 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourceOfWorkflowProcess**](ResourceOfWorkflowProcess.md)
+[**EntityModelOfWorkflowProcess**](EntityModelOfWorkflowProcess.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/xml, application/json, application/hal+json
+
+<a name="getWorkflowProcessUsingGET"></a>
+# **getWorkflowProcessUsingGET**
+> EntityModelOfWorkflowProcess getWorkflowProcessUsingGET(containerIdOrAlias, processId, xVolTenant, xVolSite)
+
+getWorkflowProcess
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.fulfillment.ApiException;
+//import com.kibocommerce.sdk.fulfillment.api.WorkflowProcessControllerApi;
+
+
+WorkflowProcessControllerApi apiInstance = new WorkflowProcessControllerApi();
+String containerIdOrAlias = "containerIdOrAlias_example"; // String | containerIdOrAlias
+String processId = "processId_example"; // String | processId
+Integer xVolTenant = 56; // Integer | 
+Integer xVolSite = 56; // Integer | 
+try {
+    EntityModelOfWorkflowProcess result = apiInstance.getWorkflowProcessUsingGET(containerIdOrAlias, processId, xVolTenant, xVolSite);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessUsingGET");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **containerIdOrAlias** | **String**| containerIdOrAlias |
+ **processId** | **String**| processId |
+ **xVolTenant** | **Integer**|  |
+ **xVolSite** | **Integer**|  | [optional]
+
+### Return type
+
+[**EntityModelOfWorkflowProcess**](EntityModelOfWorkflowProcess.md)
 
 ### Authorization
 
@@ -107,7 +257,7 @@ No authorization required
 
 <a name="getWorkflowProcessesUsingGET"></a>
 # **getWorkflowProcessesUsingGET**
-> ResourcesOfResourceOfWorkflowProcess getWorkflowProcessesUsingGET(xVolTenant, xVolSite)
+> CollectionModelOfEntityModelOfWorkflowProcess getWorkflowProcessesUsingGET(xVolTenant, xVolSite)
 
 getWorkflowProcesses
 
@@ -122,7 +272,7 @@ WorkflowProcessControllerApi apiInstance = new WorkflowProcessControllerApi();
 Integer xVolTenant = 56; // Integer | 
 Integer xVolSite = 56; // Integer | 
 try {
-    ResourcesOfResourceOfWorkflowProcess result = apiInstance.getWorkflowProcessesUsingGET(xVolTenant, xVolSite);
+    CollectionModelOfEntityModelOfWorkflowProcess result = apiInstance.getWorkflowProcessesUsingGET(xVolTenant, xVolSite);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling WorkflowProcessControllerApi#getWorkflowProcessesUsingGET");
@@ -139,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResourcesOfResourceOfWorkflowProcess**](ResourcesOfResourceOfWorkflowProcess.md)
+[**CollectionModelOfEntityModelOfWorkflowProcess**](CollectionModelOfEntityModelOfWorkflowProcess.md)
 
 ### Authorization
 

@@ -1,5 +1,5 @@
 /*
- * Kibo Fulfillment API
+ * Kibo Fulfillment API - Production Profile
  * REST API backing the Kibo Fulfiller User Interface
  *
  * OpenAPI spec version: 1.0
@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * PickWaveContent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-10-31T10:37:23.152728-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
 public class PickWaveContent {
   public static final String SERIALIZED_NAME_ACTUAL_QUANTITY = "actualQuantity";
   @SerializedName(SERIALIZED_NAME_ACTUAL_QUANTITY)
@@ -56,6 +56,10 @@ public class PickWaveContent {
   public static final String SERIALIZED_NAME_CONTENT_ID = "contentId";
   @SerializedName(SERIALIZED_NAME_CONTENT_ID)
   private String contentId;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_ORDER_ID = "externalOrderId";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_ORDER_ID)
+  private String externalOrderId;
 
   public static final String SERIALIZED_NAME_IMAGE_URL = "imageUrl";
   @SerializedName(SERIALIZED_NAME_IMAGE_URL)
@@ -272,6 +276,24 @@ public class PickWaveContent {
 
   public void setContentId(String contentId) {
     this.contentId = contentId;
+  }
+
+  public PickWaveContent externalOrderId(String externalOrderId) {
+    this.externalOrderId = externalOrderId;
+    return this;
+  }
+
+   /**
+   * Get externalOrderId
+   * @return externalOrderId
+  **/
+  @ApiModelProperty(value = "")
+  public String getExternalOrderId() {
+    return externalOrderId;
+  }
+
+  public void setExternalOrderId(String externalOrderId) {
+    this.externalOrderId = externalOrderId;
   }
 
   public PickWaveContent imageUrl(String imageUrl) {
@@ -524,6 +546,7 @@ public class PickWaveContent {
         Objects.equals(this.binId, pickWaveContent.binId) &&
         Objects.equals(this.binName, pickWaveContent.binName) &&
         Objects.equals(this.contentId, pickWaveContent.contentId) &&
+        Objects.equals(this.externalOrderId, pickWaveContent.externalOrderId) &&
         Objects.equals(this.imageUrl, pickWaveContent.imageUrl) &&
         Objects.equals(this.itemLineId, pickWaveContent.itemLineId) &&
         Objects.equals(this.name, pickWaveContent.name) &&
@@ -541,7 +564,7 @@ public class PickWaveContent {
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualQuantity, attributes, auditInfo, binId, binName, contentId, imageUrl, itemLineId, name, optionAttributeFQN, orderNumber, partNumber, productCode, quantity, shipmentNumber, sku, status, upc, variationProductCode);
+    return Objects.hash(actualQuantity, attributes, auditInfo, binId, binName, contentId, externalOrderId, imageUrl, itemLineId, name, optionAttributeFQN, orderNumber, partNumber, productCode, quantity, shipmentNumber, sku, status, upc, variationProductCode);
   }
 
 
@@ -556,6 +579,7 @@ public class PickWaveContent {
     sb.append("    binId: ").append(toIndentedString(binId)).append("\n");
     sb.append("    binName: ").append(toIndentedString(binName)).append("\n");
     sb.append("    contentId: ").append(toIndentedString(contentId)).append("\n");
+    sb.append("    externalOrderId: ").append(toIndentedString(externalOrderId)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    itemLineId: ").append(toIndentedString(itemLineId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
