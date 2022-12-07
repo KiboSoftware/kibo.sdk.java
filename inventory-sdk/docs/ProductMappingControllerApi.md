@@ -58,7 +58,7 @@ No authorization required
 
 <a name="deleteProductMapping"></a>
 # **deleteProductMapping**
-> Boolean deleteProductMapping(xVolTenant, direction, productMappingRequest)
+> DeletedResponse deleteProductMapping(xVolTenant, direction, productMappingRequest)
 
 
 
@@ -76,7 +76,7 @@ Integer xVolTenant = 56; // Integer | Tenant ID
 String direction = "direction_example"; // String | Direction
 ProductMappingRequest productMappingRequest = new ProductMappingRequest(); // ProductMappingRequest | Request to work with Product Mappings
 try {
-    Boolean result = apiInstance.deleteProductMapping(xVolTenant, direction, productMappingRequest);
+    DeletedResponse result = apiInstance.deleteProductMapping(xVolTenant, direction, productMappingRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ProductMappingControllerApi#deleteProductMapping");
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Boolean**
+[**DeletedResponse**](DeletedResponse.md)
 
 ### Authorization
 

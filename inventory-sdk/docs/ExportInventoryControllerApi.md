@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 <a name="createExportSettings"></a>
 # **createExportSettings**
-> String createExportSettings(xVolTenant, createExportSettingsRequest)
+> ExportSettingsResponse createExportSettings(xVolTenant, createExportSettingsRequest)
 
 
 
@@ -36,7 +36,7 @@ ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 CreateExportSettingsRequest createExportSettingsRequest = new CreateExportSettingsRequest(); // CreateExportSettingsRequest | Request to create a new Export Settings
 try {
-    String result = apiInstance.createExportSettings(xVolTenant, createExportSettingsRequest);
+    ExportSettingsResponse result = apiInstance.createExportSettings(xVolTenant, createExportSettingsRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#createExportSettings");
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**String**
+[**ExportSettingsResponse**](ExportSettingsResponse.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ No authorization required
 
 <a name="createExportSettingsFTP"></a>
 # **createExportSettingsFTP**
-> String createExportSettingsFTP(xVolTenant, createExportSettingsFTPRequest)
+> ExportSettingsResponse createExportSettingsFTP(xVolTenant, createExportSettingsFTPRequest)
 
 
 
@@ -83,7 +83,7 @@ ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 CreateExportSettingsFTPRequest createExportSettingsFTPRequest = new CreateExportSettingsFTPRequest(); // CreateExportSettingsFTPRequest | Request to create a new Export Settings FTP
 try {
-    String result = apiInstance.createExportSettingsFTP(xVolTenant, createExportSettingsFTPRequest);
+    ExportSettingsResponse result = apiInstance.createExportSettingsFTP(xVolTenant, createExportSettingsFTPRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#createExportSettingsFTP");
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**String**
+[**ExportSettingsResponse**](ExportSettingsResponse.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ No authorization required
 
 <a name="createExportSettingsS3"></a>
 # **createExportSettingsS3**
-> Integer createExportSettingsS3(xVolTenant, createExportSettingsS3Request)
+> ExportSettingsResponse createExportSettingsS3(xVolTenant, createExportSettingsS3Request)
 
 
 
@@ -130,7 +130,7 @@ ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 CreateExportSettingsS3Request createExportSettingsS3Request = new CreateExportSettingsS3Request(); // CreateExportSettingsS3Request | Request to create a new Export Settings S3
 try {
-    Integer result = apiInstance.createExportSettingsS3(xVolTenant, createExportSettingsS3Request);
+    ExportSettingsResponse result = apiInstance.createExportSettingsS3(xVolTenant, createExportSettingsS3Request);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#createExportSettingsS3");
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Integer**
+[**ExportSettingsResponse**](ExportSettingsResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 
 <a name="deleteExportSettings"></a>
 # **deleteExportSettings**
-> Integer deleteExportSettings(xVolTenant, exportSettingsName)
+> DeletedCountResponse deleteExportSettings(xVolTenant, exportSettingsName)
 
 
 
@@ -177,7 +177,7 @@ ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 String exportSettingsName = "exportSettingsName_example"; // String | Export Settings Name
 try {
-    Integer result = apiInstance.deleteExportSettings(xVolTenant, exportSettingsName);
+    DeletedCountResponse result = apiInstance.deleteExportSettings(xVolTenant, exportSettingsName);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#deleteExportSettings");
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Integer**
+[**DeletedCountResponse**](DeletedCountResponse.md)
 
 ### Authorization
 
@@ -207,7 +207,7 @@ No authorization required
 
 <a name="deleteExportSettingsFTP"></a>
 # **deleteExportSettingsFTP**
-> Integer deleteExportSettingsFTP(xVolTenant, exportSettingsName, exportSettingsFTPName)
+> DeletedCountResponse deleteExportSettingsFTP(xVolTenant, exportSettingsName, exportSettingsFTPName)
 
 
 
@@ -225,7 +225,7 @@ Integer xVolTenant = 56; // Integer | Tenant ID
 String exportSettingsName = "exportSettingsName_example"; // String | Export Settings Name
 String exportSettingsFTPName = "exportSettingsFTPName_example"; // String | Export Settings FTP Name
 try {
-    Integer result = apiInstance.deleteExportSettingsFTP(xVolTenant, exportSettingsName, exportSettingsFTPName);
+    DeletedCountResponse result = apiInstance.deleteExportSettingsFTP(xVolTenant, exportSettingsName, exportSettingsFTPName);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#deleteExportSettingsFTP");
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Integer**
+[**DeletedCountResponse**](DeletedCountResponse.md)
 
 ### Authorization
 
@@ -256,7 +256,7 @@ No authorization required
 
 <a name="deleteExportSettingsS3"></a>
 # **deleteExportSettingsS3**
-> Boolean deleteExportSettingsS3(xVolTenant, exportSettingsName, exportSettingsS3Name)
+> DeletedCountResponse deleteExportSettingsS3(xVolTenant, exportSettingsName, exportSettingsS3Name)
 
 
 
@@ -274,7 +274,7 @@ Integer xVolTenant = 56; // Integer | Tenant ID
 String exportSettingsName = "exportSettingsName_example"; // String | Export Settings Name
 String exportSettingsS3Name = "exportSettingsS3Name_example"; // String | Export Settings S3 Name
 try {
-    Boolean result = apiInstance.deleteExportSettingsS3(xVolTenant, exportSettingsName, exportSettingsS3Name);
+    DeletedCountResponse result = apiInstance.deleteExportSettingsS3(xVolTenant, exportSettingsName, exportSettingsS3Name);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#deleteExportSettingsS3");
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Boolean**
+[**DeletedCountResponse**](DeletedCountResponse.md)
 
 ### Authorization
 
@@ -305,7 +305,7 @@ No authorization required
 
 <a name="getExportSettings"></a>
 # **getExportSettings**
-> List&lt;ExportSettings&gt; getExportSettings(xVolTenant, exportSettingsName)
+> List&lt;GetExportSettingsResponse&gt; getExportSettings(xVolTenant, exportSettingsName)
 
 
 
@@ -322,7 +322,7 @@ ExportInventoryControllerApi apiInstance = new ExportInventoryControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 String exportSettingsName = "exportSettingsName_example"; // String | Export Settings Name
 try {
-    List<ExportSettings> result = apiInstance.getExportSettings(xVolTenant, exportSettingsName);
+    List<GetExportSettingsResponse> result = apiInstance.getExportSettings(xVolTenant, exportSettingsName);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExportInventoryControllerApi#getExportSettings");
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;ExportSettings&gt;**](ExportSettings.md)
+[**List&lt;GetExportSettingsResponse&gt;**](GetExportSettingsResponse.md)
 
 ### Authorization
 

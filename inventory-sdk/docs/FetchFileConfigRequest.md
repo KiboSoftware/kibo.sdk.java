@@ -17,6 +17,13 @@ Name | Type | Description | Notes
 **ftpPort** | **Integer** | FTP server port |  [optional]
 **ftpRemotePath** | **String** | FTP server remote path | 
 **ftpRemotePathArchive** | **String** | FTP server remote path archive |  [optional]
+**region** | **String** | S3 Region |  [optional]
+**s3Key** | **String** | S3 Key |  [optional]
+**secret** | **String** | S3 Secret |  [optional]
+**bucket** | **String** | S3 Bucket |  [optional]
+**s3Path** | **String** | S3 Bucket Path (directory) |  [optional]
+**archiveBucket** | **String** | S3 Archive Bucket |  [optional]
+**s3ArchivePath** | **String** | S3 Archive Bucket Path (directory) |  [optional]
 **lockName** | **String** | Lock name | 
 **postProcessAction** | **Integer** | Enum denoting action post processing | 
 **useControlFile** | **Boolean** | Flag for using control file |  [optional]
@@ -27,6 +34,15 @@ Name | Type | Description | Notes
 **ignoreExtraFields** | **Boolean** | Flag for ignoring extra fields |  [optional]
 **blankQuantityIsZero** | **Boolean** | Flag to convert null quantities to zero |  [optional]
 **csvDelimiter** | **String** | Delimiter |  [optional]
+**productMapping** | [**ProductMappingEnum**](#ProductMappingEnum) | Enum for fetch file productMapping |  [optional]
+
+
+<a name="ProductMappingEnum"></a>
+## Enum: ProductMappingEnum
+Name | Value
+---- | -----
+PART_NUMBER_WITH_UPC | &quot;SWAP_PART_NUMBER_WITH_UPC&quot;
+SKU_WITH_UPC | &quot;SWAP_SKU_WITH_UPC&quot;
 
 
 

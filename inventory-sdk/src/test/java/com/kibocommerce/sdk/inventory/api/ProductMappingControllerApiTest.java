@@ -14,6 +14,7 @@
 package com.kibocommerce.sdk.inventory.api;
 
 import com.kibocommerce.sdk.inventory.ApiException;
+import com.kibocommerce.sdk.inventory.model.DeletedResponse;
 import com.kibocommerce.sdk.inventory.model.ProductMapping;
 import com.kibocommerce.sdk.inventory.model.ProductMappingRequest;
 import com.kibocommerce.sdk.inventory.model.ProductMappingResponse;
@@ -64,7 +65,7 @@ public class ProductMappingControllerApiTest {
         Integer xVolTenant = null;
         String direction = null;
         ProductMappingRequest productMappingRequest = null;
-        Boolean response = api.deleteProductMapping(xVolTenant, direction, productMappingRequest);
+        DeletedResponse response = api.deleteProductMapping(xVolTenant, direction, productMappingRequest);
 
         // TODO: test validations
     }

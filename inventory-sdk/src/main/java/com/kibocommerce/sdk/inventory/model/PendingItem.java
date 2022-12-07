@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * PendingItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class PendingItem extends BaseResponse {
   public static final String SERIALIZED_NAME_PENDING_ITEM_I_D = "pendingItemID";
   @SerializedName(SERIALIZED_NAME_PENDING_ITEM_I_D)
@@ -114,9 +114,9 @@ public class PendingItem extends BaseResponse {
   @SerializedName(SERIALIZED_NAME_SKU)
   private String sku;
 
-  public static final String SERIALIZED_NAME_PRODUCT_I_D = "productID";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_I_D)
-  private Integer productID;
+  public static final String SERIALIZED_NAME_LOCATION_CODE = "locationCode";
+  @SerializedName(SERIALIZED_NAME_LOCATION_CODE)
+  private String locationCode;
 
   public static final String SERIALIZED_NAME_TO_BIN = "toBin";
   @SerializedName(SERIALIZED_NAME_TO_BIN)
@@ -270,22 +270,22 @@ public class PendingItem extends BaseResponse {
     this.sku = sku;
   }
 
-  public PendingItem productID(Integer productID) {
-    this.productID = productID;
+  public PendingItem locationCode(String locationCode) {
+    this.locationCode = locationCode;
     return this;
   }
 
    /**
-   * Product Identifier
-   * @return productID
+   * Location Code
+   * @return locationCode
   **/
-  @ApiModelProperty(value = "Product Identifier")
-  public Integer getProductID() {
-    return productID;
+  @ApiModelProperty(value = "Location Code")
+  public String getLocationCode() {
+    return locationCode;
   }
 
-  public void setProductID(Integer productID) {
-    this.productID = productID;
+  public void setLocationCode(String locationCode) {
+    this.locationCode = locationCode;
   }
 
   public PendingItem toBin(String toBin) {
@@ -342,7 +342,7 @@ public class PendingItem extends BaseResponse {
         Objects.equals(this.partNumber, pendingItem.partNumber) &&
         Objects.equals(this.upc, pendingItem.upc) &&
         Objects.equals(this.sku, pendingItem.sku) &&
-        Objects.equals(this.productID, pendingItem.productID) &&
+        Objects.equals(this.locationCode, pendingItem.locationCode) &&
         Objects.equals(this.toBin, pendingItem.toBin) &&
         Objects.equals(this.toBinID, pendingItem.toBinID) &&
         super.equals(o);
@@ -350,7 +350,7 @@ public class PendingItem extends BaseResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(pendingItemID, orderID, shipmentID, type, quantity, partNumber, upc, sku, productID, toBin, toBinID, super.hashCode());
+    return Objects.hash(pendingItemID, orderID, shipmentID, type, quantity, partNumber, upc, sku, locationCode, toBin, toBinID, super.hashCode());
   }
 
 
@@ -367,7 +367,7 @@ public class PendingItem extends BaseResponse {
     sb.append("    partNumber: ").append(toIndentedString(partNumber)).append("\n");
     sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
     sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
-    sb.append("    productID: ").append(toIndentedString(productID)).append("\n");
+    sb.append("    locationCode: ").append(toIndentedString(locationCode)).append("\n");
     sb.append("    toBin: ").append(toIndentedString(toBin)).append("\n");
     sb.append("    toBinID: ").append(toIndentedString(toBinID)).append("\n");
     sb.append("}");

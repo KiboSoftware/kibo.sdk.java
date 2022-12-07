@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * JobQueueResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class JobQueueResponse extends BaseResponse {
   public static final String SERIALIZED_NAME_JOB_I_D = "jobID";
   @SerializedName(SERIALIZED_NAME_JOB_I_D)
@@ -39,9 +39,9 @@ public class JobQueueResponse extends BaseResponse {
   @SerializedName(SERIALIZED_NAME_TENANT_I_D)
   private Integer tenantID;
 
-  public static final String SERIALIZED_NAME_LOCATION_I_D = "locationID";
-  @SerializedName(SERIALIZED_NAME_LOCATION_I_D)
-  private Integer locationID;
+  public static final String SERIALIZED_NAME_LOCATION_CODE = "locationCode";
+  @SerializedName(SERIALIZED_NAME_LOCATION_CODE)
+  private String locationCode;
 
   /**
    * Purpose of the job
@@ -68,7 +68,15 @@ public class JobQueueResponse extends BaseResponse {
     
     CREATE_BIN_AUDIT("CREATE_BIN_AUDIT"),
     
-    RELEASE_PENDING_ITEMS("RELEASE_PENDING_ITEMS");
+    RELEASE_PENDING_ITEMS("RELEASE_PENDING_ITEMS"),
+    
+    ALLOCATE("ALLOCATE"),
+    
+    DEALLOCATE("DEALLOCATE"),
+    
+    FULFILL("FULFILL"),
+    
+    DELETE("DELETE");
 
     private String value;
 
@@ -227,22 +235,22 @@ public class JobQueueResponse extends BaseResponse {
     this.tenantID = tenantID;
   }
 
-  public JobQueueResponse locationID(Integer locationID) {
-    this.locationID = locationID;
+  public JobQueueResponse locationCode(String locationCode) {
+    this.locationCode = locationCode;
     return this;
   }
 
    /**
    * Unique internal Identifier of the owning location
-   * @return locationID
+   * @return locationCode
   **/
   @ApiModelProperty(value = "Unique internal Identifier of the owning location")
-  public Integer getLocationID() {
-    return locationID;
+  public String getLocationCode() {
+    return locationCode;
   }
 
-  public void setLocationID(Integer locationID) {
-    this.locationID = locationID;
+  public void setLocationCode(String locationCode) {
+    this.locationCode = locationCode;
   }
 
   public JobQueueResponse type(TypeEnum type) {
@@ -401,7 +409,7 @@ public class JobQueueResponse extends BaseResponse {
     JobQueueResponse jobQueueResponse = (JobQueueResponse) o;
     return Objects.equals(this.jobID, jobQueueResponse.jobID) &&
         Objects.equals(this.tenantID, jobQueueResponse.tenantID) &&
-        Objects.equals(this.locationID, jobQueueResponse.locationID) &&
+        Objects.equals(this.locationCode, jobQueueResponse.locationCode) &&
         Objects.equals(this.type, jobQueueResponse.type) &&
         Objects.equals(this.added, jobQueueResponse.added) &&
         Objects.equals(this.started, jobQueueResponse.started) &&
@@ -415,7 +423,7 @@ public class JobQueueResponse extends BaseResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(jobID, tenantID, locationID, type, added, started, finished, originalFilename, hasData, itemCount, status, super.hashCode());
+    return Objects.hash(jobID, tenantID, locationCode, type, added, started, finished, originalFilename, hasData, itemCount, status, super.hashCode());
   }
 
 
@@ -426,7 +434,7 @@ public class JobQueueResponse extends BaseResponse {
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    jobID: ").append(toIndentedString(jobID)).append("\n");
     sb.append("    tenantID: ").append(toIndentedString(tenantID)).append("\n");
-    sb.append("    locationID: ").append(toIndentedString(locationID)).append("\n");
+    sb.append("    locationCode: ").append(toIndentedString(locationCode)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    added: ").append(toIndentedString(added)).append("\n");
     sb.append("    started: ").append(toIndentedString(started)).append("\n");

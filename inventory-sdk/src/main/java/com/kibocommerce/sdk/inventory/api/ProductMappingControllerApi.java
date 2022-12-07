@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.kibocommerce.sdk.inventory.model.DeletedResponse;
 import com.kibocommerce.sdk.inventory.model.ProductMapping;
 import com.kibocommerce.sdk.inventory.model.ProductMappingRequest;
 import com.kibocommerce.sdk.inventory.model.ProductMappingResponse;
@@ -275,11 +276,11 @@ public class ProductMappingControllerApi {
      * @param xVolTenant Tenant ID (required)
      * @param direction Direction (required)
      * @param productMappingRequest Request to work with Product Mappings (required)
-     * @return Boolean
+     * @return DeletedResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean deleteProductMapping(Integer xVolTenant, String direction, ProductMappingRequest productMappingRequest) throws ApiException {
-        ApiResponse<Boolean> resp = deleteProductMappingWithHttpInfo(xVolTenant, direction, productMappingRequest);
+    public DeletedResponse deleteProductMapping(Integer xVolTenant, String direction, ProductMappingRequest productMappingRequest) throws ApiException {
+        ApiResponse<DeletedResponse> resp = deleteProductMappingWithHttpInfo(xVolTenant, direction, productMappingRequest);
         return resp.getData();
     }
 
@@ -289,12 +290,12 @@ public class ProductMappingControllerApi {
      * @param xVolTenant Tenant ID (required)
      * @param direction Direction (required)
      * @param productMappingRequest Request to work with Product Mappings (required)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @return ApiResponse&lt;DeletedResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> deleteProductMappingWithHttpInfo(Integer xVolTenant, String direction, ProductMappingRequest productMappingRequest) throws ApiException {
+    public ApiResponse<DeletedResponse> deleteProductMappingWithHttpInfo(Integer xVolTenant, String direction, ProductMappingRequest productMappingRequest) throws ApiException {
         com.squareup.okhttp.Call call = deleteProductMappingValidateBeforeCall(xVolTenant, direction, productMappingRequest, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -308,7 +309,7 @@ public class ProductMappingControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteProductMappingAsync(Integer xVolTenant, String direction, ProductMappingRequest productMappingRequest, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteProductMappingAsync(Integer xVolTenant, String direction, ProductMappingRequest productMappingRequest, final ApiCallback<DeletedResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -330,7 +331,7 @@ public class ProductMappingControllerApi {
         }
 
         com.squareup.okhttp.Call call = deleteProductMappingValidateBeforeCall(xVolTenant, direction, productMappingRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

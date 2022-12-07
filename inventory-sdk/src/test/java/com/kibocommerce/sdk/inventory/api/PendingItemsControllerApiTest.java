@@ -14,6 +14,8 @@
 package com.kibocommerce.sdk.inventory.api;
 
 import com.kibocommerce.sdk.inventory.ApiException;
+import com.kibocommerce.sdk.inventory.model.BaseResponse;
+import com.kibocommerce.sdk.inventory.model.DeletedResponse;
 import com.kibocommerce.sdk.inventory.model.GetPendingItemsResponse;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -44,7 +46,7 @@ public class PendingItemsControllerApiTest {
     public void deletePendingItemsTest() throws ApiException {
         Integer xVolTenant = null;
         Integer pendingItemID = null;
-        Boolean response = api.deletePendingItems(xVolTenant, pendingItemID);
+        DeletedResponse response = api.deletePendingItems(xVolTenant, pendingItemID);
 
         // TODO: test validations
     }
@@ -67,6 +69,39 @@ public class PendingItemsControllerApiTest {
         String sortBy = null;
         Integer shipmentID = null;
         GetPendingItemsResponse response = api.getPendingItems(xVolTenant, locationName, locationID, currentPage, numberPerPage, sortBy, shipmentID);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Release All Pending Items
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void releaseAllPendingItemsTest() throws ApiException {
+        Integer xVolTenant = null;
+        BaseResponse response = api.releaseAllPendingItems(xVolTenant);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Release Pending Items
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void releasePendingItemsTest() throws ApiException {
+        Integer xVolTenant = null;
+        Integer tenantID = null;
+        BaseResponse response = api.releasePendingItems(xVolTenant, tenantID);
 
         // TODO: test validations
     }

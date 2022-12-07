@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **Boolean** | Flag for Active State |  [optional]
 **exportSettingsID** | **Integer** | Export Settings ID |  [optional]
+**exportSettingsFTPID** | **Integer** | Export Settings FTP ID |  [optional]
 **name** | **String** | Export Settings FTP Name | 
 **ftpServer** | **String** | FTP Server Address | 
 **ftpPort** | **Integer** | FTP Server Port | 

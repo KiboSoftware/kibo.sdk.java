@@ -27,12 +27,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * InventoryRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class InventoryRequest extends BaseRequest {
   /**
    * Inventory Request Type Enum
@@ -149,6 +152,22 @@ public class InventoryRequest extends BaseRequest {
   @SerializedName(SERIALIZED_NAME_INCLUDE_ATTRIBUTES)
   private Boolean includeAttributes;
 
+  public static final String SERIALIZED_NAME_INCLUDE_FUTURE_INVENTORY = "includeFutureInventory";
+  @SerializedName(SERIALIZED_NAME_INCLUDE_FUTURE_INVENTORY)
+  private Boolean includeFutureInventory;
+
+  public static final String SERIALIZED_NAME_INCLUDE_NEGATIVE_FUTURE_INVENTORY = "includeNegativeFutureInventory";
+  @SerializedName(SERIALIZED_NAME_INCLUDE_NEGATIVE_FUTURE_INVENTORY)
+  private Boolean includeNegativeFutureInventory;
+
+  public static final String SERIALIZED_NAME_DELIVERY_DATE_BEFORE = "deliveryDateBefore";
+  @SerializedName(SERIALIZED_NAME_DELIVERY_DATE_BEFORE)
+  private OffsetDateTime deliveryDateBefore = null;
+
+  public static final String SERIALIZED_NAME_DELIVERY_DATE_AFTER = "deliveryDateAfter";
+  @SerializedName(SERIALIZED_NAME_DELIVERY_DATE_AFTER)
+  private OffsetDateTime deliveryDateAfter = null;
+
   /**
    * What to sort the inventory results by. Only used for GetInventoryByLocation calls (locationCode must be set)
    */
@@ -205,6 +224,14 @@ public class InventoryRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_SORT_BY_ENUM = "sortByEnum";
   @SerializedName(SERIALIZED_NAME_SORT_BY_ENUM)
   private SortByEnumEnum sortByEnum;
+
+  public static final String SERIALIZED_NAME_SORT_DESCENDING = "sortDescending";
+  @SerializedName(SERIALIZED_NAME_SORT_DESCENDING)
+  private Object sortDescending = null;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
 
   public InventoryRequest type(TypeEnum type) {
     this.type = type;
@@ -523,6 +550,78 @@ public class InventoryRequest extends BaseRequest {
     this.includeAttributes = includeAttributes;
   }
 
+  public InventoryRequest includeFutureInventory(Boolean includeFutureInventory) {
+    this.includeFutureInventory = includeFutureInventory;
+    return this;
+  }
+
+   /**
+   * If set to true, include future inventory in response (records that were set with a deliveryDate).
+   * @return includeFutureInventory
+  **/
+  @ApiModelProperty(value = "If set to true, include future inventory in response (records that were set with a deliveryDate).")
+  public Boolean getIncludeFutureInventory() {
+    return includeFutureInventory;
+  }
+
+  public void setIncludeFutureInventory(Boolean includeFutureInventory) {
+    this.includeFutureInventory = includeFutureInventory;
+  }
+
+  public InventoryRequest includeNegativeFutureInventory(Boolean includeNegativeFutureInventory) {
+    this.includeNegativeFutureInventory = includeNegativeFutureInventory;
+    return this;
+  }
+
+   /**
+   * Whether to allow items with negative future inventory in the results
+   * @return includeNegativeFutureInventory
+  **/
+  @ApiModelProperty(value = "Whether to allow items with negative future inventory in the results")
+  public Boolean getIncludeNegativeFutureInventory() {
+    return includeNegativeFutureInventory;
+  }
+
+  public void setIncludeNegativeFutureInventory(Boolean includeNegativeFutureInventory) {
+    this.includeNegativeFutureInventory = includeNegativeFutureInventory;
+  }
+
+  public InventoryRequest deliveryDateBefore(OffsetDateTime deliveryDateBefore) {
+    this.deliveryDateBefore = deliveryDateBefore;
+    return this;
+  }
+
+   /**
+   * DateTime to filter for only future inventory with a delivery date before or equal to the given date
+   * @return deliveryDateBefore
+  **/
+  @ApiModelProperty(value = "DateTime to filter for only future inventory with a delivery date before or equal to the given date")
+  public OffsetDateTime getDeliveryDateBefore() {
+    return deliveryDateBefore;
+  }
+
+  public void setDeliveryDateBefore(OffsetDateTime deliveryDateBefore) {
+    this.deliveryDateBefore = deliveryDateBefore;
+  }
+
+  public InventoryRequest deliveryDateAfter(OffsetDateTime deliveryDateAfter) {
+    this.deliveryDateAfter = deliveryDateAfter;
+    return this;
+  }
+
+   /**
+   * DateTime to filter for only future inventory with a delivery date after or equal to the given date
+   * @return deliveryDateAfter
+  **/
+  @ApiModelProperty(value = "DateTime to filter for only future inventory with a delivery date after or equal to the given date")
+  public OffsetDateTime getDeliveryDateAfter() {
+    return deliveryDateAfter;
+  }
+
+  public void setDeliveryDateAfter(OffsetDateTime deliveryDateAfter) {
+    this.deliveryDateAfter = deliveryDateAfter;
+  }
+
   public InventoryRequest sortByEnum(SortByEnumEnum sortByEnum) {
     this.sortByEnum = sortByEnum;
     return this;
@@ -539,6 +638,50 @@ public class InventoryRequest extends BaseRequest {
 
   public void setSortByEnum(SortByEnumEnum sortByEnum) {
     this.sortByEnum = sortByEnum;
+  }
+
+  public InventoryRequest sortDescending(Object sortDescending) {
+    this.sortDescending = sortDescending;
+    return this;
+  }
+
+   /**
+   * Whether to sort by descending order or not. Must be used in conjunction with the sortByEnum value
+   * @return sortDescending
+  **/
+  @ApiModelProperty(value = "Whether to sort by descending order or not. Must be used in conjunction with the sortByEnum value")
+  public Object getSortDescending() {
+    return sortDescending;
+  }
+
+  public void setSortDescending(Object sortDescending) {
+    this.sortDescending = sortDescending;
+  }
+
+  public InventoryRequest tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public InventoryRequest putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
   }
 
 
@@ -567,13 +710,19 @@ public class InventoryRequest extends BaseRequest {
         Objects.equals(this.includeInLocationExport, inventoryRequest.includeInLocationExport) &&
         Objects.equals(this.excludeBlockedAssignment, inventoryRequest.excludeBlockedAssignment) &&
         Objects.equals(this.includeAttributes, inventoryRequest.includeAttributes) &&
+        Objects.equals(this.includeFutureInventory, inventoryRequest.includeFutureInventory) &&
+        Objects.equals(this.includeNegativeFutureInventory, inventoryRequest.includeNegativeFutureInventory) &&
+        Objects.equals(this.deliveryDateBefore, inventoryRequest.deliveryDateBefore) &&
+        Objects.equals(this.deliveryDateAfter, inventoryRequest.deliveryDateAfter) &&
         Objects.equals(this.sortByEnum, inventoryRequest.sortByEnum) &&
+        Objects.equals(this.sortDescending, inventoryRequest.sortDescending) &&
+        Objects.equals(this.tags, inventoryRequest.tags) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, items, requestLocation, limit, locationWhitelist, locationPriorityList, locationBlacklist, ignoreSafetyStock, includeNegativeInventory, directShip, transferEnabled, pickup, includeInAggregateExport, includeInLocationExport, excludeBlockedAssignment, includeAttributes, sortByEnum, super.hashCode());
+    return Objects.hash(type, items, requestLocation, limit, locationWhitelist, locationPriorityList, locationBlacklist, ignoreSafetyStock, includeNegativeInventory, directShip, transferEnabled, pickup, includeInAggregateExport, includeInLocationExport, excludeBlockedAssignment, includeAttributes, includeFutureInventory, includeNegativeFutureInventory, deliveryDateBefore, deliveryDateAfter, sortByEnum, sortDescending, tags, super.hashCode());
   }
 
 
@@ -598,7 +747,13 @@ public class InventoryRequest extends BaseRequest {
     sb.append("    includeInLocationExport: ").append(toIndentedString(includeInLocationExport)).append("\n");
     sb.append("    excludeBlockedAssignment: ").append(toIndentedString(excludeBlockedAssignment)).append("\n");
     sb.append("    includeAttributes: ").append(toIndentedString(includeAttributes)).append("\n");
+    sb.append("    includeFutureInventory: ").append(toIndentedString(includeFutureInventory)).append("\n");
+    sb.append("    includeNegativeFutureInventory: ").append(toIndentedString(includeNegativeFutureInventory)).append("\n");
+    sb.append("    deliveryDateBefore: ").append(toIndentedString(deliveryDateBefore)).append("\n");
+    sb.append("    deliveryDateAfter: ").append(toIndentedString(deliveryDateAfter)).append("\n");
     sb.append("    sortByEnum: ").append(toIndentedString(sortByEnum)).append("\n");
+    sb.append("    sortDescending: ").append(toIndentedString(sortDescending)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

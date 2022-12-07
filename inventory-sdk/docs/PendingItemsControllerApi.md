@@ -6,11 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deletePendingItems**](PendingItemsControllerApi.md#deletePendingItems) | **DELETE** /v1/pendingItem/{pendingItemID} | 
 [**getPendingItems**](PendingItemsControllerApi.md#getPendingItems) | **GET** /v1/pendingItem/ | 
+[**releaseAllPendingItems**](PendingItemsControllerApi.md#releaseAllPendingItems) | **POST** /v1/pendingItem/release/ | 
+[**releasePendingItems**](PendingItemsControllerApi.md#releasePendingItems) | **POST** /v1/pendingItem/release/{tenantID} | 
 
 
 <a name="deletePendingItems"></a>
 # **deletePendingItems**
-> Boolean deletePendingItems(xVolTenant, pendingItemID)
+> DeletedResponse deletePendingItems(xVolTenant, pendingItemID)
 
 
 
@@ -27,7 +29,7 @@ PendingItemsControllerApi apiInstance = new PendingItemsControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 Integer pendingItemID = 56; // Integer | Pending Item ID
 try {
-    Boolean result = apiInstance.deletePendingItems(xVolTenant, pendingItemID);
+    DeletedResponse result = apiInstance.deletePendingItems(xVolTenant, pendingItemID);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PendingItemsControllerApi#deletePendingItems");
@@ -44,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Boolean**
+[**DeletedResponse**](DeletedResponse.md)
 
 ### Authorization
 
@@ -102,6 +104,98 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetPendingItemsResponse**](GetPendingItemsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="releaseAllPendingItems"></a>
+# **releaseAllPendingItems**
+> BaseResponse releaseAllPendingItems(xVolTenant)
+
+
+
+Release All Pending Items
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.inventory.ApiException;
+//import com.kibocommerce.sdk.inventory.api.PendingItemsControllerApi;
+
+
+PendingItemsControllerApi apiInstance = new PendingItemsControllerApi();
+Integer xVolTenant = 56; // Integer | Tenant ID
+try {
+    BaseResponse result = apiInstance.releaseAllPendingItems(xVolTenant);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PendingItemsControllerApi#releaseAllPendingItems");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xVolTenant** | **Integer**| Tenant ID |
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="releasePendingItems"></a>
+# **releasePendingItems**
+> BaseResponse releasePendingItems(xVolTenant, tenantID)
+
+
+
+Release Pending Items
+
+### Example
+```java
+// Import classes:
+//import com.kibocommerce.sdk.inventory.ApiException;
+//import com.kibocommerce.sdk.inventory.api.PendingItemsControllerApi;
+
+
+PendingItemsControllerApi apiInstance = new PendingItemsControllerApi();
+Integer xVolTenant = 56; // Integer | Tenant ID
+Integer tenantID = 56; // Integer | Tenant ID to release
+try {
+    BaseResponse result = apiInstance.releasePendingItems(xVolTenant, tenantID);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PendingItemsControllerApi#releasePendingItems");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xVolTenant** | **Integer**| Tenant ID |
+ **tenantID** | **Integer**| Tenant ID to release |
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
 
 ### Authorization
 

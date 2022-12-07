@@ -28,11 +28,15 @@ import java.io.IOException;
  * Export Settings S3
  */
 @ApiModel(description = "Export Settings S3")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class ExportSettingsS3 {
   public static final String SERIALIZED_NAME_EXPORT_SETTINGS_I_D = "exportSettingsID";
   @SerializedName(SERIALIZED_NAME_EXPORT_SETTINGS_I_D)
   private Integer exportSettingsID;
+
+  public static final String SERIALIZED_NAME_EXPORT_SETTINGS_S3_I_D = "exportSettingsS3ID";
+  @SerializedName(SERIALIZED_NAME_EXPORT_SETTINGS_S3_I_D)
+  private Integer exportSettingsS3ID;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -45,10 +49,6 @@ public class ExportSettingsS3 {
   public static final String SERIALIZED_NAME_REGION = "region";
   @SerializedName(SERIALIZED_NAME_REGION)
   private String region;
-
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private String version;
 
   public static final String SERIALIZED_NAME_S3_KEY = "s3Key";
   @SerializedName(SERIALIZED_NAME_S3_KEY)
@@ -78,6 +78,24 @@ public class ExportSettingsS3 {
 
   public void setExportSettingsID(Integer exportSettingsID) {
     this.exportSettingsID = exportSettingsID;
+  }
+
+  public ExportSettingsS3 exportSettingsS3ID(Integer exportSettingsS3ID) {
+    this.exportSettingsS3ID = exportSettingsS3ID;
+    return this;
+  }
+
+   /**
+   * Export Settings S3 ID
+   * @return exportSettingsS3ID
+  **/
+  @ApiModelProperty(value = "Export Settings S3 ID")
+  public Integer getExportSettingsS3ID() {
+    return exportSettingsS3ID;
+  }
+
+  public void setExportSettingsS3ID(Integer exportSettingsS3ID) {
+    this.exportSettingsS3ID = exportSettingsS3ID;
   }
 
   public ExportSettingsS3 name(String name) {
@@ -132,24 +150,6 @@ public class ExportSettingsS3 {
 
   public void setRegion(String region) {
     this.region = region;
-  }
-
-  public ExportSettingsS3 version(String version) {
-    this.version = version;
-    return this;
-  }
-
-   /**
-   * S3 Version
-   * @return version
-  **/
-  @ApiModelProperty(required = true, value = "S3 Version")
-  public String getVersion() {
-    return version;
-  }
-
-  public void setVersion(String version) {
-    this.version = version;
   }
 
   public ExportSettingsS3 s3Key(String s3Key) {
@@ -217,10 +217,10 @@ public class ExportSettingsS3 {
     }
     ExportSettingsS3 exportSettingsS3 = (ExportSettingsS3) o;
     return Objects.equals(this.exportSettingsID, exportSettingsS3.exportSettingsID) &&
+        Objects.equals(this.exportSettingsS3ID, exportSettingsS3.exportSettingsS3ID) &&
         Objects.equals(this.name, exportSettingsS3.name) &&
         Objects.equals(this.active, exportSettingsS3.active) &&
         Objects.equals(this.region, exportSettingsS3.region) &&
-        Objects.equals(this.version, exportSettingsS3.version) &&
         Objects.equals(this.s3Key, exportSettingsS3.s3Key) &&
         Objects.equals(this.secret, exportSettingsS3.secret) &&
         Objects.equals(this.bucket, exportSettingsS3.bucket);
@@ -228,7 +228,7 @@ public class ExportSettingsS3 {
 
   @Override
   public int hashCode() {
-    return Objects.hash(exportSettingsID, name, active, region, version, s3Key, secret, bucket);
+    return Objects.hash(exportSettingsID, exportSettingsS3ID, name, active, region, s3Key, secret, bucket);
   }
 
 
@@ -238,10 +238,10 @@ public class ExportSettingsS3 {
     sb.append("class ExportSettingsS3 {\n");
     
     sb.append("    exportSettingsID: ").append(toIndentedString(exportSettingsID)).append("\n");
+    sb.append("    exportSettingsS3ID: ").append(toIndentedString(exportSettingsS3ID)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    s3Key: ").append(toIndentedString(s3Key)).append("\n");
     sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
     sb.append("    bucket: ").append(toIndentedString(bucket)).append("\n");

@@ -26,13 +26,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Export Settings
  */
 @ApiModel(description = "Export Settings")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class ExportSettings {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -329,6 +331,10 @@ public class ExportSettings {
   @SerializedName(SERIALIZED_NAME_FILE_NAME)
   private String fileName;
 
+  public static final String SERIALIZED_NAME_SHORTEN_FILENAME = "shortenFilename";
+  @SerializedName(SERIALIZED_NAME_SHORTEN_FILENAME)
+  private Boolean shortenFilename;
+
   public static final String SERIALIZED_NAME_INCLUDE_ATTRIBUTES = "includeAttributes";
   @SerializedName(SERIALIZED_NAME_INCLUDE_ATTRIBUTES)
   private Boolean includeAttributes;
@@ -368,6 +374,69 @@ public class ExportSettings {
   public static final String SERIALIZED_NAME_TRANSFER = "transfer";
   @SerializedName(SERIALIZED_NAME_TRANSFER)
   private Boolean transfer;
+
+  /**
+   * Enum for export productMapping
+   */
+  @JsonAdapter(ProductMappingEnum.Adapter.class)
+  public enum ProductMappingEnum {
+    PART_NUMBER_WITH_UPC("SWAP_PART_NUMBER_WITH_UPC"),
+    
+    SKU_WITH_UPC("SWAP_SKU_WITH_UPC");
+
+    private String value;
+
+    ProductMappingEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ProductMappingEnum fromValue(String text) {
+      for (ProductMappingEnum b : ProductMappingEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ProductMappingEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ProductMappingEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ProductMappingEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ProductMappingEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PRODUCT_MAPPING = "productMapping";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_MAPPING)
+  private ProductMappingEnum productMapping;
+
+  public static final String SERIALIZED_NAME_IS_CLASSIC = "isClassic";
+  @SerializedName(SERIALIZED_NAME_IS_CLASSIC)
+  private Boolean isClassic;
+
+  public static final String SERIALIZED_NAME_IGNORE_NEGATIVE_INVENTORY_LOCATIONS = "ignoreNegativeInventoryLocations";
+  @SerializedName(SERIALIZED_NAME_IGNORE_NEGATIVE_INVENTORY_LOCATIONS)
+  private Boolean ignoreNegativeInventoryLocations;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
 
   public ExportSettings name(String name) {
     this.name = name;
@@ -598,6 +667,24 @@ public class ExportSettings {
     this.fileName = fileName;
   }
 
+  public ExportSettings shortenFilename(Boolean shortenFilename) {
+    this.shortenFilename = shortenFilename;
+    return this;
+  }
+
+   /**
+   * Flag for using shortened filenames
+   * @return shortenFilename
+  **/
+  @ApiModelProperty(value = "Flag for using shortened filenames")
+  public Boolean getShortenFilename() {
+    return shortenFilename;
+  }
+
+  public void setShortenFilename(Boolean shortenFilename) {
+    this.shortenFilename = shortenFilename;
+  }
+
   public ExportSettings includeAttributes(Boolean includeAttributes) {
     this.includeAttributes = includeAttributes;
     return this;
@@ -794,6 +881,86 @@ public class ExportSettings {
     this.transfer = transfer;
   }
 
+  public ExportSettings productMapping(ProductMappingEnum productMapping) {
+    this.productMapping = productMapping;
+    return this;
+  }
+
+   /**
+   * Enum for export productMapping
+   * @return productMapping
+  **/
+  @ApiModelProperty(value = "Enum for export productMapping")
+  public ProductMappingEnum getProductMapping() {
+    return productMapping;
+  }
+
+  public void setProductMapping(ProductMappingEnum productMapping) {
+    this.productMapping = productMapping;
+  }
+
+  public ExportSettings isClassic(Boolean isClassic) {
+    this.isClassic = isClassic;
+    return this;
+  }
+
+   /**
+   * Flag for marking the setting as a classic export
+   * @return isClassic
+  **/
+  @ApiModelProperty(value = "Flag for marking the setting as a classic export")
+  public Boolean getIsClassic() {
+    return isClassic;
+  }
+
+  public void setIsClassic(Boolean isClassic) {
+    this.isClassic = isClassic;
+  }
+
+  public ExportSettings ignoreNegativeInventoryLocations(Boolean ignoreNegativeInventoryLocations) {
+    this.ignoreNegativeInventoryLocations = ignoreNegativeInventoryLocations;
+    return this;
+  }
+
+   /**
+   * Flag for excluding negative inventory locations
+   * @return ignoreNegativeInventoryLocations
+  **/
+  @ApiModelProperty(value = "Flag for excluding negative inventory locations")
+  public Boolean getIgnoreNegativeInventoryLocations() {
+    return ignoreNegativeInventoryLocations;
+  }
+
+  public void setIgnoreNegativeInventoryLocations(Boolean ignoreNegativeInventoryLocations) {
+    this.ignoreNegativeInventoryLocations = ignoreNegativeInventoryLocations;
+  }
+
+  public ExportSettings tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public ExportSettings putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -816,6 +983,7 @@ public class ExportSettings {
         Objects.equals(this.floor, exportSettings.floor) &&
         Objects.equals(this.ltd, exportSettings.ltd) &&
         Objects.equals(this.fileName, exportSettings.fileName) &&
+        Objects.equals(this.shortenFilename, exportSettings.shortenFilename) &&
         Objects.equals(this.includeAttributes, exportSettings.includeAttributes) &&
         Objects.equals(this.zipFiles, exportSettings.zipFiles) &&
         Objects.equals(this.zipFileName, exportSettings.zipFileName) &&
@@ -825,12 +993,16 @@ public class ExportSettings {
         Objects.equals(this.siteIDs, exportSettings.siteIDs) &&
         Objects.equals(this.directShip, exportSettings.directShip) &&
         Objects.equals(this.pickup, exportSettings.pickup) &&
-        Objects.equals(this.transfer, exportSettings.transfer);
+        Objects.equals(this.transfer, exportSettings.transfer) &&
+        Objects.equals(this.productMapping, exportSettings.productMapping) &&
+        Objects.equals(this.isClassic, exportSettings.isClassic) &&
+        Objects.equals(this.ignoreNegativeInventoryLocations, exportSettings.ignoreNegativeInventoryLocations) &&
+        Objects.equals(this.tags, exportSettings.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, fileFormat, exportType, onlySendAvailable, onlySendActiveLocations, ftpInformation, s3Information, exportSingleFile, safetyStock, floor, ltd, fileName, includeAttributes, zipFiles, zipFileName, untransformedFileName, untransformedZipFileName, locationGroupIDs, siteIDs, directShip, pickup, transfer);
+    return Objects.hash(name, fileFormat, exportType, onlySendAvailable, onlySendActiveLocations, ftpInformation, s3Information, exportSingleFile, safetyStock, floor, ltd, fileName, shortenFilename, includeAttributes, zipFiles, zipFileName, untransformedFileName, untransformedZipFileName, locationGroupIDs, siteIDs, directShip, pickup, transfer, productMapping, isClassic, ignoreNegativeInventoryLocations, tags);
   }
 
 
@@ -851,6 +1023,7 @@ public class ExportSettings {
     sb.append("    floor: ").append(toIndentedString(floor)).append("\n");
     sb.append("    ltd: ").append(toIndentedString(ltd)).append("\n");
     sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
+    sb.append("    shortenFilename: ").append(toIndentedString(shortenFilename)).append("\n");
     sb.append("    includeAttributes: ").append(toIndentedString(includeAttributes)).append("\n");
     sb.append("    zipFiles: ").append(toIndentedString(zipFiles)).append("\n");
     sb.append("    zipFileName: ").append(toIndentedString(zipFileName)).append("\n");
@@ -861,6 +1034,10 @@ public class ExportSettings {
     sb.append("    directShip: ").append(toIndentedString(directShip)).append("\n");
     sb.append("    pickup: ").append(toIndentedString(pickup)).append("\n");
     sb.append("    transfer: ").append(toIndentedString(transfer)).append("\n");
+    sb.append("    productMapping: ").append(toIndentedString(productMapping)).append("\n");
+    sb.append("    isClassic: ").append(toIndentedString(isClassic)).append("\n");
+    sb.append("    ignoreNegativeInventoryLocations: ").append(toIndentedString(ignoreNegativeInventoryLocations)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

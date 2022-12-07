@@ -21,36 +21,45 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kibocommerce.sdk.inventory.model.BaseResponse;
-import com.kibocommerce.sdk.inventory.model.BinProductQuantities;
+import com.kibocommerce.sdk.inventory.model.BinProductResponseQuantities;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * BinSearchResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class BinSearchResponse extends BaseResponse {
   public static final String SERIALIZED_NAME_BIN_QUANTITIES = "binQuantities";
   @SerializedName(SERIALIZED_NAME_BIN_QUANTITIES)
-  private BinProductQuantities binQuantities = null;
+  private List<BinProductResponseQuantities> binQuantities = null;
 
-  public BinSearchResponse binQuantities(BinProductQuantities binQuantities) {
+  public BinSearchResponse binQuantities(List<BinProductResponseQuantities> binQuantities) {
     this.binQuantities = binQuantities;
     return this;
   }
 
+  public BinSearchResponse addBinQuantitiesItem(BinProductResponseQuantities binQuantitiesItem) {
+    if (this.binQuantities == null) {
+      this.binQuantities = new ArrayList<BinProductResponseQuantities>();
+    }
+    this.binQuantities.add(binQuantitiesItem);
+    return this;
+  }
+
    /**
-   * Get binQuantities
+   * List of BinProductQuantities - bins with associated products and quantities
    * @return binQuantities
   **/
-  @ApiModelProperty(value = "")
-  public BinProductQuantities getBinQuantities() {
+  @ApiModelProperty(value = "List of BinProductQuantities - bins with associated products and quantities")
+  public List<BinProductResponseQuantities> getBinQuantities() {
     return binQuantities;
   }
 
-  public void setBinQuantities(BinProductQuantities binQuantities) {
+  public void setBinQuantities(List<BinProductResponseQuantities> binQuantities) {
     this.binQuantities = binQuantities;
   }
 

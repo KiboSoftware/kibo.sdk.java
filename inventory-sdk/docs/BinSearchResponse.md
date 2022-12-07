@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**binQuantities** | [**BinProductQuantities**](.md) |  |  [optional]
+**binQuantities** | [**List&lt;BinProductResponseQuantities&gt;**](BinProductResponseQuantities.md) | List of BinProductQuantities - bins with associated products and quantities |  [optional]
 
 
 

@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * AllocateInventoryRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class AllocateInventoryRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
@@ -48,6 +48,10 @@ public class AllocateInventoryRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_DECREMENT_ON_HAND_ON_DEALLOCATE = "decrementOnHandOnDeallocate";
   @SerializedName(SERIALIZED_NAME_DECREMENT_ON_HAND_ON_DEALLOCATE)
   private Boolean decrementOnHandOnDeallocate;
+
+  public static final String SERIALIZED_NAME_AUTO_ASSIGN = "autoAssign";
+  @SerializedName(SERIALIZED_NAME_AUTO_ASSIGN)
+  private Boolean autoAssign;
 
   public AllocateInventoryRequest items(List<AllocateItem> items) {
     this.items = items;
@@ -126,6 +130,24 @@ public class AllocateInventoryRequest extends BaseRequest {
     this.decrementOnHandOnDeallocate = decrementOnHandOnDeallocate;
   }
 
+  public AllocateInventoryRequest autoAssign(Boolean autoAssign) {
+    this.autoAssign = autoAssign;
+    return this;
+  }
+
+   /**
+   * flag to determine whether the allocation was due to auto assignment
+   * @return autoAssign
+  **/
+  @ApiModelProperty(value = "flag to determine whether the allocation was due to auto assignment")
+  public Boolean getAutoAssign() {
+    return autoAssign;
+  }
+
+  public void setAutoAssign(Boolean autoAssign) {
+    this.autoAssign = autoAssign;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -140,12 +162,13 @@ public class AllocateInventoryRequest extends BaseRequest {
         Objects.equals(this.orderDate, allocateInventoryRequest.orderDate) &&
         Objects.equals(this.orderWeight, allocateInventoryRequest.orderWeight) &&
         Objects.equals(this.decrementOnHandOnDeallocate, allocateInventoryRequest.decrementOnHandOnDeallocate) &&
+        Objects.equals(this.autoAssign, allocateInventoryRequest.autoAssign) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, orderDate, orderWeight, decrementOnHandOnDeallocate, super.hashCode());
+    return Objects.hash(items, orderDate, orderWeight, decrementOnHandOnDeallocate, autoAssign, super.hashCode());
   }
 
 
@@ -158,6 +181,7 @@ public class AllocateInventoryRequest extends BaseRequest {
     sb.append("    orderDate: ").append(toIndentedString(orderDate)).append("\n");
     sb.append("    orderWeight: ").append(toIndentedString(orderWeight)).append("\n");
     sb.append("    decrementOnHandOnDeallocate: ").append(toIndentedString(decrementOnHandOnDeallocate)).append("\n");
+    sb.append("    autoAssign: ").append(toIndentedString(autoAssign)).append("\n");
     sb.append("}");
     return sb.toString();
   }

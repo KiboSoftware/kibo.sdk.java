@@ -29,7 +29,7 @@ import java.math.BigDecimal;
  * Request Location
  */
 @ApiModel(description = "Request Location")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class RequestLocation {
   /**
    * Unit of distance used for radius

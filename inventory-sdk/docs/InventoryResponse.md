@@ -25,7 +25,10 @@ Name | Type | Description | Notes
 **countryCode** | **String** | The country code of this location |  [optional]
 **currencyID** | **Integer** | The currency identifier for the retailPrice |  [optional]
 **retailPrice** | [**BigDecimal**](BigDecimal.md) | The price of the product at this location |  [optional]
+**inventoryLocatorName** | **String** | The inventory locator name of the individual item |  [optional]
 **attributes** | **List&lt;String&gt;** | List of Inventory Attributes |  [optional]
+**taggedInventory** | [**List&lt;TagQuantity&gt;**](TagQuantity.md) |  |  [optional]
+**futureInventory** | [**List&lt;FutureInventory&gt;**](FutureInventory.md) |  |  [optional]
 
 
 
