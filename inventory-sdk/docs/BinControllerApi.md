@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 <a name="createBin"></a>
 # **createBin**
-> Integer createBin(xVolTenant, createBinRequest)
+> BinIDResponse createBin(xVolTenant, createBinRequest)
 
 
 
@@ -35,7 +35,7 @@ BinControllerApi apiInstance = new BinControllerApi();
 Integer xVolTenant = 56; // Integer | Tenant ID
 CreateBinRequest createBinRequest = new CreateBinRequest(); // CreateBinRequest | Request to create a new bin
 try {
-    Integer result = apiInstance.createBin(xVolTenant, createBinRequest);
+    BinIDResponse result = apiInstance.createBin(xVolTenant, createBinRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BinControllerApi#createBin");
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Integer**
+[**BinIDResponse**](BinIDResponse.md)
 
 ### Authorization
 
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xVolTenant** | **Integer**| Tenant ID |
  **locationID** | **Long**| Id of location |
- **searchTerm** | **Long**| Term to match in bins |
+ **searchTerm** | **Long**| Term to match in bins | [optional]
  **perPage** | **Long**| Results per page | [optional]
  **page** | **Long**| Page to show | [optional]
 

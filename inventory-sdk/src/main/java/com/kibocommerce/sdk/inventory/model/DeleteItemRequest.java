@@ -24,13 +24,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Request needed for deleting inventory
  */
 @ApiModel(description = "Request needed for deleting inventory")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class DeleteItemRequest {
   public static final String SERIALIZED_NAME_DRY_RUN = "dryRun";
   @SerializedName(SERIALIZED_NAME_DRY_RUN)
@@ -44,6 +46,10 @@ public class DeleteItemRequest {
   @SerializedName(SERIALIZED_NAME_LOCATION_CODES)
   private List<String> locationCodes = null;
 
+  public static final String SERIALIZED_NAME_ALL_LOCATIONS = "allLocations";
+  @SerializedName(SERIALIZED_NAME_ALL_LOCATIONS)
+  private Boolean allLocations;
+
   public static final String SERIALIZED_NAME_PART_NUMBER = "partNumber";
   @SerializedName(SERIALIZED_NAME_PART_NUMBER)
   private String partNumber;
@@ -55,6 +61,10 @@ public class DeleteItemRequest {
   public static final String SERIALIZED_NAME_SKU = "sku";
   @SerializedName(SERIALIZED_NAME_SKU)
   private String sku;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
 
   public DeleteItemRequest dryRun(Boolean dryRun) {
     this.dryRun = dryRun;
@@ -118,6 +128,24 @@ public class DeleteItemRequest {
     this.locationCodes = locationCodes;
   }
 
+  public DeleteItemRequest allLocations(Boolean allLocations) {
+    this.allLocations = allLocations;
+    return this;
+  }
+
+   /**
+   * Flag used to request deletion of inventory across all locations (overrides locationCodes).
+   * @return allLocations
+  **/
+  @ApiModelProperty(value = "Flag used to request deletion of inventory across all locations (overrides locationCodes).")
+  public Boolean getAllLocations() {
+    return allLocations;
+  }
+
+  public void setAllLocations(Boolean allLocations) {
+    this.allLocations = allLocations;
+  }
+
   public DeleteItemRequest partNumber(String partNumber) {
     this.partNumber = partNumber;
     return this;
@@ -172,6 +200,32 @@ public class DeleteItemRequest {
     this.sku = sku;
   }
 
+  public DeleteItemRequest tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public DeleteItemRequest putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -185,14 +239,16 @@ public class DeleteItemRequest {
     return Objects.equals(this.dryRun, deleteItemRequest.dryRun) &&
         Objects.equals(this.explicit, deleteItemRequest.explicit) &&
         Objects.equals(this.locationCodes, deleteItemRequest.locationCodes) &&
+        Objects.equals(this.allLocations, deleteItemRequest.allLocations) &&
         Objects.equals(this.partNumber, deleteItemRequest.partNumber) &&
         Objects.equals(this.upc, deleteItemRequest.upc) &&
-        Objects.equals(this.sku, deleteItemRequest.sku);
+        Objects.equals(this.sku, deleteItemRequest.sku) &&
+        Objects.equals(this.tags, deleteItemRequest.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dryRun, explicit, locationCodes, partNumber, upc, sku);
+    return Objects.hash(dryRun, explicit, locationCodes, allLocations, partNumber, upc, sku, tags);
   }
 
 
@@ -204,9 +260,11 @@ public class DeleteItemRequest {
     sb.append("    dryRun: ").append(toIndentedString(dryRun)).append("\n");
     sb.append("    explicit: ").append(toIndentedString(explicit)).append("\n");
     sb.append("    locationCodes: ").append(toIndentedString(locationCodes)).append("\n");
+    sb.append("    allLocations: ").append(toIndentedString(allLocations)).append("\n");
     sb.append("    partNumber: ").append(toIndentedString(partNumber)).append("\n");
     sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
     sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kibocommerce.sdk.inventory.model.MItemIdentifier;
+import com.kibocommerce.sdk.inventory.model.ProductIdentifier;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.util.List;
  * Delete Item Model
  */
 @ApiModel(description = "Delete Item Model")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class MDeleteItem {
   public static final String SERIALIZED_NAME_PRODUCT_I_D = "productID";
   @SerializedName(SERIALIZED_NAME_PRODUCT_I_D)
@@ -45,17 +45,17 @@ public class MDeleteItem {
   @SerializedName(SERIALIZED_NAME_LOCATION_I_DS)
   private List<Integer> locationIDs = null;
 
+  public static final String SERIALIZED_NAME_LOCATION_CODES = "locationCodes";
+  @SerializedName(SERIALIZED_NAME_LOCATION_CODES)
+  private List<String> locationCodes = null;
+
   public static final String SERIALIZED_NAME_AUDIT_I_DS = "auditIDs";
   @SerializedName(SERIALIZED_NAME_AUDIT_I_DS)
   private List<Integer> auditIDs = null;
 
-  public static final String SERIALIZED_NAME_PICK_WAVE_I_DS = "pickWaveIDs";
-  @SerializedName(SERIALIZED_NAME_PICK_WAVE_I_DS)
-  private List<Integer> pickWaveIDs = null;
-
   public static final String SERIALIZED_NAME_ITEM_IDENTIFIER = "itemIdentifier";
   @SerializedName(SERIALIZED_NAME_ITEM_IDENTIFIER)
-  private MItemIdentifier itemIdentifier = null;
+  private ProductIdentifier itemIdentifier = null;
 
   public MDeleteItem productID(Integer productID) {
     this.productID = productID;
@@ -127,6 +127,32 @@ public class MDeleteItem {
     this.locationIDs = locationIDs;
   }
 
+  public MDeleteItem locationCodes(List<String> locationCodes) {
+    this.locationCodes = locationCodes;
+    return this;
+  }
+
+  public MDeleteItem addLocationCodesItem(String locationCodesItem) {
+    if (this.locationCodes == null) {
+      this.locationCodes = new ArrayList<String>();
+    }
+    this.locationCodes.add(locationCodesItem);
+    return this;
+  }
+
+   /**
+   * List of location codes associated with the deleted item
+   * @return locationCodes
+  **/
+  @ApiModelProperty(value = "List of location codes associated with the deleted item")
+  public List<String> getLocationCodes() {
+    return locationCodes;
+  }
+
+  public void setLocationCodes(List<String> locationCodes) {
+    this.locationCodes = locationCodes;
+  }
+
   public MDeleteItem auditIDs(List<Integer> auditIDs) {
     this.auditIDs = auditIDs;
     return this;
@@ -153,33 +179,7 @@ public class MDeleteItem {
     this.auditIDs = auditIDs;
   }
 
-  public MDeleteItem pickWaveIDs(List<Integer> pickWaveIDs) {
-    this.pickWaveIDs = pickWaveIDs;
-    return this;
-  }
-
-  public MDeleteItem addPickWaveIDsItem(Integer pickWaveIDsItem) {
-    if (this.pickWaveIDs == null) {
-      this.pickWaveIDs = new ArrayList<Integer>();
-    }
-    this.pickWaveIDs.add(pickWaveIDsItem);
-    return this;
-  }
-
-   /**
-   * List of pick wave identifiers associated with the deleted item
-   * @return pickWaveIDs
-  **/
-  @ApiModelProperty(value = "List of pick wave identifiers associated with the deleted item")
-  public List<Integer> getPickWaveIDs() {
-    return pickWaveIDs;
-  }
-
-  public void setPickWaveIDs(List<Integer> pickWaveIDs) {
-    this.pickWaveIDs = pickWaveIDs;
-  }
-
-  public MDeleteItem itemIdentifier(MItemIdentifier itemIdentifier) {
+  public MDeleteItem itemIdentifier(ProductIdentifier itemIdentifier) {
     this.itemIdentifier = itemIdentifier;
     return this;
   }
@@ -189,11 +189,11 @@ public class MDeleteItem {
    * @return itemIdentifier
   **/
   @ApiModelProperty(value = "")
-  public MItemIdentifier getItemIdentifier() {
+  public ProductIdentifier getItemIdentifier() {
     return itemIdentifier;
   }
 
-  public void setItemIdentifier(MItemIdentifier itemIdentifier) {
+  public void setItemIdentifier(ProductIdentifier itemIdentifier) {
     this.itemIdentifier = itemIdentifier;
   }
 
@@ -210,14 +210,14 @@ public class MDeleteItem {
     return Objects.equals(this.productID, mDeleteItem.productID) &&
         Objects.equals(this.inventoryIDs, mDeleteItem.inventoryIDs) &&
         Objects.equals(this.locationIDs, mDeleteItem.locationIDs) &&
+        Objects.equals(this.locationCodes, mDeleteItem.locationCodes) &&
         Objects.equals(this.auditIDs, mDeleteItem.auditIDs) &&
-        Objects.equals(this.pickWaveIDs, mDeleteItem.pickWaveIDs) &&
         Objects.equals(this.itemIdentifier, mDeleteItem.itemIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productID, inventoryIDs, locationIDs, auditIDs, pickWaveIDs, itemIdentifier);
+    return Objects.hash(productID, inventoryIDs, locationIDs, locationCodes, auditIDs, itemIdentifier);
   }
 
 
@@ -229,8 +229,8 @@ public class MDeleteItem {
     sb.append("    productID: ").append(toIndentedString(productID)).append("\n");
     sb.append("    inventoryIDs: ").append(toIndentedString(inventoryIDs)).append("\n");
     sb.append("    locationIDs: ").append(toIndentedString(locationIDs)).append("\n");
+    sb.append("    locationCodes: ").append(toIndentedString(locationCodes)).append("\n");
     sb.append("    auditIDs: ").append(toIndentedString(auditIDs)).append("\n");
-    sb.append("    pickWaveIDs: ").append(toIndentedString(pickWaveIDs)).append("\n");
     sb.append("    itemIdentifier: ").append(toIndentedString(itemIdentifier)).append("\n");
     sb.append("}");
     return sb.toString();

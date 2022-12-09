@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.kibocommerce.sdk.inventory.model.BaseResponse;
 import com.kibocommerce.sdk.inventory.model.Bin;
+import com.kibocommerce.sdk.inventory.model.BinIDResponse;
 import com.kibocommerce.sdk.inventory.model.BinResponseModel;
 import com.kibocommerce.sdk.inventory.model.BinSearchRequest;
 import com.kibocommerce.sdk.inventory.model.BinSearchResponse;
@@ -143,11 +144,11 @@ public class BinControllerApi {
      * Create a bin
      * @param xVolTenant Tenant ID (required)
      * @param createBinRequest Request to create a new bin (required)
-     * @return Integer
+     * @return BinIDResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Integer createBin(Integer xVolTenant, CreateBinRequest createBinRequest) throws ApiException {
-        ApiResponse<Integer> resp = createBinWithHttpInfo(xVolTenant, createBinRequest);
+    public BinIDResponse createBin(Integer xVolTenant, CreateBinRequest createBinRequest) throws ApiException {
+        ApiResponse<BinIDResponse> resp = createBinWithHttpInfo(xVolTenant, createBinRequest);
         return resp.getData();
     }
 
@@ -156,12 +157,12 @@ public class BinControllerApi {
      * Create a bin
      * @param xVolTenant Tenant ID (required)
      * @param createBinRequest Request to create a new bin (required)
-     * @return ApiResponse&lt;Integer&gt;
+     * @return ApiResponse&lt;BinIDResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Integer> createBinWithHttpInfo(Integer xVolTenant, CreateBinRequest createBinRequest) throws ApiException {
+    public ApiResponse<BinIDResponse> createBinWithHttpInfo(Integer xVolTenant, CreateBinRequest createBinRequest) throws ApiException {
         com.squareup.okhttp.Call call = createBinValidateBeforeCall(xVolTenant, createBinRequest, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<BinIDResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -174,7 +175,7 @@ public class BinControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createBinAsync(Integer xVolTenant, CreateBinRequest createBinRequest, final ApiCallback<Integer> callback) throws ApiException {
+    public com.squareup.okhttp.Call createBinAsync(Integer xVolTenant, CreateBinRequest createBinRequest, final ApiCallback<BinIDResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -196,7 +197,7 @@ public class BinControllerApi {
         }
 
         com.squareup.okhttp.Call call = createBinValidateBeforeCall(xVolTenant, createBinRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<BinIDResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -750,7 +751,7 @@ public class BinControllerApi {
      * Build call for getBins
      * @param xVolTenant Tenant ID (required)
      * @param locationID Id of location (required)
-     * @param searchTerm Term to match in bins (required)
+     * @param searchTerm Term to match in bins (optional)
      * @param perPage Results per page (optional)
      * @param page Page to show (optional)
      * @param progressListener Progress listener
@@ -831,11 +832,6 @@ public class BinControllerApi {
             throw new ApiException("Missing the required parameter 'locationID' when calling getBins(Async)");
         }
         
-        // verify the required parameter 'searchTerm' is set
-        if (searchTerm == null) {
-            throw new ApiException("Missing the required parameter 'searchTerm' when calling getBins(Async)");
-        }
-        
 
         com.squareup.okhttp.Call call = getBinsCall(xVolTenant, locationID, searchTerm, perPage, page, progressListener, progressRequestListener);
         return call;
@@ -847,7 +843,7 @@ public class BinControllerApi {
      * Get a list of bins
      * @param xVolTenant Tenant ID (required)
      * @param locationID Id of location (required)
-     * @param searchTerm Term to match in bins (required)
+     * @param searchTerm Term to match in bins (optional)
      * @param perPage Results per page (optional)
      * @param page Page to show (optional)
      * @return BinResponseModel
@@ -863,7 +859,7 @@ public class BinControllerApi {
      * Get a list of bins
      * @param xVolTenant Tenant ID (required)
      * @param locationID Id of location (required)
-     * @param searchTerm Term to match in bins (required)
+     * @param searchTerm Term to match in bins (optional)
      * @param perPage Results per page (optional)
      * @param page Page to show (optional)
      * @return ApiResponse&lt;BinResponseModel&gt;
@@ -880,7 +876,7 @@ public class BinControllerApi {
      * Get a list of bins
      * @param xVolTenant Tenant ID (required)
      * @param locationID Id of location (required)
-     * @param searchTerm Term to match in bins (required)
+     * @param searchTerm Term to match in bins (optional)
      * @param perPage Results per page (optional)
      * @param page Page to show (optional)
      * @param callback The callback to be executed when the API call finishes

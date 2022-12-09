@@ -23,12 +23,16 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * Item for Allocation
  */
 @ApiModel(description = "Item for Allocation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class AllocateItem {
   public static final String SERIALIZED_NAME_PART_NUMBER = "partNumber";
   @SerializedName(SERIALIZED_NAME_PART_NUMBER)
@@ -54,6 +58,18 @@ public class AllocateItem {
   @SerializedName(SERIALIZED_NAME_ORDER_ITEM_I_D)
   private Integer orderItemID;
 
+  public static final String SERIALIZED_NAME_CART_I_D = "cartID";
+  @SerializedName(SERIALIZED_NAME_CART_I_D)
+  private String cartID;
+
+  public static final String SERIALIZED_NAME_RESERVATION_I_D = "reservationID";
+  @SerializedName(SERIALIZED_NAME_RESERVATION_I_D)
+  private String reservationID;
+
+  public static final String SERIALIZED_NAME_CART_ITEM_I_D = "cartItemID";
+  @SerializedName(SERIALIZED_NAME_CART_ITEM_I_D)
+  private String cartItemID;
+
   public static final String SERIALIZED_NAME_SHIPMENT_I_D = "shipmentID";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_I_D)
   private Integer shipmentID;
@@ -73,6 +89,14 @@ public class AllocateItem {
   public static final String SERIALIZED_NAME_BLOCK_ASSIGNMENT = "blockAssignment";
   @SerializedName(SERIALIZED_NAME_BLOCK_ASSIGNMENT)
   private Boolean blockAssignment;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
+
+  public static final String SERIALIZED_NAME_FUTURE_DATE = "futureDate";
+  @SerializedName(SERIALIZED_NAME_FUTURE_DATE)
+  private OffsetDateTime futureDate = null;
 
   public AllocateItem partNumber(String partNumber) {
     this.partNumber = partNumber;
@@ -182,6 +206,60 @@ public class AllocateItem {
     this.orderItemID = orderItemID;
   }
 
+  public AllocateItem cartID(String cartID) {
+    this.cartID = cartID;
+    return this;
+  }
+
+   /**
+   * Cart ID (GUID)
+   * @return cartID
+  **/
+  @ApiModelProperty(value = "Cart ID (GUID)")
+  public String getCartID() {
+    return cartID;
+  }
+
+  public void setCartID(String cartID) {
+    this.cartID = cartID;
+  }
+
+  public AllocateItem reservationID(String reservationID) {
+    this.reservationID = reservationID;
+    return this;
+  }
+
+   /**
+   * Reservation ID
+   * @return reservationID
+  **/
+  @ApiModelProperty(value = "Reservation ID")
+  public String getReservationID() {
+    return reservationID;
+  }
+
+  public void setReservationID(String reservationID) {
+    this.reservationID = reservationID;
+  }
+
+  public AllocateItem cartItemID(String cartItemID) {
+    this.cartItemID = cartItemID;
+    return this;
+  }
+
+   /**
+   * Cart Item ID (GUID)
+   * @return cartItemID
+  **/
+  @ApiModelProperty(value = "Cart Item ID (GUID)")
+  public String getCartItemID() {
+    return cartItemID;
+  }
+
+  public void setCartItemID(String cartItemID) {
+    this.cartItemID = cartItemID;
+  }
+
   public AllocateItem shipmentID(Integer shipmentID) {
     this.shipmentID = shipmentID;
     return this;
@@ -272,6 +350,50 @@ public class AllocateItem {
     this.blockAssignment = blockAssignment;
   }
 
+  public AllocateItem tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public AllocateItem putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
+  }
+
+  public AllocateItem futureDate(OffsetDateTime futureDate) {
+    this.futureDate = futureDate;
+    return this;
+  }
+
+   /**
+   * Future Date at which the inventory should be allocated against. Expected format &#39;2020-09-28T12:00:00-0500&#39;
+   * @return futureDate
+  **/
+  @ApiModelProperty(value = "Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'")
+  public OffsetDateTime getFutureDate() {
+    return futureDate;
+  }
+
+  public void setFutureDate(OffsetDateTime futureDate) {
+    this.futureDate = futureDate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -288,16 +410,21 @@ public class AllocateItem {
         Objects.equals(this.quantity, allocateItem.quantity) &&
         Objects.equals(this.orderID, allocateItem.orderID) &&
         Objects.equals(this.orderItemID, allocateItem.orderItemID) &&
+        Objects.equals(this.cartID, allocateItem.cartID) &&
+        Objects.equals(this.reservationID, allocateItem.reservationID) &&
+        Objects.equals(this.cartItemID, allocateItem.cartItemID) &&
         Objects.equals(this.shipmentID, allocateItem.shipmentID) &&
         Objects.equals(this.locationCode, allocateItem.locationCode) &&
         Objects.equals(this.previousOrderItemID, allocateItem.previousOrderItemID) &&
         Objects.equals(this.binID, allocateItem.binID) &&
-        Objects.equals(this.blockAssignment, allocateItem.blockAssignment);
+        Objects.equals(this.blockAssignment, allocateItem.blockAssignment) &&
+        Objects.equals(this.tags, allocateItem.tags) &&
+        Objects.equals(this.futureDate, allocateItem.futureDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(partNumber, upc, sku, quantity, orderID, orderItemID, shipmentID, locationCode, previousOrderItemID, binID, blockAssignment);
+    return Objects.hash(partNumber, upc, sku, quantity, orderID, orderItemID, cartID, reservationID, cartItemID, shipmentID, locationCode, previousOrderItemID, binID, blockAssignment, tags, futureDate);
   }
 
 
@@ -312,11 +439,16 @@ public class AllocateItem {
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    orderID: ").append(toIndentedString(orderID)).append("\n");
     sb.append("    orderItemID: ").append(toIndentedString(orderItemID)).append("\n");
+    sb.append("    cartID: ").append(toIndentedString(cartID)).append("\n");
+    sb.append("    reservationID: ").append(toIndentedString(reservationID)).append("\n");
+    sb.append("    cartItemID: ").append(toIndentedString(cartItemID)).append("\n");
     sb.append("    shipmentID: ").append(toIndentedString(shipmentID)).append("\n");
     sb.append("    locationCode: ").append(toIndentedString(locationCode)).append("\n");
     sb.append("    previousOrderItemID: ").append(toIndentedString(previousOrderItemID)).append("\n");
     sb.append("    binID: ").append(toIndentedString(binID)).append("\n");
     sb.append("    blockAssignment: ").append(toIndentedString(blockAssignment)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    futureDate: ").append(toIndentedString(futureDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

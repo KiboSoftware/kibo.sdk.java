@@ -28,7 +28,7 @@ import java.io.IOException;
  * Export Settings FTP
  */
 @ApiModel(description = "Export Settings FTP")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class ExportSettingsFTP {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
@@ -37,6 +37,10 @@ public class ExportSettingsFTP {
   public static final String SERIALIZED_NAME_EXPORT_SETTINGS_I_D = "exportSettingsID";
   @SerializedName(SERIALIZED_NAME_EXPORT_SETTINGS_I_D)
   private Integer exportSettingsID;
+
+  public static final String SERIALIZED_NAME_EXPORT_SETTINGS_F_T_P_I_D = "exportSettingsFTPID";
+  @SerializedName(SERIALIZED_NAME_EXPORT_SETTINGS_F_T_P_I_D)
+  private Integer exportSettingsFTPID;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -128,6 +132,24 @@ public class ExportSettingsFTP {
 
   public void setExportSettingsID(Integer exportSettingsID) {
     this.exportSettingsID = exportSettingsID;
+  }
+
+  public ExportSettingsFTP exportSettingsFTPID(Integer exportSettingsFTPID) {
+    this.exportSettingsFTPID = exportSettingsFTPID;
+    return this;
+  }
+
+   /**
+   * Export Settings FTP ID
+   * @return exportSettingsFTPID
+  **/
+  @ApiModelProperty(value = "Export Settings FTP ID")
+  public Integer getExportSettingsFTPID() {
+    return exportSettingsFTPID;
+  }
+
+  public void setExportSettingsFTPID(Integer exportSettingsFTPID) {
+    this.exportSettingsFTPID = exportSettingsFTPID;
   }
 
   public ExportSettingsFTP name(String name) {
@@ -394,6 +416,7 @@ public class ExportSettingsFTP {
     ExportSettingsFTP exportSettingsFTP = (ExportSettingsFTP) o;
     return Objects.equals(this.active, exportSettingsFTP.active) &&
         Objects.equals(this.exportSettingsID, exportSettingsFTP.exportSettingsID) &&
+        Objects.equals(this.exportSettingsFTPID, exportSettingsFTP.exportSettingsFTPID) &&
         Objects.equals(this.name, exportSettingsFTP.name) &&
         Objects.equals(this.ftpServer, exportSettingsFTP.ftpServer) &&
         Objects.equals(this.ftpPort, exportSettingsFTP.ftpPort) &&
@@ -412,7 +435,7 @@ public class ExportSettingsFTP {
 
   @Override
   public int hashCode() {
-    return Objects.hash(active, exportSettingsID, name, ftpServer, ftpPort, ftpDirectory, ftpDirectoryControlFile, ftpUser, ftpPassword, deliveryClass, controlFile, controlFileEmail, remoteFileName, controlFileName, endpoint, environment);
+    return Objects.hash(active, exportSettingsID, exportSettingsFTPID, name, ftpServer, ftpPort, ftpDirectory, ftpDirectoryControlFile, ftpUser, ftpPassword, deliveryClass, controlFile, controlFileEmail, remoteFileName, controlFileName, endpoint, environment);
   }
 
 
@@ -423,6 +446,7 @@ public class ExportSettingsFTP {
     
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    exportSettingsID: ").append(toIndentedString(exportSettingsID)).append("\n");
+    sb.append("    exportSettingsFTPID: ").append(toIndentedString(exportSettingsFTPID)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    ftpServer: ").append(toIndentedString(ftpServer)).append("\n");
     sb.append("    ftpPort: ").append(toIndentedString(ftpPort)).append("\n");

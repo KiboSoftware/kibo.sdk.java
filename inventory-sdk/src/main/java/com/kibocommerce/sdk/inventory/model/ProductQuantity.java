@@ -23,12 +23,15 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A product and its associated quantity
  */
 @ApiModel(description = "A product and its associated quantity")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class ProductQuantity {
   public static final String SERIALIZED_NAME_PART_NUMBER = "partNumber";
   @SerializedName(SERIALIZED_NAME_PART_NUMBER)
@@ -109,6 +112,10 @@ public class ProductQuantity {
   public static final String SERIALIZED_NAME_SAFETYSTOCK = "safetystock";
   @SerializedName(SERIALIZED_NAME_SAFETYSTOCK)
   private Integer safetystock;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
 
   public ProductQuantity partNumber(String partNumber) {
     this.partNumber = partNumber;
@@ -470,6 +477,32 @@ public class ProductQuantity {
     this.safetystock = safetystock;
   }
 
+  public ProductQuantity tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public ProductQuantity putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -499,12 +532,13 @@ public class ProductQuantity {
         Objects.equals(this.pending, productQuantity.pending) &&
         Objects.equals(this.ltd, productQuantity.ltd) &&
         Objects.equals(this.floor, productQuantity.floor) &&
-        Objects.equals(this.safetystock, productQuantity.safetystock);
+        Objects.equals(this.safetystock, productQuantity.safetystock) &&
+        Objects.equals(this.tags, productQuantity.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(partNumber, upc, sku, quantity, binID, locationID, binTypeID, binStatusID, name, inventoryID, tenantLocProductID, auditProductID, auditID, onHand, available, allocated, pending, ltd, floor, safetystock);
+    return Objects.hash(partNumber, upc, sku, quantity, binID, locationID, binTypeID, binStatusID, name, inventoryID, tenantLocProductID, auditProductID, auditID, onHand, available, allocated, pending, ltd, floor, safetystock, tags);
   }
 
 
@@ -533,6 +567,7 @@ public class ProductQuantity {
     sb.append("    ltd: ").append(toIndentedString(ltd)).append("\n");
     sb.append("    floor: ").append(toIndentedString(floor)).append("\n");
     sb.append("    safetystock: ").append(toIndentedString(safetystock)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

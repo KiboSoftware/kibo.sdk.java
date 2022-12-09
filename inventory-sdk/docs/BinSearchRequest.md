@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **product** | [**Product**](.md) |  |  [optional]
 **sortAscending** | **Boolean** | Flag for sorting ascending |  [optional]
 **showNegativeInventory** | **Boolean** | Flag for showing negative inventory |  [optional]
+**tags** | **Map&lt;String, String&gt;** | Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName |  [optional]
 
 
 

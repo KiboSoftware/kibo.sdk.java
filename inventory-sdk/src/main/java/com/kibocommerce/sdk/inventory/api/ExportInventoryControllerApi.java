@@ -30,9 +30,11 @@ import java.io.IOException;
 import com.kibocommerce.sdk.inventory.model.CreateExportSettingsFTPRequest;
 import com.kibocommerce.sdk.inventory.model.CreateExportSettingsRequest;
 import com.kibocommerce.sdk.inventory.model.CreateExportSettingsS3Request;
+import com.kibocommerce.sdk.inventory.model.DeletedCountResponse;
 import com.kibocommerce.sdk.inventory.model.ExportInventoryRequest;
 import com.kibocommerce.sdk.inventory.model.ExportInventoryResponse;
-import com.kibocommerce.sdk.inventory.model.ExportSettings;
+import com.kibocommerce.sdk.inventory.model.ExportSettingsResponse;
+import com.kibocommerce.sdk.inventory.model.GetExportSettingsResponse;
 import com.kibocommerce.sdk.inventory.model.UpdateExportSettingsFTPRequest;
 import com.kibocommerce.sdk.inventory.model.UpdateExportSettingsFTPResponse;
 import com.kibocommerce.sdk.inventory.model.UpdateExportSettingsRequest;
@@ -142,11 +144,11 @@ public class ExportInventoryControllerApi {
      * Create an Export Settings
      * @param xVolTenant Tenant ID (required)
      * @param createExportSettingsRequest Request to create a new Export Settings (required)
-     * @return String
+     * @return ExportSettingsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String createExportSettings(Integer xVolTenant, CreateExportSettingsRequest createExportSettingsRequest) throws ApiException {
-        ApiResponse<String> resp = createExportSettingsWithHttpInfo(xVolTenant, createExportSettingsRequest);
+    public ExportSettingsResponse createExportSettings(Integer xVolTenant, CreateExportSettingsRequest createExportSettingsRequest) throws ApiException {
+        ApiResponse<ExportSettingsResponse> resp = createExportSettingsWithHttpInfo(xVolTenant, createExportSettingsRequest);
         return resp.getData();
     }
 
@@ -155,12 +157,12 @@ public class ExportInventoryControllerApi {
      * Create an Export Settings
      * @param xVolTenant Tenant ID (required)
      * @param createExportSettingsRequest Request to create a new Export Settings (required)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;ExportSettingsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> createExportSettingsWithHttpInfo(Integer xVolTenant, CreateExportSettingsRequest createExportSettingsRequest) throws ApiException {
+    public ApiResponse<ExportSettingsResponse> createExportSettingsWithHttpInfo(Integer xVolTenant, CreateExportSettingsRequest createExportSettingsRequest) throws ApiException {
         com.squareup.okhttp.Call call = createExportSettingsValidateBeforeCall(xVolTenant, createExportSettingsRequest, null, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExportSettingsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -173,7 +175,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createExportSettingsAsync(Integer xVolTenant, CreateExportSettingsRequest createExportSettingsRequest, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call createExportSettingsAsync(Integer xVolTenant, CreateExportSettingsRequest createExportSettingsRequest, final ApiCallback<ExportSettingsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -195,7 +197,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = createExportSettingsValidateBeforeCall(xVolTenant, createExportSettingsRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExportSettingsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -276,11 +278,11 @@ public class ExportInventoryControllerApi {
      * Create an Export Settings FTP
      * @param xVolTenant Tenant ID (required)
      * @param createExportSettingsFTPRequest Request to create a new Export Settings FTP (required)
-     * @return String
+     * @return ExportSettingsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String createExportSettingsFTP(Integer xVolTenant, CreateExportSettingsFTPRequest createExportSettingsFTPRequest) throws ApiException {
-        ApiResponse<String> resp = createExportSettingsFTPWithHttpInfo(xVolTenant, createExportSettingsFTPRequest);
+    public ExportSettingsResponse createExportSettingsFTP(Integer xVolTenant, CreateExportSettingsFTPRequest createExportSettingsFTPRequest) throws ApiException {
+        ApiResponse<ExportSettingsResponse> resp = createExportSettingsFTPWithHttpInfo(xVolTenant, createExportSettingsFTPRequest);
         return resp.getData();
     }
 
@@ -289,12 +291,12 @@ public class ExportInventoryControllerApi {
      * Create an Export Settings FTP
      * @param xVolTenant Tenant ID (required)
      * @param createExportSettingsFTPRequest Request to create a new Export Settings FTP (required)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;ExportSettingsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> createExportSettingsFTPWithHttpInfo(Integer xVolTenant, CreateExportSettingsFTPRequest createExportSettingsFTPRequest) throws ApiException {
+    public ApiResponse<ExportSettingsResponse> createExportSettingsFTPWithHttpInfo(Integer xVolTenant, CreateExportSettingsFTPRequest createExportSettingsFTPRequest) throws ApiException {
         com.squareup.okhttp.Call call = createExportSettingsFTPValidateBeforeCall(xVolTenant, createExportSettingsFTPRequest, null, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExportSettingsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -307,7 +309,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createExportSettingsFTPAsync(Integer xVolTenant, CreateExportSettingsFTPRequest createExportSettingsFTPRequest, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call createExportSettingsFTPAsync(Integer xVolTenant, CreateExportSettingsFTPRequest createExportSettingsFTPRequest, final ApiCallback<ExportSettingsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -329,7 +331,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = createExportSettingsFTPValidateBeforeCall(xVolTenant, createExportSettingsFTPRequest, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExportSettingsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -410,11 +412,11 @@ public class ExportInventoryControllerApi {
      * Create an Export Settings S3
      * @param xVolTenant Tenant ID (required)
      * @param createExportSettingsS3Request Request to create a new Export Settings S3 (required)
-     * @return Integer
+     * @return ExportSettingsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Integer createExportSettingsS3(Integer xVolTenant, CreateExportSettingsS3Request createExportSettingsS3Request) throws ApiException {
-        ApiResponse<Integer> resp = createExportSettingsS3WithHttpInfo(xVolTenant, createExportSettingsS3Request);
+    public ExportSettingsResponse createExportSettingsS3(Integer xVolTenant, CreateExportSettingsS3Request createExportSettingsS3Request) throws ApiException {
+        ApiResponse<ExportSettingsResponse> resp = createExportSettingsS3WithHttpInfo(xVolTenant, createExportSettingsS3Request);
         return resp.getData();
     }
 
@@ -423,12 +425,12 @@ public class ExportInventoryControllerApi {
      * Create an Export Settings S3
      * @param xVolTenant Tenant ID (required)
      * @param createExportSettingsS3Request Request to create a new Export Settings S3 (required)
-     * @return ApiResponse&lt;Integer&gt;
+     * @return ApiResponse&lt;ExportSettingsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Integer> createExportSettingsS3WithHttpInfo(Integer xVolTenant, CreateExportSettingsS3Request createExportSettingsS3Request) throws ApiException {
+    public ApiResponse<ExportSettingsResponse> createExportSettingsS3WithHttpInfo(Integer xVolTenant, CreateExportSettingsS3Request createExportSettingsS3Request) throws ApiException {
         com.squareup.okhttp.Call call = createExportSettingsS3ValidateBeforeCall(xVolTenant, createExportSettingsS3Request, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExportSettingsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -441,7 +443,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createExportSettingsS3Async(Integer xVolTenant, CreateExportSettingsS3Request createExportSettingsS3Request, final ApiCallback<Integer> callback) throws ApiException {
+    public com.squareup.okhttp.Call createExportSettingsS3Async(Integer xVolTenant, CreateExportSettingsS3Request createExportSettingsS3Request, final ApiCallback<ExportSettingsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -463,7 +465,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = createExportSettingsS3ValidateBeforeCall(xVolTenant, createExportSettingsS3Request, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExportSettingsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -548,11 +550,11 @@ public class ExportInventoryControllerApi {
      * Deletes an Export Settings
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
-     * @return Integer
+     * @return DeletedCountResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Integer deleteExportSettings(Integer xVolTenant, String exportSettingsName) throws ApiException {
-        ApiResponse<Integer> resp = deleteExportSettingsWithHttpInfo(xVolTenant, exportSettingsName);
+    public DeletedCountResponse deleteExportSettings(Integer xVolTenant, String exportSettingsName) throws ApiException {
+        ApiResponse<DeletedCountResponse> resp = deleteExportSettingsWithHttpInfo(xVolTenant, exportSettingsName);
         return resp.getData();
     }
 
@@ -561,12 +563,12 @@ public class ExportInventoryControllerApi {
      * Deletes an Export Settings
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
-     * @return ApiResponse&lt;Integer&gt;
+     * @return ApiResponse&lt;DeletedCountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Integer> deleteExportSettingsWithHttpInfo(Integer xVolTenant, String exportSettingsName) throws ApiException {
+    public ApiResponse<DeletedCountResponse> deleteExportSettingsWithHttpInfo(Integer xVolTenant, String exportSettingsName) throws ApiException {
         com.squareup.okhttp.Call call = deleteExportSettingsValidateBeforeCall(xVolTenant, exportSettingsName, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedCountResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -579,7 +581,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteExportSettingsAsync(Integer xVolTenant, String exportSettingsName, final ApiCallback<Integer> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteExportSettingsAsync(Integer xVolTenant, String exportSettingsName, final ApiCallback<DeletedCountResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -601,7 +603,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = deleteExportSettingsValidateBeforeCall(xVolTenant, exportSettingsName, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedCountResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -694,11 +696,11 @@ public class ExportInventoryControllerApi {
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
      * @param exportSettingsFTPName Export Settings FTP Name (required)
-     * @return Integer
+     * @return DeletedCountResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Integer deleteExportSettingsFTP(Integer xVolTenant, String exportSettingsName, String exportSettingsFTPName) throws ApiException {
-        ApiResponse<Integer> resp = deleteExportSettingsFTPWithHttpInfo(xVolTenant, exportSettingsName, exportSettingsFTPName);
+    public DeletedCountResponse deleteExportSettingsFTP(Integer xVolTenant, String exportSettingsName, String exportSettingsFTPName) throws ApiException {
+        ApiResponse<DeletedCountResponse> resp = deleteExportSettingsFTPWithHttpInfo(xVolTenant, exportSettingsName, exportSettingsFTPName);
         return resp.getData();
     }
 
@@ -708,12 +710,12 @@ public class ExportInventoryControllerApi {
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
      * @param exportSettingsFTPName Export Settings FTP Name (required)
-     * @return ApiResponse&lt;Integer&gt;
+     * @return ApiResponse&lt;DeletedCountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Integer> deleteExportSettingsFTPWithHttpInfo(Integer xVolTenant, String exportSettingsName, String exportSettingsFTPName) throws ApiException {
+    public ApiResponse<DeletedCountResponse> deleteExportSettingsFTPWithHttpInfo(Integer xVolTenant, String exportSettingsName, String exportSettingsFTPName) throws ApiException {
         com.squareup.okhttp.Call call = deleteExportSettingsFTPValidateBeforeCall(xVolTenant, exportSettingsName, exportSettingsFTPName, null, null);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedCountResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -727,7 +729,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteExportSettingsFTPAsync(Integer xVolTenant, String exportSettingsName, String exportSettingsFTPName, final ApiCallback<Integer> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteExportSettingsFTPAsync(Integer xVolTenant, String exportSettingsName, String exportSettingsFTPName, final ApiCallback<DeletedCountResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -749,7 +751,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = deleteExportSettingsFTPValidateBeforeCall(xVolTenant, exportSettingsName, exportSettingsFTPName, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedCountResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -842,11 +844,11 @@ public class ExportInventoryControllerApi {
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
      * @param exportSettingsS3Name Export Settings S3 Name (required)
-     * @return Boolean
+     * @return DeletedCountResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Boolean deleteExportSettingsS3(Integer xVolTenant, String exportSettingsName, String exportSettingsS3Name) throws ApiException {
-        ApiResponse<Boolean> resp = deleteExportSettingsS3WithHttpInfo(xVolTenant, exportSettingsName, exportSettingsS3Name);
+    public DeletedCountResponse deleteExportSettingsS3(Integer xVolTenant, String exportSettingsName, String exportSettingsS3Name) throws ApiException {
+        ApiResponse<DeletedCountResponse> resp = deleteExportSettingsS3WithHttpInfo(xVolTenant, exportSettingsName, exportSettingsS3Name);
         return resp.getData();
     }
 
@@ -856,12 +858,12 @@ public class ExportInventoryControllerApi {
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
      * @param exportSettingsS3Name Export Settings S3 Name (required)
-     * @return ApiResponse&lt;Boolean&gt;
+     * @return ApiResponse&lt;DeletedCountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Boolean> deleteExportSettingsS3WithHttpInfo(Integer xVolTenant, String exportSettingsName, String exportSettingsS3Name) throws ApiException {
+    public ApiResponse<DeletedCountResponse> deleteExportSettingsS3WithHttpInfo(Integer xVolTenant, String exportSettingsName, String exportSettingsS3Name) throws ApiException {
         com.squareup.okhttp.Call call = deleteExportSettingsS3ValidateBeforeCall(xVolTenant, exportSettingsName, exportSettingsS3Name, null, null);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedCountResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -875,7 +877,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteExportSettingsS3Async(Integer xVolTenant, String exportSettingsName, String exportSettingsS3Name, final ApiCallback<Boolean> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteExportSettingsS3Async(Integer xVolTenant, String exportSettingsName, String exportSettingsS3Name, final ApiCallback<DeletedCountResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -897,7 +899,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = deleteExportSettingsS3ValidateBeforeCall(xVolTenant, exportSettingsName, exportSettingsS3Name, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Boolean>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeletedCountResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -982,11 +984,11 @@ public class ExportInventoryControllerApi {
      * Get an export settings
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
-     * @return List&lt;ExportSettings&gt;
+     * @return List&lt;GetExportSettingsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<ExportSettings> getExportSettings(Integer xVolTenant, String exportSettingsName) throws ApiException {
-        ApiResponse<List<ExportSettings>> resp = getExportSettingsWithHttpInfo(xVolTenant, exportSettingsName);
+    public List<GetExportSettingsResponse> getExportSettings(Integer xVolTenant, String exportSettingsName) throws ApiException {
+        ApiResponse<List<GetExportSettingsResponse>> resp = getExportSettingsWithHttpInfo(xVolTenant, exportSettingsName);
         return resp.getData();
     }
 
@@ -995,12 +997,12 @@ public class ExportInventoryControllerApi {
      * Get an export settings
      * @param xVolTenant Tenant ID (required)
      * @param exportSettingsName Export Settings Name (required)
-     * @return ApiResponse&lt;List&lt;ExportSettings&gt;&gt;
+     * @return ApiResponse&lt;List&lt;GetExportSettingsResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<ExportSettings>> getExportSettingsWithHttpInfo(Integer xVolTenant, String exportSettingsName) throws ApiException {
+    public ApiResponse<List<GetExportSettingsResponse>> getExportSettingsWithHttpInfo(Integer xVolTenant, String exportSettingsName) throws ApiException {
         com.squareup.okhttp.Call call = getExportSettingsValidateBeforeCall(xVolTenant, exportSettingsName, null, null);
-        Type localVarReturnType = new TypeToken<List<ExportSettings>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<GetExportSettingsResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1013,7 +1015,7 @@ public class ExportInventoryControllerApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getExportSettingsAsync(Integer xVolTenant, String exportSettingsName, final ApiCallback<List<ExportSettings>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getExportSettingsAsync(Integer xVolTenant, String exportSettingsName, final ApiCallback<List<GetExportSettingsResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1035,7 +1037,7 @@ public class ExportInventoryControllerApi {
         }
 
         com.squareup.okhttp.Call call = getExportSettingsValidateBeforeCall(xVolTenant, exportSettingsName, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<ExportSettings>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<GetExportSettingsResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

@@ -6,5 +6,5 @@
   "modelPackage":"com.kibocommerce.sdk.inventory.model",
   "parentGroupId":"com.kibocommerce",
   "parentArtifactId":"kibo-sdk-java",
-  "parentVersion":"1.0.0-SNAPSHOT"
+  "parentVersion":"1.0.1-SNAPSHOT"
 }
