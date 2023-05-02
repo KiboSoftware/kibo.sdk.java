@@ -1,4 +1,4 @@
-@Library('kibo-pipeline-shared-lib@devopsdevwh')_
+@Library('kibo-pipeline-shared-lib')_
 
 ngMavenPublicPublishProjectPipeline (
     DOCKERFILE : './Dockerfile');
