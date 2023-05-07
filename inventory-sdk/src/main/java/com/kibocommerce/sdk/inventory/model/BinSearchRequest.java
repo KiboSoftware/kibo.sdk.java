@@ -25,11 +25,14 @@ import com.kibocommerce.sdk.inventory.model.Product;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * BinSearchRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class BinSearchRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_BIN_NAME = "binName";
   @SerializedName(SERIALIZED_NAME_BIN_NAME)
@@ -46,6 +49,10 @@ public class BinSearchRequest extends BaseRequest {
   public static final String SERIALIZED_NAME_SHOW_NEGATIVE_INVENTORY = "showNegativeInventory";
   @SerializedName(SERIALIZED_NAME_SHOW_NEGATIVE_INVENTORY)
   private Boolean showNegativeInventory;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
 
   public BinSearchRequest binName(String binName) {
     this.binName = binName;
@@ -119,6 +126,32 @@ public class BinSearchRequest extends BaseRequest {
     this.showNegativeInventory = showNegativeInventory;
   }
 
+  public BinSearchRequest tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public BinSearchRequest putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -133,12 +166,13 @@ public class BinSearchRequest extends BaseRequest {
         Objects.equals(this.product, binSearchRequest.product) &&
         Objects.equals(this.sortAscending, binSearchRequest.sortAscending) &&
         Objects.equals(this.showNegativeInventory, binSearchRequest.showNegativeInventory) &&
+        Objects.equals(this.tags, binSearchRequest.tags) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(binName, product, sortAscending, showNegativeInventory, super.hashCode());
+    return Objects.hash(binName, product, sortAscending, showNegativeInventory, tags, super.hashCode());
   }
 
 
@@ -151,6 +185,7 @@ public class BinSearchRequest extends BaseRequest {
     sb.append("    product: ").append(toIndentedString(product)).append("\n");
     sb.append("    sortAscending: ").append(toIndentedString(sortAscending)).append("\n");
     sb.append("    showNegativeInventory: ").append(toIndentedString(showNegativeInventory)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }

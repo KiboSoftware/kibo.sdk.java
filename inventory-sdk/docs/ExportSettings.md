@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **floor** | [**FloorEnum**](#FloorEnum) | Floor |  [optional]
 **ltd** | [**LtdEnum**](#LtdEnum) | LTD |  [optional]
 **fileName** | **String** | Name for the export file |  [optional]
+**shortenFilename** | **Boolean** | Flag for using shortened filenames |  [optional]
 **includeAttributes** | **Boolean** | Flag for including attributes |  [optional]
 **zipFiles** | **Boolean** | Flag for zipping the files |  [optional]
 **zipFileName** | **String** | Name for the zipped file |  [optional]
@@ -26,6 +27,10 @@ Name | Type | Description | Notes
 **directShip** | **Boolean** | Flag for only using locations with Direct Ship enabled |  [optional]
 **pickup** | **Boolean** | Flag for only using locations with In Store Pickup enabled |  [optional]
 **transfer** | **Boolean** | Flag for only using locations with Transfer enabled |  [optional]
+**productMapping** | [**ProductMappingEnum**](#ProductMappingEnum) | Enum for export productMapping |  [optional]
+**isClassic** | **Boolean** | Flag for marking the setting as a classic export |  [optional]
+**ignoreNegativeInventoryLocations** | **Boolean** | Flag for excluding negative inventory locations |  [optional]
+**tags** | **Map&lt;String, String&gt;** | Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName |  [optional]
 
 
 <a name="FileFormatEnum"></a>
@@ -72,6 +77,14 @@ MAX | &quot;LTD_MAX&quot;
 MIN | &quot;LTD_MIN&quot;
 AVG | &quot;LTD_AVG&quot;
 SUM | &quot;LTD_SUM&quot;
+
+
+<a name="ProductMappingEnum"></a>
+## Enum: ProductMappingEnum
+Name | Value
+---- | -----
+PART_NUMBER_WITH_UPC | &quot;SWAP_PART_NUMBER_WITH_UPC&quot;
+SKU_WITH_UPC | &quot;SWAP_SKU_WITH_UPC&quot;
 
 
 

@@ -24,12 +24,14 @@ import com.kibocommerce.sdk.inventory.model.ProductQuantity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A bin and its associated products and quantities
  */
 @ApiModel(description = "A bin and its associated products and quantities")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class BinProductQuantities {
   public static final String SERIALIZED_NAME_BIN_NAME = "binName";
   @SerializedName(SERIALIZED_NAME_BIN_NAME)
@@ -37,7 +39,7 @@ public class BinProductQuantities {
 
   public static final String SERIALIZED_NAME_PRODUCTS = "products";
   @SerializedName(SERIALIZED_NAME_PRODUCTS)
-  private ProductQuantity products = null;
+  private List<ProductQuantity> products = null;
 
   public BinProductQuantities binName(String binName) {
     this.binName = binName;
@@ -57,21 +59,29 @@ public class BinProductQuantities {
     this.binName = binName;
   }
 
-  public BinProductQuantities products(ProductQuantity products) {
+  public BinProductQuantities products(List<ProductQuantity> products) {
     this.products = products;
     return this;
   }
 
+  public BinProductQuantities addProductsItem(ProductQuantity productsItem) {
+    if (this.products == null) {
+      this.products = new ArrayList<ProductQuantity>();
+    }
+    this.products.add(productsItem);
+    return this;
+  }
+
    /**
-   * Get products
+   * List of ProductQuantities - Products with their associated quantity
    * @return products
   **/
-  @ApiModelProperty(value = "")
-  public ProductQuantity getProducts() {
+  @ApiModelProperty(value = "List of ProductQuantities - Products with their associated quantity")
+  public List<ProductQuantity> getProducts() {
     return products;
   }
 
-  public void setProducts(ProductQuantity products) {
+  public void setProducts(List<ProductQuantity> products) {
     this.products = products;
   }
 

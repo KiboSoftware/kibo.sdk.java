@@ -16,6 +16,7 @@ package com.kibocommerce.sdk.inventory.api;
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.model.BaseResponse;
 import com.kibocommerce.sdk.inventory.model.Bin;
+import com.kibocommerce.sdk.inventory.model.BinIDResponse;
 import com.kibocommerce.sdk.inventory.model.BinResponseModel;
 import com.kibocommerce.sdk.inventory.model.BinSearchRequest;
 import com.kibocommerce.sdk.inventory.model.BinSearchResponse;
@@ -56,7 +57,7 @@ public class BinControllerApiTest {
     public void createBinTest() throws ApiException {
         Integer xVolTenant = null;
         CreateBinRequest createBinRequest = null;
-        Integer response = api.createBin(xVolTenant, createBinRequest);
+        BinIDResponse response = api.createBin(xVolTenant, createBinRequest);
 
         // TODO: test validations
     }

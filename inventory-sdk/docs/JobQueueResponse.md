@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **jobID** | **Integer** | Internal identifier that uniquely identifies a single job |  [optional]
 **tenantID** | **Integer** | Unique internal identifier of the tenant that owns the job |  [optional]
-**locationID** | **Integer** | Unique internal Identifier of the owning location |  [optional]
+**locationCode** | **String** | Unique internal Identifier of the owning location |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | Purpose of the job |  [optional]
 **added** | **String** | Time and date the job was added to the queue in ISO8601 format in UTC |  [optional]
 **started** | **String** | Time and date the job was started in ISO8601 format in UTC |  [optional]
@@ -32,6 +32,10 @@ BIN_AUDIT_START | &quot;BIN_AUDIT_START&quot;
 BIN_AUDIT_COMPLETION | &quot;BIN_AUDIT_COMPLETION&quot;
 CREATE_BIN_AUDIT | &quot;CREATE_BIN_AUDIT&quot;
 RELEASE_PENDING_ITEMS | &quot;RELEASE_PENDING_ITEMS&quot;
+ALLOCATE | &quot;ALLOCATE&quot;
+DEALLOCATE | &quot;DEALLOCATE&quot;
+FULFILL | &quot;FULFILL&quot;
+DELETE | &quot;DELETE&quot;
 
 
 <a name="StatusEnum"></a>

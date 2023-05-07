@@ -14,7 +14,10 @@
 package com.kibocommerce.sdk.inventory.api;
 
 import com.kibocommerce.sdk.inventory.ApiException;
+import com.kibocommerce.sdk.inventory.model.BaseResponse;
+import com.kibocommerce.sdk.inventory.model.DeletedResponse;
 import com.kibocommerce.sdk.inventory.model.FetchFileConfigRequest;
+import com.kibocommerce.sdk.inventory.model.FetchFileConnectionResponse;
 import com.kibocommerce.sdk.inventory.model.MFetchFileConfig;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -32,6 +35,23 @@ public class FetchFileConfigControllerApiTest {
 
     private final FetchFileConfigControllerApi api = new FetchFileConfigControllerApi();
 
+    
+    /**
+     * 
+     *
+     * Deletes a fetch file config
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteFetchConfigTest() throws ApiException {
+        Integer xVolTenant = null;
+        Long fetchFileConfigID = null;
+        DeletedResponse response = api.deleteFetchConfig(xVolTenant, fetchFileConfigID);
+
+        // TODO: test validations
+    }
     
     /**
      * 
@@ -61,7 +81,24 @@ public class FetchFileConfigControllerApiTest {
     public void saveFetchConfigTest() throws ApiException {
         Integer xVolTenant = null;
         FetchFileConfigRequest fetchFileConfigRequest = null;
-        Boolean response = api.saveFetchConfig(xVolTenant, fetchFileConfigRequest);
+        BaseResponse response = api.saveFetchConfig(xVolTenant, fetchFileConfigRequest);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Attempts to connect to a fetch file endpoint and lists current files if successful
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void testConnectionTest() throws ApiException {
+        Integer xVolTenant = null;
+        Long fetchFileConfigID = null;
+        FetchFileConnectionResponse response = api.testConnection(xVolTenant, fetchFileConfigID);
 
         // TODO: test validations
     }

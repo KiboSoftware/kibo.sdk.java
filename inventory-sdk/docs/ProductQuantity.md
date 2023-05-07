@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **ltd** | **Integer** | Custom field used for store prioritization |  [optional]
 **floor** | **Integer** | Absolute minimum quantity of this item that should be in stock at any time |  [optional]
 **safetystock** | **Integer** | Quantity of this item the location wants to keep in stock to ensure stock isn&#39;t completely depleted |  [optional]
+**tags** | **Map&lt;String, String&gt;** | Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName |  [optional]
 
 
 

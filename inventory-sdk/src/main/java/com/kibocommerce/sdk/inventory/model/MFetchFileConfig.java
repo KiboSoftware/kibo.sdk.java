@@ -30,7 +30,7 @@ import java.util.List;
  * Fetch File Config Model
  */
 @ApiModel(description = "Fetch File Config Model")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class MFetchFileConfig {
   public static final String SERIALIZED_NAME_FETCH_FILE_CONFIG_I_D = "fetchFileConfigID";
   @SerializedName(SERIALIZED_NAME_FETCH_FILE_CONFIG_I_D)
@@ -92,6 +92,34 @@ public class MFetchFileConfig {
   @SerializedName(SERIALIZED_NAME_FTP_REMOTE_PATH_ARCHIVE)
   private String ftpRemotePathArchive;
 
+  public static final String SERIALIZED_NAME_REGION = "region";
+  @SerializedName(SERIALIZED_NAME_REGION)
+  private String region;
+
+  public static final String SERIALIZED_NAME_S3_KEY = "s3Key";
+  @SerializedName(SERIALIZED_NAME_S3_KEY)
+  private String s3Key;
+
+  public static final String SERIALIZED_NAME_SECRET = "secret";
+  @SerializedName(SERIALIZED_NAME_SECRET)
+  private String secret;
+
+  public static final String SERIALIZED_NAME_BUCKET = "bucket";
+  @SerializedName(SERIALIZED_NAME_BUCKET)
+  private String bucket;
+
+  public static final String SERIALIZED_NAME_S3_PATH = "s3Path";
+  @SerializedName(SERIALIZED_NAME_S3_PATH)
+  private String s3Path;
+
+  public static final String SERIALIZED_NAME_ARCHIVE_BUCKET = "archiveBucket";
+  @SerializedName(SERIALIZED_NAME_ARCHIVE_BUCKET)
+  private String archiveBucket;
+
+  public static final String SERIALIZED_NAME_S3_ARCHIVE_PATH = "s3ArchivePath";
+  @SerializedName(SERIALIZED_NAME_S3_ARCHIVE_PATH)
+  private String s3ArchivePath;
+
   public static final String SERIALIZED_NAME_LOCK_NAME = "lockName";
   @SerializedName(SERIALIZED_NAME_LOCK_NAME)
   private String lockName;
@@ -139,6 +167,57 @@ public class MFetchFileConfig {
   public static final String SERIALIZED_NAME_POST_IMPORT_FTP_ID = "postImportFtpId";
   @SerializedName(SERIALIZED_NAME_POST_IMPORT_FTP_ID)
   private Integer postImportFtpId;
+
+  /**
+   * Enum for fetch file mapping
+   */
+  @JsonAdapter(ProductMappingEnum.Adapter.class)
+  public enum ProductMappingEnum {
+    PART_NUMBER_WITH_UPC("SWAP_PART_NUMBER_WITH_UPC"),
+    
+    SKU_WITH_UPC("SWAP_SKU_WITH_UPC");
+
+    private String value;
+
+    ProductMappingEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ProductMappingEnum fromValue(String text) {
+      for (ProductMappingEnum b : ProductMappingEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ProductMappingEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ProductMappingEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ProductMappingEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ProductMappingEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PRODUCT_MAPPING = "productMapping";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_MAPPING)
+  private ProductMappingEnum productMapping;
 
   public MFetchFileConfig fetchFileConfigID(Integer fetchFileConfigID) {
     this.fetchFileConfigID = fetchFileConfigID;
@@ -410,6 +489,132 @@ public class MFetchFileConfig {
     this.ftpRemotePathArchive = ftpRemotePathArchive;
   }
 
+  public MFetchFileConfig region(String region) {
+    this.region = region;
+    return this;
+  }
+
+   /**
+   * S3 Region
+   * @return region
+  **/
+  @ApiModelProperty(value = "S3 Region")
+  public String getRegion() {
+    return region;
+  }
+
+  public void setRegion(String region) {
+    this.region = region;
+  }
+
+  public MFetchFileConfig s3Key(String s3Key) {
+    this.s3Key = s3Key;
+    return this;
+  }
+
+   /**
+   * S3 Key
+   * @return s3Key
+  **/
+  @ApiModelProperty(value = "S3 Key")
+  public String getS3Key() {
+    return s3Key;
+  }
+
+  public void setS3Key(String s3Key) {
+    this.s3Key = s3Key;
+  }
+
+  public MFetchFileConfig secret(String secret) {
+    this.secret = secret;
+    return this;
+  }
+
+   /**
+   * S3 Secret
+   * @return secret
+  **/
+  @ApiModelProperty(value = "S3 Secret")
+  public String getSecret() {
+    return secret;
+  }
+
+  public void setSecret(String secret) {
+    this.secret = secret;
+  }
+
+  public MFetchFileConfig bucket(String bucket) {
+    this.bucket = bucket;
+    return this;
+  }
+
+   /**
+   * S3 Bucket
+   * @return bucket
+  **/
+  @ApiModelProperty(value = "S3 Bucket")
+  public String getBucket() {
+    return bucket;
+  }
+
+  public void setBucket(String bucket) {
+    this.bucket = bucket;
+  }
+
+  public MFetchFileConfig s3Path(String s3Path) {
+    this.s3Path = s3Path;
+    return this;
+  }
+
+   /**
+   * S3 Bucket Path (directory)
+   * @return s3Path
+  **/
+  @ApiModelProperty(value = "S3 Bucket Path (directory)")
+  public String getS3Path() {
+    return s3Path;
+  }
+
+  public void setS3Path(String s3Path) {
+    this.s3Path = s3Path;
+  }
+
+  public MFetchFileConfig archiveBucket(String archiveBucket) {
+    this.archiveBucket = archiveBucket;
+    return this;
+  }
+
+   /**
+   * S3 Archive Bucket
+   * @return archiveBucket
+  **/
+  @ApiModelProperty(value = "S3 Archive Bucket")
+  public String getArchiveBucket() {
+    return archiveBucket;
+  }
+
+  public void setArchiveBucket(String archiveBucket) {
+    this.archiveBucket = archiveBucket;
+  }
+
+  public MFetchFileConfig s3ArchivePath(String s3ArchivePath) {
+    this.s3ArchivePath = s3ArchivePath;
+    return this;
+  }
+
+   /**
+   * S3 Archive Bucket Path (directory)
+   * @return s3ArchivePath
+  **/
+  @ApiModelProperty(value = "S3 Archive Bucket Path (directory)")
+  public String getS3ArchivePath() {
+    return s3ArchivePath;
+  }
+
+  public void setS3ArchivePath(String s3ArchivePath) {
+    this.s3ArchivePath = s3ArchivePath;
+  }
+
   public MFetchFileConfig lockName(String lockName) {
     this.lockName = lockName;
     return this;
@@ -634,6 +839,24 @@ public class MFetchFileConfig {
     this.postImportFtpId = postImportFtpId;
   }
 
+  public MFetchFileConfig productMapping(ProductMappingEnum productMapping) {
+    this.productMapping = productMapping;
+    return this;
+  }
+
+   /**
+   * Enum for fetch file mapping
+   * @return productMapping
+  **/
+  @ApiModelProperty(value = "Enum for fetch file mapping")
+  public ProductMappingEnum getProductMapping() {
+    return productMapping;
+  }
+
+  public void setProductMapping(ProductMappingEnum productMapping) {
+    this.productMapping = productMapping;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -659,6 +882,13 @@ public class MFetchFileConfig {
         Objects.equals(this.ftpPort, mFetchFileConfig.ftpPort) &&
         Objects.equals(this.ftpRemotePath, mFetchFileConfig.ftpRemotePath) &&
         Objects.equals(this.ftpRemotePathArchive, mFetchFileConfig.ftpRemotePathArchive) &&
+        Objects.equals(this.region, mFetchFileConfig.region) &&
+        Objects.equals(this.s3Key, mFetchFileConfig.s3Key) &&
+        Objects.equals(this.secret, mFetchFileConfig.secret) &&
+        Objects.equals(this.bucket, mFetchFileConfig.bucket) &&
+        Objects.equals(this.s3Path, mFetchFileConfig.s3Path) &&
+        Objects.equals(this.archiveBucket, mFetchFileConfig.archiveBucket) &&
+        Objects.equals(this.s3ArchivePath, mFetchFileConfig.s3ArchivePath) &&
         Objects.equals(this.lockName, mFetchFileConfig.lockName) &&
         Objects.equals(this.postProcessAction, mFetchFileConfig.postProcessAction) &&
         Objects.equals(this.useControlFile, mFetchFileConfig.useControlFile) &&
@@ -670,12 +900,13 @@ public class MFetchFileConfig {
         Objects.equals(this.csvDelimiter, mFetchFileConfig.csvDelimiter) &&
         Objects.equals(this.exportAfterRefresh, mFetchFileConfig.exportAfterRefresh) &&
         Objects.equals(this.postImportExportId, mFetchFileConfig.postImportExportId) &&
-        Objects.equals(this.postImportFtpId, mFetchFileConfig.postImportFtpId);
+        Objects.equals(this.postImportFtpId, mFetchFileConfig.postImportFtpId) &&
+        Objects.equals(this.productMapping, mFetchFileConfig.productMapping);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fetchFileConfigID, tenantID, active, lastModified, emailList, refreshEnabled, refreshFileDescription, updateEnabled, updateFileDescription, ftpServer, ftpUsername, ftpPassword, ftpPort, ftpRemotePath, ftpRemotePathArchive, lockName, postProcessAction, useControlFile, multipleFiles, zeroOutNegatives, fieldNameMap, ignoreExtraFields, blankQuantityIsZero, csvDelimiter, exportAfterRefresh, postImportExportId, postImportFtpId);
+    return Objects.hash(fetchFileConfigID, tenantID, active, lastModified, emailList, refreshEnabled, refreshFileDescription, updateEnabled, updateFileDescription, ftpServer, ftpUsername, ftpPassword, ftpPort, ftpRemotePath, ftpRemotePathArchive, region, s3Key, secret, bucket, s3Path, archiveBucket, s3ArchivePath, lockName, postProcessAction, useControlFile, multipleFiles, zeroOutNegatives, fieldNameMap, ignoreExtraFields, blankQuantityIsZero, csvDelimiter, exportAfterRefresh, postImportExportId, postImportFtpId, productMapping);
   }
 
 
@@ -699,6 +930,13 @@ public class MFetchFileConfig {
     sb.append("    ftpPort: ").append(toIndentedString(ftpPort)).append("\n");
     sb.append("    ftpRemotePath: ").append(toIndentedString(ftpRemotePath)).append("\n");
     sb.append("    ftpRemotePathArchive: ").append(toIndentedString(ftpRemotePathArchive)).append("\n");
+    sb.append("    region: ").append(toIndentedString(region)).append("\n");
+    sb.append("    s3Key: ").append(toIndentedString(s3Key)).append("\n");
+    sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
+    sb.append("    bucket: ").append(toIndentedString(bucket)).append("\n");
+    sb.append("    s3Path: ").append(toIndentedString(s3Path)).append("\n");
+    sb.append("    archiveBucket: ").append(toIndentedString(archiveBucket)).append("\n");
+    sb.append("    s3ArchivePath: ").append(toIndentedString(s3ArchivePath)).append("\n");
     sb.append("    lockName: ").append(toIndentedString(lockName)).append("\n");
     sb.append("    postProcessAction: ").append(toIndentedString(postProcessAction)).append("\n");
     sb.append("    useControlFile: ").append(toIndentedString(useControlFile)).append("\n");
@@ -711,6 +949,7 @@ public class MFetchFileConfig {
     sb.append("    exportAfterRefresh: ").append(toIndentedString(exportAfterRefresh)).append("\n");
     sb.append("    postImportExportId: ").append(toIndentedString(postImportExportId)).append("\n");
     sb.append("    postImportFtpId: ").append(toIndentedString(postImportFtpId)).append("\n");
+    sb.append("    productMapping: ").append(toIndentedString(productMapping)).append("\n");
     sb.append("}");
     return sb.toString();
   }

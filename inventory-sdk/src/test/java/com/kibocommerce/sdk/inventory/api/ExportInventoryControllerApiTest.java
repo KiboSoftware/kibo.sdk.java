@@ -17,9 +17,11 @@ import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.model.CreateExportSettingsFTPRequest;
 import com.kibocommerce.sdk.inventory.model.CreateExportSettingsRequest;
 import com.kibocommerce.sdk.inventory.model.CreateExportSettingsS3Request;
+import com.kibocommerce.sdk.inventory.model.DeletedCountResponse;
 import com.kibocommerce.sdk.inventory.model.ExportInventoryRequest;
 import com.kibocommerce.sdk.inventory.model.ExportInventoryResponse;
-import com.kibocommerce.sdk.inventory.model.ExportSettings;
+import com.kibocommerce.sdk.inventory.model.ExportSettingsResponse;
+import com.kibocommerce.sdk.inventory.model.GetExportSettingsResponse;
 import com.kibocommerce.sdk.inventory.model.UpdateExportSettingsFTPRequest;
 import com.kibocommerce.sdk.inventory.model.UpdateExportSettingsFTPResponse;
 import com.kibocommerce.sdk.inventory.model.UpdateExportSettingsRequest;
@@ -55,7 +57,7 @@ public class ExportInventoryControllerApiTest {
     public void createExportSettingsTest() throws ApiException {
         Integer xVolTenant = null;
         CreateExportSettingsRequest createExportSettingsRequest = null;
-        String response = api.createExportSettings(xVolTenant, createExportSettingsRequest);
+        ExportSettingsResponse response = api.createExportSettings(xVolTenant, createExportSettingsRequest);
 
         // TODO: test validations
     }
@@ -72,7 +74,7 @@ public class ExportInventoryControllerApiTest {
     public void createExportSettingsFTPTest() throws ApiException {
         Integer xVolTenant = null;
         CreateExportSettingsFTPRequest createExportSettingsFTPRequest = null;
-        String response = api.createExportSettingsFTP(xVolTenant, createExportSettingsFTPRequest);
+        ExportSettingsResponse response = api.createExportSettingsFTP(xVolTenant, createExportSettingsFTPRequest);
 
         // TODO: test validations
     }
@@ -89,7 +91,7 @@ public class ExportInventoryControllerApiTest {
     public void createExportSettingsS3Test() throws ApiException {
         Integer xVolTenant = null;
         CreateExportSettingsS3Request createExportSettingsS3Request = null;
-        Integer response = api.createExportSettingsS3(xVolTenant, createExportSettingsS3Request);
+        ExportSettingsResponse response = api.createExportSettingsS3(xVolTenant, createExportSettingsS3Request);
 
         // TODO: test validations
     }
@@ -106,7 +108,7 @@ public class ExportInventoryControllerApiTest {
     public void deleteExportSettingsTest() throws ApiException {
         Integer xVolTenant = null;
         String exportSettingsName = null;
-        Integer response = api.deleteExportSettings(xVolTenant, exportSettingsName);
+        DeletedCountResponse response = api.deleteExportSettings(xVolTenant, exportSettingsName);
 
         // TODO: test validations
     }
@@ -124,7 +126,7 @@ public class ExportInventoryControllerApiTest {
         Integer xVolTenant = null;
         String exportSettingsName = null;
         String exportSettingsFTPName = null;
-        Integer response = api.deleteExportSettingsFTP(xVolTenant, exportSettingsName, exportSettingsFTPName);
+        DeletedCountResponse response = api.deleteExportSettingsFTP(xVolTenant, exportSettingsName, exportSettingsFTPName);
 
         // TODO: test validations
     }
@@ -142,7 +144,7 @@ public class ExportInventoryControllerApiTest {
         Integer xVolTenant = null;
         String exportSettingsName = null;
         String exportSettingsS3Name = null;
-        Boolean response = api.deleteExportSettingsS3(xVolTenant, exportSettingsName, exportSettingsS3Name);
+        DeletedCountResponse response = api.deleteExportSettingsS3(xVolTenant, exportSettingsName, exportSettingsS3Name);
 
         // TODO: test validations
     }
@@ -159,7 +161,7 @@ public class ExportInventoryControllerApiTest {
     public void getExportSettingsTest() throws ApiException {
         Integer xVolTenant = null;
         String exportSettingsName = null;
-        List<ExportSettings> response = api.getExportSettings(xVolTenant, exportSettingsName);
+        List<GetExportSettingsResponse> response = api.getExportSettings(xVolTenant, exportSettingsName);
 
         // TODO: test validations
     }

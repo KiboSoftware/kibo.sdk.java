@@ -25,13 +25,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * Refresh Item
  */
 @ApiModel(description = "Refresh Item")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class RefreshItem {
   public static final String SERIALIZED_NAME_PART_NUMBER = "partNumber";
   @SerializedName(SERIALIZED_NAME_PART_NUMBER)
@@ -49,9 +52,9 @@ public class RefreshItem {
   @SerializedName(SERIALIZED_NAME_BIN_I_D)
   private Integer binID;
 
-  public static final String SERIALIZED_NAME_LTD = "ltd";
-  @SerializedName(SERIALIZED_NAME_LTD)
-  private String ltd;
+  public static final String SERIALIZED_NAME_L_T_D = "LTD";
+  @SerializedName(SERIALIZED_NAME_L_T_D)
+  private Float LTD = null;
 
   public static final String SERIALIZED_NAME_FLOOR = "floor";
   @SerializedName(SERIALIZED_NAME_FLOOR)
@@ -73,9 +76,21 @@ public class RefreshItem {
   @SerializedName(SERIALIZED_NAME_CURRENCY_I_D)
   private Integer currencyID;
 
+  public static final String SERIALIZED_NAME_INVENTORY_LOCATOR_NAME = "inventoryLocatorName";
+  @SerializedName(SERIALIZED_NAME_INVENTORY_LOCATOR_NAME)
+  private String inventoryLocatorName;
+
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private List<String> attributes = null;
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  private Map<String, String> tags = null;
+
+  public static final String SERIALIZED_NAME_DELIVERY_DATE = "deliveryDate";
+  @SerializedName(SERIALIZED_NAME_DELIVERY_DATE)
+  private OffsetDateTime deliveryDate = null;
 
   public RefreshItem partNumber(String partNumber) {
     this.partNumber = partNumber;
@@ -149,22 +164,22 @@ public class RefreshItem {
     this.binID = binID;
   }
 
-  public RefreshItem ltd(String ltd) {
-    this.ltd = ltd;
+  public RefreshItem LTD(Float LTD) {
+    this.LTD = LTD;
     return this;
   }
 
    /**
    * Custom field used for store prioritization
-   * @return ltd
+   * @return LTD
   **/
   @ApiModelProperty(value = "Custom field used for store prioritization")
-  public String getLtd() {
-    return ltd;
+  public Float getLTD() {
+    return LTD;
   }
 
-  public void setLtd(String ltd) {
-    this.ltd = ltd;
+  public void setLTD(Float LTD) {
+    this.LTD = LTD;
   }
 
   public RefreshItem floor(Integer floor) {
@@ -257,6 +272,24 @@ public class RefreshItem {
     this.currencyID = currencyID;
   }
 
+  public RefreshItem inventoryLocatorName(String inventoryLocatorName) {
+    this.inventoryLocatorName = inventoryLocatorName;
+    return this;
+  }
+
+   /**
+   * The inventory locator name of the item
+   * @return inventoryLocatorName
+  **/
+  @ApiModelProperty(value = "The inventory locator name of the item")
+  public String getInventoryLocatorName() {
+    return inventoryLocatorName;
+  }
+
+  public void setInventoryLocatorName(String inventoryLocatorName) {
+    this.inventoryLocatorName = inventoryLocatorName;
+  }
+
   public RefreshItem attributes(List<String> attributes) {
     this.attributes = attributes;
     return this;
@@ -283,6 +316,50 @@ public class RefreshItem {
     this.attributes = attributes;
   }
 
+  public RefreshItem tags(Map<String, String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public RefreshItem putTagsItem(String key, String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new HashMap<String, String>();
+    }
+    this.tags.put(key, tagsItem);
+    return this;
+  }
+
+   /**
+   * Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName
+   * @return tags
+  **/
+  @ApiModelProperty(value = "Associative Map of <String, String> for tagCategoryName => tagName")
+  public Map<String, String> getTags() {
+    return tags;
+  }
+
+  public void setTags(Map<String, String> tags) {
+    this.tags = tags;
+  }
+
+  public RefreshItem deliveryDate(OffsetDateTime deliveryDate) {
+    this.deliveryDate = deliveryDate;
+    return this;
+  }
+
+   /**
+   * Date at which this inventory will become available. Expected format &#39;2020-09-28T12:00:00-0500&#39;
+   * @return deliveryDate
+  **/
+  @ApiModelProperty(value = "Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'")
+  public OffsetDateTime getDeliveryDate() {
+    return deliveryDate;
+  }
+
+  public void setDeliveryDate(OffsetDateTime deliveryDate) {
+    this.deliveryDate = deliveryDate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -297,18 +374,21 @@ public class RefreshItem {
         Objects.equals(this.upc, refreshItem.upc) &&
         Objects.equals(this.sku, refreshItem.sku) &&
         Objects.equals(this.binID, refreshItem.binID) &&
-        Objects.equals(this.ltd, refreshItem.ltd) &&
+        Objects.equals(this.LTD, refreshItem.LTD) &&
         Objects.equals(this.floor, refreshItem.floor) &&
         Objects.equals(this.safetyStock, refreshItem.safetyStock) &&
         Objects.equals(this.quantity, refreshItem.quantity) &&
         Objects.equals(this.retailPrice, refreshItem.retailPrice) &&
         Objects.equals(this.currencyID, refreshItem.currencyID) &&
-        Objects.equals(this.attributes, refreshItem.attributes);
+        Objects.equals(this.inventoryLocatorName, refreshItem.inventoryLocatorName) &&
+        Objects.equals(this.attributes, refreshItem.attributes) &&
+        Objects.equals(this.tags, refreshItem.tags) &&
+        Objects.equals(this.deliveryDate, refreshItem.deliveryDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(partNumber, upc, sku, binID, ltd, floor, safetyStock, quantity, retailPrice, currencyID, attributes);
+    return Objects.hash(partNumber, upc, sku, binID, LTD, floor, safetyStock, quantity, retailPrice, currencyID, inventoryLocatorName, attributes, tags, deliveryDate);
   }
 
 
@@ -321,13 +401,16 @@ public class RefreshItem {
     sb.append("    upc: ").append(toIndentedString(upc)).append("\n");
     sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
     sb.append("    binID: ").append(toIndentedString(binID)).append("\n");
-    sb.append("    ltd: ").append(toIndentedString(ltd)).append("\n");
+    sb.append("    LTD: ").append(toIndentedString(LTD)).append("\n");
     sb.append("    floor: ").append(toIndentedString(floor)).append("\n");
     sb.append("    safetyStock: ").append(toIndentedString(safetyStock)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    retailPrice: ").append(toIndentedString(retailPrice)).append("\n");
     sb.append("    currencyID: ").append(toIndentedString(currencyID)).append("\n");
+    sb.append("    inventoryLocatorName: ").append(toIndentedString(inventoryLocatorName)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    deliveryDate: ").append(toIndentedString(deliveryDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

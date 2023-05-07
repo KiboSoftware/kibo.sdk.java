@@ -20,7 +20,13 @@ Name | Type | Description | Notes
 **includeInLocationExport** | **Boolean** | Filter results by locations that have physical storefronts (true) or don&#39;t (false) |  [optional]
 **excludeBlockedAssignment** | **Boolean** | Filter out results that are blocked from assignment (at the product/location level)  |  [optional]
 **includeAttributes** | **Boolean** | Flag to include attributes or not |  [optional]
+**includeFutureInventory** | **Boolean** | If set to true, include future inventory in response (records that were set with a deliveryDate). |  [optional]
+**includeNegativeFutureInventory** | **Boolean** | Whether to allow items with negative future inventory in the results |  [optional]
+**deliveryDateBefore** | [**OffsetDateTime**](OffsetDateTime.md) | DateTime to filter for only future inventory with a delivery date before or equal to the given date |  [optional]
+**deliveryDateAfter** | [**OffsetDateTime**](OffsetDateTime.md) | DateTime to filter for only future inventory with a delivery date after or equal to the given date |  [optional]
 **sortByEnum** | [**SortByEnumEnum**](#SortByEnumEnum) | What to sort the inventory results by. Only used for GetInventoryByLocation calls (locationCode must be set) |  [optional]
+**sortDescending** | **Object** | Whether to sort by descending order or not. Must be used in conjunction with the sortByEnum value |  [optional]
+**tags** | **Map&lt;String, String&gt;** | Associative Map of &lt;String, String&gt; for tagCategoryName &#x3D;&gt; tagName |  [optional]
 
 
 <a name="TypeEnum"></a>

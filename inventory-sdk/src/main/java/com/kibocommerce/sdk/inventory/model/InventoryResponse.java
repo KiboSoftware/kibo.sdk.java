@@ -21,6 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kibocommerce.sdk.inventory.model.BaseResponse;
+import com.kibocommerce.sdk.inventory.model.FutureInventory;
+import com.kibocommerce.sdk.inventory.model.TagQuantity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -31,7 +33,7 @@ import java.util.List;
 /**
  * InventoryResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-25T11:56:03.255426-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
 public class InventoryResponse extends BaseResponse {
   public static final String SERIALIZED_NAME_LOCATION_NAME = "locationName";
   @SerializedName(SERIALIZED_NAME_LOCATION_NAME)
@@ -117,9 +119,21 @@ public class InventoryResponse extends BaseResponse {
   @SerializedName(SERIALIZED_NAME_RETAIL_PRICE)
   private BigDecimal retailPrice;
 
+  public static final String SERIALIZED_NAME_INVENTORY_LOCATOR_NAME = "inventoryLocatorName";
+  @SerializedName(SERIALIZED_NAME_INVENTORY_LOCATOR_NAME)
+  private String inventoryLocatorName;
+
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   private List<String> attributes = null;
+
+  public static final String SERIALIZED_NAME_TAGGED_INVENTORY = "taggedInventory";
+  @SerializedName(SERIALIZED_NAME_TAGGED_INVENTORY)
+  private List<TagQuantity> taggedInventory = null;
+
+  public static final String SERIALIZED_NAME_FUTURE_INVENTORY = "futureInventory";
+  @SerializedName(SERIALIZED_NAME_FUTURE_INVENTORY)
+  private List<FutureInventory> futureInventory = null;
 
   public InventoryResponse locationName(String locationName) {
     this.locationName = locationName;
@@ -499,6 +513,24 @@ public class InventoryResponse extends BaseResponse {
     this.retailPrice = retailPrice;
   }
 
+  public InventoryResponse inventoryLocatorName(String inventoryLocatorName) {
+    this.inventoryLocatorName = inventoryLocatorName;
+    return this;
+  }
+
+   /**
+   * The inventory locator name of the individual item
+   * @return inventoryLocatorName
+  **/
+  @ApiModelProperty(value = "The inventory locator name of the individual item")
+  public String getInventoryLocatorName() {
+    return inventoryLocatorName;
+  }
+
+  public void setInventoryLocatorName(String inventoryLocatorName) {
+    this.inventoryLocatorName = inventoryLocatorName;
+  }
+
   public InventoryResponse attributes(List<String> attributes) {
     this.attributes = attributes;
     return this;
@@ -523,6 +555,58 @@ public class InventoryResponse extends BaseResponse {
 
   public void setAttributes(List<String> attributes) {
     this.attributes = attributes;
+  }
+
+  public InventoryResponse taggedInventory(List<TagQuantity> taggedInventory) {
+    this.taggedInventory = taggedInventory;
+    return this;
+  }
+
+  public InventoryResponse addTaggedInventoryItem(TagQuantity taggedInventoryItem) {
+    if (this.taggedInventory == null) {
+      this.taggedInventory = new ArrayList<TagQuantity>();
+    }
+    this.taggedInventory.add(taggedInventoryItem);
+    return this;
+  }
+
+   /**
+   * Get taggedInventory
+   * @return taggedInventory
+  **/
+  @ApiModelProperty(value = "")
+  public List<TagQuantity> getTaggedInventory() {
+    return taggedInventory;
+  }
+
+  public void setTaggedInventory(List<TagQuantity> taggedInventory) {
+    this.taggedInventory = taggedInventory;
+  }
+
+  public InventoryResponse futureInventory(List<FutureInventory> futureInventory) {
+    this.futureInventory = futureInventory;
+    return this;
+  }
+
+  public InventoryResponse addFutureInventoryItem(FutureInventory futureInventoryItem) {
+    if (this.futureInventory == null) {
+      this.futureInventory = new ArrayList<FutureInventory>();
+    }
+    this.futureInventory.add(futureInventoryItem);
+    return this;
+  }
+
+   /**
+   * Get futureInventory
+   * @return futureInventory
+  **/
+  @ApiModelProperty(value = "")
+  public List<FutureInventory> getFutureInventory() {
+    return futureInventory;
+  }
+
+  public void setFutureInventory(List<FutureInventory> futureInventory) {
+    this.futureInventory = futureInventory;
   }
 
 
@@ -556,13 +640,16 @@ public class InventoryResponse extends BaseResponse {
         Objects.equals(this.countryCode, inventoryResponse.countryCode) &&
         Objects.equals(this.currencyID, inventoryResponse.currencyID) &&
         Objects.equals(this.retailPrice, inventoryResponse.retailPrice) &&
+        Objects.equals(this.inventoryLocatorName, inventoryResponse.inventoryLocatorName) &&
         Objects.equals(this.attributes, inventoryResponse.attributes) &&
+        Objects.equals(this.taggedInventory, inventoryResponse.taggedInventory) &&
+        Objects.equals(this.futureInventory, inventoryResponse.futureInventory) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locationName, locationCode, tenantID, onHand, available, allocated, pending, partNumber, upc, sku, blockAssignment, ltd, floor, safetyStock, distance, directShip, transferEnabled, pickup, countryCode, currencyID, retailPrice, attributes, super.hashCode());
+    return Objects.hash(locationName, locationCode, tenantID, onHand, available, allocated, pending, partNumber, upc, sku, blockAssignment, ltd, floor, safetyStock, distance, directShip, transferEnabled, pickup, countryCode, currencyID, retailPrice, inventoryLocatorName, attributes, taggedInventory, futureInventory, super.hashCode());
   }
 
 
@@ -592,7 +679,10 @@ public class InventoryResponse extends BaseResponse {
     sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
     sb.append("    currencyID: ").append(toIndentedString(currencyID)).append("\n");
     sb.append("    retailPrice: ").append(toIndentedString(retailPrice)).append("\n");
+    sb.append("    inventoryLocatorName: ").append(toIndentedString(inventoryLocatorName)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    taggedInventory: ").append(toIndentedString(taggedInventory)).append("\n");
+    sb.append("    futureInventory: ").append(toIndentedString(futureInventory)).append("\n");
     sb.append("}");
     return sb.toString();
   }

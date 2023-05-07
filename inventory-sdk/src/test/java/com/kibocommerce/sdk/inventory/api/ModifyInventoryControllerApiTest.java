@@ -15,10 +15,12 @@ package com.kibocommerce.sdk.inventory.api;
 
 import com.kibocommerce.sdk.inventory.ApiException;
 import com.kibocommerce.sdk.inventory.model.AdjustRequest;
+import com.kibocommerce.sdk.inventory.model.DeleteFutureItemRequest;
+import com.kibocommerce.sdk.inventory.model.DeleteFutureItemResponse;
 import com.kibocommerce.sdk.inventory.model.DeleteItemRequest;
 import com.kibocommerce.sdk.inventory.model.DeleteItemResponse;
+import com.kibocommerce.sdk.inventory.model.DeleteItemsRequest;
 import com.kibocommerce.sdk.inventory.model.InlineResponse404;
-import com.kibocommerce.sdk.inventory.model.InventoryResponse;
 import com.kibocommerce.sdk.inventory.model.JobIDResponse;
 import com.kibocommerce.sdk.inventory.model.RefreshRequest;
 import org.junit.Test;
@@ -76,6 +78,42 @@ public class ModifyInventoryControllerApiTest {
     /**
      * 
      *
+     * Delete Future Inventory
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteFutureInventoryTest() throws ApiException {
+        Integer xVolTenant = null;
+        DeleteFutureItemRequest deleteFutureItemRequest = null;
+        Integer xVolSite = null;
+        DeleteFutureItemResponse response = api.deleteFutureInventory(xVolTenant, deleteFutureItemRequest, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
+     * Delete Multiple Inventory
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteItemsTest() throws ApiException {
+        Integer xVolTenant = null;
+        DeleteItemsRequest deleteItemsRequest = null;
+        Integer xVolSite = null;
+        DeleteItemResponse response = api.deleteItems(xVolTenant, deleteItemsRequest, xVolSite);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * 
+     *
      * Refresh Inventory
      *
      * @throws ApiException
@@ -86,40 +124,6 @@ public class ModifyInventoryControllerApiTest {
         Integer xVolTenant = null;
         RefreshRequest refreshRequest = null;
         JobIDResponse response = api.refresh(xVolTenant, refreshRequest);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Adjust Inventory - synchronous
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void syncAdjustTest() throws ApiException {
-        Integer xVolTenant = null;
-        AdjustRequest adjustRequest = null;
-        List<InventoryResponse> response = api.syncAdjust(xVolTenant, adjustRequest);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * 
-     *
-     * Refresh Inventory - synchronous
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void syncRefreshTest() throws ApiException {
-        Integer xVolTenant = null;
-        RefreshRequest refreshRequest = null;
-        List<InventoryResponse> response = api.syncRefresh(xVolTenant, refreshRequest);
 
         // TODO: test validations
     }
