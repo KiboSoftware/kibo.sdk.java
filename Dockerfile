@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 COPY pom.xml .
 #RUN mvn -B -e dependency:resolve
 COPY . .
-ARG BUILD_VER=1.0.0-SNAPSHOT
+ARG BUILD_VER=1.1.0-SNAPSHOT
 
-RUN mvn -X -s settings.xml clean package deploy -DcreateChecksum=true -DbuildVersion=$BUILD_VER
+RUN mvn -X -s settings.xml clean package deploy -DcreateChecksum=true -Drevision=$BUILD_VER

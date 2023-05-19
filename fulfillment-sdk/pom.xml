@@ -9,10 +9,10 @@
     <parent>
         <groupId>com.kibocommerce</groupId>
         <artifactId>kibo-sdk-java</artifactId>
-        <version>${buildVersion}</version>
+        <version>${revision}</version>
         <relativePath>../</relativePath>
     </parent>
-    <properties>
+    <properties>      
         <java.version>1.7</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
