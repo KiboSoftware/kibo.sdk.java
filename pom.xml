@@ -8,8 +8,9 @@
 
     <groupId>com.kibocommerce</groupId>
     <artifactId>kibo-sdk-java</artifactId>
-    <version>${revision}</version>
-
+    <version>1.1.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+    
     <modules>
         <module>inventory-sdk</module>
         <module>auth</module>
@@ -38,7 +39,7 @@
         </developer>
     </developers>
 
-    <packaging>pom</packaging>
+    
     <build>
         <pluginManagement>            <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
