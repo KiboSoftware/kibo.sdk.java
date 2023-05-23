@@ -22,3 +22,7 @@ build
 
 .idea
 *.iml
+
+.ci-friendly-pom.xml
+local-settings.xml
+**/.DS_Store
