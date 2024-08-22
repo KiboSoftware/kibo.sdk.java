@@ -4,3 +4,4 @@ Kibo Java SDK
 
 Modules: 
 - inventory
+- fulfillment
