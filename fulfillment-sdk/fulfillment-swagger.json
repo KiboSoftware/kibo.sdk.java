@@ -6408,7 +6408,7 @@
             "items":{
                "type":"array",
                "items":{
-                  "$ref":"#/definitions/Item"
+                  "$ref":"#/definitions/HandleOptionItem"
                }
             },
             "reason":{
@@ -6416,6 +6416,26 @@
             }
          },
          "title":"HandleOption"
+      },
+      "HandleOptionItem":{
+         "type":"object",
+         "properties":{
+            "blockAssignment":{
+               "type":"boolean"
+            },
+            "lineId":{
+               "type":"integer",
+               "format":"int32"
+            },
+            "quantity":{
+               "type":"integer",
+               "format":"int32"
+            },
+            "reason":{
+               "$ref":"#/definitions/TaskReason"
+            }
+         },
+         "title":"HandleOptionItem"
       },
       "Item":{
          "type":"object",
