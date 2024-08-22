@@ -28,7 +28,7 @@ import java.io.IOException;
  * Type of Bin
  */
 @ApiModel(description = "Type of Bin")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class BinTypeModel {
   public static final String SERIALIZED_NAME_BIN_TYPE_I_D = "binTypeID";
   @SerializedName(SERIALIZED_NAME_BIN_TYPE_I_D)

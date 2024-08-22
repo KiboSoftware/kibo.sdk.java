@@ -1,8 +1,8 @@
-# kibo.sdk.java.inventory
+# inventory-sdk
 
 Inventory
 - API version: 5.0
-  - Build date: 2019-09-24T10:20:36.026-05:00[America/Chicago]
+  - Build date: 2024-08-22T14:24:26.659-07:00[America/Los_Angeles]
 
 Swagger JSON for inventory apis
 
@@ -39,8 +39,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>com.kibocommerce</groupId>
-  <artifactId>kibo.sdk.java.inventory</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <artifactId>inventory-sdk</artifactId>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.kibocommerce:kibo.sdk.java.inventory:1.0.0-SNAPSHOT"
+compile "com.kibocommerce:inventory-sdk:1.0.0"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/kibo.sdk.java.inventory-1.0.0-SNAPSHOT.jar`
+* `target/inventory-sdk-1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -72,10 +72,10 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import com.kibocommerce.kibo.sdk.java.inventory.*;
-import com.kibocommerce.kibo.sdk.java.inventory.auth.*;
-import com.kibocommerce.kibo.sdk.java.inventory.model.*;
-import com.kibocommerce.kibo.sdk.java.inventory.AllocationControllerApi;
+import com.kibocommerce.sdk.inventory.*;
+import com.kibocommerce.sdk.inventory.auth.*;
+import com.kibocommerce.sdk.inventory.model.*;
+import com.kibocommerce.sdk.inventory.api.AllocationControllerApi;
 
 import java.io.File;
 import java.util.*;
@@ -108,12 +108,6 @@ Class | Method | HTTP request | Description
 *AllocationControllerApi* | [**allocateInventory**](docs/AllocationControllerApi.md#allocateInventory) | **POST** /v5/inventory/allocate/ | 
 *AllocationControllerApi* | [**deallocateInventory**](docs/AllocationControllerApi.md#deallocateInventory) | **POST** /v5/inventory/deallocate/ | 
 *AllocationControllerApi* | [**fulfillInventory**](docs/AllocationControllerApi.md#fulfillInventory) | **POST** /v5/inventory/fulfill/ | 
-*AuditControllerApi* | [**cancelAudit**](docs/AuditControllerApi.md#cancelAudit) | **POST** /v1/audit/{audit_id}/cancel/ | 
-*AuditControllerApi* | [**completeAudit**](docs/AuditControllerApi.md#completeAudit) | **POST** /v1/audit/{audit_id}/complete/ | 
-*AuditControllerApi* | [**createAudit**](docs/AuditControllerApi.md#createAudit) | **POST** /v1/audit/ | 
-*AuditControllerApi* | [**getAuditDetails**](docs/AuditControllerApi.md#getAuditDetails) | **GET** /v1/audit/{audit_id}/ | 
-*AuditControllerApi* | [**getOpenAudits**](docs/AuditControllerApi.md#getOpenAudits) | **GET** /v1/audit/allOpen/{location_code}/ | 
-*AuditControllerApi* | [**searchAudits**](docs/AuditControllerApi.md#searchAudits) | **POST** /v1/audit/search/ | 
 *BinControllerApi* | [**createBin**](docs/BinControllerApi.md#createBin) | **POST** /v1/bin/ | 
 *BinControllerApi* | [**deleteBin**](docs/BinControllerApi.md#deleteBin) | **DELETE** /v1/bin/{bin_id} | 
 *BinControllerApi* | [**getBin**](docs/BinControllerApi.md#getBin) | **GET** /v1/bin/{bin_id} | 
@@ -124,6 +118,7 @@ Class | Method | HTTP request | Description
 *BinControllerApi* | [**searchBins**](docs/BinControllerApi.md#searchBins) | **POST** /v1/bin/searchInventory/ | 
 *BinControllerApi* | [**updateBin**](docs/BinControllerApi.md#updateBin) | **POST** /v1/bin/{bin_id}/ | 
 *BinControllerApi* | [**updateBins**](docs/BinControllerApi.md#updateBins) | **POST** /v1/bin/updateBins/ | 
+*BlockAssignmentControllerApi* | [**blockAssignment**](docs/BlockAssignmentControllerApi.md#blockAssignment) | **POST** /v5/inventory/blockAssignment/ | 
 *ExportInventoryControllerApi* | [**createExportSettings**](docs/ExportInventoryControllerApi.md#createExportSettings) | **POST** /v1/export/create | 
 *ExportInventoryControllerApi* | [**createExportSettingsFTP**](docs/ExportInventoryControllerApi.md#createExportSettingsFTP) | **POST** /v1/export/ftp/create | 
 *ExportInventoryControllerApi* | [**createExportSettingsS3**](docs/ExportInventoryControllerApi.md#createExportSettingsS3) | **POST** /v1/export/s3/create | 
@@ -135,96 +130,116 @@ Class | Method | HTTP request | Description
 *ExportInventoryControllerApi* | [**updateExportSettings**](docs/ExportInventoryControllerApi.md#updateExportSettings) | **POST** /v1/export/update | 
 *ExportInventoryControllerApi* | [**updateExportSettingsFTP**](docs/ExportInventoryControllerApi.md#updateExportSettingsFTP) | **POST** /v1/export/ftp/update | 
 *ExportInventoryControllerApi* | [**updateExportSettingsS3**](docs/ExportInventoryControllerApi.md#updateExportSettingsS3) | **POST** /v1/export/s3/update | 
+*FetchFileConfigControllerApi* | [**deleteFetchConfig**](docs/FetchFileConfigControllerApi.md#deleteFetchConfig) | **DELETE** /v1/config/fetchfile/{fetchFileConfigID} | 
 *FetchFileConfigControllerApi* | [**getFetchConfig**](docs/FetchFileConfigControllerApi.md#getFetchConfig) | **GET** /v1/config/fetchfile/ | 
 *FetchFileConfigControllerApi* | [**saveFetchConfig**](docs/FetchFileConfigControllerApi.md#saveFetchConfig) | **POST** /v1/config/fetchfile/ | 
+*FetchFileConfigControllerApi* | [**testConnection**](docs/FetchFileConfigControllerApi.md#testConnection) | **GET** /v1/config/fetchfile/testConnection/{fetchFileConfigID} | 
+*FutureDateControllerApi* | [**adjustFutureDate**](docs/FutureDateControllerApi.md#adjustFutureDate) | **PUT** /adjustFutureDate/{futureInventoryID}/ | 
 *InventoryControllerApi* | [**aggregate**](docs/InventoryControllerApi.md#aggregate) | **POST** /v5/inventory/aggregate/ | 
 *InventoryControllerApi* | [**getInventory**](docs/InventoryControllerApi.md#getInventory) | **GET** /v5/inventory/ | 
 *InventoryControllerApi* | [**postQueryInventory**](docs/InventoryControllerApi.md#postQueryInventory) | **POST** /v5/inventory/ | 
+*InventoryJobControllerApi* | [**deleteAllOldInventory**](docs/InventoryJobControllerApi.md#deleteAllOldInventory) | **DELETE** /v1/deleteOldInventory/allSilo/{months} | 
+*InventoryJobControllerApi* | [**deleteOldInventory**](docs/InventoryJobControllerApi.md#deleteOldInventory) | **DELETE** /v1/deleteOldInventory/{months} | 
 *JobControllerApi* | [**getJob**](docs/JobControllerApi.md#getJob) | **GET** /v1/queue/{jobID}/ | 
 *JobControllerApi* | [**getJobs**](docs/JobControllerApi.md#getJobs) | **GET** /v1/queue/ | 
+*LocationControllerApi* | [**getLocationGroups**](docs/LocationControllerApi.md#getLocationGroups) | **GET** /v1/location/{locationGroupCode} | 
+*LocationControllerApi* | [**getLocations**](docs/LocationControllerApi.md#getLocations) | **GET** /v1/location/ | 
+*LocationControllerApi* | [**getLocations_0**](docs/LocationControllerApi.md#getLocations_0) | **GET** /v1/location/{locationCode} | 
+*LocationControllerApi* | [**saveLocation**](docs/LocationControllerApi.md#saveLocation) | **POST** /v1/location/ | 
+*LocationGroupControllerApi* | [**getLocationGroups**](docs/LocationGroupControllerApi.md#getLocationGroups) | **GET** /v1/locationGroup/ | 
 *ModifyInventoryControllerApi* | [**adjust**](docs/ModifyInventoryControllerApi.md#adjust) | **POST** /v5/inventory/adjust/ | 
 *ModifyInventoryControllerApi* | [**delete**](docs/ModifyInventoryControllerApi.md#delete) | **POST** /v5/inventory/delete/ | 
+*ModifyInventoryControllerApi* | [**deleteFutureInventory**](docs/ModifyInventoryControllerApi.md#deleteFutureInventory) | **POST** /v5/inventory/deleteFutureInventory/ | 
+*ModifyInventoryControllerApi* | [**deleteItems**](docs/ModifyInventoryControllerApi.md#deleteItems) | **POST** /v5/inventory/deleteItems/ | 
 *ModifyInventoryControllerApi* | [**refresh**](docs/ModifyInventoryControllerApi.md#refresh) | **POST** /v5/inventory/refresh/ | 
-*ModifyInventoryControllerApi* | [**syncAdjust**](docs/ModifyInventoryControllerApi.md#syncAdjust) | **POST** /v5/inventory/sync-adjust/ | 
-*ModifyInventoryControllerApi* | [**syncRefresh**](docs/ModifyInventoryControllerApi.md#syncRefresh) | **POST** /v5/inventory/sync-refresh/ | 
 *OrderItemControllerApi* | [**getOrderItemInformation**](docs/OrderItemControllerApi.md#getOrderItemInformation) | **POST** /v5/inventory/getOrderItemInformation/ | 
 *OrderItemControllerApi* | [**getOrderItemLog**](docs/OrderItemControllerApi.md#getOrderItemLog) | **POST** /v5/inventory/getOrderItemLog/ | 
 *PendingItemsControllerApi* | [**deletePendingItems**](docs/PendingItemsControllerApi.md#deletePendingItems) | **DELETE** /v1/pendingItem/{pendingItemID} | 
 *PendingItemsControllerApi* | [**getPendingItems**](docs/PendingItemsControllerApi.md#getPendingItems) | **GET** /v1/pendingItem/ | 
-*SiteControllerApi* | [**createSite**](docs/SiteControllerApi.md#createSite) | **POST** /v1/site/ | 
-*SiteControllerApi* | [**deleteSite**](docs/SiteControllerApi.md#deleteSite) | **DELETE** /v1/site | 
-*TenantConfigControllerApi* | [**createTenantConfig**](docs/TenantConfigControllerApi.md#createTenantConfig) | **POST** /v1/tenantConfig/ | 
-*TenantConfigControllerApi* | [**getTenantConfig**](docs/TenantConfigControllerApi.md#getTenantConfig) | **GET** /v1/tenantConfig/ | 
-*TenantControllerApi* | [**cloneTenant**](docs/TenantControllerApi.md#cloneTenant) | **POST** /v1/tenant/clone | 
-*TenantControllerApi* | [**createTenant**](docs/TenantControllerApi.md#createTenant) | **POST** /v1/tenant/ | 
-*TenantControllerApi* | [**deleteTenant**](docs/TenantControllerApi.md#deleteTenant) | **DELETE** /v1/tenant | 
-*WaveControllerApi* | [**closePickWave**](docs/WaveControllerApi.md#closePickWave) | **POST** /v1/wave/{wave_id}/close/ | 
-*WaveControllerApi* | [**createPickWave**](docs/WaveControllerApi.md#createPickWave) | **POST** /v1/wave/ | 
-*WaveControllerApi* | [**getOpenPickWaves**](docs/WaveControllerApi.md#getOpenPickWaves) | **GET** /v1/wave/open/{location_id}/ | 
-*WaveControllerApi* | [**getWaveDetails**](docs/WaveControllerApi.md#getWaveDetails) | **GET** /v1/wave/{wave_id}/ | 
-*WaveControllerApi* | [**queryWaveSuggestion**](docs/WaveControllerApi.md#queryWaveSuggestion) | **POST** /v1/wave/suggestion/ | 
+*PendingItemsControllerApi* | [**releaseAllPendingItems**](docs/PendingItemsControllerApi.md#releaseAllPendingItems) | **POST** /v1/pendingItem/release/ | 
+*PendingItemsControllerApi* | [**releasePendingItems**](docs/PendingItemsControllerApi.md#releasePendingItems) | **POST** /v1/pendingItem/release/{tenantID} | 
+*ProductMappingControllerApi* | [**createProductMapping**](docs/ProductMappingControllerApi.md#createProductMapping) | **POST** /v1/productMapping | 
+*ProductMappingControllerApi* | [**deleteProductMapping**](docs/ProductMappingControllerApi.md#deleteProductMapping) | **DELETE** /v1/productMapping/{direction} | 
+*ProductMappingControllerApi* | [**getProductMapping**](docs/ProductMappingControllerApi.md#getProductMapping) | **GET** /v1/productMapping | 
+*ShipmentInventoryAllocationControllerApi* | [**getShipmentInventoryAllocations**](docs/ShipmentInventoryAllocationControllerApi.md#getShipmentInventoryAllocations) | **POST** /v5/inventory/shipmentInventoryAllocations | 
+*TagCategoryControllerApi* | [**createTagCategory**](docs/TagCategoryControllerApi.md#createTagCategory) | **POST** /v1/tagCategory | 
+*TagCategoryControllerApi* | [**deleteTagCategory**](docs/TagCategoryControllerApi.md#deleteTagCategory) | **DELETE** /v1/tagCategory/{tag_category_name} | 
+*TagCategoryControllerApi* | [**getTagCategory**](docs/TagCategoryControllerApi.md#getTagCategory) | **GET** /v1/tagCategory/{tag_category_name} | 
+*TagCategoryControllerApi* | [**getTagCategoryAll**](docs/TagCategoryControllerApi.md#getTagCategoryAll) | **GET** /v1/tagCategory/ | 
+*TagCategoryControllerApi* | [**updateTagCategory**](docs/TagCategoryControllerApi.md#updateTagCategory) | **PUT** /v1/tagCategory/{tag_category_name} | 
+*TagControllerApi* | [**createTag**](docs/TagControllerApi.md#createTag) | **POST** /v1/tagCategory/{tag_category_name}/tag | 
+*TagControllerApi* | [**deleteTag**](docs/TagControllerApi.md#deleteTag) | **DELETE** /v1/tagCategory/{tag_category_name}/tag/{tag_value} | 
+*TagControllerApi* | [**getTag**](docs/TagControllerApi.md#getTag) | **GET** /v1/tagCategory/{tag_category_name}/tag/{tag_value} | 
+*TagControllerApi* | [**updateTag**](docs/TagControllerApi.md#updateTag) | **PUT** /v1/tagCategory/{tag_category_name}/tag/{tag_value} | 
 
 
 ## Documentation for Models
 
+ - [AdjustFutureDateRequest](docs/AdjustFutureDateRequest.md)
  - [AdjustItem](docs/AdjustItem.md)
  - [AdjustRequest](docs/AdjustRequest.md)
  - [AggregateRequest](docs/AggregateRequest.md)
  - [AggregateResponse](docs/AggregateResponse.md)
  - [AllocateInventoryRequest](docs/AllocateInventoryRequest.md)
  - [AllocateItem](docs/AllocateItem.md)
- - [Audit](docs/Audit.md)
- - [AuditItem](docs/AuditItem.md)
- - [AuditItemQuantity](docs/AuditItemQuantity.md)
- - [AuditSearchRequest](docs/AuditSearchRequest.md)
- - [AuditSearchResponse](docs/AuditSearchResponse.md)
  - [BaseRequest](docs/BaseRequest.md)
  - [BaseResponse](docs/BaseResponse.md)
  - [Bin](docs/Bin.md)
+ - [BinIDResponse](docs/BinIDResponse.md)
  - [BinModel](docs/BinModel.md)
  - [BinProductQuantities](docs/BinProductQuantities.md)
+ - [BinProductResponseQuantities](docs/BinProductResponseQuantities.md)
  - [BinRange](docs/BinRange.md)
  - [BinResponseModel](docs/BinResponseModel.md)
  - [BinSearchRequest](docs/BinSearchRequest.md)
  - [BinSearchResponse](docs/BinSearchResponse.md)
  - [BinStatusModel](docs/BinStatusModel.md)
  - [BinTypeModel](docs/BinTypeModel.md)
- - [CloneTenantRequest](docs/CloneTenantRequest.md)
- - [CompleteWaveResponse](docs/CompleteWaveResponse.md)
- - [CreateAuditRequest](docs/CreateAuditRequest.md)
- - [CreateAuditRequestBin](docs/CreateAuditRequestBin.md)
+ - [BlockAssignmentItem](docs/BlockAssignmentItem.md)
+ - [BlockAssignmentRequest](docs/BlockAssignmentRequest.md)
  - [CreateBinRequest](docs/CreateBinRequest.md)
  - [CreateExportSettingsFTPRequest](docs/CreateExportSettingsFTPRequest.md)
  - [CreateExportSettingsRequest](docs/CreateExportSettingsRequest.md)
  - [CreateExportSettingsS3Request](docs/CreateExportSettingsS3Request.md)
- - [CreateSiteRequest](docs/CreateSiteRequest.md)
- - [CreateTenantRequest](docs/CreateTenantRequest.md)
- - [CreateWaveRequest](docs/CreateWaveRequest.md)
- - [CreateWaveResponse](docs/CreateWaveResponse.md)
  - [DateRange](docs/DateRange.md)
+ - [DeleteFutureItemRequest](docs/DeleteFutureItemRequest.md)
+ - [DeleteFutureItemResponse](docs/DeleteFutureItemResponse.md)
  - [DeleteItemRequest](docs/DeleteItemRequest.md)
  - [DeleteItemResponse](docs/DeleteItemResponse.md)
+ - [DeleteItemsRequest](docs/DeleteItemsRequest.md)
+ - [DeletedCountResponse](docs/DeletedCountResponse.md)
+ - [DeletedResponse](docs/DeletedResponse.md)
  - [ExportInventoryJobResponse](docs/ExportInventoryJobResponse.md)
  - [ExportInventoryRequest](docs/ExportInventoryRequest.md)
  - [ExportInventoryResponse](docs/ExportInventoryResponse.md)
  - [ExportSettings](docs/ExportSettings.md)
  - [ExportSettingsFTP](docs/ExportSettingsFTP.md)
+ - [ExportSettingsResponse](docs/ExportSettingsResponse.md)
  - [ExportSettingsS3](docs/ExportSettingsS3.md)
  - [FetchFileConfigRequest](docs/FetchFileConfigRequest.md)
+ - [FetchFileConnectionResponse](docs/FetchFileConnectionResponse.md)
+ - [FutureInventory](docs/FutureInventory.md)
  - [GetBinsRequest](docs/GetBinsRequest.md)
+ - [GetExportSettingsResponse](docs/GetExportSettingsResponse.md)
  - [GetPendingItemsResponse](docs/GetPendingItemsResponse.md)
  - [InlineResponse404](docs/InlineResponse404.md)
  - [InlineResponse500](docs/InlineResponse500.md)
+ - [InlineResponse5001](docs/InlineResponse5001.md)
+ - [InventoryAllocationResponse](docs/InventoryAllocationResponse.md)
  - [InventoryRequest](docs/InventoryRequest.md)
  - [InventoryResponse](docs/InventoryResponse.md)
  - [Item](docs/Item.md)
  - [ItemQuantity](docs/ItemQuantity.md)
+ - [JobIDResponse](docs/JobIDResponse.md)
  - [JobQueueResponse](docs/JobQueueResponse.md)
  - [LoadBinInventoryRequest](docs/LoadBinInventoryRequest.md)
  - [LoadBinInventoryResponse](docs/LoadBinInventoryResponse.md)
+ - [LocationGroupResponse](docs/LocationGroupResponse.md)
+ - [LocationRequest](docs/LocationRequest.md)
+ - [LocationResponse](docs/LocationResponse.md)
+ - [MDeleteFutureItem](docs/MDeleteFutureItem.md)
  - [MDeleteItem](docs/MDeleteItem.md)
  - [MFetchFileConfig](docs/MFetchFileConfig.md)
- - [MItemIdentifier](docs/MItemIdentifier.md)
  - [OrderItemInformation](docs/OrderItemInformation.md)
  - [OrderItemInformationEvent](docs/OrderItemInformationEvent.md)
  - [OrderItemInformationRequest](docs/OrderItemInformationRequest.md)
@@ -233,12 +248,22 @@ Class | Method | HTTP request | Description
  - [OrderItemLogResponse](docs/OrderItemLogResponse.md)
  - [PendingItem](docs/PendingItem.md)
  - [Product](docs/Product.md)
+ - [ProductIdentifier](docs/ProductIdentifier.md)
+ - [ProductMapping](docs/ProductMapping.md)
+ - [ProductMappingRequest](docs/ProductMappingRequest.md)
+ - [ProductMappingResponse](docs/ProductMappingResponse.md)
  - [ProductMatch](docs/ProductMatch.md)
  - [ProductQuantity](docs/ProductQuantity.md)
+ - [ProductQuantityResponse](docs/ProductQuantityResponse.md)
  - [RefreshItem](docs/RefreshItem.md)
  - [RefreshRequest](docs/RefreshRequest.md)
  - [RequestLocation](docs/RequestLocation.md)
- - [TenantConfigModel](docs/TenantConfigModel.md)
+ - [ShipmentAllocationsResponse](docs/ShipmentAllocationsResponse.md)
+ - [ShipmentInventoryAllocationRequest](docs/ShipmentInventoryAllocationRequest.md)
+ - [ShipmentInventoryAllocationResponse](docs/ShipmentInventoryAllocationResponse.md)
+ - [Tag](docs/Tag.md)
+ - [TagCategory](docs/TagCategory.md)
+ - [TagQuantity](docs/TagQuantity.md)
  - [UpdateBinRequest](docs/UpdateBinRequest.md)
  - [UpdateBinsRequest](docs/UpdateBinsRequest.md)
  - [UpdateBinsResponse](docs/UpdateBinsResponse.md)
@@ -248,16 +273,6 @@ Class | Method | HTTP request | Description
  - [UpdateExportSettingsResponse](docs/UpdateExportSettingsResponse.md)
  - [UpdateExportSettingsS3Request](docs/UpdateExportSettingsS3Request.md)
  - [UpdateExportSettingsS3Response](docs/UpdateExportSettingsS3Response.md)
- - [UpdateTenantConfigRequest](docs/UpdateTenantConfigRequest.md)
- - [Wave](docs/Wave.md)
- - [WaveCompletion](docs/WaveCompletion.md)
- - [WaveContent](docs/WaveContent.md)
- - [WaveItem](docs/WaveItem.md)
- - [WaveShipment](docs/WaveShipment.md)
- - [WaveSuggestionItem](docs/WaveSuggestionItem.md)
- - [WaveSuggestionRequest](docs/WaveSuggestionRequest.md)
- - [WaveSuggestionResponse](docs/WaveSuggestionResponse.md)
- - [WaveSuggestionShipment](docs/WaveSuggestionShipment.md)
 
 
 ## Documentation for Authorization

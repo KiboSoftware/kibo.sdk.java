@@ -28,7 +28,7 @@ import java.io.IOException;
  * Bin ID Response
  */
 @ApiModel(description = "Bin ID Response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class BinIDResponse {
   public static final String SERIALIZED_NAME_BIN_I_D = "binID";
   @SerializedName(SERIALIZED_NAME_BIN_I_D)

@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kibocommerce.sdk.fulfillment.model.Item;
+import com.kibocommerce.sdk.fulfillment.model.HandleOptionItem;
 import com.kibocommerce.sdk.fulfillment.model.TaskReason;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * HandleOption
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:23:59.007-07:00[America/Los_Angeles]")
 public class HandleOption {
   public static final String SERIALIZED_NAME_BLOCK_ASSIGNMENT = "blockAssignment";
   @SerializedName(SERIALIZED_NAME_BLOCK_ASSIGNMENT)
@@ -39,7 +39,7 @@ public class HandleOption {
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<Item> items = null;
+  private List<HandleOptionItem> items = null;
 
   public static final String SERIALIZED_NAME_REASON = "reason";
   @SerializedName(SERIALIZED_NAME_REASON)
@@ -63,14 +63,14 @@ public class HandleOption {
     this.blockAssignment = blockAssignment;
   }
 
-  public HandleOption items(List<Item> items) {
+  public HandleOption items(List<HandleOptionItem> items) {
     this.items = items;
     return this;
   }
 
-  public HandleOption addItemsItem(Item itemsItem) {
+  public HandleOption addItemsItem(HandleOptionItem itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<Item>();
+      this.items = new ArrayList<HandleOptionItem>();
     }
     this.items.add(itemsItem);
     return this;
@@ -81,11 +81,11 @@ public class HandleOption {
    * @return items
   **/
   @ApiModelProperty(value = "")
-  public List<Item> getItems() {
+  public List<HandleOptionItem> getItems() {
     return items;
   }
 
-  public void setItems(List<Item> items) {
+  public void setItems(List<HandleOptionItem> items) {
     this.items = items;
   }
 

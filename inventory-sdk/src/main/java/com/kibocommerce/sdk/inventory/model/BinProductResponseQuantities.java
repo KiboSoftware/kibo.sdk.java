@@ -31,7 +31,7 @@ import java.util.List;
  * A response object for a bin and its associated products and quantities
  */
 @ApiModel(description = "A response object for a bin and its associated products and quantities")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class BinProductResponseQuantities {
   public static final String SERIALIZED_NAME_BIN_NAME = "binName";
   @SerializedName(SERIALIZED_NAME_BIN_NAME)
