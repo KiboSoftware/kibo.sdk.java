@@ -18,7 +18,7 @@ import com.kibocommerce.sdk.fulfillment.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:23:59.007-07:00[America/Los_Angeles]")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;

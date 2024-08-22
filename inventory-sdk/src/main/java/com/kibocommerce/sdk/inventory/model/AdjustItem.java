@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * Adjust Item
  */
 @ApiModel(description = "Adjust Item")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class AdjustItem {
   public static final String SERIALIZED_NAME_PART_NUMBER = "partNumber";
   @SerializedName(SERIALIZED_NAME_PART_NUMBER)

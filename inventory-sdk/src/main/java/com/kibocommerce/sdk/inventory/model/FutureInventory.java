@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * Future Inventory Model
  */
 @ApiModel(description = "Future Inventory Model")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class FutureInventory {
   public static final String SERIALIZED_NAME_FUTURE_INVENTORY_I_D = "futureInventoryID";
   @SerializedName(SERIALIZED_NAME_FUTURE_INVENTORY_I_D)

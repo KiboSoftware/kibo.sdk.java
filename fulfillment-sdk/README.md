@@ -2,7 +2,7 @@
 
 Kibo Fulfillment API - Production Profile
 - API version: 1.0
-  - Build date: 2020-12-08T12:42:53.880-06:00[America/Chicago]
+  - Build date: 2024-08-22T14:23:59.007-07:00[America/Los_Angeles]
 
 REST API backing the Kibo Fulfiller User Interface
 
@@ -225,6 +225,7 @@ Class | Method | HTTP request | Description
  - [EntityModelOfWorkflowProcess](docs/EntityModelOfWorkflowProcess.md)
  - [GiftCard](docs/GiftCard.md)
  - [HandleOption](docs/HandleOption.md)
+ - [HandleOptionItem](docs/HandleOptionItem.md)
  - [Item](docs/Item.md)
  - [Link](docs/Link.md)
  - [LinkRelation](docs/LinkRelation.md)

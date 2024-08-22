@@ -28,7 +28,7 @@ import java.io.IOException;
  * Export Settings FTP
  */
 @ApiModel(description = "Export Settings FTP")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class ExportSettingsFTP {
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)

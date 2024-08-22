@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * MozuCoreApiContractsAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-26T13:42:29.731930-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:23:37.659-07:00[America/Los_Angeles]")
 public class MozuCoreApiContractsAddress {
   public static final String SERIALIZED_NAME_ADDRESS1 = "address1";
   @SerializedName(SERIALIZED_NAME_ADDRESS1)

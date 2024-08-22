@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * MozuTenantContractsTenant
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-26T13:42:29.731930-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:23:37.659-07:00[America/Los_Angeles]")
 public class MozuTenantContractsTenant {
   public static final String SERIALIZED_NAME_SCALE_UNIT_ID = "scaleUnitId";
   @SerializedName(SERIALIZED_NAME_SCALE_UNIT_ID)

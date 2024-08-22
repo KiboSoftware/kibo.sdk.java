@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * TransferShipment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-12-08T12:42:53.880-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:23:59.007-07:00[America/Los_Angeles]")
 public class TransferShipment {
   public static final String SERIALIZED_NAME_BLOCK_ASSIGNMENT = "blockAssignment";
   @SerializedName(SERIALIZED_NAME_BLOCK_ASSIGNMENT)

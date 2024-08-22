@@ -29,7 +29,7 @@ import java.io.IOException;
  * Response for get Export Settings
  */
 @ApiModel(description = "Response for get Export Settings")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-07T16:32:28.052447-06:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T14:24:26.659-07:00[America/Los_Angeles]")
 public class GetExportSettingsResponse {
   public static final String SERIALIZED_NAME_EXPORT_SETTINGS = "exportSettings";
   @SerializedName(SERIALIZED_NAME_EXPORT_SETTINGS)
